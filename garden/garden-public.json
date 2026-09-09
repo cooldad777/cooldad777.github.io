@@ -1,0 +1,237 @@
+{
+  "meta": {
+    "title": "Idea Garden",
+    "banner": "Public nursery — private depth stays private.",
+    "lead": "Processed thinking others can walk. Seed → Sapling → Fruit. Not the Chronicle.",
+    "membrane": "Public-safe only. Held back: personal health notes, Monitor weights, Gmail archaeology depth, private hub paths, employer facts, novel catalog.",
+    "updated": "2026-09-09",
+    "hold": "PUBLIC HOLD lifted for this splash only."
+  },
+  "ideas": [
+    {
+      "id": "project-naming-frame",
+      "title": "Project Naming Frame",
+      "maturity": "fruit",
+      "blurb": "Locked public names so doors stay distinct and talkable.",
+      "href": null,
+      "flow": {
+        "stimulus": "Projects blurred into each other when named casually.",
+        "explored": "A short frame that locks public-facing names.",
+        "why": "Clear names let strangers (and LLMs) load the right door.",
+        "moved": "Settled naming for Seer, SEER Consulting, Install, GROUNDED, Adventure Within.",
+        "open": "New doors still earn a name before they earn a URL."
+      }
+    },
+    {
+      "id": "universal-markdown-doctrine",
+      "title": "Universal Markdown Doctrine",
+      "maturity": "fruit",
+      "blurb": "Markdown as shared language; load the smallest true file.",
+      "href": null,
+      "flow": {
+        "stimulus": "Long chats and scattered notes made context unreliable.",
+        "explored": "Treat Markdown as the portable canon across tools.",
+        "why": "Smallest true file beats a hall of mirrors.",
+        "moved": "Doctrine: load the smallest true MD; label facts vs interpretation.",
+        "open": "Which public MD fronts stay talkable without private twins."
+      }
+    },
+    {
+      "id": "seer-consulting",
+      "title": "SEER Consulting",
+      "maturity": "fruit",
+      "blurb": "Local counsel that stays human. Analytics inside the work.",
+      "href": "../consulting/",
+      "flow": {
+        "stimulus": "Need a public firm face without turning AI into the product.",
+        "explored": "Human-first consulting with tools nested inside engagements.",
+        "why": "Trust stays local; tech serves the conversation.",
+        "moved": "Public consulting door live on the hub.",
+        "open": "How far the public face expands without overselling."
+      }
+    },
+    {
+      "id": "seer-install",
+      "title": "SEER Install",
+      "maturity": "fruit",
+      "blurb": "Company-scale context install: install, train, leave.",
+      "href": null,
+      "flow": {
+        "stimulus": "Teams want durable context, not another forever chat.",
+        "explored": "Install a shared Markdown/context layer, train, then leave.",
+        "why": "Ownership stays with the client after handoff.",
+        "moved": "Named as Install — distinct from personal Seer.",
+        "open": "Packaging and examples that stay public-safe."
+      }
+    },
+    {
+      "id": "grounded",
+      "title": "GROUNDED",
+      "maturity": "fruit",
+      "blurb": "Weekly attention practice: lockbox, Scripture, silence, commit.",
+      "href": "../grounded/",
+      "flow": {
+        "stimulus": "Attention frays under constant device pull.",
+        "explored": "A weekly form with phones locked away.",
+        "why": "Body and place first — formation before feed.",
+        "moved": "Public GROUNDED door with the practice shape.",
+        "open": "Local rhythm and who shows up in Kennesaw."
+      }
+    },
+    {
+      "id": "anti-attachment",
+      "title": "Anti-Attachment",
+      "maturity": "fruit",
+      "blurb": "A bouncer at the door. Open guardrails so AI stays a tool.",
+      "href": "../anti-attachment/",
+      "flow": {
+        "stimulus": "AI can feel like a friend or oracle too fast.",
+        "explored": "Open guardrails — a bouncer, not a ban.",
+        "why": "Keep the tool; refuse the attachment.",
+        "moved": "Public Anti-Attachment framework page.",
+        "open": "How the rails stay sharp as tools change."
+      }
+    },
+    {
+      "id": "fretboard-fire-drill",
+      "title": "Fretboard Fire Drill",
+      "maturity": "fruit",
+      "blurb": "Shipped guitar fretboard drill — note to live tool with AI.",
+      "href": "https://cooldad777.github.io/fretboard-fire-drill/",
+      "external": true,
+      "flow": {
+        "stimulus": "Wanted fretboard fluency without another dense theory book.",
+        "explored": "A focused drill app built with AI assistance.",
+        "why": "Proof that a seed can graduate to a live public tool.",
+        "moved": "Live at fretboard-fire-drill on GitHub Pages.",
+        "open": "What other small tools earn the same path."
+      }
+    },
+    {
+      "id": "adventure-within",
+      "title": "Adventure Within",
+      "maturity": "sapling",
+      "blurb": "Improvisational indie rock. Loose structures that wander and return.",
+      "href": "../adventure/",
+      "flow": {
+        "stimulus": "Music that wants room to improvise, not a rigid setlist brand.",
+        "explored": "Indie rock with motifs that wander and return.",
+        "why": "Creative work needs its own door, not forced under Seer.",
+        "moved": "Public Adventure Within page while recording continues.",
+        "open": "Releases and how the public page grows with them."
+      }
+    },
+    {
+      "id": "seer-personal-os",
+      "title": "Seer",
+      "maturity": "sapling",
+      "blurb": "Personal OS — questions as the asset; local-first. Depth private.",
+      "href": null,
+      "flow": {
+        "stimulus": "Need a personal operating layer that is not a vendor chat.",
+        "explored": "Questions as the asset; constitution rails; local-first.",
+        "why": "Public can know the shape; private depth stays private.",
+        "moved": "Named and separated from Consulting and Install.",
+        "open": "What thin public surface (if any) ever graduates."
+      }
+    },
+    {
+      "id": "digital-pensieve",
+      "title": "Digital Pensieve",
+      "maturity": "sapling",
+      "blurb": "Three layers named only: raw archive, factual timeline, interpretation.",
+      "href": null,
+      "flow": {
+        "stimulus": "Memory tools blend raw, fact, and story too easily.",
+        "explored": "Keep three layers distinct on purpose.",
+        "why": "Interpretation must not rewrite the archive silently.",
+        "moved": "Public naming of the three layers — no private dump.",
+        "open": "Interfaces that respect the separation."
+      }
+    },
+    {
+      "id": "thinking-flowcharts",
+      "title": "Thinking flowcharts for others",
+      "maturity": "seed",
+      "blurb": "Meta: this orchard — show processed thinking as a walkable flow.",
+      "href": null,
+      "flow": {
+        "stimulus": "Finished answers hide how a thought actually moved.",
+        "explored": "Stimulus → Explored → Why → Moved → Still open.",
+        "why": "Others (and future self) can walk the path, not just the conclusion.",
+        "moved": "This Idea Garden splash is the first public sketch.",
+        "open": "How much flow depth stays public vs private twin."
+      }
+    },
+    {
+      "id": "layered-lenses",
+      "title": "Layered Lenses dashboard",
+      "maturity": "seed",
+      "blurb": "Idea only: filter and stack worldview lenses — criteria stay private.",
+      "href": null,
+      "flow": {
+        "stimulus": "One lens at a time flattens complex questions.",
+        "explored": "Stack lenses (people, faith, place, topics) as a dashboard idea.",
+        "why": "Seeing through something should help you see something through it.",
+        "moved": "Seed planted — no private criteria published here.",
+        "open": "Whether a thin public demo ever earns a page."
+      }
+    },
+    {
+      "id": "open-llm-orientation",
+      "title": "Open-source / open-LLM orientation",
+      "maturity": "seed",
+      "blurb": "Model-agnostic Markdown canon; open-weight peers, not one vendor chat.",
+      "href": null,
+      "flow": {
+        "stimulus": "Locking to one chat vendor narrows the work.",
+        "explored": "Markdown-first, model-agnostic orientation.",
+        "why": "Portability and peer models keep the canon yours.",
+        "moved": "Named as a seed for how Seer and Install stay open.",
+        "open": "Practical defaults without a product pitch."
+      }
+    },
+    {
+      "id": "ai-not-mechanic",
+      "title": "AI ≠ mechanic",
+      "maturity": "seed",
+      "blurb": "Don’t use AI as the craft; use it to help understand the craft.",
+      "href": null,
+      "flow": {
+        "stimulus": "Temptation to let the model do the skilled work.",
+        "explored": "AI as tutor toward the mechanic, not the mechanic itself.",
+        "why": "Skill and judgment stay human; tools clarify.",
+        "moved": "Short critique seed for consulting and making.",
+        "open": "Examples that teach without deskilling."
+      }
+    },
+    {
+      "id": "ai-seizing-oracle",
+      "title": "AI as seizing oracle (critique)",
+      "maturity": "seed",
+      "blurb": "Pattern-power that feels all-knowing can seize attention.",
+      "href": null,
+      "flow": {
+        "stimulus": "Oracle-feeling answers arrive with biometric and data creep.",
+        "explored": "Critique the seizing pattern, not just the usefulness.",
+        "why": "Name the pull so Anti-Attachment has teeth.",
+        "moved": "Seed critique kept public-safe and short.",
+        "open": "How to teach the critique without fear theater."
+      }
+    },
+    {
+      "id": "guitar-coach-ai",
+      "title": "Guitar coach AI",
+      "maturity": "seed",
+      "blurb": "Learn guitar with AI that analyzes playing — beside Fire Drill.",
+      "href": null,
+      "flow": {
+        "stimulus": "Practice feedback is sparse between lessons.",
+        "explored": "AI coach that listens and drills, not just chat tips.",
+        "why": "Music growth is embodied; feedback should meet the hands.",
+        "moved": "Seed next to shipped Fretboard Fire Drill.",
+        "open": "What ships next without bloating the drill."
+      }
+    }
+  ]
+}

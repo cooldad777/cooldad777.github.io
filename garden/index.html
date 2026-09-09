@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Idea Garden — SEE, R</title>
+  <meta name="description" content="Public nursery of processed thinking. Seed → Sapling → Fruit. Private depth stays private."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Idea Garden — SEE, R"/>
+  <meta property="og:description" content="Public nursery — private depth stays private. Processed thinking others can walk."/>
+  <meta name="theme-color" content="#f7f8f5"/>
+  <link rel="icon" type="image/png" href="../assets/favicon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/site.css"/>
+</head>
+<body class="page-garden">
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="wrap nav-in">
+      <a class="brand" href="../index.html">
+        <img src="../assets/star.png" alt="SEE, R"/>
+        <span>SEE, R</span>
+      </a>
+      <button id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../grounded/index.html">GROUNDED</a></li>
+        <li><a href="../consulting/index.html">SEER Consulting</a></li>
+        <li><a href="../adventure/index.html">Adventure Within</a></li>
+        <li><a href="../anti-attachment/index.html">Anti-Attachment</a></li>
+        <li><a href="../chronicle/index.html">Seer Chronicle</a></li>
+        <li><a href="mailto:ryanrsee@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="page-hero garden-hero">
+    <div class="wrap">
+      <img class="mark" src="../assets/star.png" alt=""/>
+      <p class="eyebrow">Nursery · Secondary door</p>
+      <h1>Idea Garden</h1>
+      <p class="lead">Processed thinking others can walk. Seed → Sapling → Fruit — not the Chronicle trail.</p>
+      <p class="membrane-banner" role="note">Public nursery — private depth stays private.</p>
+      <p class="body">Shallow public cards for core doors and a few safe seeds. Expand a row to see Stimulus → Explored → Why → Moved → Still open.</p>
+      <div class="hero-links">
+        <a class="back-link" href="../index.html">← SEE, R</a>
+        <a class="back-link" href="../chronicle/index.html">Seer Chronicle →</a>
+        <a class="back-link" href="garden-public.json">garden-public.json</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="garden-band garden-band-slim" aria-label="Garden vs Chronicle">
+      <div class="wrap">
+        <div class="garden-vs-chronicle" role="note">
+          <p class="eyebrow">Not the Chronicle</p>
+          <h2>Plant and grow is not the trail</h2>
+          <p>Seer Chronicle shows how thinking moved over time. Idea Garden is where public-safe ideas are planted and grown until they earn a page.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="nursery-band orchard-band" id="nursery" aria-label="Interactive orchard">
+      <div class="wrap">
+        <p class="eyebrow">Orchard</p>
+        <h2>Walk the ideas</h2>
+        <p class="nursery-lead">Filter by maturity. Click a row to expand the thought-flow. Dense private depth is held back on purpose.</p>
+
+        <div class="filter-row" id="garden-filters" role="group" aria-label="Filter by maturity">
+          <button type="button" class="filter-chip active" data-maturity="all">All</button>
+          <button type="button" class="filter-chip" data-maturity="fruit">Fruit</button>
+          <button type="button" class="filter-chip" data-maturity="sapling">Sapling</button>
+          <button type="button" class="filter-chip" data-maturity="seed">Seed</button>
+        </div>
+
+        <div class="orchard" id="nursery-cards" aria-live="polite">
+          <!-- rendered from garden-public.json -->
+        </div>
+        <p class="nursery-empty t-empty" id="nursery-empty" hidden>No ideas at this stage.</p>
+      </div>
+    </section>
+
+    <section class="cta-band garden-cta">
+      <div class="wrap">
+        <h2 style="font-size:clamp(1.6rem,3.5vw,2.2rem);">How thinking moved</h2>
+        <p style="margin:16px auto 0;max-width:48ch;color:rgba(255,255,255,.85);">For the dated trail, open Seer Chronicle. The garden stays a nursery.</p>
+        <div class="btn-row" style="justify-content:center;">
+          <a class="btn btn-gold" href="../chronicle/index.html">Seer Chronicle →</a>
+          <a class="btn btn-outline" href="../index.html">← SEE, R</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-links">
+          <a href="../grounded/index.html">GROUNDED</a>
+          <a href="../consulting/index.html">SEER Consulting</a>
+          <a href="../adventure/index.html">Adventure</a>
+          <a href="../anti-attachment/index.html">Anti-Attachment</a>
+          <a href="../chronicle/index.html">Chronicle</a>
+          <a href="mailto:ryanrsee@gmail.com">Contact</a>
+        </div>
+        <div class="foot-mid">© 2026 SEE, R. Kennesaw, GA.</div>
+        <div class="foot-right"><a href="mailto:ryanrsee@gmail.com">ryanrsee@gmail.com</a></div>
+      </div>
+      <p class="foot-secondary"><a href="../index.html">← SEE, R</a> <span aria-hidden="true">·</span> <a href="index.html" aria-current="page">Idea Garden</a> <span aria-hidden="true">·</span> <a href="garden-public.json">garden-public.json</a></p>
+      <div class="foot-brand">
+        <img class="foot-mark" src="../assets/star.png" alt=""/>
+      </div>
+      <p class="signature">SEE, R · Kennesaw, GA</p>
+    </div>
+  </footer>
+
+  <script src="../assets/site.js"></script>
+  <script>
+  (function () {
+    var orchard = document.getElementById('nursery-cards');
+    if (!orchard) return;
+
+    function esc(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function maturityLabel(m) {
+      return m.charAt(0).toUpperCase() + m.slice(1);
+    }
+
+    function renderIdea(idea) {
+      var f = idea.flow || {};
+      var titleHtml = esc(idea.title);
+      var linkHtml = '';
+      if (idea.href) {
+        var rel = idea.external ? ' rel="noopener noreferrer" target="_blank"' : '';
+        linkHtml = '<a class="idea-out" href="' + esc(idea.href) + '"' + rel + ' onclick="event.stopPropagation()">Open →</a>';
+      }
+      return (
+        '<article class="idea-row" data-maturity="' + esc(idea.maturity) + '" data-id="' + esc(idea.id) + '">' +
+          '<button type="button" class="idea-pill" aria-expanded="false">' +
+            '<span class="idea-pill-left">' +
+              '<span class="maturity-chip maturity-' + esc(idea.maturity) + '">' + esc(maturityLabel(idea.maturity)) + '</span>' +
+              '<span class="idea-title">' + titleHtml + '</span>' +
+            '</span>' +
+            '<span class="idea-pill-right">' +
+              '<span class="idea-blurb">' + esc(idea.blurb) + '</span>' +
+              '<span class="idea-chevron" aria-hidden="true"></span>' +
+            '</span>' +
+          '</button>' +
+          '<div class="idea-panel" hidden>' +
+            '<ol class="thought-flow">' +
+              '<li><span class="flow-step">Stimulus</span><span class="flow-line">' + esc(f.stimulus) + '</span></li>' +
+              '<li><span class="flow-step">Explored</span><span class="flow-line">' + esc(f.explored) + '</span></li>' +
+              '<li><span class="flow-step">Why</span><span class="flow-line">' + esc(f.why) + '</span></li>' +
+              '<li><span class="flow-step">Moved</span><span class="flow-line">' + esc(f.moved) + '</span></li>' +
+              '<li><span class="flow-step">Still open</span><span class="flow-line">' + esc(f.open) + '</span></li>' +
+            '</ol>' +
+            '<div class="flow-chart" aria-hidden="true">' +
+              '<span>Stimulus</span><i></i><span>Explored</span><i></i><span>Why</span><i></i><span>Moved</span><i></i><span>Open</span>' +
+            '</div>' +
+            (linkHtml ? '<p class="idea-actions">' + linkHtml + '</p>' : '') +
+          '</div>' +
+        '</article>'
+      );
+    }
+
+    function bindOrchard() {
+      orchard.addEventListener('click', function (e) {
+        var pill = e.target.closest('.idea-pill');
+        if (!pill) return;
+        var row = pill.closest('.idea-row');
+        var panel = row.querySelector('.idea-panel');
+        var open = pill.getAttribute('aria-expanded') === 'true';
+        // close others for calm focus
+        var all = orchard.querySelectorAll('.idea-row');
+        for (var i = 0; i < all.length; i++) {
+          var p = all[i].querySelector('.idea-pill');
+          var pan = all[i].querySelector('.idea-panel');
+          if (all[i] === row) continue;
+          p.setAttribute('aria-expanded', 'false');
+          all[i].classList.remove('is-open');
+          if (pan) pan.hidden = true;
+        }
+        pill.setAttribute('aria-expanded', open ? 'false' : 'true');
+        row.classList.toggle('is-open', !open);
+        panel.hidden = open;
+      });
+    }
+
+    fetch('garden-public.json')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var ideas = data.ideas || [];
+        orchard.innerHTML = ideas.map(renderIdea).join('');
+        bindOrchard();
+      })
+      .catch(function () {
+        orchard.innerHTML = '<p class="nursery-lead">Could not load garden-public.json.</p>';
+      });
+  })();
+  </script>
+</body>
+</html>
