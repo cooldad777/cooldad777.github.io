@@ -481,7 +481,7 @@ main { flex: 1; }
 .hub-contact a:hover { color: var(--forest-deep); }
 
 /* ============================================================
-   GROUNDED — forest breath / white space
+   GROUNDED — woods note / white space
    ============================================================ */
 .page-grounded .page-hero {
   background:
@@ -902,3 +902,5 @@ main { flex: 1; }
   margin: 0;
   max-width: 62ch;
 }
+
+.verse-secondary { margin-top: 1.25rem; opacity: 0.92; }
