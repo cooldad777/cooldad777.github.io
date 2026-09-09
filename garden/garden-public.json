@@ -1,8 +1,8 @@
 {
   "meta": {
     "title": "Idea Garden",
-    "banner": "Public nursery \u2014 private depth stays private.",
-    "lead": "Processed thinking others can walk. Seed \u2192 Sapling \u2192 Fruit \u2014 sibling to Chronicle, not a replacement.",
+    "banner": "Public nursery — private depth stays private.",
+    "lead": "Processed thinking others can walk. Seed → Sapling → Fruit — sibling to Chronicle, not a replacement.",
     "membrane": "Public-safe only. Held back: personal health notes, Monitor weights, Gmail archaeology depth, private hub paths, employer facts, novel catalog.",
     "updated": "2026-09-09",
     "hold": "PUBLIC HOLD lifted for this splash only."
@@ -60,7 +60,7 @@
         "stimulus": "Teams want durable context, not another forever chat.",
         "explored": "Install a shared Markdown/context layer, train, then leave.",
         "why": "Ownership stays with the client after handoff.",
-        "moved": "Named as Install \u2014 distinct from personal Seer.",
+        "moved": "Named as Install — distinct from personal Seer.",
         "open": "Packaging and examples that stay public-safe."
       }
     },
@@ -73,7 +73,7 @@
       "flow": {
         "stimulus": "Attention frays under constant device pull.",
         "explored": "A weekly form with phones locked away.",
-        "why": "Body and place first \u2014 formation before feed.",
+        "why": "Body and place first — formation before feed.",
         "moved": "Public GROUNDED door with the practice shape.",
         "open": "Local rhythm and who shows up in Kennesaw."
       }
@@ -86,7 +86,7 @@
       "href": "../anti-attachment/",
       "flow": {
         "stimulus": "AI can feel like a friend or oracle too fast.",
-        "explored": "Open guardrails \u2014 a bouncer, not a ban.",
+        "explored": "Open guardrails — a bouncer, not a ban.",
         "why": "Keep the tool; refuse the attachment.",
         "moved": "Public Anti-Attachment framework page.",
         "open": "How the rails stay sharp as tools change."
@@ -96,7 +96,7 @@
       "id": "fretboard-fire-drill",
       "title": "Fretboard Fire Drill",
       "maturity": "fruit",
-      "blurb": "Shipped guitar fretboard drill \u2014 note to live tool with AI.",
+      "blurb": "Shipped guitar fretboard drill — note to live tool with AI.",
       "href": "https://cooldad777.github.io/fretboard-fire-drill/",
       "external": true,
       "flow": {
@@ -105,20 +105,6 @@
         "why": "Proof that a seed can graduate to a live public tool.",
         "moved": "Live at fretboard-fire-drill on GitHub Pages.",
         "open": "What other small tools earn the same path."
-      }
-    },
-    {
-      "id": "the-ensemble",
-      "title": "The Ensemble",
-      "maturity": "sapling",
-      "blurb": "Multi-AI lock \u2014 a passphrase one model can\u2019t open alone.",
-      "href": "../ensemble/",
-      "flow": {
-        "stimulus": "Want a public, playful way to show why several lenses beat one oracle.",
-        "explored": "Daily seed \u2192 three voice challenges \u2192 combine-order passphrase.",
-        "why": "Engagement that rehearses multi-model thinking without private data.",
-        "moved": "Live public puzzle page on the hub.",
-        "open": "Whether seasonal variants or chronicle beats earn a place beside it."
       }
     },
     {
@@ -139,7 +125,7 @@
       "id": "seer-personal-os",
       "title": "Seer",
       "maturity": "sapling",
-      "blurb": "Personal OS \u2014 questions as the asset; local-first. Depth private.",
+      "blurb": "Personal OS — questions as the asset; local-first. Depth private.",
       "href": null,
       "flow": {
         "stimulus": "Need a personal operating layer that is not a vendor chat.",
@@ -159,7 +145,7 @@
         "stimulus": "Memory tools blend raw, fact, and story too easily.",
         "explored": "Keep three layers distinct on purpose.",
         "why": "Interpretation must not rewrite the archive silently.",
-        "moved": "Public naming of the three layers \u2014 no private dump.",
+        "moved": "Public naming of the three layers — no private dump.",
         "open": "Interfaces that respect the separation."
       }
     },
@@ -167,11 +153,11 @@
       "id": "thinking-flowcharts",
       "title": "Thinking flowcharts for others",
       "maturity": "seed",
-      "blurb": "Meta: this orchard \u2014 show processed thinking as a walkable flow.",
+      "blurb": "Meta: this orchard — show processed thinking as a walkable flow.",
       "href": null,
       "flow": {
         "stimulus": "Finished answers hide how a thought actually moved.",
-        "explored": "Stimulus \u2192 Explored \u2192 Why \u2192 Moved \u2192 Still open.",
+        "explored": "Stimulus → Explored → Why → Moved → Still open.",
         "why": "Others (and future self) can walk the path, not just the conclusion.",
         "moved": "This Idea Garden splash is the first public sketch.",
         "open": "How much flow depth stays public vs private twin."
@@ -181,13 +167,13 @@
       "id": "layered-lenses",
       "title": "Layered Lenses dashboard",
       "maturity": "seed",
-      "blurb": "Idea only: filter and stack worldview lenses \u2014 criteria stay private.",
+      "blurb": "Idea only: filter and stack worldview lenses — criteria stay private.",
       "href": null,
       "flow": {
         "stimulus": "One lens at a time flattens complex questions.",
         "explored": "Stack lenses (people, faith, place, topics) as a dashboard idea.",
         "why": "Seeing through something should help you see something through it.",
-        "moved": "Seed planted \u2014 no private criteria published here.",
+        "moved": "Seed planted — no private criteria published here.",
         "open": "Whether a thin public demo ever earns a page."
       }
     },
@@ -207,9 +193,9 @@
     },
     {
       "id": "ai-not-mechanic",
-      "title": "AI \u2260 mechanic",
+      "title": "AI ≠ mechanic",
       "maturity": "seed",
-      "blurb": "Don\u2019t use AI as the craft; use it to help understand the craft.",
+      "blurb": "Don’t use AI as the craft; use it to help understand the craft.",
       "href": null,
       "flow": {
         "stimulus": "Temptation to let the model do the skilled work.",
@@ -237,7 +223,7 @@
       "id": "guitar-coach-ai",
       "title": "Guitar coach AI",
       "maturity": "seed",
-      "blurb": "Learn guitar with AI that analyzes playing \u2014 beside Fire Drill.",
+      "blurb": "Learn guitar with AI that analyzes playing — beside Fire Drill.",
       "href": null,
       "flow": {
         "stimulus": "Practice feedback is sparse between lessons.",
