@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Idea Garden — Nursery | SEE, R</title>
+  <meta name="description" content="Public-safe idea nursery. Seed → Sapling → Fruit. Not the Chronicle. Kennesaw, GA."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Idea Garden — SEE, R"/>
+  <meta property="og:description" content="Public-safe idea nursery. Seed → Sapling → Fruit. Not the Chronicle."/>
+  <meta name="theme-color" content="#f7f8f5"/>
+  <link rel="icon" type="image/png" href="../assets/favicon.png"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../assets/site.css"/>
+</head>
+<body class="page-garden">
+
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="wrap nav-in">
+      <a class="brand" href="../index.html">
+        <img src="../assets/star.png" alt="SEE, R"/>
+        <span>SEE, R</span>
+      </a>
+      <button id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="../grounded/index.html">GROUNDED</a></li>
+        <li><a href="../consulting/index.html">SEER Consulting</a></li>
+        <li><a href="../adventure/index.html">Adventure Within</a></li>
+        <li><a href="../anti-attachment/index.html">Anti-Attachment</a></li>
+        <li><a href="../chronicle/index.html">Seer Chronicle</a></li>
+        <li><a href="mailto:ryanrsee@gmail.com">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="page-hero">
+    <div class="wrap">
+      <img class="mark" src="../assets/star.png" alt=""/>
+      <p class="eyebrow">Nursery · Secondary door</p>
+      <h1>Idea Garden</h1>
+      <!-- CONTENT_WRITER: door one-liner (draft · awaiting CoS Settled-for-HTML) -->
+      <p class="lead">Public-safe idea nursery. Seed → Sapling → Fruit. Not the Chronicle.</p>
+      <p class="body">Graduate-to-public: mature notes earn a URL; paid and private stay back.</p>
+      <p class="talkable-link"><a href="INDEX.md">Talkable MD index →</a></p>
+      <a class="back-link" href="../index.html">← SEE, R</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="garden-band" aria-label="Garden vs Chronicle">
+      <div class="wrap">
+        <div class="garden-vs-chronicle" role="note">
+          <p class="eyebrow">Not the Chronicle</p>
+          <h2>Plant and grow is not the Chronicle trail</h2>
+          <p>Seer Chronicle shows how thinking moved. Idea Garden is where ideas are planted and grown. <a href="../chronicle/index.html">Seer Chronicle →</a></p>
+        </div>
+
+        <div class="garden-rules">
+          <h2>Graduation rules</h2>
+          <p class="rules-intro">Graduate-to-public: mature notes earn a URL; paid and private stay back. A note clears the gate when it is:</p>
+          <ul>
+            <li><strong>Public-safe</strong> — Settled / public-safe only</li>
+            <li><strong>No employer</strong> — no employer facts, client IDs, or Never List</li>
+            <li><strong>Dated</strong> — facts vs interpretation labeled; dates present</li>
+            <li><strong>Stands alone</strong> — useful to a stranger or LLM by URL alone</li>
+          </ul>
+          <p class="rules-note">Private novel catalog never on Pages.</p>
+        </div>
+
+        <div class="garden-stages" aria-label="Maturity stages">
+          <h2>Stages</h2>
+          <ul class="stage-defs">
+            <li><strong>Seed</strong> — Early public-safe note — planted in the nursery, not ready to graduate.</li>
+            <li><strong>Sapling</strong> — Growing — more shape, still in the nursery.</li>
+            <li><strong>Fruit</strong> — Mature enough to earn a public page. Fruit is a graduated note, not a home door.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="nursery-band" id="nursery" aria-label="Nursery">
+      <div class="wrap">
+        <p class="eyebrow">Nursery</p>
+        <h2>Public-safe ideas</h2>
+        <p class="nursery-lead">Filter by maturity. Core doors plus seeds from Ryan’s notes (public-safe). More years via Gemini archaeology still to plant.</p>
+
+        <div class="filter-row" id="garden-filters" role="group" aria-label="Filter by maturity">
+          <button type="button" class="filter-chip active" data-maturity="all">All</button>
+          <button type="button" class="filter-chip" data-maturity="seed">Seed</button>
+          <button type="button" class="filter-chip" data-maturity="sapling">Sapling</button>
+          <button type="button" class="filter-chip" data-maturity="fruit">Fruit</button>
+        </div>
+
+        <div class="nursery-grid" id="nursery-cards">
+
+          <article class="seed-card" data-maturity="fruit">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-fruit">Fruit</span>
+              <span class="project-chip">naming</span>
+            </div>
+            <h3>Project Naming Frame</h3>
+            <p class="seed-blurb">Locked names for Seer / Rutter / SEER Consulting / SEER Install / GROUNDED / Adventure Within / Shop.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="fruit">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-fruit">Fruit</span>
+              <span class="project-chip">doctrine</span>
+            </div>
+            <h3>Universal Markdown Doctrine</h3>
+            <p class="seed-blurb">Markdown as shared language; load the smallest true file; anti-hallucination tiers.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="fruit">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-fruit">Fruit</span>
+              <span class="project-chip">consulting</span>
+            </div>
+            <h3><a href="../consulting/index.html">SEER Consulting</a></h3>
+            <p class="seed-blurb">Public firm face; human-first AI; analytics inside the work. Kennesaw.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="fruit">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-fruit">Fruit</span>
+              <span class="project-chip">consulting</span>
+            </div>
+            <h3>SEER Install</h3>
+            <p class="seed-blurb">Company-scale context install: install, train, leave. Not Genesis.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="fruit">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-fruit">Fruit</span>
+              <span class="project-chip">grounded</span>
+            </div>
+            <h3><a href="../grounded/index.html">GROUNDED</a></h3>
+            <p class="seed-blurb">Weekly attention practice: lockbox, Scripture, silence, commit.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="sapling">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-sapling">Sapling</span>
+              <span class="project-chip">adventure</span>
+            </div>
+            <h3><a href="../adventure/index.html">Adventure Within</a></h3>
+            <p class="seed-blurb">Improvisational indie rock. Recording now.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="fruit">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-fruit">Fruit</span>
+              <span class="project-chip">anti-attachment</span>
+            </div>
+            <h3><a href="../anti-attachment/index.html">Anti-Attachment Framework</a></h3>
+            <p class="seed-blurb">A bouncer at the door. Open guardrails so AI stays a tool.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="sapling">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-sapling">Sapling</span>
+              <span class="project-chip">seer</span>
+            </div>
+            <h3>Seer</h3>
+            <p class="seed-blurb">Personal OS: questions as the asset; local-first; constitution rails. Depth mostly private.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="sapling">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-sapling">Sapling</span>
+              <span class="project-chip">pensieve</span>
+            </div>
+            <h3>Digital Pensieve</h3>
+            <p class="seed-blurb">Three layers that must never blend: raw archive, factual timeline, interpretation.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="sapling">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-sapling">Sapling</span>
+              <span class="project-chip">evp</span>
+            </div>
+            <h3>Expert Validation Packet</h3>
+            <p class="seed-blurb">Interrogable Markdown meeting surrogate for expert-validated knowledge.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="seed">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-seed">Seed</span>
+              <span class="project-chip">wins</span>
+            </div>
+            <h3>Wins Dashboard</h3>
+            <p class="seed-blurb">Placeholder for publishable, redacted proof.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="seed">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-seed">Seed</span>
+              <span class="project-chip">shop</span>
+            </div>
+            <h3>Shop / Apps</h3>
+            <p class="seed-blurb">Guitar tools and maker projects — own goals, not forced under Seer.</p>
+          </article>
+
+        </div>
+        <p class="nursery-empty t-empty" id="nursery-empty" hidden>No ideas at this stage.</p>
+      </div>
+    </section>
+
+    <section class="cta-band garden-cta">
+      <div class="wrap">
+        <h2 style="font-size:clamp(1.6rem,3.5vw,2.2rem);">How thinking moved</h2>
+        <p style="margin:16px auto 0;max-width:48ch;color:rgba(255,255,255,.85);">Seer Chronicle shows how thinking moved. Idea Garden is where ideas are planted and grown.</p>
+        <div class="btn-row" style="justify-content:center;">
+          <a class="btn btn-gold" href="../chronicle/index.html">Seer Chronicle →</a>
+          <a class="btn btn-outline" href="../index.html">← SEE, R</a>
+          <!-- GMAIL_CANDIDATE_SEEDS -->
+          <article class="seed-card" data-maturity="seed">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-seed">Seed</span>
+              <span class="project-chip">seer</span>
+            </div>
+            <h3>MD master registry + viz feed</h3>
+            <p class="seed-blurb">Keep AI Markdown in one registry; organize topically; optional feed into charting tools.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="seed">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-seed">Seed</span>
+              <span class="project-chip">grounded</span>
+            </div>
+            <h3>Talkable health-picture MD</h3>
+            <p class="seed-blurb">One Markdown “full health picture” + question interface for a careful non-clinical self-assessment packet.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="seed">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-seed">Seed</span>
+              <span class="project-chip">seer</span>
+            </div>
+            <h3>Multi-model spark → one script</h3>
+            <p class="seed-blurb">Unify sparks across several models into one executable script when an idea finally clicks.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="seed">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-seed">Seed</span>
+              <span class="project-chip">technical</span>
+            </div>
+            <h3>Desktop AI on Intel Mac gap</h3>
+            <p class="seed-blurb">Some frontier desktop apps are ARM-only; Intel users fall back to web — plan installs accordingly.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="seed">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-seed">Seed</span>
+              <span class="project-chip">seer</span>
+            </div>
+            <h3>Seer who cannot dream</h3>
+            <p class="seed-blurb">A See who cannot dream is an identity contradiction — seeing suppressed.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="seed">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-seed">Seed</span>
+              <span class="project-chip">anti-attachment</span>
+            </div>
+            <h3>AI as seizing oracle</h3>
+            <p class="seed-blurb">The same pattern-power that makes AI feel all-knowing can seize attention via biometric and data-point creep.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="seed">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-seed">Seed</span>
+              <span class="project-chip">consulting</span>
+            </div>
+            <h3>AI ≠ mechanic; AI → understand mechanic</h3>
+            <p class="seed-blurb">Don’t use AI as the craft; use it to help understand the craft.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="seed">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-seed">Seed</span>
+              <span class="project-chip">grounded</span>
+            </div>
+            <h3>Life vs closed-loop Self</h3>
+            <p class="seed-blurb">Offered Life as reunited relationship with God vs AI offering a perfected relationship with the Self.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="seed">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-seed">Seed</span>
+              <span class="project-chip">anti-attachment</span>
+            </div>
+            <h3>Centralized sovereignty / global ledger</h3>
+            <p class="seed-blurb">Many people querying one AI oracle for wisdom and facts ≈ one global altar of information.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="seed">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-seed">Seed</span>
+              <span class="project-chip">adventure</span>
+            </div>
+            <h3>Guitar coach AI</h3>
+            <p class="seed-blurb">Learn guitar with AI that analyzes playing.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="seed">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-seed">Seed</span>
+              <span class="project-chip">technical</span>
+            </div>
+            <h3>AI → slide decks from references</h3>
+            <p class="seed-blurb">Capture public tips for AI-assisted deck building from references.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="seed">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-seed">Seed</span>
+              <span class="project-chip">consulting</span>
+            </div>
+            <h3>Local agentic-AI education</h3>
+            <p class="seed-blurb">Interest in public agentic-AI learning nearby — vocational, not a product pitch.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="fruit">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-fruit">Fruit</span>
+              <span class="project-chip">adventure</span>
+            </div>
+            <h3><a href="https://cooldad777.github.io/fretboard-fire-drill/" rel="noopener">Fretboard Fire Drill</a></h3>
+            <p class="seed-blurb">Shipped guitar fretboard drill — proof ideas can go from note to live tool with AI.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="seed">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-seed">Seed</span>
+              <span class="project-chip">lenses</span>
+            </div>
+            <h3><a href="../lenses/index.html">Layered Lenses dashboard</a></h3>
+            <p class="seed-blurb">Filter and stack worldview lenses (people, religions, socio-economic, topics); optional AI review of a full stack.</p>
+          </article>
+
+          <article class="seed-card" data-maturity="seed">
+            <div class="seed-meta">
+              <span class="maturity-chip maturity-seed">Seed</span>
+              <span class="project-chip">seer</span>
+            </div>
+            <h3>Open-source / open-LLM orientation</h3>
+            <p class="seed-blurb">Model-agnostic Markdown canon; open and open-weight models as first-class peers — not locked to one vendor chat.</p>
+          </article>
+          <!-- /GMAIL_CANDIDATE_SEEDS -->
+
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-links">
+          <a href="../grounded/index.html">GROUNDED</a>
+          <a href="../consulting/index.html">SEER Consulting</a>
+          <a href="../adventure/index.html">Adventure</a>
+          <a href="../anti-attachment/index.html">Anti-Attachment</a>
+          <a href="../chronicle/index.html">Chronicle</a>
+          <a href="mailto:ryanrsee@gmail.com">Contact</a>
+        </div>
+        <div class="foot-mid">© 2026 SEE, R. Kennesaw, GA.</div>
+        <div class="foot-right"><a href="mailto:ryanrsee@gmail.com">ryanrsee@gmail.com</a></div>
+      </div>
+      <p class="foot-secondary"><a href="../index.html">← SEE, R</a> <span aria-hidden="true">·</span> <a href="index.html" aria-current="page">Idea Garden</a> <span aria-hidden="true">·</span> <a href="INDEX.md">INDEX.md</a> <span aria-hidden="true">·</span> <a href="../lenses/index.html">Lenses</a></p>
+      <div class="foot-brand">
+        <img class="foot-mark" src="../assets/star.png" alt=""/>
+      </div>
+      <p class="signature">SEE, R · Kennesaw, GA</p>
+    </div>
+  </footer>
+
+  <script src="../assets/site.js"></script>
+</body>
+</html>
