@@ -68,4 +68,4 @@ Looking for like-minded collaborators to refine and expand this work: **ryanrsee
 
 ---
 
-*SEE, R · Marietta, GA*
+*SEE, R · Kennesaw, GA*
