@@ -904,3 +904,9 @@ main { flex: 1; }
 }
 
 .verse-secondary { margin-top: 1.25rem; opacity: 0.92; }
+
+/* lenses long-form */
+.hub-lenses .lens-card p { font-size: 0.95rem; line-height: 1.55; }
+.hub-lenses .lenses-lead { max-width: 46rem; }
+.lens-detail p + p { margin-top: 0.85rem; }
+.lens-detail strong { font-weight: 600; color: var(--ink); }
