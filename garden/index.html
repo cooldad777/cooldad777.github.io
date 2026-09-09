@@ -42,12 +42,12 @@
       <h1>Idea Garden</h1>
       <p class="lead">Processed thinking others can walk. Seed → Sapling → Fruit — not the Chronicle trail.</p>
       <p class="membrane-banner" role="note">Public nursery — private depth stays private.</p>
-      <p class="body">Shallow public cards for core doors and a few safe seeds. Expand a row to see Stimulus → Explored → Why → Moved → Still open.</p>
-      <div class="hero-links">
+      <p class="body garden-hero-body">Shallow public cards for core doors and a few safe seeds. Expand a row to see Stimulus → Explored → Why → Moved → Still open.</p>
+      <nav class="hero-links" aria-label="Garden links">
         <a class="back-link" href="../index.html">← SEE, R</a>
         <a class="back-link" href="../chronicle/index.html">Seer Chronicle →</a>
-        <a class="back-link" href="garden-public.json">garden-public.json</a>
-      </div>
+        <a class="back-link hero-link-quiet" href="garden-public.json">garden-public.json</a>
+      </nav>
     </div>
   </header>
 
@@ -64,9 +64,11 @@
 
     <section class="nursery-band orchard-band" id="nursery" aria-label="Interactive orchard">
       <div class="wrap">
-        <p class="eyebrow">Orchard</p>
-        <h2>Walk the ideas</h2>
-        <p class="nursery-lead">Filter by maturity. Click a row to expand the thought-flow. Dense private depth is held back on purpose.</p>
+        <div class="orchard-head">
+          <p class="eyebrow">Orchard</p>
+          <h2>Walk the ideas</h2>
+          <p class="nursery-lead">Filter by maturity. Click a row to expand the thought-flow. Dense private depth is held back on purpose.</p>
+        </div>
 
         <div class="filter-row" id="garden-filters" role="group" aria-label="Filter by maturity">
           <button type="button" class="filter-chip active" data-maturity="all">All</button>
@@ -153,6 +155,9 @@
             '</span>' +
           '</button>' +
           '<div class="idea-panel" hidden>' +
+            '<div class="flow-chart" aria-hidden="true">' +
+              '<span>Stimulus</span><i></i><span>Explored</span><i></i><span>Why</span><i></i><span>Moved</span><i></i><span>Open</span>' +
+            '</div>' +
             '<ol class="thought-flow">' +
               '<li><span class="flow-step">Stimulus</span><span class="flow-line">' + esc(f.stimulus) + '</span></li>' +
               '<li><span class="flow-step">Explored</span><span class="flow-line">' + esc(f.explored) + '</span></li>' +
@@ -160,9 +165,6 @@
               '<li><span class="flow-step">Moved</span><span class="flow-line">' + esc(f.moved) + '</span></li>' +
               '<li><span class="flow-step">Still open</span><span class="flow-line">' + esc(f.open) + '</span></li>' +
             '</ol>' +
-            '<div class="flow-chart" aria-hidden="true">' +
-              '<span>Stimulus</span><i></i><span>Explored</span><i></i><span>Why</span><i></i><span>Moved</span><i></i><span>Open</span>' +
-            '</div>' +
             (linkHtml ? '<p class="idea-actions">' + linkHtml + '</p>' : '') +
           '</div>' +
         '</article>'
