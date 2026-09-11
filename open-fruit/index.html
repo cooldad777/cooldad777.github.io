@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Open Fruit — SEE, R</title>
+  <meta name="description" content="Plant a seed. Partner to ship. Publish the split. Kennesaw, GA." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root { --paper:#f7f4ee; --ink:#1c1914; --mute:#6b6458; --line:#ddd6c8; --pitch:#2f6b4f; --pitch-ink:#f7f4ee; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--paper); color: var(--ink); font: 18px/1.5 "Source Sans 3", sans-serif; }
+    main { max-width: 40rem; margin: 0 auto; padding: 1.5rem 1.25rem 8rem; }
+    h1, h2 { font-family: Fraunces, Georgia, serif; font-weight: 500; letter-spacing: -0.02em; }
+    h1 { font-size: clamp(2rem, 7vw, 3rem); line-height: 1.1; margin: 0.4rem 0 0.75rem; }
+    h2 { font-size: 1.25rem; margin: 2rem 0 0.6rem; }
+    .kicker { text-transform: uppercase; letter-spacing: 0.16em; font-size: 0.72rem; color: var(--mute); }
+    p { margin: 0.6rem 0; }
+    .mute { color: var(--mute); }
+    .tri { display: grid; gap: 0.75rem; margin: 1.25rem 0; }
+    .card { border: 1px solid var(--line); background: #fff; border-radius: 0.75rem; padding: 1rem 1.1rem; }
+    .pct { font-family: Fraunces, serif; font-size: 1.6rem; color: var(--pitch); }
+    .row { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+    ul.plain { padding-left: 1.1rem; }
+    form { display: grid; gap: 0.65rem; }
+    input, textarea { width: 100%; font: inherit; padding: 0.7rem 0.8rem; border: 1px solid var(--line); border-radius: 0.5rem; background: #fff; }
+    textarea { min-height: 6.5rem; }
+    .plant { position: fixed; left: 0; right: 0; bottom: 0; padding: 0.85rem 1.25rem calc(0.85rem + env(safe-area-inset-bottom)); background: linear-gradient(to top, var(--paper) 70%, transparent); }
+    button.primary, .plant button { width: 100%; max-width: 40rem; display: block; margin: 0 auto; appearance: none; border: 0; border-radius: 999px; background: var(--pitch); color: var(--pitch-ink); font: 600 1.05rem/1 "Source Sans 3", sans-serif; padding: 0.95rem 1.2rem; }
+    .fine { font-size: 0.85rem; color: var(--mute); }
+    a { color: var(--pitch); }
+  </style>
+</head>
+<body>
+  <main>
+    <p class="kicker">SEE, R · Kennesaw, GA · seed</p>
+    <h1>Open Fruit</h1>
+    <p>Plant a seed. Partner to ship it. Publish who gets paid — before anyone builds.</p>
+    <h2>The triangle</h2>
+    <p class="mute">Three roles. One project. Earnings split in public. No downline. Pay only if the fruit earns.</p>
+    <div class="tri">
+      <article class="card"><div class="row"><strong>Planter</strong><span class="pct">20%</span></div><p class="mute">The idea is solid enough to stand as a file.</p></article>
+      <article class="card"><div class="row"><strong>Builder</strong><span class="pct">50%</span></div><p class="mute">Implements. Ships.</p></article>
+      <article class="card"><div class="row"><strong>Steward</strong><span class="pct">20%</span></div><p class="mute">Ledger and halt. Default: SEE, R.</p></article>
+      <article class="card"><div class="row"><strong>Next fruit</strong><span class="pct">10%</span></div><p class="mute">Reserve for the next seed. Not a silent take.</p></article>
+    </div>
+    <p class="fine">Starting weights. Each project can renegotiate in the open before work starts.</p>
+    <h2>What this is not</h2>
+    <div class="card">
+      <ul class="plain">
+        <li>Not a pyramid or MLM. You are not paid to recruit.</li>
+        <li>Not a coin sale. Weights are percents on project earnings.</li>
+        <li>Not a promise that software comes to life.</li>
+        <li>Not an XPRIZE filing. This page is for mates who can walk a model.</li>
+      </ul>
+    </div>
+    <h2>Plant</h2>
+    <p class="mute">One button. Lands as a public issue on the Rsee vault.</p>
+    <form id="plant" class="card">
+      <label><span class="kicker">Title</span><input id="title" required maxlength="80" placeholder="Name the seed" /></label>
+      <label><span class="kicker">The idea, in a few lines</span><textarea id="body" required maxlength="1200" placeholder="What it is. Who it helps. What fruit would look like."></textarea></label>
+      <p class="fine" id="status"></p>
+    </form>
+    <p class="fine">Vault: <a href="https://github.com/cooldad777/Rsee">Rsee</a> · Hub: <a href="https://cooldad777.github.io/">SEE, R</a></p>
+  </main>
+  <div class="plant"><button class="primary" type="submit" form="plant">Plant this seed</button></div>
+  <script>
+    document.getElementById("plant").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var title = document.getElementById("title").value.trim();
+      var idea = document.getElementById("body").value.trim();
+      if (!title || !idea) return;
+      var body = "## Seed\n" + idea + "\n\n## Starting weights (negotiable)\n- Planter 20%\n- Builder 50%\n- Steward 20%\n- Next fruit 10%\n\n## Ask\nLabel this SEED.\n\n_Planted from Open Fruit._";
+      document.getElementById("status").textContent = "Opening the vault issue…";
+      window.location.href = "https://github.com/cooldad777/Rsee/issues/new?title=" + encodeURIComponent("SEED: " + title) + "&body=" + encodeURIComponent(body);
+    });
+  </script>
+</body>
+</html>
