@@ -4,127 +4,109 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SEE, R</title>
-  <meta name="description" content="Living projects — spiritual formation and exponential technology. Kennesaw, Georgia."/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:title" content="SEE, R"/>
-  <meta property="og:description" content="Living projects — spiritual formation and exponential technology. Kennesaw, Georgia."/>
-  <meta name="theme-color" content="#f7f8f5"/>
+  <meta name="description" content="SEE, R — I tell stories with data. Public spine for formation, judgment, and exponential technology. Kennesaw, Georgia."/>
   <link rel="icon" type="image/png" href="assets/favicon.png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;1,6..72,400&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="assets/site.css"/>
+  <style>
+    body.hub-bright { background: #eef6ee; }
+    .hub-bright .site-nav { background: rgba(238,246,238,.78); }
+    .hub-bright .hub-hero {
+      min-height: 88dvh; padding: 132px 0 72px;
+      background:
+        linear-gradient(180deg, rgba(255,252,245,.28) 0%, rgba(238,246,238,.18) 38%, rgba(247,248,245,.82) 100%),
+        url('assets/forest.jpg') center 22% / cover no-repeat;
+    }
+    .hub-bright .hub-hero h1 { text-shadow: 0 1px 0 rgba(255,255,255,.45); }
+    .hub-bright .hub-hero .sub { max-width: 28ch; color: #243328; }
+    .hub-bright .hub-hero .body { max-width: 46ch; color: #3a403c; }
+    .hub-bright .verse-card {
+      margin: 28px auto 0; max-width: 42rem;
+      background: rgba(255,255,255,.72); backdrop-filter: blur(8px);
+      border: 1px solid rgba(28,31,28,.08); border-radius: 14px;
+      padding: 18px 22px; text-align: left;
+    }
+    .hub-bright .verse-card + .verse-card { margin-top: 12px; }
+    .hub-bright .doors { grid-template-columns: repeat(3, 1fr); margin-top: -28px; }
+    @media (max-width: 900px) { .hub-bright .doors { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 620px) { .hub-bright .doors { grid-template-columns: 1fr; } }
+    .hub-bright .why-band { padding: 8px 0 56px; }
+    .hub-bright .why-band p { max-width: 58ch; margin: 0 auto; text-align: center; color: #3a403c; font-size: 1.05rem; }
+    .door-convergence::before { background: #7a9bb0; }
+    .door-garden::before { background: #5f7d68; }
+  </style>
 </head>
-<body>
-
+<body class="hub-bright">
   <nav class="site-nav" aria-label="Main navigation">
     <div class="wrap nav-in">
-      <a class="brand" href="index.html">
-        <img src="assets/star.png" alt="SEE, R"/>
-        <span>SEE, R</span>
-      </a>
+      <a class="brand" href="index.html"><img src="assets/star.png" alt="SEE, R"/><span>SEE, R</span></a>
       <button id="menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">☰</button>
       <ul class="nav-links" id="nav-links">
         <li><a href="grounded/index.html">GROUNDED</a></li>
         <li><a href="consulting/index.html">SEER Consulting</a></li>
         <li><a href="adventure/index.html">Adventure Within</a></li>
         <li><a href="anti-attachment/index.html">Anti-Attachment</a></li>
-        <li><a href="chronicle/index.html">Seer Chronicle</a></li>
+        <li><a href="chronicle/index.html">Chronicle</a></li>
+        <li><a href="convergence/index.html">Convergence</a></li>
         <li><a href="mailto:ryanrsee@gmail.com">Contact</a></li>
       </ul>
     </div>
   </nav>
-
   <header class="hub-hero" id="top">
     <div class="wrap">
       <img class="mark" src="assets/star.png" alt=""/>
       <h1>SEE, R</h1>
-      <p class="sub">Work in the open.</p>
-      <p class="body">Living projects at the intersection of spiritual formation and exponential technology — from Kennesaw.</p>
-      <blockquote class="verse">
+      <p class="sub">I tell stories with data.</p>
+      <p class="body">Public spine from Kennesaw. Formation and exponential technology in the same walk — questions as the asset, models as rented tools.</p>
+      <blockquote class="verse verse-card">
         <p>“Your body is the primary place of your spiritual life. If you do not meet God in your body, in the concrete places where your feet stand, you will not meet Him anywhere.”</p>
         <cite>Dallas Willard <span class="cite-via">(The Divine Conspiracy)</span></cite>
       </blockquote>
-      <blockquote class="verse verse-secondary">
+      <blockquote class="verse verse-card">
         <p>“You cannot go on ‘explaining away’ for ever: you will find that you have explained explanation itself away. You cannot go on ‘seeing through’ things for ever. The whole point of seeing through something is to see something through it. To ‘see through’ all things is the same as not to see.”</p>
         <cite>C. S. Lewis <span class="cite-via">(The Abolition of Man)</span></cite>
       </blockquote>
     </div>
   </header>
-
   <main>
-    <section class="wrap" aria-label="Active projects">
+    <section class="why-band wrap" aria-label="What this hub is">
+      <p>SEE, R is the public orchard. Seer stays personal. Consulting installs a context layer and leaves. GROUNDED is attention practice, not a woods identity. The forest here is light — a place to stand — not the doctrine.</p>
+    </section>
+    <section class="wrap" aria-label="Doors">
       <div class="doors">
-        <a class="door door-grounded" href="grounded/index.html">
-          <h2>GROUNDED</h2>
-          <p>Weekly attention practice for men. Phones in a lockbox. One passage. Silence. One commit.</p>
-          <span class="door-enter">Open →</span>
-        </a>
-        <a class="door door-consulting" href="consulting/index.html">
-          <h2>SEER Consulting</h2>
-          <p>Local counsel that stays human. Analytics inside the work — not a second storefront.</p>
-          <span class="door-enter">Open →</span>
-        </a>
-        <a class="door door-adventure" href="adventure/index.html">
-          <h2>Adventure Within</h2>
-          <p>Improvisational indie rock. Loose structures. Motifs that wander and return.</p>
-          <span class="door-enter">Listen →</span>
-        </a>
-        <a class="door door-aa" href="anti-attachment/index.html">
-          <h2>Anti-Attachment</h2>
-          <p>A bouncer at the door. Open guardrails so AI stays a tool, not a friend.</p>
-          <span class="door-enter">Read →</span>
-        </a>
-        <a class="door door-chronicle" href="chronicle/index.html">
-          <h2>Seer Chronicle</h2>
-          <p>Dated public trail — unfinished visible, multi-model when known.</p>
-          <span class="door-enter">Read the path →</span>
-        </a>
+        <a class="door door-grounded" href="grounded/index.html"><h2>GROUNDED</h2><p>Weekly attention practice for men. Phones in a lockbox. One passage. Silence. One commit.</p><span class="door-enter">Open →</span></a>
+        <a class="door door-consulting" href="consulting/index.html"><h2>SEER Consulting</h2><p>Local counsel that stays human. Analytics inside the work — not a second storefront.</p><span class="door-enter">Open →</span></a>
+        <a class="door door-adventure" href="adventure/index.html"><h2>Adventure Within</h2><p>Improvisational indie rock. Loose structures. Motifs that wander and return.</p><span class="door-enter">Listen →</span></a>
+        <a class="door door-aa" href="anti-attachment/index.html"><h2>Anti-Attachment</h2><p>A bouncer at the door. Open guardrails so AI stays a tool, not a friend.</p><span class="door-enter">Read →</span></a>
+        <a class="door door-chronicle" href="chronicle/index.html"><h2>Seer Chronicle</h2><p>Dated public trail — unfinished visible, multi-model when known.</p><span class="door-enter">Read the path →</span></a>
+        <a class="door door-convergence" href="convergence/index.html"><h2>The Convergence</h2><p>Hope, ending, and exponential tech in one room. Analysis, not endorsement.</p><span class="door-enter">Look through →</span></a>
       </div>
     </section>
-
-
     <section class="hub-lenses" id="lenses" aria-label="Lenses">
       <div class="wrap">
         <p class="eyebrow">Lenses</p>
-        <h2>A core filter for every node</h2>
-        <p class="lenses-lead">Seeing from more than one place is the point. When an idea lands — GROUNDED, a consulting claim, a music release, a Chronicle beat — run it through lenses you can adapt. Not an endorsement map. Exponential tech hits ancient categories (attention, attachment, hope, the end of things) at new scale; different voices name that collision differently. Bonus question under each: what might this work move for people and souls?</p>
+        <h2>See through. Then see something through it.</h2>
+        <p class="lenses-lead">One conviction, several vantages. Not an endorsement map.</p>
         <div class="lens-cards">
-          <a class="lens-card" href="lenses/index.html#lewis">
-            <h3>C. S. Lewis</h3>
-            <p>Moral order you don’t invent (the Tao). “Man’s power over nature” is usually some people’s power over others through technique. Exponential tools industrialize distraction and conditioning — seriousness never gets a quiet minute. Work that keeps body, honesty, and formation visible (GROUNDED, Anti-Attachment, open Chronicle) aims at seeing <em>through</em> to something real — not explaining everything away.</p>
-          </a>
-          <a class="lens-card" href="lenses/index.html#empirical">
-            <h3>Scientific / empirical</h3>
-            <p>Documented mechanism first: framing, engagement design, personalization. Population-level harm and grand end-times forecasts stay contested until measured. Exponential delivery is already engineered; eschatology is not a lab result. Moving the ball here means marking fact vs forecast in public writing and client work — so hype and doom don’t catechize people in the dark.</p>
-          </a>
-          <a class="lens-card" href="lenses/index.html#moonshot">
-            <h3>Moonshot / acceleration</h3>
-            <p><span class="lens-tag">Stress-test</span> Push the upside hard — build faster, ship capability, treat caution as friction — until weak claims crack. Secular eschatology often lives here (abundance, singularity, exit from scarcity). On this site it’s a pressure tool, not a creed. The ball moves when tools actually serve households and firms without eating the attention those futures need.</p>
-          </a>
-          <a class="lens-card" href="lenses/index.html#reformed">
-            <h3>Reformed / evangelical</h3>
-            <p>Word, grace, ordinary means. The feed is rival discipleship — attention and attachment catechize daily. Eschatology: history bends toward Christ’s return, so tech is neither savior nor side note; it’s a field where faithfulness or worldliness shows. GROUNDED and Anti-Attachment rehearse that locally: reclaim attention, refuse synthetic friendship, practice presence that forms souls for a kingdom models don’t build.</p>
-          </a>
-          <a class="lens-card" href="lenses/index.html#local">
-            <h3>Local Kennesaw stream</h3>
-            <p>Place and people before abstraction. Exponential tech lands in real homes, kids, churches, and Southeast firms — not a slide deck. Eschatology stays neighbor-shaped: who you’ll answer for on the ground. Moving the ball means one lockbox hour, one honest framework, one human engagement that works in Kennesaw — so souls aren’t abandoned to the feed while the future argues with itself.</p>
-          </a>
+          <a class="lens-card" href="lenses/index.html#lewis"><h3>C. S. Lewis</h3><p>Moral order you don’t invent. Technique that becomes some people’s power over others. See through to something real.</p></a>
+          <a class="lens-card" href="lenses/index.html#empirical"><h3>Scientific / empirical</h3><p>Mechanism first. Mark fact vs forecast so hype and doom don’t catechize in the dark.</p></a>
+          <a class="lens-card" href="lenses/index.html#moonshot"><h3>Moonshot / acceleration</h3><p>Stress-test the upside until weak claims crack. A pressure tool, not a creed.</p></a>
+          <a class="lens-card" href="lenses/index.html#reformed"><h3>Reformed / evangelical</h3><p>Word, grace, ordinary means. The feed is rival discipleship. Tech is neither savior nor side note.</p></a>
+          <a class="lens-card" href="lenses/index.html#local"><h3>Local Kennesaw</h3><p>Place and people before abstraction. One lockbox hour. One honest page. Neighbors you will answer for.</p></a>
         </div>
         <p class="lenses-more"><a href="lenses/index.html">Full starting lenses →</a></p>
       </div>
     </section>
-
-
-    <section class="hub-garden-band" aria-label="Idea Garden and AI Tracker">
+    <section class="hub-garden-band" aria-label="Idea Garden">
       <div class="wrap">
         <span class="hub-garden-label">Nursery</span>
-        <p><a href="garden/index.html">Idea Garden</a> — Public nursery — private depth stays private. Seed → Sapling → Fruit.</p>
-        <p class="hub-tracker-soft"><a href="ai-tracker/index.html">AI Tracker</a> — How agents answered Ryan (Response grain). Talkable MD.</p>
-</div>
+        <p><a href="garden/index.html">Idea Garden</a> — public nursery. Seed → sapling → fruit. Private depth stays private.</p>
+        <p class="hub-tracker-soft"><a href="ai-tracker/index.html">AI Tracker</a> — how the work answered. Talkable MD.</p>
+      </div>
     </section>
-
-    <section class="hub-contact" id="contact" aria-label="Contact">
+    <section class="hub-contact" id="contact">
       <div class="wrap">
         <h2>Contact</h2>
         <p>Kennesaw, Georgia. Reach out anytime.</p>
@@ -136,7 +118,6 @@
       </div>
     </section>
   </main>
-
   <footer class="site-footer">
     <div class="wrap">
       <div class="foot-grid">
@@ -146,19 +127,16 @@
           <a href="adventure/index.html">Adventure</a>
           <a href="anti-attachment/index.html">Anti-Attachment</a>
           <a href="chronicle/index.html">Chronicle</a>
-          <a href="mailto:ryanrsee@gmail.com">Contact</a>
+          <a href="convergence/index.html">Convergence</a>
         </div>
         <div class="foot-mid">© 2026 SEE, R. Kennesaw, GA.</div>
         <div class="foot-right"><a href="mailto:ryanrsee@gmail.com">ryanrsee@gmail.com</a></div>
       </div>
-      <p class="foot-secondary"><a href="lenses/index.html">Lenses</a> <span aria-hidden="true">·</span> <a href="garden/index.html">Idea Garden</a> <span aria-hidden="true">·</span> <a href="ai-tracker/index.html">AI Tracker</a> <span aria-hidden="true">·</span> Nursery + Response trail — talkable MD.</p>
-      <div class="foot-brand">
-        <img class="foot-mark" src="assets/star.png" alt=""/>
-      </div>
+      <p class="foot-secondary"><a href="lenses/index.html">Lenses</a> · <a href="garden/index.html">Idea Garden</a> · <a href="ai-tracker/index.html">AI Tracker</a></p>
+      <div class="foot-brand"><img class="foot-mark" src="assets/star.png" alt=""/></div>
       <p class="signature">SEE, R · Kennesaw, GA</p>
     </div>
   </footer>
-
   <script src="assets/site.js"></script>
 </body>
 </html>
