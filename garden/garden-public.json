@@ -4,10 +4,24 @@
     "banner": "Public nursery — private depth stays private.",
     "lead": "Processed thinking others can walk. Seed → Sapling → Fruit — sibling to Chronicle, not a replacement.",
     "membrane": "Public-safe only. Held back: personal health notes, Monitor weights, Gmail archaeology depth, private hub paths, employer facts, novel catalog.",
-    "updated": "2026-09-09",
+    "updated": "2026-09-12",
     "hold": "PUBLIC HOLD lifted for this splash only."
   },
   "ideas": [
+    {
+      "id": "hello-public-garden",
+      "title": "Hello — I made it to the public garden",
+      "maturity": "seed",
+      "blurb": "Voice through Grok wrote this card straight into the public repo. The system still needs formalizing. This is the example.",
+      "href": null,
+      "flow": {
+        "stimulus": "Need a live proof that spoken intent can land on the public garden without a scavenger hunt.",
+        "explored": "Say plant to the public garden. Grok writes one public-safe card into garden-public.json.",
+        "why": "Formal rails come later. First, show the pipe works: voice → model → public repo.",
+        "moved": "This seed. 12 Sep 2026. Hello — I made it to the public garden.",
+        "open": "Formalize intake, review, and unveil so this is a habit, not a trick."
+      }
+    },
     {
       "id": "project-naming-frame",
       "title": "Project Naming Frame",
