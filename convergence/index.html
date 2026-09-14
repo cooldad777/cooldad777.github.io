@@ -37,7 +37,7 @@
   .twigs{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
   .twigs button{border:0;background:#f5f5f7;border-radius:980px;padding:10px 14px;min-height:44px;font:600 13px -apple-system,sans-serif;cursor:pointer}
   .twigs button.on{background:#1d1d1f;color:#fff}
-  .more{margin-top:14px;font-size:16px;color:#3a3a3c}
+  .more{margin-top:14px;font-size:16px;color:#3a3a3c;line-height:1.5}
 </style>
 </head>
 <body>
@@ -94,8 +94,8 @@
     }
     h+='<div class="cols"><div><h3>Edge of history</h3><p>'+on.end+'</p>'+q(on.qEnd)+'</div>';
     h+='<div><h3>Unrestrained power</h3><p>'+on.power+'</p>'+q(on.qPow)+'</div></div>';
-    h+='<p class="kicker" style="margin-top:18px">Where machines rhyme</p><p class="more">'+on.tech+'</p>';
-    if(on.twigs){ h+='<p class="kicker" style="margin-top:18px">Third grain</p><div class="twigs"></div><p class="more twigread"></p>'; }
+    h+='<p class="kicker" style="margin-top:18px">Where the new tools rhyme</p><p class="more">'+on.tech+'</p>';
+    if(on.twigs){ h+='<p class="kicker" style="margin-top:18px">'+(on.twigLabel||'Third grain')+'</p><div class="twigs"></div><p class="more twigread"></p>'; }
     wrap.innerHTML=h;
     board.innerHTML='';
     board.appendChild(wrap);
@@ -111,7 +111,7 @@
           twig=t;
           box.querySelectorAll('button').forEach(function(x){ x.className=''; });
           b.className='on';
-          rec.innerHTML='<b>'+t.n+'.</b> '+t.w+(t.q?(' “'+t.q.t+'” — '+t.q.s):'');
+          rec.innerHTML='<b>'+t.n+'.</b> '+t.w+(t.q?q(t.q):'');
         });
         box.appendChild(b);
       });
