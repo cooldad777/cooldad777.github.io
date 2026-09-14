@@ -22,30 +22,24 @@
   @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
   .kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6e6e73}
   .board h2{font-size:clamp(28px,5vw,44px);letter-spacing:-.03em;margin:6px 0 8px}
-  .pop{font-size:15px;color:#6e6e73;margin-bottom:12px}
+  .pop,.more{font-size:15px;color:#3a3a3c;line-height:1.5}
   .quote{margin:16px 0;padding:18px 20px;background:#f5f5f7;border-radius:14px;font-size:19px;line-height:1.45}
   .quote cite{display:block;margin-top:10px;font-size:12px;font-style:normal;color:#6e6e73}
-  .split{display:flex;height:12px;border-radius:8px;overflow:hidden;margin:8px 0 8px;background:#eee}
-  .split b{display:block;height:100%;transform-origin:left;animation:grow .8s cubic-bezier(.22,1,.36,1)}
-  @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .split{display:flex;height:12px;border-radius:8px;overflow:hidden;margin:8px 0;background:#eee}
+  .split b{display:block;height:100%}
   .legend{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:12px;color:#6e6e73;margin-bottom:16px}
-  .legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
   .cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
   @media(max-width:800px){.cols{grid-template-columns:1fr}}
-  .cols h3{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6e6e73;margin-bottom:8px}
-  .cols p{font-size:16px;color:#3a3a3c;margin:0 0 10px}
   .twigs{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
   .twigs button{border:0;background:#f5f5f7;border-radius:980px;padding:10px 14px;min-height:44px;font:600 13px -apple-system,sans-serif;cursor:pointer}
   .twigs button.on{background:#1d1d1f;color:#fff}
-  .more{margin-top:14px;font-size:16px;color:#3a3a3c;line-height:1.5}
   .flow{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-  .flow .step{flex:1 1 140px;background:#f5f5f7;border-radius:14px;padding:12px 12px 14px;text-align:left;position:relative}
-  .flow .step em{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6e6e73;font-style:normal;margin-bottom:6px}
-  .flow .step b{display:block;font-size:15px;margin-bottom:4px}
-  .flow .step p{margin:0;font-size:13px;color:#3a3a3c}
-  .flow .step:not(:last-child)::after{content:"\2192";position:absolute;right:-6px;top:18px;color:#d2d2d7}
-</style>
-</head>
+  .flow .step{flex:1 1 140px;background:#f5f5f7;border-radius:14px;padding:12px}
+  .flow .step em{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6e6e73;font-style:normal}
+  .news{margin-top:22px;padding:18px;background:#f5f5f7;border-radius:16px}
+  .news h3{margin:0 0 8px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#6e6e73}
+  .news .read{font-size:15px;margin:8px 0}
+</style></head>
 <body>
 <nav class="nav"><div class="nav-in">
   <a class="brand" href="../index.html"><img src="../assets/star.png" alt=""/>SEE, R</a>
@@ -66,59 +60,66 @@
 </div>
 <footer><div class="foot"><p>SEE, R · Kennesaw, Georgia</p></div></footer>
 <script src="xian.js"></script>
+<script src="xian-patch.js"></script>
 <script src="islam.js"></script>
 <script src="rest.js"></script>
+<script src="rest-patch.js"></script>
 <script src="flow.js"></script>
+<script src="news.js"></script>
 <script src="data.js"></script>
 <script>
 (function(){
-  const row=document.getElementById('famrow');
-  const board=document.getElementById('board');
+  const row=document.getElementById('famrow'), board=document.getElementById('board');
   const data=(window.CONV||[]);
   let on=data[0]||null, twig=null;
   function tiles(){
     row.innerHTML='';
     data.forEach(function(x){
-      const b=document.createElement('button');
-      b.type='button';
+      const b=document.createElement('button'); b.type='button';
       b.className='fam'+(on&&on.id===x.id?' on':'');
       b.innerHTML='<b>'+x.name+'</b><span>'+x.short+'</span>';
       b.addEventListener('click', function(e){ e.preventDefault(); on=x; twig=null; draw(); });
       row.appendChild(b);
     });
   }
-  function q(obj){ if(!obj) return ''; return '<blockquote class="quote">“'+obj.t+'”<cite>'+obj.s+'</cite></blockquote>'; }
+  function q(obj){ return obj?('<blockquote class="quote">“'+obj.t+'”<cite>'+obj.s+'</cite></blockquote>'):''; }
   function draw(){
     tiles();
-    if(!on){ board.innerHTML='<div class="board"><p class="more">Could not load the map.</p></div>'; return; }
-    const wrap=document.createElement('div');
-    wrap.className='board';
-    var h='<p class="kicker">Family</p><h2>'+on.name+'</h2><p class="pop">'+on.pop+'</p>';
-    h+='<p class="more">'+on.what+'</p>'+q(on.quote);
-    if(on.parts&&on.parts.length){
+    if(!on){ board.innerHTML='<div class="board"><p>Could not load the map.</p></div>'; return; }
+    const wrap=document.createElement('div'); wrap.className='board';
+    var h='<p class="kicker">Family</p><h2>'+on.name+'</h2><p class="pop">'+on.pop+'</p><p class="more">'+on.what+'</p>'+q(on.quote);
+    if(on.parts){
       h+='<p class="kicker">Next split</p><div class="split">';
       on.parts.forEach(function(p){ h+='<b style="width:'+p.w+'%;background:'+p.c+'"></b>'; });
       h+='</div><div class="legend">';
-      on.parts.forEach(function(p){ h+='<span><i style="background:'+p.c+'"></i>'+p.n+' · '+p.l+'</span>'; });
+      on.parts.forEach(function(p){ h+='<span>'+p.n+' · '+p.l+'</span> '; });
       h+='</div>';
     }
-    h+='<div class="cols"><div><h3>Edge of history</h3><p>'+on.end+'</p>'+q(on.qEnd)+'</div>';
-    h+='<div><h3>Unrestrained power</h3><p>'+on.power+'</p>'+q(on.qPow)+'</div></div>';
-    h+='<p class="kicker" style="margin-top:18px">Where the new tools rhyme</p><p class="more">'+on.tech+'</p>';
-    h+='<p class="kicker" style="margin-top:22px">What this lens expects next</p><div class="flow"></div>';
-    if(on.twigs){ h+='<p class="kicker" style="margin-top:18px">'+(on.twigLabel||'Third grain')+'</p><div class="twigs"></div><p class="more twigread"></p>'; }
-    wrap.innerHTML=h;
-    board.innerHTML='';
-    board.appendChild(wrap);
-    var steps=(twig&&twig.flow)?twig.flow:((window.TWIGFLOWS&&twig&&TWIGFLOWS[twig.n])?TWIGFLOWS[twig.n]:((on.flow)||(window.FLOWS&&FLOWS[on.id])||[]));
+    h+='<div class="cols"><div><h3 class="kicker">Edge of history</h3><p class="more">'+on.end+'</p>'+q(on.qEnd)+'</div>';
+    h+='<div><h3 class="kicker">Unrestrained power</h3><p class="more">'+on.power+'</p>'+q(on.qPow)+'</div></div>';
+    h+='<p class="kicker">Where the new tools rhyme</p><p class="more">'+on.tech+'</p>';
+    h+='<p class="kicker">What this lens expects next</p><div class="flow"></div><div class="news" id="newsbox"></div>';
+    if(on.twigs) h+='<p class="kicker">'+(on.twigLabel||'Third grain')+'</p><div class="twigs"></div><p class="more twigread"></p>';
+    wrap.innerHTML=h; board.innerHTML=''; board.appendChild(wrap);
+    var steps=(twig&&twig.flow)||(window.TWIGFLOWS&&twig&&TWIGFLOWS[twig.n])||on.flow||(window.FLOWS&&FLOWS[on.id])||[];
     var fl=wrap.querySelector('.flow');
-    if(fl){ steps.forEach(function(s,i){ var d=document.createElement('div'); d.className='step'; d.innerHTML='<em>'+(i?'then':'start')+'</em><b>'+s.n+'</b><p>'+s.d+'</p>'; fl.appendChild(d); }); }
+    steps.forEach(function(s,i){ var d=document.createElement('div'); d.className='step'; d.innerHTML='<em>'+(i?'then':'start')+'</em><b>'+s.n+'</b><p>'+s.d+'</p>'; fl.appendChild(d); });
+    var nb=wrap.querySelector('#newsbox');
+    if(nb&&window.NEWS_STORY){
+      var st=NEWS_STORY, rd=(NEWS_READ&&NEWS_READ[on.id])||null;
+      var html='<h3>This month\'s rhyme · as of '+(NEWS_ASOF||'')+'</h3>';
+      html+='<p class="story"><b>'+st.title+'.</b> '+st.what+' <a href="'+st.href+'" target="_blank" rel="noopener">Source</a></p>';
+      if(rd){ html+='<p class="read">'+rd.g1+'</p><p class="read">'+rd.g2+'</p><p class="read">'+(twig?('<b>'+twig.n+'.</b> '):'')+rd.g3+'</p>'; }
+      html+='<ul class="livehead"></ul>'; nb.innerHTML=html;
+      if(window.fetchNewsHeadlines) fetchNewsHeadlines().then(function(items){
+        var ul=nb.querySelector('.livehead'); if(!ul) return;
+        items.forEach(function(it){ var li=document.createElement('li'); li.innerHTML='<a href="'+it.href+'" target="_blank" rel="noopener">'+it.title+'</a>'; ul.appendChild(li); });
+      });
+    }
     if(on.twigs){
-      const box=wrap.querySelector('.twigs');
-      const rec=wrap.querySelector('.twigread');
+      var box=wrap.querySelector('.twigs'), rec=wrap.querySelector('.twigread');
       on.twigs.forEach(function(t){
-        const b=document.createElement('button');
-        b.type='button'; b.textContent=t.n;
+        var b=document.createElement('button'); b.type='button'; b.textContent=t.n;
         if(twig&&twig.n===t.n) b.className='on';
         b.addEventListener('click', function(e){ e.preventDefault(); twig=t; draw(); });
         box.appendChild(b);
@@ -127,7 +128,7 @@
     }
   }
   draw();
-  const m=document.getElementById('menu'), n=document.getElementById('nav-links');
+  var m=document.getElementById('menu'), n=document.getElementById('nav-links');
   if(m) m.addEventListener('click', function(){ n.classList.toggle('open'); });
 })();
 </script>
