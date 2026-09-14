@@ -8,128 +8,161 @@
 <link rel="stylesheet" href="../assets/apple.css"/>
 <style>
   body{background:#f5f5f7}
-  .hero{--hero-img:url('../assets/forest.jpg');min-height:36vh;padding:96px 22px 28px}
-  .hero img.spin{height:44px;margin:0 auto 8px;display:block;animation:spin 18s linear infinite}
+  .hero{--hero-img:url('../assets/forest.jpg');min-height:32vh;padding:92px 22px 24px}
+  .hero img.spin{height:40px;margin:0 auto 8px;display:block;animation:spin 18s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
   .stage{max-width:980px;margin:0 auto;padding:12px 16px 80px}
-  .famrow{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
-  .fam{border:0;background:#fff;border-radius:14px;padding:12px 14px;min-height:52px;min-width:140px;flex:1 1 140px;text-align:left;cursor:pointer;font:inherit;color:#1d1d1f}
-  .fam b{display:block;font-size:14px}
-  .fam span{display:block;font-size:11px;color:#6e6e73;margin-top:2px}
-  .fam.on{background:#1d1d1f;color:#fff}
-  .fam.on span{color:#a1a1a6}
-  .board{background:#fff;border-radius:22px;padding:28px 24px 32px;animation:rise .55s cubic-bezier(.22,1,.36,1)}
-  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-  .kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6e6e73}
-  .board h2{font-size:clamp(28px,5vw,44px);letter-spacing:-.03em;margin:6px 0 8px}
-  .pop,.more{font-size:15px;color:#3a3a3c;line-height:1.5}
-  .quote{margin:16px 0;padding:18px 20px;background:#f5f5f7;border-radius:14px;font-size:19px;line-height:1.45}
-  .quote cite{display:block;margin-top:10px;font-size:12px;font-style:normal;color:#6e6e73}
-  .split{display:flex;height:12px;border-radius:8px;overflow:hidden;margin:8px 0;background:#eee}
+  .famrow{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+  .fam{border:0;background:#fff;border-radius:14px;padding:12px 14px;min-height:52px;min-width:130px;flex:1 1 130px;text-align:left;cursor:pointer;font:inherit}
+  .fam b{display:block;font-size:14px}.fam span{display:block;font-size:11px;color:#6e6e73;margin-top:2px}
+  .fam.on{background:#1d1d1f;color:#fff}.fam.on span{color:#a1a1a6}
+  .board{background:#fff;border-radius:22px;padding:24px;animation:rise .45s cubic-bezier(.22,1,.36,1)}
+  @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .crumb{font-size:12px;color:#6e6e73;margin-bottom:8px}.crumb b{color:#1d1d1f}
+  .kicker{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6e6e73;margin:16px 0 8px}
+  .board h2{font-size:clamp(26px,5vw,42px);letter-spacing:-.03em;margin:0 0 8px}
+  .more{font-size:16px;color:#3a3a3c;line-height:1.5}
+  .quote{margin:14px 0;padding:16px 18px;background:#f5f5f7;border-radius:14px;font-size:18px}
+  .quote cite{display:block;margin-top:8px;font-size:12px;font-style:normal;color:#6e6e73}
+  .split{display:flex;height:12px;border-radius:8px;overflow:hidden;background:#eee;margin:8px 0}
   .split b{display:block;height:100%}
-  .legend{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:12px;color:#6e6e73;margin-bottom:16px}
-  .cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .legend{display:flex;flex-wrap:wrap;gap:8px}
+  .legend button{border:0;background:#f5f5f7;border-radius:980px;padding:8px 12px;min-height:40px;font:600 12px -apple-system,sans-serif;cursor:pointer}
+  .legend button.on{background:#1d1d1f;color:#fff}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   @media(max-width:800px){.cols{grid-template-columns:1fr}}
-  .twigs{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
-  .twigs button{border:0;background:#f5f5f7;border-radius:980px;padding:10px 14px;min-height:44px;font:600 13px -apple-system,sans-serif;cursor:pointer}
-  .twigs button.on{background:#1d1d1f;color:#fff}
-  .flow{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-  .flow .step{flex:1 1 140px;background:#f5f5f7;border-radius:14px;padding:12px}
-  .flow .step em{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6e6e73;font-style:normal}
-  .news{margin-top:22px;padding:18px;background:#f5f5f7;border-radius:16px}
-  .news h3{margin:0 0 8px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#6e6e73}
-  .news .read{font-size:15px;margin:8px 0}
+  .twigs,.kids{display:flex;flex-wrap:wrap;gap:8px}
+  .twigs button,.kids button{border:0;background:#f5f5f7;border-radius:980px;padding:10px 14px;min-height:44px;font:600 13px -apple-system,sans-serif;cursor:pointer}
+  .twigs button.on,.kids button.on{background:#1d1d1f;color:#fff}
+  .flow{display:flex;flex-wrap:wrap;gap:8px}
+  .flow .step{flex:1 1 130px;background:#f5f5f7;border-radius:14px;padding:12px}
+  .track{display:flex;overflow-x:auto;padding:8px 0 16px}
+  .track button{flex:0 0 160px;border:0;background:#f5f5f7;border-radius:14px;padding:12px;margin-right:8px;text-align:left;cursor:pointer;font:inherit;border-left:3px solid #d2d2d7}
+  .track button.on{background:#1d1d1f;color:#fff}
+  .track button .d{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;opacity:.7}
+  .gbox{background:#f5f5f7;border-radius:14px;padding:12px 14px;margin:8px 0}
+  .gbox em{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6e6e73;font-style:normal;margin-bottom:4px}
 </style></head>
 <body>
 <nav class="nav"><div class="nav-in">
   <a class="brand" href="../index.html"><img src="../assets/star.png" alt=""/>SEE, R</a>
   <button id="menu" type="button">☰</button>
-  <div class="nav-links" id="nav-links">
-    <a href="../grounded/index.html">GROUNDED</a>
-    <a href="index.html">Convergence</a>
-  </div>
+  <div class="nav-links" id="nav-links"><a href="../grounded/index.html">GROUNDED</a><a href="index.html">Convergence</a></div>
 </div></nav>
 <header class="hero">
   <img class="spin" src="../assets/star.png" alt=""/>
   <h1>The Convergence</h1>
-  <p class="sub">One map. Their own words.</p>
+  <p class="sub">Grain 1 worldview · Grain 2 body · Grain 3 denomination · Grain 4 spin-off</p>
 </header>
-<div class="stage">
-  <div class="famrow" id="famrow"></div>
-  <div id="board"></div>
-</div>
+<div class="stage"><div class="famrow" id="famrow"></div><div id="board"></div></div>
 <footer><div class="foot"><p>SEE, R · Kennesaw, Georgia</p></div></footer>
-<script src="xian.js"></script>
-<script src="xian-patch.js"></script>
-<script src="islam.js"></script>
-<script src="rest.js"></script>
-<script src="rest-patch.js"></script>
-<script src="flow.js"></script>
-<script src="news.js"></script>
-<script src="data.js"></script>
+<script src="xian.js"></script><script src="xian-patch.js"></script><script src="islam.js"></script><script src="rest.js"></script><script src="rest-patch.js"></script><script src="grains.js"></script><script src="flow.js"></script><script src="news-track.js"></script><script src="data.js"></script>
 <script>
 (function(){
   const row=document.getElementById('famrow'), board=document.getElementById('board');
-  const data=(window.CONV||[]);
-  let on=data[0]||null, twig=null;
+  const data=window.CONV||[];
+  let on=data[0]||null, g2=null, g3=null, g4=null, ev=(window.TRACK&&TRACK[TRACK.length-1])||null;
+  function q(obj){ if(!obj) return ''; return '<blockquote class="quote">“'+obj.t+'”<cite>'+obj.s+'</cite></blockquote>'; }
+  function g3list(){
+    if(on&&on.id==='christianity'&&window.G3&&G3.christianity){
+      if(g2&&G3.christianity[g2]) return G3.christianity[g2];
+      var all=[]; Object.keys(G3.christianity).forEach(function(k){ all=all.concat(G3.christianity[k]); }); return all;
+    }
+    return on&&on.twigs||[];
+  }
   function tiles(){
     row.innerHTML='';
     data.forEach(function(x){
-      const b=document.createElement('button'); b.type='button';
+      var b=document.createElement('button'); b.type='button';
       b.className='fam'+(on&&on.id===x.id?' on':'');
-      b.innerHTML='<b>'+x.name+'</b><span>'+x.short+'</span>';
-      b.addEventListener('click', function(e){ e.preventDefault(); on=x; twig=null; draw(); });
+      b.innerHTML='<b>'+x.name+'</b><span>Grain 1 · '+x.short+'</span>';
+      b.addEventListener('click', function(){ on=x; g2=null; g3=null; g4=null; draw(); });
       row.appendChild(b);
     });
   }
-  function q(obj){ return obj?('<blockquote class="quote">“'+obj.t+'”<cite>'+obj.s+'</cite></blockquote>'):''; }
+  function reading(){
+    var pack=(window.TRACK_READ&&on&&TRACK_READ[on.id])||null; if(!pack) return '';
+    var h='<div class="gbox"><em>Grain 1 · '+on.name+'</em>'+(pack.g1||'')+'</div>';
+    var g2t=(g2&&pack.g2&&pack.g2[g2])||'';
+    var g3t=(g3&&pack.g3&&pack.g3[g3.n])||'';
+    var g4t=(g4&&pack.g4&&pack.g4[g4.n])||'';
+    if(g2t) h+='<div class="gbox"><em>Grain 2 · '+g2+'</em>'+g2t+'</div>';
+    if(g3t) h+='<div class="gbox"><em>Grain 3 · '+g3.n+'</em>'+g3t+'</div>';
+    if(g4t) h+='<div class="gbox"><em>Grain 4 · '+g4.n+'</em>'+g4t+'</div>';
+    return h;
+  }
   function draw(){
     tiles();
-    if(!on){ board.innerHTML='<div class="board"><p>Could not load the map.</p></div>'; return; }
-    const wrap=document.createElement('div'); wrap.className='board';
-    var h='<p class="kicker">Family</p><h2>'+on.name+'</h2><p class="pop">'+on.pop+'</p><p class="more">'+on.what+'</p>'+q(on.quote);
-    if(on.parts){
-      h+='<p class="kicker">Next split</p><div class="split">';
+    if(!on){ board.innerHTML='<div class="board"><p class="more">Could not load.</p></div>'; return; }
+    var wrap=document.createElement('div'); wrap.className='board';
+    var crumb='<div class="crumb">Grain 1 <b>'+on.name+'</b>'+(g2?' → Grain 2 <b>'+g2+'</b>':'')+(g3?' → Grain 3 <b>'+g3.n+'</b>':'')+(g4?' → Grain 4 <b>'+g4.n+'</b>':'')+'</div>';
+    var h=crumb+'<p class="kicker">Grain 1 · worldview</p><h2>'+on.name+'</h2><p class="more">'+on.pop+'</p><p class="more">'+on.what+'</p>'+q(on.quote);
+    if(on.parts&&on.parts.length){
+      h+='<p class="kicker">Grain 2 · major body (with people)</p><div class="split">';
       on.parts.forEach(function(p){ h+='<b style="width:'+p.w+'%;background:'+p.c+'"></b>'; });
-      h+='</div><div class="legend">';
-      on.parts.forEach(function(p){ h+='<span>'+p.n+' · '+p.l+'</span> '; });
-      h+='</div>';
+      h+='</div><div class="legend" id="g2row"></div>';
     }
-    h+='<div class="cols"><div><h3 class="kicker">Edge of history</h3><p class="more">'+on.end+'</p>'+q(on.qEnd)+'</div>';
-    h+='<div><h3 class="kicker">Unrestrained power</h3><p class="more">'+on.power+'</p>'+q(on.qPow)+'</div></div>';
+    h+='<div class="cols"><div><p class="kicker" style="margin-top:0">Edge of history</p><p class="more">'+on.end+'</p>'+q(on.qEnd)+'</div>';
+    h+='<div><p class="kicker" style="margin-top:0">Unrestrained power</p><p class="more">'+on.power+'</p>'+q(on.qPow)+'</div></div>';
     h+='<p class="kicker">Where the new tools rhyme</p><p class="more">'+on.tech+'</p>';
-    h+='<p class="kicker">What this lens expects next</p><div class="flow"></div><div class="news" id="newsbox"></div>';
-    if(on.twigs) h+='<p class="kicker">'+(on.twigLabel||'Third grain')+'</p><div class="twigs"></div><p class="more twigread"></p>';
+    h+='<p class="kicker">What this lens expects next</p><div class="flow"></div>';
+    h+='<p class="kicker">Tracker · last 30 days</p><div class="track" id="track"></div><div id="event"></div>';
+    var list=g3list();
+    if(list.length) h+='<p class="kicker">Grain 3 · denomination'+(g2?(' · under '+g2):'')+'</p><div class="twigs"></div><div class="kids"></div><p class="more twigread"></p>';
     wrap.innerHTML=h; board.innerHTML=''; board.appendChild(wrap);
-    var steps=(twig&&twig.flow)||(window.TWIGFLOWS&&twig&&TWIGFLOWS[twig.n])||on.flow||(window.FLOWS&&FLOWS[on.id])||[];
-    var fl=wrap.querySelector('.flow');
-    steps.forEach(function(s,i){ var d=document.createElement('div'); d.className='step'; d.innerHTML='<em>'+(i?'then':'start')+'</em><b>'+s.n+'</b><p>'+s.d+'</p>'; fl.appendChild(d); });
-    var nb=wrap.querySelector('#newsbox');
-    if(nb&&window.NEWS_STORY){
-      var st=NEWS_STORY, rd=(NEWS_READ&&NEWS_READ[on.id])||null;
-      var html='<h3>This month\'s rhyme · as of '+(NEWS_ASOF||'')+'</h3>';
-      html+='<p class="story"><b>'+st.title+'.</b> '+st.what+' <a href="'+st.href+'" target="_blank" rel="noopener">Source</a></p>';
-      if(rd){ html+='<p class="read">'+rd.g1+'</p><p class="read">'+rd.g2+'</p><p class="read">'+(twig?('<b>'+twig.n+'.</b> '):'')+rd.g3+'</p>'; }
-      html+='<ul class="livehead"></ul>'; nb.innerHTML=html;
-      if(window.fetchNewsHeadlines) fetchNewsHeadlines().then(function(items){
-        var ul=nb.querySelector('.livehead'); if(!ul) return;
-        items.forEach(function(it){ var li=document.createElement('li'); li.innerHTML='<a href="'+it.href+'" target="_blank" rel="noopener">'+it.title+'</a>'; ul.appendChild(li); });
+    var g2row=wrap.querySelector('#g2row');
+    if(g2row&&on.parts){
+      on.parts.forEach(function(p){
+        var b=document.createElement('button'); b.type='button'; b.className=g2===p.n?'on':'';
+        b.textContent=p.n+' · '+p.l;
+        b.addEventListener('click', function(){ g2=p.n; g3=null; g4=null; draw(); });
+        g2row.appendChild(b);
       });
     }
-    if(on.twigs){
-      var box=wrap.querySelector('.twigs'), rec=wrap.querySelector('.twigread');
-      on.twigs.forEach(function(t){
+    var fl=wrap.querySelector('.flow');
+    var steps=(g3&&g3.flow)||on.flow||(window.FLOWS&&FLOWS[on.id])||[];
+    steps.forEach(function(s,i){ var d=document.createElement('div'); d.className='step'; d.innerHTML='<em>'+(i?'then':'start')+'</em><b>'+s.n+'</b><p class="more">'+s.d+'</p>'; fl.appendChild(d); });
+    var tr=wrap.querySelector('#track'), evbox=wrap.querySelector('#event');
+    if(tr&&window.TRACK){
+      TRACK.forEach(function(e){
+        var b=document.createElement('button'); b.type='button'; b.className=ev&&ev.id===e.id?'on':'';
+        b.innerHTML='<span class="d">'+e.date+'</span><b>'+e.title+'</b>';
+        b.addEventListener('click', function(){ ev=e; draw(); });
+        tr.appendChild(b);
+      });
+      if(ev){
+        evbox.innerHTML='<p class="more"><b>'+ev.title+'.</b> '+ev.what+' <a href="'+ev.href+'" target="_blank" rel="noopener">Source</a></p>'+reading()+'<ul class="livehead"></ul>';
+        if(window.fetchNewsHeadlines) fetchNewsHeadlines().then(function(items){
+          var ul=evbox.querySelector('.livehead'); if(!ul) return;
+          items.forEach(function(it){ var li=document.createElement('li'); li.innerHTML='<a href="'+it.href+'" target="_blank" rel="noopener">'+it.title+'</a>'; ul.appendChild(li); });
+        });
+      }
+    }
+    var box=wrap.querySelector('.twigs'), rec=wrap.querySelector('.twigread'), kids=wrap.querySelector('.kids');
+    if(box){
+      list.forEach(function(t){
         var b=document.createElement('button'); b.type='button'; b.textContent=t.n;
-        if(twig&&twig.n===t.n) b.className='on';
-        b.addEventListener('click', function(e){ e.preventDefault(); twig=t; draw(); });
+        if(g3&&g3.n===t.n) b.className='on';
+        b.addEventListener('click', function(){ g3=t; g4=null; draw(); });
         box.appendChild(b);
       });
-      if(twig) rec.innerHTML='<b>'+twig.n+'.</b> '+twig.w+(twig.q?q(twig.q):'');
+      if(g3){
+        rec.innerHTML='<b>'+g3.n+'.</b> '+(g3.pop?g3.pop+' ':'')+g3.w+(g3.q?q(g3.q):'');
+        if(kids&&g3.kids){
+          var lab=document.createElement('p'); lab.className='kicker'; lab.textContent='Grain 4 · spin-off'; kids.appendChild(lab);
+          g3.kids.forEach(function(k){
+            var b=document.createElement('button'); b.type='button'; b.textContent=k.n;
+            if(g4&&g4.n===k.n) b.className='on';
+            b.addEventListener('click', function(){ g4=k; draw(); });
+            kids.appendChild(b);
+          });
+          if(g4) rec.innerHTML+='<p class="more"><b>Grain 4 · '+g4.n+'.</b> '+g4.w+'</p>';
+        }
+      }
     }
   }
   draw();
   var m=document.getElementById('menu'), n=document.getElementById('nav-links');
   if(m) m.addEventListener('click', function(){ n.classList.toggle('open'); });
 })();
-</script>
-</body></html>
+</script></body></html>
