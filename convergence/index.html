@@ -8,112 +8,118 @@
 <link rel="stylesheet" href="../assets/apple.css"/>
 <style>
   body{background:#f5f5f7}
-  .hero{--hero-img:url('../assets/forest.jpg');min-height:42vh;padding-bottom:36px}
-  .hero img.spin{height:44px;margin-bottom:8px;animation:spin 18s linear infinite}
+  .hero{--hero-img:url('../assets/forest.jpg');min-height:36vh;padding:96px 22px 28px}
+  .hero img.spin{height:44px;margin:0 auto 8px;display:block;animation:spin 18s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
-  .stage{max-width:1080px;margin:0 auto;padding:20px 16px 72px}
-  .famrow{display:flex;gap:8px;overflow-x:auto;padding:8px 0 16px}
-  .fam{flex:0 0 auto;border:0;background:#fff;border-radius:16px;padding:14px 16px;min-width:148px;text-align:left;cursor:pointer;font:inherit}
-  .fam b{display:block;font-size:15px}
-  .fam span{display:block;font-size:12px;color:#6e6e73;margin-top:4px}
-  .fam .bar{height:4px;border-radius:4px;background:#eee;margin-top:10px;overflow:hidden}
-  .fam .bar i{display:block;height:100%}
-  .fam.on{outline:2px solid #1d1d1f}
-  .board{background:#fff;border-radius:22px;padding:28px 26px 32px}
+  .stage{max-width:980px;margin:0 auto;padding:12px 16px 80px}
+  .famrow{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 16px}
+  .fam{border:0;background:#fff;border-radius:14px;padding:12px 14px;min-height:52px;min-width:140px;flex:1 1 140px;text-align:left;cursor:pointer;font:inherit;color:#1d1d1f;-webkit-tap-highlight-color:transparent}
+  .fam b{display:block;font-size:14px}
+  .fam span{display:block;font-size:11px;color:#6e6e73;margin-top:2px}
+  .fam.on{background:#1d1d1f;color:#fff}
+  .fam.on span{color:#a1a1a6}
+  .board{background:#fff;border-radius:22px;padding:28px 24px 32px;animation:rise .55s cubic-bezier(.22,1,.36,1)}
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
   .kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6e6e73}
   .board h2{font-size:clamp(28px,5vw,44px);letter-spacing:-.03em;margin:6px 0 8px}
-  .pop{font-size:15px;color:#6e6e73;margin-bottom:16px}
-  .quote{margin:18px 0;padding:18px 20px;background:#f5f5f7;border-radius:14px;font-size:20px;line-height:1.45;letter-spacing:-.015em}
-  .quote cite{display:block;margin-top:10px;font-size:13px;font-style:normal;color:#6e6e73}
-  .split{display:flex;height:14px;border-radius:8px;overflow:hidden;margin:8px 0 6px}
-  .split b{display:block;height:100%}
-  .legend{display:flex;flex-wrap:wrap;gap:10px 16px;font-size:12px;color:#6e6e73;margin-bottom:18px}
-  .legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
-  .cols{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .pop{font-size:15px;color:#6e6e73;margin-bottom:12px}
+  .quote{margin:16px 0;padding:18px 20px;background:#f5f5f7;border-radius:14px;font-size:19px;line-height:1.45}
+  .quote cite{display:block;margin-top:10px;font-size:12px;font-style:normal;color:#6e6e73}
+  .split{display:flex;height:12px;border-radius:8px;overflow:hidden;margin:8px 0 8px;background:#eee}
+  .split b{display:block;height:100%;transform-origin:left;animation:grow .8s cubic-bezier(.22,1,.36,1)}
+  @keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  .legend{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:12px;color:#6e6e73;margin-bottom:16px}
+  .legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
   @media(max-width:800px){.cols{grid-template-columns:1fr}}
-  .cols h3{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#6e6e73;margin-bottom:8px}
-  .cols p{font-size:16px;color:#3a3a3c;margin:0 0 12px}
-  .twigs{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-  .twigs button{border:0;background:#f5f5f7;border-radius:980px;padding:8px 12px;font:600 13px -apple-system,sans-serif;cursor:pointer}
+  .cols h3{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#6e6e73;margin-bottom:8px}
+  .cols p{font-size:16px;color:#3a3a3c;margin:0 0 10px}
+  .twigs{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+  .twigs button{border:0;background:#f5f5f7;border-radius:980px;padding:10px 14px;min-height:44px;font:600 13px -apple-system,sans-serif;cursor:pointer}
   .twigs button.on{background:#1d1d1f;color:#fff}
-  .more{margin-top:16px;font-size:15px;color:#3a3a3c}
+  .more{margin-top:14px;font-size:16px;color:#3a3a3c}
 </style>
 </head>
 <body>
 <nav class="nav"><div class="nav-in">
   <a class="brand" href="../index.html"><img src="../assets/star.png" alt=""/>SEE, R</a>
-  <button id="menu">☰</button>
+  <button id="menu" type="button">☰</button>
   <div class="nav-links" id="nav-links">
     <a href="../grounded/index.html">GROUNDED</a>
-    <a href="../lenses/index.html">Lenses</a>
     <a href="index.html">Convergence</a>
   </div>
 </div></nav>
 <header class="hero">
   <img class="spin" src="../assets/star.png" alt=""/>
   <h1>The Convergence</h1>
-  <p class="sub">One map. Their own words. Size is not a vote.</p>
+  <p class="sub">One map. Their own words.</p>
 </header>
 <div class="stage">
   <div class="famrow" id="famrow"></div>
-  <div class="board" id="board">
-    <p class="kicker">Choose a family above</p>
-    <h2>How to read the map</h2>
-    <p class="pop">A row of families, ordered by rough living size. Tap one. You get their own sentence, a quoted text they actually use, then the next split as a bar.</p>
-    <blockquote class="quote">“To ‘see through’ all things is the same as not to see.”<cite>C. S. Lewis · The Abolition of Man — a warning for this page too</cite></blockquote>
-    <p class="more"><b>Chinese belief</b> is not one church. Three Teachings plus folk practice plus a large officially unaffiliated population. Satanism and Gnosticism sit at the end because they are ideas, not peer world religions.</p>
-  </div>
+  <div id="board"></div>
 </div>
-<footer><div class="foot"><p>SEE, R · short quotations for study · Kennesaw, Georgia.</p></div></footer>
+<footer><div class="foot"><p>SEE, R · Kennesaw, Georgia</p></div></footer>
 <script src="data.js"></script>
 <script>
-const row=document.getElementById('famrow'), board=document.getElementById('board');
-let on=null, twig=null;
-function famrow(){
-  row.innerHTML='';
-  CONV.forEach(function(x){
-    const b=document.createElement('button');
-    b.className='fam'+(on&&on.id===x.id?' on':'');
-    b.innerHTML='<b>'+x.name+'</b><span>'+x.short+'</span><div class="bar"><i style="width:'+x.bar+'%;background:'+x.color+'"></i></div>';
-    b.onclick=function(){on=x;twig=null;paint();};
-    row.appendChild(b);
-  });
-}
-function paint(){
-  famrow();
-  if(!on) return;
-  var h='<p class="kicker">Family</p><h2>'+on.name+'</h2><p class="pop">'+on.pop+'</p>';
-  h+='<p class="more">'+on.what+'</p>';
-  h+='<blockquote class="quote">“'+on.quote.t+'”<cite>'+on.quote.s+'</cite></blockquote>';
-  if(on.parts&&on.parts.length){
-    h+='<p class="kicker">Next split</p><div class="split">';
-    on.parts.forEach(function(p){h+='<b style="width:'+p.w+'%;background:'+p.c+'"></b>';});
-    h+='</div><div class="legend">';
-    on.parts.forEach(function(p){h+='<span><i style="background:'+p.c+'"></i>'+p.n+' · '+p.l+'</span>';});
-    h+='</div>';
-  }
-  h+='<div class="cols"><div><h3>Edge of history</h3><p>'+on.end+'</p>';
-  if(on.qEnd) h+='<blockquote class="quote" style="font-size:17px">“'+on.qEnd.t+'”<cite>'+on.qEnd.s+'</cite></blockquote>';
-  h+='</div><div><h3>Unrestrained power</h3><p>'+on.power+'</p>';
-  if(on.qPow) h+='<blockquote class="quote" style="font-size:17px">“'+on.qPow.t+'”<cite>'+on.qPow.s+'</cite></blockquote>';
-  h+='</div></div>';
-  h+='<h3 class="kicker" style="margin-top:22px">Where machines rhyme</h3><p class="more">'+on.tech+'</p>';
-  if(on.twigs){
-    h+='<h3 class="kicker" style="margin-top:22px">Third grain</h3><div class="twigs" id="twigs"></div><p class="more" id="twigread"></p>';
-  }
-  board.innerHTML=h;
-  if(on.twigs){
-    var box=document.getElementById('twigs'), rec=document.getElementById('twigread');
-    on.twigs.forEach(function(t){
-      var b=document.createElement('button'); b.type='button'; b.textContent=t.n;
-      if(twig&&twig.n===t.n) b.className='on';
-      b.onclick=function(){twig=t; paint();};
-      box.appendChild(b);
+(function(){
+  const row=document.getElementById('famrow');
+  const board=document.getElementById('board');
+  const data=(window.CONV||[]);
+  let on=data[0]||null, twig=null;
+  function tiles(){
+    row.innerHTML='';
+    data.forEach(function(x){
+      const b=document.createElement('button');
+      b.type='button';
+      b.className='fam'+(on&&on.id===x.id?' on':'');
+      b.innerHTML='<b>'+x.name+'</b><span>'+x.short+'</span>';
+      b.addEventListener('click', function(e){ e.preventDefault(); on=x; twig=null; draw(); });
+      row.appendChild(b);
     });
-    if(twig) rec.innerHTML='<b>'+twig.n+'.</b> '+twig.w+(twig.q?(' “'+twig.q.t+'” — '+twig.q.s):'');
   }
-}
-famrow();
-document.getElementById('menu').onclick=function(){document.getElementById('nav-links').classList.toggle('open');};
+  function q(obj){ if(!obj) return ''; return '<blockquote class="quote">“'+obj.t+'”<cite>'+obj.s+'</cite></blockquote>'; }
+  function draw(){
+    tiles();
+    if(!on){ board.innerHTML='<div class="board"><p class="more">Could not load the map.</p></div>'; return; }
+    const wrap=document.createElement('div');
+    wrap.className='board';
+    var h='<p class="kicker">Family</p><h2>'+on.name+'</h2><p class="pop">'+on.pop+'</p>';
+    h+='<p class="more">'+on.what+'</p>'+q(on.quote);
+    if(on.parts&&on.parts.length){
+      h+='<p class="kicker">Next split</p><div class="split">';
+      on.parts.forEach(function(p){ h+='<b style="width:'+p.w+'%;background:'+p.c+'"></b>'; });
+      h+='</div><div class="legend">';
+      on.parts.forEach(function(p){ h+='<span><i style="background:'+p.c+'"></i>'+p.n+' · '+p.l+'</span>'; });
+      h+='</div>';
+    }
+    h+='<div class="cols"><div><h3>Edge of history</h3><p>'+on.end+'</p>'+q(on.qEnd)+'</div>';
+    h+='<div><h3>Unrestrained power</h3><p>'+on.power+'</p>'+q(on.qPow)+'</div></div>';
+    h+='<p class="kicker" style="margin-top:18px">Where machines rhyme</p><p class="more">'+on.tech+'</p>';
+    if(on.twigs){ h+='<p class="kicker" style="margin-top:18px">Third grain</p><div class="twigs"></div><p class="more twigread"></p>'; }
+    wrap.innerHTML=h;
+    board.innerHTML='';
+    board.appendChild(wrap);
+    if(on.twigs){
+      const box=wrap.querySelector('.twigs');
+      const rec=wrap.querySelector('.twigread');
+      on.twigs.forEach(function(t){
+        const b=document.createElement('button');
+        b.type='button'; b.textContent=t.n;
+        if(twig&&twig.n===t.n) b.className='on';
+        b.addEventListener('click', function(e){
+          e.preventDefault();
+          twig=t;
+          box.querySelectorAll('button').forEach(function(x){ x.className=''; });
+          b.className='on';
+          rec.innerHTML='<b>'+t.n+'.</b> '+t.w+(t.q?(' “'+t.q.t+'” — '+t.q.s):'');
+        });
+        box.appendChild(b);
+      });
+    }
+  }
+  draw();
+  const m=document.getElementById('menu'), n=document.getElementById('nav-links');
+  if(m) m.addEventListener('click', function(){ n.classList.toggle('open'); });
+})();
 </script>
 </body></html>
