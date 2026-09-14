@@ -4,25 +4,45 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>The Convergence | SEE, R</title>
-<meta name="description" content="Major living worldviews in three grains, with their own texts. Study, not a sermon."/>
 <link rel="icon" href="../assets/favicon.png"/>
 <link rel="stylesheet" href="../assets/apple.css"/>
 <style>
-  .hero{--hero-img:url('../assets/forest.jpg')}
-  .hero img.spin{height:48px;margin-bottom:10px;animation:spin 16s linear infinite}
+  body{background:#f5f5f7}
+  .hero{--hero-img:url('../assets/forest.jpg');min-height:42vh;padding-bottom:36px}
+  .hero img.spin{height:44px;margin-bottom:8px;animation:spin 18s linear infinite}
   @keyframes spin{to{transform:rotate(360deg)}}
-  .layout{max-width:1100px;margin:0 auto;padding:8px 16px 64px}
-  .read{background:#fff;border-radius:18px;padding:28px 26px;margin-top:18px;text-align:left}
-  .read h2{font-size:32px;letter-spacing:-.03em;margin-bottom:8px}
-  .read h3{margin:22px 0 8px;font-size:20px}
-  .read p{margin:0 0 12px;color:#3a3a3c;font-size:17px}
-  .crumb{font-size:13px;color:#6e6e73;margin-bottom:10px}
+  .stage{max-width:1080px;margin:0 auto;padding:20px 16px 72px}
+  .famrow{display:flex;gap:8px;overflow-x:auto;padding:8px 0 16px}
+  .fam{flex:0 0 auto;border:0;background:#fff;border-radius:16px;padding:14px 16px;min-width:148px;text-align:left;cursor:pointer;font:inherit}
+  .fam b{display:block;font-size:15px}
+  .fam span{display:block;font-size:12px;color:#6e6e73;margin-top:4px}
+  .fam .bar{height:4px;border-radius:4px;background:#eee;margin-top:10px;overflow:hidden}
+  .fam .bar i{display:block;height:100%}
+  .fam.on{outline:2px solid #1d1d1f}
+  .board{background:#fff;border-radius:22px;padding:28px 26px 32px}
+  .kicker{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6e6e73}
+  .board h2{font-size:clamp(28px,5vw,44px);letter-spacing:-.03em;margin:6px 0 8px}
+  .pop{font-size:15px;color:#6e6e73;margin-bottom:16px}
+  .quote{margin:18px 0;padding:18px 20px;background:#f5f5f7;border-radius:14px;font-size:20px;line-height:1.45;letter-spacing:-.015em}
+  .quote cite{display:block;margin-top:10px;font-size:13px;font-style:normal;color:#6e6e73}
+  .split{display:flex;height:14px;border-radius:8px;overflow:hidden;margin:8px 0 6px}
+  .split b{display:block;height:100%}
+  .legend{display:flex;flex-wrap:wrap;gap:10px 16px;font-size:12px;color:#6e6e73;margin-bottom:18px}
+  .legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:800px){.cols{grid-template-columns:1fr}}
+  .cols h3{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#6e6e73;margin-bottom:8px}
+  .cols p{font-size:16px;color:#3a3a3c;margin:0 0 12px}
+  .twigs{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  .twigs button{border:0;background:#f5f5f7;border-radius:980px;padding:8px 12px;font:600 13px -apple-system,sans-serif;cursor:pointer}
+  .twigs button.on{background:#1d1d1f;color:#fff}
+  .more{margin-top:16px;font-size:15px;color:#3a3a3c}
 </style>
 </head>
 <body>
 <nav class="nav"><div class="nav-in">
   <a class="brand" href="../index.html"><img src="../assets/star.png" alt=""/>SEE, R</a>
-  <button id="menu" aria-label="Menu">☰</button>
+  <button id="menu">☰</button>
   <div class="nav-links" id="nav-links">
     <a href="../grounded/index.html">GROUNDED</a>
     <a href="../lenses/index.html">Lenses</a>
@@ -32,35 +52,68 @@
 <header class="hero">
   <img class="spin" src="../assets/star.png" alt=""/>
   <h1>The Convergence</h1>
-  <p class="sub">Three grains. Their own books. No fake equality of size.</p>
-  <p class="copy">First the large families, then the next historical split, then one more grain. Rhyme with new machines is not proof.</p>
+  <p class="sub">One map. Their own words. Size is not a vote.</p>
 </header>
-<section class="unit gray" style="padding-bottom:12px">
-  <h2>1 · Family</h2>
-  <p class="sub">Ordered by rough living size, then by idea. Satanism and Gnosticism sit at the end on purpose.</p>
-  <div class="chips" id="fam"></div>
-</section>
-<section class="unit gray" style="padding-top:0"><h2>2 · Branch</h2><div class="grid" id="br"></div></section>
-<section class="unit gray" style="padding-top:0"><h2>3 · Grain</h2><div class="grid" id="gr"></div></section>
-<div class="layout">
-  <article class="read" id="read">
-    <p class="crumb">How to read this</p>
-    <h2>Honesty rules</h2>
-    <p>Counts are handbook ranges, not a census. People stack practices.</p>
-    <p><b>What “Chinese belief” is.</b> Not one religion with a pope. The Three Teachings — Confucian ethic, Daoist cosmology and ritual, Chinese Buddhism — on top of folk practice (ancestors, local gods, feng shui), next to a large officially unaffiliated population in the PRC. Surveys that ask “what is your religion?” miss most of the mountain.</p>
-    <p>Tap a family. Then a branch. Then a grain.</p>
-  </article>
+<div class="stage">
+  <div class="famrow" id="famrow"></div>
+  <div class="board" id="board">
+    <p class="kicker">Choose a family above</p>
+    <h2>How to read the map</h2>
+    <p class="pop">A row of families, ordered by rough living size. Tap one. You get their own sentence, a quoted text they actually use, then the next split as a bar.</p>
+    <blockquote class="quote">“To ‘see through’ all things is the same as not to see.”<cite>C. S. Lewis · The Abolition of Man — a warning for this page too</cite></blockquote>
+    <p class="more"><b>Chinese belief</b> is not one church. Three Teachings plus folk practice plus a large officially unaffiliated population. Satanism and Gnosticism sit at the end because they are ideas, not peer world religions.</p>
+  </div>
 </div>
-<footer><div class="foot"><p>SEE, R · analysis, not endorsement · Kennesaw, Georgia.</p></div></footer>
+<footer><div class="foot"><p>SEE, R · short quotations for study · Kennesaw, Georgia.</p></div></footer>
 <script src="data.js"></script>
 <script>
-const fam=document.getElementById('fam'), br=document.getElementById('br'), gr=document.getElementById('gr'), read=document.getElementById('read');
-let F=null,B=null,G=null;
-function chips(){fam.innerHTML='';CONV.forEach(function(x){const b=document.createElement('button');b.type='button';b.textContent=x.name;if(F&&F.id===x.id)b.className='on';b.onclick=function(){F=x;B=null;G=null;paint();};fam.appendChild(b);});}
-function card(title,sub,fn){const b=document.createElement('button');b.type='button';b.className='card';b.innerHTML='<h3>'+title+'</h3><p>'+sub+'</p>';b.onclick=fn;return b;}
-function paint(){chips();br.innerHTML='';gr.innerHTML='';if(!F)return;F.branches.forEach(function(x){const c=card(x.n,x.p,function(){B=x;G=null;paint();});if(B&&B.n===x.n)c.classList.add('on');br.appendChild(c);});if(B&&B.g){B.g.forEach(function(x){const c=card(x.n,x.w,function(){G=x;paint();});if(G&&G.n===x.n)c.classList.add('on');gr.appendChild(c);});}essay();}
-function essay(){if(!F)return;var html='<p class="crumb">'+F.name+(B?(' · '+B.n):'')+(G?(' · '+G.n):'')+'</p>';html+='<h2>'+(G?G.n:B?B.n:F.name)+'</h2>';html+='<p class="note">'+(G?G.w:B?B.p:F.pop)+'</p>';if(!B){html+='<p>'+F.what+'</p><h3>Their books</h3><p>'+F.texts+'</p><h3>Edge of history</h3><p>'+F.end+'</p><h3>Unrestrained power</h3><p>'+F.power+'</p><h3>Where machines rhyme</h3><p>'+F.tech+'</p>';}else{html+='<p>'+B.w+'</p><h3>Texts this branch actually uses</h3><p>'+B.t+'</p><h3>Still the family’s frame</h3><p><b>End.</b> '+F.end+'</p><p><b>Power.</b> '+F.power+'</p><p><b>Machines.</b> '+F.tech+'</p>';if(G)html+='<h3>This grain</h3><p>'+G.w+'</p>';}html+='<p class="note">Rhyme is not proof.</p>';read.innerHTML=html;}
-chips();
+const row=document.getElementById('famrow'), board=document.getElementById('board');
+let on=null, twig=null;
+function famrow(){
+  row.innerHTML='';
+  CONV.forEach(function(x){
+    const b=document.createElement('button');
+    b.className='fam'+(on&&on.id===x.id?' on':'');
+    b.innerHTML='<b>'+x.name+'</b><span>'+x.short+'</span><div class="bar"><i style="width:'+x.bar+'%;background:'+x.color+'"></i></div>';
+    b.onclick=function(){on=x;twig=null;paint();};
+    row.appendChild(b);
+  });
+}
+function paint(){
+  famrow();
+  if(!on) return;
+  var h='<p class="kicker">Family</p><h2>'+on.name+'</h2><p class="pop">'+on.pop+'</p>';
+  h+='<p class="more">'+on.what+'</p>';
+  h+='<blockquote class="quote">“'+on.quote.t+'”<cite>'+on.quote.s+'</cite></blockquote>';
+  if(on.parts&&on.parts.length){
+    h+='<p class="kicker">Next split</p><div class="split">';
+    on.parts.forEach(function(p){h+='<b style="width:'+p.w+'%;background:'+p.c+'"></b>';});
+    h+='</div><div class="legend">';
+    on.parts.forEach(function(p){h+='<span><i style="background:'+p.c+'"></i>'+p.n+' · '+p.l+'</span>';});
+    h+='</div>';
+  }
+  h+='<div class="cols"><div><h3>Edge of history</h3><p>'+on.end+'</p>';
+  if(on.qEnd) h+='<blockquote class="quote" style="font-size:17px">“'+on.qEnd.t+'”<cite>'+on.qEnd.s+'</cite></blockquote>';
+  h+='</div><div><h3>Unrestrained power</h3><p>'+on.power+'</p>';
+  if(on.qPow) h+='<blockquote class="quote" style="font-size:17px">“'+on.qPow.t+'”<cite>'+on.qPow.s+'</cite></blockquote>';
+  h+='</div></div>';
+  h+='<h3 class="kicker" style="margin-top:22px">Where machines rhyme</h3><p class="more">'+on.tech+'</p>';
+  if(on.twigs){
+    h+='<h3 class="kicker" style="margin-top:22px">Third grain</h3><div class="twigs" id="twigs"></div><p class="more" id="twigread"></p>';
+  }
+  board.innerHTML=h;
+  if(on.twigs){
+    var box=document.getElementById('twigs'), rec=document.getElementById('twigread');
+    on.twigs.forEach(function(t){
+      var b=document.createElement('button'); b.type='button'; b.textContent=t.n;
+      if(twig&&twig.n===t.n) b.className='on';
+      b.onclick=function(){twig=t; paint();};
+      box.appendChild(b);
+    });
+    if(twig) rec.innerHTML='<b>'+twig.n+'.</b> '+twig.w+(twig.q?(' “'+twig.q.t+'” — '+twig.q.s):'');
+  }
+}
+famrow();
 document.getElementById('menu').onclick=function(){document.getElementById('nav-links').classList.toggle('open');};
 </script>
 </body></html>
