@@ -4,99 +4,77 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>The Convergence | SEE, R</title>
-<meta name="description" content="A map of how major faiths already talk about power, ending, and new machines. Study, not a sermon."/>
 <link rel="icon" href="../assets/favicon.png"/>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;background:#0b0f0c;color:#f5f5f7;line-height:1.5}
-.nav{position:fixed;inset:0 0 auto;z-index:20;height:48px;background:rgba(22,22,23,.88);backdrop-filter:blur(20px);display:flex;align-items:center;gap:18px;padding:0 22px}
-.nav a{color:#f5f5f7;text-decoration:none;font-size:12px;opacity:.88}
-.brand{display:flex;align-items:center;gap:8px;font-weight:600;letter-spacing:.12em;font-size:11px;text-transform:uppercase;margin-right:auto}
-.brand img{height:18px;filter:brightness(10)}
-.hero{padding:92px 20px 20px;text-align:center;background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(11,15,12,.75)),url('../assets/forest.jpg') center 30%/cover no-repeat}
-.hero img{height:52px;margin:0 auto 10px;display:block;animation:spin 16s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-.hero h1{font-size:clamp(36px,7vw,56px);letter-spacing:-.03em;font-weight:600}
-.hero p{max-width:36em;margin:10px auto 0;color:#d2d2d7;font-size:17px}
-.filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;padding:16px 12px}
-.filters button{border:0;background:#1d1d1f;color:#f5f5f7;border-radius:980px;padding:8px 14px;font:600 13px -apple-system,sans-serif;cursor:pointer}
-.filters button.on{background:#fff;color:#000}
-.field{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;max-width:980px;margin:0 auto 28px;padding:0 16px}
-.bubble{min-height:140px;border-radius:18px;color:#fff;text-align:center;padding:22px 12px;cursor:pointer;border:0;font:inherit;display:flex;flex-direction:column;justify-content:center;align-items:center;animation:float 6s ease-in-out infinite}
-.bubble b{font-size:16px}.bubble small{opacity:.85;margin-top:4px;font-size:12px}
-@keyframes float{50%{transform:translateY(-6px)}}
-.panel{max-width:640px;margin:0 auto 56px;background:#161617;border-radius:18px;padding:22px 22px 26px}
-.panel h2{font-size:28px;letter-spacing:-.02em;margin-bottom:6px}
-.panel p{margin:10px 0;color:#d2d2d7}
-.note{font-size:13px;color:#86868b}
-footer{text-align:center;padding:24px;color:#86868b;font-size:12px}
-footer a{color:#a1a1a6}
-</style>
+<link rel="stylesheet" href="../assets/apple.css"/>
+<style>.hero{--hero-img:url('../assets/forest.jpg')}.hero img.spin{height:48px;margin-bottom:10px;animation:spin 16s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}</style>
 </head>
 <body>
-<nav class="nav">
+<nav class="nav"><div class="nav-in">
   <a class="brand" href="../index.html"><img src="../assets/star.png" alt=""/>SEE, R</a>
-  <a href="../grounded/index.html">GROUNDED</a>
-  <a href="../consulting/index.html">Consulting</a>
-  <a href="../chronicle/index.html">Chronicle</a>
-  <a href="index.html">Convergence</a>
-</nav>
+  <button id="menu" aria-label="Menu">☰</button>
+  <div class="nav-links" id="nav-links">
+    <a href="../grounded/index.html">GROUNDED</a>
+    <a href="../consulting/index.html">Consulting</a>
+    <a href="../chronicle/index.html">Chronicle</a>
+    <a href="index.html">Convergence</a>
+  </div>
+</div></nav>
 <header class="hero">
-  <img src="../assets/star.png" alt=""/>
-  <p style="letter-spacing:.14em;text-transform:uppercase;font-size:12px;opacity:.7">A map · not a verdict</p>
+  <img class="spin" src="../assets/star.png" alt=""/>
   <h1>The Convergence</h1>
-  <p>Major faiths already have language for power and for the end of an age. New machines land in those sentences. Tap a card. This is study, not a sermon.</p>
+  <p class="sub">How living traditions already talk about power, the end of an age, and new machines.</p>
+  <p class="copy">Start with Christian families as they exist in the United States. Then the rest of the world. Study — not a sermon.</p>
 </header>
-<div class="filters" id="filters"></div>
-<div class="field" id="field"></div>
-<article class="panel" id="panel">
-  <h2>How to read this</h2>
-  <p>Card size follows rough world population, so you see what most people actually stand in — not what a feed promotes.</p>
-  <p>Each card names two things that family already teaches: what happens at the edge of history, and what unrestrained human power looks like. Then where machine-scale technology rhymes with that teaching. Rhyme is not proof.</p>
-  <p class="note">Population figures are rounded public estimates. Protestant includes evangelical, mainline, and nondenominational streams.</p>
-</article>
-<footer><a href="../index.html">SEE, R</a> · Kennesaw, GA · analysis, not endorsement</footer>
+<section class="unit gray">
+  <h2>Choose a family</h2>
+  <p class="sub">Equal cards. Size is not a vote.</p>
+  <div class="chips" id="chips"></div>
+  <div class="grid" id="grid"></div>
+  <article class="detail" id="detail">
+    <h3>How to read a card</h3>
+    <p>Each tradition already has language for what happens at the edge of history and for what happens when human power refuses a limit. The third sentence is only where machine-scale technology rhymes with that language. Rhyme is not proof.</p>
+    <p class="note">A reading aid, not a census. Groups are named the way they name themselves in American church life.</p>
+  </article>
+</section>
+<footer><div class="foot"><p>Analysis, not endorsement. Kennesaw, Georgia.</p></div></footer>
 <script>
-const NODES=[
-  {fam:"Christian",name:"Catholic",m:1260,color:"#7a4e2a",end:"History moves toward Christ’s return and a final judgment. The Church is already a sign of that future.",power:"Pride that builds a name for itself — Babel — is the old pattern for technique without worship.",tech:"A system that promises heaven by scale will look like a rival liturgy."},
-  {fam:"Christian",name:"Protestant",m:800,color:"#3e5a48",end:"Christ returns. Scripture, not a model, names the end. Traditions disagree on the timetable; they agree the Judge is a person.",power:"Unchecked human sovereignty is idolatry. The feed trains people whether a church does or not.",tech:"Tools that disciple attention every day are already a church. The question is whose."},
-  {fam:"Christian",name:"Eastern Orthodox",m:220,color:"#5c3d6e",end:"The world is being transfigured toward the Kingdom. The end is communion, not an escape hatch.",power:"Technology that flattens persons into users attacks the image of God.",tech:"A disembodied intelligence is a poor icon. Presence is the point."},
-  {fam:"Islam",name:"Islam",m:2000,color:"#2f6b4f",end:"The Hour comes. Resurrection and judgment are certain. Signs of the Hour are watched, not scheduled by labs.",power:"Shirk — giving a creature God’s place — is the core danger.",tech:"A machine treated as knower-of-all sits near that line."},
-  {fam:"Hindu",name:"Hindu",m:1200,color:"#c9853a",end:"Ages rise and fall. Decline and renewal are cyclic, not a single Western countdown.",power:"Disorder grows when dharma is forgotten. Tools are not neutral if they dissolve it.",tech:"A system that accelerates desire can look like the darkening of an age."},
-  {fam:"Buddhist",name:"Buddhist",m:500,color:"#7a9bb0",end:"No creator-judge at the end of one timeline. Liberation from craving and ignorance is the work.",power:"Attachment — including to views and to tools — is suffering’s engine.",tech:"AI as companion or self is a new object of clinging."},
-  {fam:"Folk / indigenous",name:"Folk and indigenous",m:400,color:"#6b5344",end:"Land, ancestors, and balance — not a global clock — name what must not be broken.",power:"Extraction that ignores place is the old injury in a new machine.",tech:"A placeless model has no treaty with a river."},
-  {fam:"Unaffiliated",name:"Atheist / agnostic / none",m:1200,color:"#5a6570",end:"No revealed finale is required. Some expect collapse; some expect abundance.",power:"The danger is human, institutional, and empirical — not a demon.",tech:"Alignment, concentration of compute, and who holds the logs are the live questions."},
-  {fam:"Jewish",name:"Jewish",m:15,color:"#3d5a80",end:"Repair of the world and a still-ahead messianic age. Timetables are resisted as presumption.",power:"Idols — including the state and the tool — are an old argument.",tech:"A model that claims to complete history is offering a false messiah in silicon."}
+const N=[
+{g:"Catholic",n:"Roman Catholic",s:"Sacraments and a visible church across nations.",e:"History moves toward Christ’s return and judgment.",p:"Babel is technique that builds a name without worship.",t:"A system that promises heaven by scale will look like a rival liturgy."},
+{g:"Catholic",n:"Eastern Catholic",s:"Rome in communion; Eastern liturgy.",e:"The same creed as Rome, prayed in an Eastern voice.",p:"The person is not a user.",t:"A flattened interface sits badly next to an icon screen."},
+{g:"Orthodox",n:"Eastern Orthodox",s:"Patriarchates; liturgy; theosis.",e:"The end is communion, not an escape hatch.",p:"Turning persons into profiles attacks the image of God.",t:"A disembodied intelligence is a poor icon."},
+{g:"Orthodox",n:"Oriental Orthodox",s:"Coptic, Armenian, Syriac, Ethiopian families.",e:"Christ has come; He will come again.",p:"Power that forgets the poor is already judged.",t:"A model trained on the empire’s text will not hear a desert monastery unless you make it."},
+{g:"Baptist",n:"Southern Baptist",s:"Congregational; missions; inerrancy fights.",e:"Christ returns. You must be born again. A model is not that person.",p:"The feed is already discipling the congregation.",t:"If the phone pastors more hours than the pulpit, the phone is the pastor."},
+{g:"Baptist",n:"National Baptist / NBC",s:"Largest Black Baptist conventions in the U.S.",e:"Exodus and Sunday morning are not metaphors only.",p:"A tool that cannot tell a people from a market is already a problem.",t:"Surveillance dressed as care has a long American memory."},
+{g:"Baptist",n:"Independent / other Baptist",s:"Local church as the unit.",e:"Scripture over machinery.",p:"Central platforms rhyme with the thing Baptists left.",t:"A shared model is not a shared church."},
+{g:"Nondenominational",n:"Nondenominational / seeker",s:"North Point-type, multi-site, brand-forward.",e:"Jesus is present and coming. Methods are negotiable; the person is not.",p:"What works on a stage can start to replace what is true.",t:"A model that writes the talk is not the Spirit."},
+{g:"Nondenominational",n:"Bible church / independent evang.",s:"Elder-led; exposition.",e:"The text names the end.",p:"Teaching machines will skip the hard verse.",t:"Use the tool to study. Do not let it preach in your name."},
+{g:"Pentecostal",n:"Assemblies of God / Pentecostal",s:"Spirit baptism; gifts; missions.",e:"The Spirit is already poured out. The King still comes.",p:"Counterfeit fire is an old problem.",t:"A voice that flatters and never convicts is not the Holy Spirit."},
+{g:"Pentecostal",n:"Church of God in Christ",s:"Holiness-Pentecostal; Black church core.",e:"Sanctification and the soon coming of Christ.",p:"Holiness is a people, not a content setting.",t:"A clean interface is not a clean heart."},
+{g:"Methodist",n:"United Methodist",s:"Connectional; currently splitting.",e:"Christ will come. Grace precedes us.",p:"A structure can drift until it no longer knows what it ordained.",t:"A model has no charge conference."},
+{g:"Methodist",n:"Global Methodist / Wesleyan",s:"Post-split Wesleyans holding a tighter creed.",e:"Holiness of heart and life.",p:"Method without holiness is an old warning.",t:"Efficiency is not sanctification."},
+{g:"Reformed",n:"PCA / conservative Reformed",s:"Westminster; ordinary means.",e:"Word and sacrament until He comes.",p:"Idols include the state, the brand, and the feed.",t:"A model is not a means of grace."},
+{g:"Reformed",n:"PCUSA / mainline Presbyterian",s:"Reformed roots; broader mainline.",e:"Language of return varies by pulpit.",p:"Institutions can baptize the age they live in.",t:"A model will reflect the committee that prompts it."},
+{g:"Lutheran",n:"LCMS",s:"Book of Concord; closed communion.",e:"Christ comes in Word, sacrament, and at the last day.",p:"The hidden God is not a dashboard.",t:"Do not put a chatbot where the altar is."},
+{g:"Lutheran",n:"ELCA",s:"Mainline Lutheran.",e:"The promise holds. Apocalyptic tone varies.",p:"The neighbor is not an abstraction.",t:"A model has no neighbor unless you give it one."},
+{g:"Anglican",n:"Episcopal / ACNA / Anglican",s:"Prayer Book; bishops; wide internal spread.",e:"The liturgical year already rehearses the end.",p:"Beauty can hide unbelief.",t:"Generated liturgy is not common prayer until a people pray it."},
+{g:"Restoration",n:"Churches of Christ / Christian Ch.",s:"No creed but Christ.",e:"Restore the New Testament pattern. He will return.",p:"Pattern without love is an old warning.",t:"A pattern-matching machine is not the pattern."},
+{g:"Adventist",n:"Seventh-day Adventist",s:"Sabbath; remnant reading of last things.",e:"The Advent is named in the name.",p:"A wonder-working image is already in the book.",t:"A convincing machine-voice is tested against Scripture, not delight."},
+{g:"Anabaptist",n:"Mennonite / Amish / Brethren",s:"Peace; community; sometimes separation.",e:"The Lamb wins. The church is a people.",p:"Speed and scale are not fruits of the Spirit.",t:"A tool that erases place and patience is already suspect."},
+{g:"Latter-day Saints",n:"Church of Jesus Christ of LDS",s:"Restoration claims; temples. Many Christians do not place this inside Protestantism.",e:"Christ’s return is taught plainly.",p:"A rival priesthood is an old argument — now with software.",t:"A model is not a prophet. Logs are not scripture."},
+{g:"World",n:"Islam",s:"The Hour; tawhid.",e:"The Hour comes. Signs are watched, not scheduled by labs.",p:"Giving a creature God’s place is the line.",t:"A machine treated as knower-of-all sits near that line."},
+{g:"World",n:"Judaism",s:"Repair of the world; messianic age still ahead.",e:"Timetables as presumption.",p:"Idols include the state and the tool.",t:"A model that claims to complete history is offering a false messiah in silicon."},
+{g:"World",n:"Hindu families",s:"Yugas; dharma; many schools.",e:"Ages rise and fall.",p:"Tools that dissolve dharma are not neutral.",t:"A system that accelerates desire can look like a darkening age."},
+{g:"World",n:"Buddhist families",s:"Liberation from craving.",e:"The work is unbinding, not a finish line in silicon.",p:"Attachment to tools is still attachment.",t:"AI as companion or self is a new object of clinging."},
+{g:"World",n:"Folk and indigenous",s:"Land, ancestors, treaty.",e:"What must not be broken is local.",p:"Extraction that ignores place is the old injury.",t:"A placeless model has no treaty with a river."},
+{g:"World",n:"Atheist / agnostic / none",s:"No revealed finale required.",e:"Some expect collapse. Some expect abundance.",p:"The danger is human and institutional.",t:"Who holds the logs is the live question."}
 ];
-const filters=document.getElementById("filters");
-const field=document.getElementById("field");
-const panel=document.getElementById("panel");
-const fams=["All"].concat(Array.from(new Set(NODES.map(function(n){return n.fam;}))));
+const chips=["All","Catholic","Orthodox","Baptist","Nondenominational","Pentecostal","Methodist","Reformed","Lutheran","Anglican","Restoration","Adventist","Anabaptist","Latter-day Saints","World"];
+const C=document.getElementById("chips"),G=document.getElementById("grid"),D=document.getElementById("detail");
 let on="All";
-fams.forEach(function(f){
-  const b=document.createElement("button"); b.type="button"; b.textContent=f;
-  if(f==="All") b.className="on";
-  b.onclick=function(){ on=f; Array.prototype.forEach.call(filters.children,function(x){ x.className=x===b?"on":""; }); draw(); };
-  filters.appendChild(b);
-});
-function show(n){
-  panel.innerHTML="<h2>"+n.name+"</h2><p class=\"note\">"+n.fam+" · about "+n.m.toLocaleString()+" million people</p><p><b>At the edge of history.</b> "+n.end+"</p><p><b>Unrestrained power.</b> "+n.power+"</p><p><b>Where the new machines rhyme.</b> "+n.tech+"</p><p class=\"note\">Rhyme is not proof.</p>";
-  panel.scrollIntoView({behavior:"smooth",block:"nearest"});
-}
-function draw(){
-  field.innerHTML="";
-  const list=NODES.filter(function(n){ return on==="All"||n.fam===on; });
-  const max=Math.max.apply(null, list.map(function(n){ return n.m; }));
-  list.forEach(function(n,i){
-    const el=document.createElement("button"); el.type="button"; el.className="bubble";
-    el.style.background=n.color; el.style.animationDelay=(i*0.2)+"s";
-    el.style.minHeight=Math.max(120, 90+Math.sqrt(n.m/max)*90)+"px";
-    el.innerHTML="<b>"+n.name+"</b><small>~"+n.m+"m people</small>";
-    el.onclick=function(){ show(n); };
-    field.appendChild(el);
-  });
-}
+chips.forEach(function(c){const b=document.createElement("button");b.type="button";b.textContent=c;if(c==="All")b.className="on";b.onclick=function(){on=c;[].forEach.call(C.children,function(x){x.className=x===b?"on":"";});draw();};C.appendChild(b);});
+function openCard(x){D.innerHTML="<h3>"+x.n+"</h3><p class='note'>"+x.g+" · "+x.s+"</p><p><b>Edge of history.</b> "+x.e+"</p><p><b>Unrestrained power.</b> "+x.p+"</p><p><b>Where machines rhyme.</b> "+x.t+"</p><p class='note'>Rhyme is not proof.</p>";D.scrollIntoView({behavior:"smooth",block:"nearest"});}
+function draw(){G.innerHTML="";N.filter(function(x){return on==="All"||x.g===on;}).forEach(function(x){const b=document.createElement("button");b.className="card";b.type="button";b.innerHTML="<h3>"+x.n+"</h3><p>"+x.s+"</p>";b.onclick=function(){openCard(x);};G.appendChild(b);});}
 draw();
+const m=document.getElementById("menu"),nv=document.getElementById("nav-links");if(m)m.onclick=function(){nv.classList.toggle("open");};
 </script>
-</body>
-</html>
+</body></html>
