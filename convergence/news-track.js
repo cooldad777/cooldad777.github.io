@@ -1,31 +1,35 @@
 window.NEWS_ASOF = "2026-09-14";
 window.TRACK = [
-  {id:"aug20", date:"2026-08-20", title:"Catholic refusal current", what:"National Catholic Register: some Catholics read Magnifica humanitas as grounds not to use chatbots at all. Leo has not banned them.", href:"https://www.ncregister.com/news/the-catholic-anti-ai-movement-is-here"},
-  {id:"aug27", date:"2026-08-27", title:"Economist: religion tries to change AI", what:"A Catholic-trained chatbot (Magisterium AI) is claiming millions of users in the same season Rome is writing rules for the tool.", href:"https://www.economist.com/international/2026/08/27/ai-is-changing-religion-and-religions-are-trying-to-change-ai"},
-  {id:"aug28", date:"2026-08-28", title:"Leo: do not hand life-decisions to machines", what:"The pontiff called for an ethical frame. Technology must serve life, peace, the common good — not the reverse.", href:"https://www.ncregister.com/topic/ai"},
-  {id:"sep06", date:"2026-09-06", title:"Bali congress closes", what:"Scholas + Dicastery for Interreligious Dialogue. Line that traveled: AI must liberate, not enslave. Set next to Magnifica humanitas and Tri Hita Karana.", href:"https://www.vaticannews.va/en/church/news/2026-09/scholas-chairs-congress-ai-must-liberate-not-enslave.html"}
+  {id:"aug20", date:"2026-08-20", title:"Some Catholics refuse AI chatbots",
+    what:"A National Catholic Register story: a growing group of Catholics will not use chatbots. They say Pope Leo’s encyclical Magnifica humanitas (May 2026) tells them to be that cautious. The Pope has not banned chatbots. He has said they can be useful if watched, and that priests should not let a program write the Sunday sermon.",
+    href:"https://www.ncregister.com/news/the-catholic-anti-ai-movement-is-here",
+    read:{christianity:{g1:"This is an argument inside the church about whether to use a new tool. It is not Jesus coming back. Christians already believe Jesus died, rose from the dead, and will return as Judge. A news story about chatbots does not change that.", g2:{"Catholic":"Rome wrote a letter on AI. It did not ban the tools. Some Catholics are stricter than the letter. That is allowed. It is not a new doctrine.","Protestant + Independent":"No pope letter binds a Baptist church or a PCA session. A Protestant pastor still has to decide: is this tool a study aid, or is it doing the preaching?","Orthodox families":"Orthodox worship is a room, bread, wine, and a face on an icon. A chatbot is none of those."}, g3:{"Latin Catholic":"The official line is watchfulness, not a ban. The refusal group is stricter than the Vatican.","PCA":"The PCA does not take orders from an encyclical. The sermon comes from Scripture, prayer, and a called preacher — not from a program.","Nondenominational / seeker":"These rooms already use a lot of production. A writing tool will slip in unless someone draws a line.","Pentecostal / AoG":"The question here is older than AI: is this voice from God? A fluent paragraph is not an answer to that."}}, islam:{g1:"Muslims do not take their last-day calendar from a papal letter. A chatbot is a tool. It is not the Hour."}, hindu:{g1:"This story is Catholic. A program that recites a verse is still not a guru with a living teacher-line."}}},
+  {id:"aug27", date:"2026-08-27", title:"A Catholic chatbot finds millions of users",
+    what:"The Economist reported that Magisterium AI — a chatbot trained on Catholic documents — now claims millions of users, in the same weeks the Vatican is writing rules for AI.",
+    href:"https://www.economist.com/international/2026/08/27/ai-is-changing-religion-and-religions-are-trying-to-change-ai",
+    read:{christianity:{g1:"A searchable library of church documents can help a student. It cannot baptize, marry, bury, or return as Christ. Do not confuse a helpful index with the living church.", g2:{"Catholic":"If the bot only points at what bishops already wrote, it is a library. If people start treating it as the bishop, it has left its lane.","Protestant + Independent":"Protestants will build their own versions. Same test: servant of the text, or replacement pulpit.","Orthodox families":"A bot that talks like a priest is still not the liturgy."}, g3:{"Latin Catholic":"Useful as a catalog. Not the teaching office of the church.","PCA":"A study aid is fine. A study aid that writes the sermon is not how grace ordinarily comes.","Nondenominational / seeker":"If the talk already sounds produced, a bot will be hard to hear as different from the room."}}, islam:{g1:"A Catholic document-bot is a product. It is not a sign of the Hour."}, hindu:{g1:"A verse-reciting program is not a living teacher-line."}}},
+  {id:"aug28", date:"2026-08-28", title:"Pope Leo: do not let machines decide about human life",
+    what:"Pope Leo XIV warned that decisions about human life should not be handed to machines. He asked for an ethical framework so technology serves life, peace, and the common good.",
+    href:"https://www.ncregister.com/topic/ai",
+    read:{christianity:{g1:"This is a moral warning: do not let software decide who lives. Christians can agree with that sentence without turning it into a countdown to the end of the world.", g2:{"Catholic":"This is the Pope naming a limit. It is social teaching, not a secret last-days calendar.","Protestant + Independent":"Many Protestants will say the same thing from the command not to murder. You do not need Rome to say it.","Orthodox families":"Life is a gift. A machine has no one to answer for a death."}, g3:{"PCA":"The confession already forbids taking innocent life. A new tool does not create a new commandment.","Mainline":"This lands as medicine, labor, and war policy.","Adventist":"Some will hear the speaking image in Revelation 13. That rhyme is in their preaching. It still does not date the Advent."}}, islam:{g1:"Islam already forbids unjust killing. A pope repeating a life-rule does not start the Hour."}, hindu:{g1:"This headline is Rome’s wording of a limit many families already have about harm."}}},
+  {id:"sep06", date:"2026-09-06", title:"Bali meeting: AI should free people, not own them",
+    what:"In Bali, a Vatican office and an education network closed a three-day meeting with leaders from 35 countries. Their line: stop asking only what AI can do; ask what human beings want to do with it. They set that next to Leo’s encyclical and a Balinese idea — Tri Hita Karana — harmony among people, place, and the divine.",
+    href:"https://www.vaticannews.va/en/church/news/2026-09/scholas-chairs-congress-ai-must-liberare-not-enslave.html",
+    read:{christianity:{g1:"Religious leaders asked a decent question: who is the tool for? That meeting is not the second coming. It is ethics talk across rooms that do not share a creed.", g2:{"Catholic":"The Vatican is taking the encyclical on the road and talking with other religions. That is diplomacy. It is not new Scripture.","Protestant + Independent":"Protestants were not the hosts. The question still reaches them: is this tool serving people, or are people serving the tool?","Orthodox families":"A conference is still not the liturgy."}, g3:{"Latin Catholic":"They are applying a letter already written.","PCA":"A good limit — tools should serve people — does not become a sacrament.","Nondenominational / seeker":"What do we want to do with it? is the live question in a produced room."}}, islam:{g1:"The meeting named a papal letter and a Balinese idea. It did not move the signs of the Hour. Do not date anything from a press release.", hindu:{g1:"Tri Hita Karana is a Balinese frame: people, place, the divine. Using it at an AI meeting does not make a chatbot a guru."}}}
 ];
-window.TRACK_READ = {
-  christianity:{
-    g1:"The Judge is a person who rose. A congress and a chatbot are not the return. They are a fight over who speaks in the church’s voice.",
-    g2:{"Catholic":"Rome can point at an encyclical and send a dicastery to Bali. Public revelation is still closed.","Protestant + Independent":"No encyclical binds a session or a Baptist congregation. The same headline still asks whether the voice is servant or rival pulpit.","Orthodox families":"An icon shows a face. A faceless helper is a poor icon."},
-    g3:{"Latin Catholic":"Bali is pastoral application. Magisterium AI is at best a library.","PCA":"Ordinary means. Westminster 33.3 keeps the day unknown.","Nondenominational / seeker":"Production can start to feel like presence.","Pentecostal / AoG":"Test the spirit.","Southern Baptist":"Mission verse still Matthew 24:14. A product launch is not that end.","Eastern Orthodox":"Liturgy first. A thread is not communion.","Mainline":"The live word is labor and dignity, not a seven-year chart.","Adventist":"A speaking image is already in the book they preach. Rhyme is still not a date."},
-    g4:{"Official magisterium":"An encyclical is not a fourth Testament.","Refusal current":"Prudence, for this room, means refusal.","Magisterium-AI users":"A curated index is still not the bishop.","Ligonier / Sproul classroom":"AD 70 was a real judgment-coming and still not the last one.","North Point-type":"A model that writes the talk is already in the building.","Prophetic-apostolic / NAR":"A powerful tool will look like an anointing to some and a rival altar to others.","Pew dispensational":"Revelation 13 has an image that speaks. Rhyme is not a date."}
-  },
-  islam:{
-    g1:"Tawhid. A voice treated as knower-of-all sits near shirk. The Hour is not scheduled by Bali.",
-    g2:{"Sunni":"No pope wrote the encyclical. Hudhayfah’s ten signs did not move.","Shia":"The twelfth Imam is not in Bali."},
-    g3:{"Sunni Hour sequence":"Dajjal literature is wonders that ask for worship. A congress is not that figure.","Twelver Shia":"Occultation continues.","Hanbali / Salafi":"Test wonders against tawhid first."},
-    g4:{}
-  },
-  hindu:{
-    g1:"Families, not one church. Bali named Tri Hita Karana. A chatbot reciting Gita lines is still not a guru with a lineage.",
-    g2:{"Vaishnava":"Gita 4.7 is a person sending himself.","Shaiva":"A placeless helper has no temple."},
-    g3:{}, g4:{}
-  }
+window.trackReading = function(on,g2,g3,g4,ev){
+  if(!on||!ev||!ev.read) return "";
+  var pack=ev.read[on.id];
+  if(!pack) return "<div class=\"gbox\"><em>This worldview</em>No written reading for this family on this story yet. That is better than inventing one.</div>";
+  var h="<div class=\"gbox\"><em>Grain 1 · "+on.name+"</em>"+pack.g1+"</div>";
+  if(g2&&pack.g2&&pack.g2[g2]) h+="<div class=\"gbox\"><em>Grain 2 · "+g2+"</em>"+pack.g2[g2]+"</div>";
+  else if(!g2&&on.id==="christianity") h+="<div class=\"gbox\"><em>Next</em>Tap Catholic, Protestant, or Orthodox above to hear this same story from that body.</div>";
+  if(g3&&pack.g3&&pack.g3[g3.n]) h+="<div class=\"gbox\"><em>Grain 3 · "+g3.n+"</em>"+pack.g3[g3.n]+"</div>";
+  if(g4&&pack.g4&&pack.g4[g4.n]) h+="<div class=\"gbox\"><em>Grain 4 · "+g4.n+"</em>"+pack.g4[g4.n]+"</div>";
+  return h;
 };
 window.fetchNewsHeadlines = async function(){
   var q="https://api.rss2json.com/v1/api.json?rss_url="+encodeURIComponent("https://news.google.com/rss/search?q=Pope+Leo+AI+OR+religion+artificial+intelligence&hl=en-US&gl=US&ceid=US:en");
-  try{ var r=await fetch(q); var j=await r.json(); return (j.items||[]).slice(0,4).map(function(it){ return {title:it.title, href:it.link}; }); }
+  try{ var r=await fetch(q); var j=await r.json(); return (j.items||[]).slice(0,3).map(function(it){ return {title:it.title, href:it.link}; }); }
   catch(e){ return []; }
 };
