@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>SEER Solutions | SEE, R</title>
+<meta name="description" content="SEER Solutions — analytics, dashboards, AI in the data model, and AI coaching for small and midsize businesses. Kennesaw, Georgia."/>
+<link rel="icon" href="../assets/favicon.png"/>
+<style>
+  :root{--ink:#1d1d1f;--muted:#6e6e73;--line:rgba(0,0,0,.08);--blue:#0066cc;--glass:rgba(255,255,255,.62)}
+  *{box-sizing:border-box} html{scroll-behavior:smooth}
+  body{margin:0;font:17px/1.47 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+  a{color:var(--blue);text-decoration:none}
+  .nav{position:fixed;inset:0 0 auto;z-index:20;height:48px;display:flex;align-items:center;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+  .nav-in{width:min(980px,100%);margin:0 auto;padding:0 22px;display:flex;align-items:center;gap:18px}
+  .brand{display:flex;align-items:center;gap:8px;color:var(--ink);font-weight:600}
+  .brand img{width:22px;height:22px}
+  .nav-links{margin-left:auto;display:flex;gap:18px}
+  .nav-links a{color:#424245;font-size:13px}
+  #menu{display:none;margin-left:auto;background:0;border:0;font-size:20px}
+  @media(max-width:720px){
+    #menu{display:block}
+    .nav-links{display:none;position:absolute;top:48px;left:0;right:0;flex-direction:column;padding:14px 22px 20px;background:rgba(255,255,255,.96);backdrop-filter:blur(16px)}
+    .nav-links.open{display:flex}
+  }
+  .hero{min-height:78vh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 22px 56px;background:radial-gradient(1200px 500px at 70% -10%,rgba(180,210,255,.35),transparent 60%),linear-gradient(180deg,#f5f5f7 0%,#fff 70%)}
+  .hero-in{width:min(980px,100%);margin:0 auto;text-align:center}
+  .star{width:72px;height:72px;margin-bottom:14px;animation:breathe 4.2s ease-in-out infinite;filter:drop-shadow(0 8px 24px rgba(0,0,0,.12))}
+  @keyframes breathe{0%,100%{opacity:.45;transform:scale(.94)}50%{opacity:1;transform:scale(1)}}
+  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  h1{font-size:clamp(40px,7vw,64px);letter-spacing:-.04em;font-weight:600;margin:8px 0 0}
+  .lead{margin:12px auto 0;max-width:28em;font-size:21px;color:#3a3a3c}
+  .hero .cta{display:inline-block;margin-top:22px;background:#1d1d1f;color:#fff;border-radius:980px;padding:12px 20px;font-size:15px;transition:transform .2s ease}
+  .hero .cta:hover{transform:translateY(-1px)}
+  .wrap{width:min(980px,100%);margin:0 auto;padding:0 22px}
+  .band{padding:64px 0}
+  .band.gray{background:#f5f5f7}
+  h2{font-size:32px;letter-spacing:-.03em;margin:0 0 10px}
+  .sub{color:var(--muted);max-width:38em}
+  .glass{background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.7);box-shadow:0 8px 32px rgba(0,0,0,.06);border-radius:22px}
+  .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:28px}
+  @media(max-width:800px){.grid{grid-template-columns:1fr}}
+  .card{padding:24px;transition:transform .25s ease,box-shadow .25s}
+  .card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.08)}
+  .card em{display:block;font-style:normal;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+  .card h3{margin:0 0 8px;font-size:22px;letter-spacing:-.02em}
+  .card p{margin:0;color:#3a3a3c;font-size:16px}
+  .rise{animation:rise .7s ease both}
+  @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .proof{display:grid;gap:14px;margin-top:24px}
+  .proof article{padding:24px 26px}
+  .proof h3{margin:0 0 8px;font-size:20px}
+  .proof p{margin:0;color:#3a3a3c}
+  .steps{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:24px}
+  @media(max-width:800px){.steps{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.steps{grid-template-columns:1fr}}
+  .step{padding:20px}
+  .step b{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+  ul.ideas{margin:18px 0 0;padding:0;list-style:none}
+  ul.ideas li{padding:14px 0;border-bottom:1px solid var(--line);color:#3a3a3c}
+  ul.ideas li:first-child{border-top:1px solid var(--line)}
+  .cta-band{background:#f5f5f7;text-align:center;padding:72px 22px}
+  .cta-band .pill{display:inline-block;margin-top:18px;background:#1d1d1f;color:#fff;border-radius:980px;padding:12px 20px}
+  footer{padding:36px 22px 64px;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
+  .foot{width:min(980px,100%);margin:0 auto;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="../index.html"><img src="../assets/star.png" alt=""/>SEE, R</a>
+  <button id="menu" type="button" aria-label="Menu">☰</button>
+  <div class="nav-links" id="nav-links">
+    <a href="index.html">SEER Solutions</a>
+    <a href="../index.html">SEE, R</a>
+    <a href="mailto:ryanrsee@gmail.com">Contact</a>
+  </div>
+</div></nav>
+<header class="hero">
+  <div class="hero-in rise">
+    <img class="star" src="../assets/star.png" alt=""/>
+    <p class="eyebrow">Kennesaw, Georgia · small and midsize business</p>
+    <h1>SEER Solutions</h1>
+    <p class="lead">Large-scale analytics. Dashboards built through the full ETL path. AI in the data model. Coaching so the people can run it. KPIs you and we both champion.</p>
+    <a class="cta" href="mailto:ryanrsee@gmail.com?subject=SEER%20Solutions%20%E2%80%94%20free%20consult">Start with a free consult</a>
+  </div>
+</header>
+<section class="band"><div class="wrap">
+  <p class="eyebrow">What this arm is</p>
+  <h2>The business door of SEE, R</h2>
+  <p class="sub">SEER Solutions is counsel that stays inside the work. Not a slide deck. Not a junior bench. The person you meet does the work. You keep the files. You keep the scoreboard.</p>
+  <div class="grid">
+    <article class="glass card rise">
+      <em>Analytics</em>
+      <h3>Dashboards with an ETL spine</h3>
+      <p>Large-scale analytics and dashboard craft: extract, model, refresh, then the picture. Tableau, SQL, Azure, Power BI — in service of the number, not a stack pitch.</p>
+    </article>
+    <article class="glass card rise">
+      <em>Integration</em>
+      <h3>AI inside the data model</h3>
+      <p>The model sits next to the system of record. Definitions first. Grain named in writing. If two reports disagree, that is the job.</p>
+    </article>
+    <article class="glass card rise">
+      <em>Coaching</em>
+      <h3>The tool without an owner’s manual</h3>
+      <p>Most teams were handed a powerful instrument and no technique. I teach how to ask, how to check the source, how to refuse a confident wrong answer — while we build, or on the work already on the desk.</p>
+    </article>
+  </div>
+</div></section>
+<section class="band gray"><div class="wrap">
+  <p class="eyebrow">Work you can inspect</p>
+  <h2>Two public-safe results</h2>
+  <p class="sub">No employer names. No client names. The pattern is the point.</p>
+  <div class="proof">
+    <article class="glass">
+      <h3>MultiValue to Power BI</h3>
+      <p>Primary point of contact on a platform migration: ETL pipelines, schema strategy, and the language data engineers actually speak. Curated dashboards that told a fuller story. In the current phase, analyst effort on that work dropped by about half. Manual extracts and pivot tables fell by orders of magnitude.</p>
+    </article>
+    <article class="glass">
+      <h3>Hours, not weeks, on a hard model</h3>
+      <p>Built an AI-assisted model over a large, messy dataset. Work that had taken senior developers weeks came back in about thirty minutes. That method is becoming teachable practice — not a party trick. The point is a repeatable way to ask, check, and ship.</p>
+    </article>
+  </div>
+</div></section>
+<section class="band"><div class="wrap">
+  <p class="eyebrow">How an engagement runs</p>
+  <h2>You can see movement before you scale spend</h2>
+  <p class="sub">Starts with a free consult. We write the KPIs together. We measure against them. The next dollar follows the scoreboard — not a retainer that hopes.</p>
+  <div class="steps">
+    <div class="glass step"><b>01</b><p>Free consult. One question the owner will still stand behind next month.</p></div>
+    <div class="glass step"><b>02</b><p>KPIs agreed in writing: the number, the grain, the system of record, what “good” looks like.</p></div>
+    <div class="glass step"><b>03</b><p>Do the work next to your people. Coaching is in the room, not a handoff memo.</p></div>
+    <div class="glass step"><b>04</b><p>Read the scoreboard together. Expand only if the indicators moved.</p></div>
+  </div>
+</div></section>
+<section class="band gray"><div class="wrap">
+  <p class="eyebrow">How I actually work with AI</p>
+  <h2>Practice, not fluff</h2>
+  <ul class="ideas">
+    <li>Write the definition before you draw the dashboard.</li>
+    <li>Name the system of record. If two numbers disagree, stop and reconcile. Do not average them.</li>
+    <li>The model is staff on demand. It is not a counselor and it does not own the number.</li>
+    <li>Load the smallest true brief. Date every fact. Label assumptions out loud.</li>
+    <li>Teach the technique in the same week you build the thing. Otherwise the tool leaves with the vendor.</li>
+    <li>A confident wrong answer costs more than a slow right one. Gates before speed.</li>
+  </ul>
+</div></section>
+<section class="band"><div class="wrap">
+  <p class="eyebrow">Who does the work</p>
+  <h2>Ryan See</h2>
+  <p class="sub">Founder, SEER Solutions. Senior leadership in operations and analytics across private equity–backed companies — including director and VP seats. Client success, revenue-cycle operations, and data. Tableau, SQL, Azure, Power BI. Kennesaw, Georgia. That is where the LLC will sit.</p>
+</div></section>
+<section class="cta-band">
+  <p class="eyebrow">Kennesaw, Georgia</p>
+  <h2>Start with a free consult</h2>
+  <p class="sub" style="margin:10px auto 0">We write the KPIs. We measure. You see the board before you spend more.</p>
+  <a class="pill" href="mailto:ryanrsee@gmail.com?subject=SEER%20Solutions%20%E2%80%94%20free%20consult">ryanrsee@gmail.com</a>
+</section>
+<footer><div class="foot">
+  <span>SEER Solutions · Kennesaw, Georgia</span>
+  <span><a href="../index.html">SEE, R</a> · <a href="mailto:ryanrsee@gmail.com">ryanrsee@gmail.com</a></span>
+</div></footer>
+<script>
+  const b=document.getElementById('menu'),n=document.getElementById('nav-links');
+  if(b)b.onclick=function(){n.classList.toggle('open');};
+</script>
+</body>
+</html>
