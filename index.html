@@ -4,130 +4,163 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>SEE, R</title>
-<meta name="description" content="SEE, R — I tell stories with data. Public portfolio of thought. Kennesaw, Georgia."/>
+<meta name="description" content="SEE, R — I tell stories with data. Kennesaw, Georgia."/>
 <meta name="theme-color" content="#000000"/>
 <link rel="icon" href="assets/favicon.png"/>
 <link rel="stylesheet" href="assets/apple.css"/>
 <style>
-  .hero{--hero-img:url('assets/forest.jpg');min-height:100vh;background-image:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.55)),url('assets/forest.jpg');background-size:cover;background-position:center 30%;background-repeat:no-repeat}
-  .pulse-star{width:84px;height:84px;margin-bottom:16px;animation:breathe 4.2s ease-in-out infinite;filter:drop-shadow(0 0 18px rgba(255,255,255,.35))}
-  @keyframes breathe{0%,100%{opacity:.35;transform:scale(.92)}50%{opacity:1;transform:scale(1)}}
+  .brand img.nav-star{
+    height:18px;filter:brightness(10);
+    animation:star-recede 14s cubic-bezier(.16,1,.3,1) infinite;
+    transform-origin:center bottom;
+  }
+  @keyframes star-recede{
+    0%{transform:translateY(0) scale(1);opacity:1;filter:brightness(10) hue-rotate(0deg)}
+    70%{transform:translateY(-10px) scale(.55);opacity:.55;filter:brightness(14) hue-rotate(28deg)}
+    100%{transform:translateY(-16px) scale(.22);opacity:.12;filter:brightness(18) hue-rotate(52deg)}
+  }
+  .hero{
+    --hero-img:url('assets/forest.jpg');
+    min-height:100vh;
+    background-image:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.55)),url('assets/forest.jpg');
+    background-size:cover;
+    background-position:center 30%;
+    background-repeat:no-repeat;
+    position:relative;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;inset:0;pointer-events:none;
+    background:#fff;
+    opacity:var(--wash,0);
+    mix-blend-mode:normal;
+  }
+  .hero{filter:grayscale(var(--gray,0))}
+  .pulse-star{
+    width:84px;height:84px;margin-bottom:16px;position:relative;z-index:1;
+    animation:hero-star 6.4s cubic-bezier(.45,0,.2,1) infinite;
+    filter:drop-shadow(0 0 18px rgba(255,255,255,.35));
+  }
+  @keyframes hero-star{
+    0%{opacity:.4;transform:translateY(8px) scale(.9);filter:drop-shadow(0 0 10px rgba(232,196,154,.35)) hue-rotate(0deg)}
+    40%{opacity:1;transform:translateY(-6px) scale(1.06);filter:drop-shadow(0 0 22px rgba(122,155,176,.55)) hue-rotate(40deg)}
+    100%{opacity:.4;transform:translateY(8px) scale(.9);filter:drop-shadow(0 0 10px rgba(232,196,154,.35)) hue-rotate(0deg)}
+  }
   .xing{background:#000;color:#f5f5f7;text-align:center;padding:72px 16px}
   .xing h2{font-size:clamp(32px,5vw,48px);letter-spacing:-.03em}
   .xing .sub{margin:10px auto 0;max-width:34em;font-size:19px;color:#a1a1a6}
   .chart{max-width:920px;margin:28px auto 0}
   .chart svg{width:100%;height:auto;display:block}
-  .key{display:flex;justify-content:center;gap:22px;margin-top:12px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#86868b}
-  .key i{display:inline-block;width:18px;height:2px;margin-right:6px;vertical-align:middle}
+  .listen-wrap{background:#000;padding:28px 16px 8px;text-align:center}
+  .listen-wrap iframe{border-radius:12px;width:min(420px,100%);height:152px;border:0;background:#121212}
 </style>
 </head>
 <body>
 <nav class="nav"><div class="nav-in">
-  <a class="brand" href="index.html"><img src="assets/star.png" alt=""/>SEE, R</a>
+  <a class="brand" href="index.html"><img class="nav-star" src="assets/star.png" alt=""/>SEE, R</a>
   <button id="menu" aria-label="Menu">☰</button>
   <div class="nav-links" id="nav-links">
-    <a href="grounded/index.html">GROUNDED</a>
     <a href="seersolutions/index.html">SEER Solutions</a>
-    <a href="adventure/index.html">Adventure</a>
+    <a href="grounded/index.html">GROUNDED</a>
     <a href="anti-attachment/index.html">Anti-Attachment</a>
     <a href="chronicle/index.html">Chronicle</a>
     <a href="convergence/index.html">Convergence</a>
+    <a href="adventure/index.html">Adventure Within</a>
     <a href="mailto:ryanrsee@gmail.com">Contact</a>
   </div>
 </div></nav>
 
-<section class="unit dark" id="listen" style="text-align:center;padding:28px 16px 8px">
-  <p class="eyebrow" style="letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:#86868b;margin:0 0 8px">Listen</p>
-  <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:0 0 12px">
-    <button type="button" id="sp-play" style="background:#f5f5f7;color:#111;border:0;border-radius:980px;padding:10px 18px;font:600 14px/1 -apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer">Listen</button>
-    <button type="button" id="sp-next" style="background:transparent;color:#f5f5f7;border:1px solid rgba(255,255,255,.2);border-radius:980px;padding:10px 16px;font:500 14px/1 -apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer">Next</button>
-    <button type="button" id="sp-shuffle" style="background:transparent;color:#f5f5f7;border:1px solid rgba(255,255,255,.2);border-radius:980px;padding:10px 16px;font:500 14px/1 -apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer">Shuffle</button>
-  </div>
-  <p id="sp-label" style="margin:0 0 10px;font-size:13px;color:#a1a1a6"></p>
-  <div style="max-width:420px;margin:0 auto">
-    <iframe id="sp-frame" style="border-radius:12px" src="about:blank" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Spotify"></iframe>
-  </div>
-  <p style="margin:10px 0 0;font-size:11px;color:#86868b">Browser may require one tap — Listen is that tap.</p>
+<section class="listen-wrap" id="listen">
+  <iframe title="Spotify" src="https://open.spotify.com/embed/track/3WJWSZJHEZ6mjBUb9kyX6g?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 </section>
-<script>
-(function(){
-  // Primaries first (random start among these), then the rest.
-  var PRIMARIES = ["3WJWSZJHEZ6mjBUb9kyX6g","0bcqlXTDN4fcZx2viQITW1"];
-  var MORE = ["4zAIwci5B82d59OhGOkJRl","5QxYahCQ0yc7AX7EQQc5d6"];
-  var NAMES = {
-    "3WJWSZJHEZ6mjBUb9kyX6g":"Primary pick",
-    "0bcqlXTDN4fcZx2viQITW1":"Bonobo",
-    "4zAIwci5B82d59OhGOkJRl":"Track",
-    "5QxYahCQ0yc7AX7EQQc5d6":"Track"
-  };
-  function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
-  var start = PRIMARIES[Math.floor(Math.random()*PRIMARIES.length)];
-  var rest = PRIMARIES.concat(MORE).filter(function(id){ return id !== start; });
-  shuffle(rest);
-  var queue = [start].concat(rest);
-  var i = 0;
-  var frame = document.getElementById("sp-frame");
-  var label = document.getElementById("sp-label");
-  function src(id, auto){
-    return "https://open.spotify.com/embed/track/"+id+"?utm_source=generator"+(auto?"&autoplay=1":"");
-  }
-  function show(auto){
-    var id = queue[i];
-    label.textContent = (NAMES[id]||"Track") + " · " + (i+1) + "/" + queue.length;
-    frame.src = src(id, !!auto);
-  }
-  show(false);
-  document.getElementById("sp-play").onclick = function(){
-    // User gesture: reload embed with autoplay. Cross-origin iframe buttons cannot be clicked from our page.
-    show(true);
-  };
-  document.getElementById("sp-next").onclick = function(){
-    i = (i+1) % queue.length;
-    show(true);
-  };
-  document.getElementById("sp-shuffle").onclick = function(){
-    var cur = queue[i];
-    var pool = queue.slice();
-    shuffle(pool);
-    if(pool[0] === cur && pool.length > 1){ var t=pool[0]; pool[0]=pool[1]; pool[1]=t; }
-    queue = pool; i = 0; show(true);
-  };
-})();
-</script>
 
-<header class="hero">
+<header class="hero" id="hero">
   <img class="pulse-star" src="assets/star.png" alt=""/>
   <h1>SEE, R</h1>
   <p class="sub">I tell stories with data.</p>
   <blockquote class="verse">“Your body is the primary place of your spiritual life. If you do not meet God in your body, in the concrete places where your feet stand, you will not meet Him anywhere.”<cite>Dallas Willard · The Divine Conspiracy</cite></blockquote>
-  <div class="links"><a href="#work">See the work ›</a><a href="convergence/index.html">The map ›</a></div>
 </header>
+
 <section class="xing">
   <h2>A week is still seven days.</h2>
   <p class="sub">Gordon Moore said the chip doubles about every two years. A person does not. von Neumann watched that curve and named “some essential singularity… beyond which human affairs, as we know them, could not continue.” The gold line is the machine. The blue line is us. The star is the gap this record is made in — a portfolio of thought, not a store.</p>
   <div class="chart"><svg viewBox="0 0 920 280" aria-hidden="true">
-    <line x1="60" y1="30" x2="60" y2="230" stroke="rgba(255,255,255,.12)"/><line x1="60" y1="230" x2="880" y2="230" stroke="rgba(255,255,255,.12)"/>
+    <line x1="60" y1="30" x2="60" y2="230" stroke="rgba(255,255,255,.12)"/>
+    <line x1="60" y1="230" x2="880" y2="230" stroke="rgba(255,255,255,.12)"/>
     <path d="M60 200 L880 165" fill="none" stroke="#7a9bb0" stroke-width="2.5"/>
-    <path d="M60 200 C 260 198, 420 180, 520 140 S 740 36, 880 22" fill="none" stroke="#e8c49a" stroke-width="3"><animate attributeName="stroke-dasharray" from="0,1200" to="1200,0" dur="4s" fill="freeze"/></path>
-    <image href="assets/star.png" x="508" y="118" width="26" height="26"><animate attributeName="opacity" values=".35;1;.35" dur="4.2s" repeatCount="indefinite"/></image>
+    <path d="M60 200 C 260 198, 420 180, 520 140 S 740 36, 880 22" fill="none" stroke="#e8c49a" stroke-width="3">
+      <animate attributeName="stroke-dasharray" from="0,1400" to="1400,0" dur="5.5s" fill="freeze"/>
+    </path>
+    <image id="hub-star" href="assets/star.png" x="508" y="118" width="26" height="26"/>
   </svg></div>
-  <div class="key"><span><i style="background:#7a9bb0"></i>Human time</span><span><i style="background:#e8c49a"></i>Machine time</span></div>
 </section>
-<section class="unit light" id="work"><h2>GROUNDED</h2><p class="sub">An hour a week with the phone put away.</p><div class="links"><a href="grounded/index.html">Learn more ›</a></div></section>
-<section class="unit gray"><h2>SEER Solutions</h2><p class="sub">Analytics, AI implementation, and coaching that move KPIs. Free strategy session on Calendly.</p><div class="links"><a href="seersolutions/index.html">Learn more ›</a></div></section>
-<section class="unit dark"><h2>The Convergence</h2><p class="sub">Christian traditions in the United States, then the world’s major faiths, on power, ending, and new machines.</p><div class="links"><a href="convergence/index.html">Open the map ›</a></div></section>
+
+<section class="unit gray" id="work">
+  <h2>SEER Solutions</h2>
+  <p class="sub">Analytics, implementation, coaching. KPIs first. Free session on Calendly.</p>
+  <div class="links"><a href="seersolutions/index.html">Learn more ›</a></div>
+</section>
+<section class="unit light">
+  <h2>GROUNDED</h2>
+  <p class="sub">A local community of leaders who dare to be honest about their relationship with technology in light of their walk with Jesus.</p>
+  <div class="links"><a href="grounded/index.html">Learn more ›</a></div>
+</section>
+<section class="unit dark">
+  <h2>The Convergence</h2>
+  <p class="sub">Worldwide eschatology lenses as they intersect with exponential technology.</p>
+  <div class="links"><a href="convergence/index.html">Open the map ›</a></div>
+</section>
 <div class="pair">
-  <article class="tile"><h3>Adventure Within</h3><p>Improvisational indie rock.</p><a href="adventure/index.html">Listen ›</a></article>
-  <article class="tile"><h3>Anti-Attachment</h3><p>Rules so a model stays a tool.</p><a href="anti-attachment/index.html">Read ›</a></article>
+  <article class="tile"><h3>Adventure Within</h3><p>Improvisational indie rock solo project.</p><a href="adventure/index.html">Listen ›</a></article>
+  <article class="tile"><h3>Anti-Attachment</h3><p>A markdown file to alter how LLMs interact with us; creating boundaries with AI using open source.</p><a href="anti-attachment/index.html">Read ›</a></article>
 </div>
 <div class="pair">
-  <article class="tile"><h3>Chronicle</h3><p>A dated public log of the work.</p><a href="chronicle/index.html">Read the path ›</a></article>
-  <article class="tile"><h3>AI Portfolio</h3><p>Early builds, shown on purpose.</p><a href="garden/index.html">Open portfolio ›</a></article>
+  <article class="tile"><h3>Chronicle</h3><p>Timestamped public timeline of AI learning.</p><a href="chronicle/index.html">View ›</a></article>
+  <article class="tile"><h3>AI Portfolio</h3><p>Ideas brought to life.</p><a href="garden/index.html">Open public-facing ideas ›</a></article>
 </div>
 
-<section class="unit light"><blockquote class="lewis">“The whole point of seeing through something is to see something through it. To ‘see through’ all things is the same as not to see.”<cite>C. S. Lewis · The Abolition of Man</cite></blockquote></section>
+<section class="unit light">
+  <blockquote class="lewis">“The whole point of seeing through something is to see something through it. To ‘see through’ all things is the same as not to see.”<cite>C. S. Lewis · The Abolition of Man</cite></blockquote>
+</section>
 <footer><div class="foot"><div class="foot-links">
-  <a href="grounded/index.html">GROUNDED</a><a href="seersolutions/index.html">SEER Solutions</a><a href="adventure/index.html">Adventure</a><a href="anti-attachment/index.html">Anti-Attachment</a><a href="chronicle/index.html">Chronicle</a><a href="convergence/index.html">Convergence</a><a href="mailto:ryanrsee@gmail.com">ryanrsee@gmail.com</a>
-</div><p>Copyright © 2026 SEE, R. Kennesaw, Georgia. A public portfolio of thought.</p></div></footer>
-<script>const b=document.getElementById('menu'),n=document.getElementById('nav-links');if(b)b.onclick=function(){n.classList.toggle('open');};</script>
-</body></html>
+  <a href="seersolutions/index.html">SEER Solutions</a>
+  <a href="grounded/index.html">GROUNDED</a>
+  <a href="anti-attachment/index.html">Anti-Attachment</a>
+  <a href="chronicle/index.html">Chronicle</a>
+  <a href="convergence/index.html">Convergence</a>
+  <a href="adventure/index.html">Adventure Within</a>
+  <a href="mailto:ryanrsee@gmail.com">ryanrsee@gmail.com</a>
+</div><p>Copyright © 2026 SEE, R. Kennesaw, Georgia.</p></div></footer>
+<script>
+const b=document.getElementById('menu'),n=document.getElementById('nav-links');
+if(b)b.onclick=function(){n.classList.toggle('open');};
+const hero=document.getElementById('hero');
+function wash(){
+  const y=Math.min(1, window.scrollY / (window.innerHeight * 0.85));
+  hero.style.setProperty('--gray', (y*0.92).toFixed(3));
+  hero.style.setProperty('--wash', (y*0.55).toFixed(3));
+}
+window.addEventListener('scroll', wash, {passive:true});
+wash();
+(function(){
+  const star=document.getElementById('hub-star');
+  if(!star) return;
+  let t0=null;
+  function tick(ts){
+    if(!t0) t0=ts;
+    const p=((ts-t0)%6400)/6400;
+    const lift=Math.sin(p*Math.PI*2);
+    const x=508 + lift*6;
+    const y=118 - Math.abs(lift)*10;
+    const hue=28 + 40*lift;
+    star.setAttribute('x', x);
+    star.setAttribute('y', y);
+    star.setAttribute('opacity', String(0.45 + 0.55*(0.5+0.5*lift)));
+    star.style.filter='hue-rotate('+hue+'deg)';
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>
