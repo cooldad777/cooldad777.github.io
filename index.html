@@ -4,31 +4,23 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>SEE, R</title>
-<meta name="description" content="SEE, R — I tell stories with data. Public hub for SEER Solutions and the AI Portfolio. Kennesaw, Georgia."/>
+<meta name="description" content="SEE, R — I tell stories with data. Kennesaw, Georgia."/>
 <meta name="theme-color" content="#000000"/>
 <link rel="icon" href="assets/favicon.png"/>
 <link rel="stylesheet" href="assets/apple.css"/>
 <style>
   .brand img.nav-star{
-    height:18px;filter:brightness(10);
+    height:18px;
     transform-origin:50% 90%;
-    will-change:transform,opacity,filter;
+    animation:nav-recede 16s cubic-bezier(.16,1,.3,1) infinite;
   }
-  .brand img.nav-star.away{
-    animation:star-away 2.6s cubic-bezier(.22,1,.36,1) forwards;
+  @keyframes nav-recede{
+    0%{transform:translateY(0) scale(1);opacity:1;filter:brightness(10) hue-rotate(0deg)}
+    72%{transform:translateY(-11px) scale(.48);opacity:.45;filter:brightness(16) hue-rotate(38deg)}
+    100%{transform:translateY(-18px) scale(.18);opacity:.08;filter:brightness(20) hue-rotate(70deg)}
   }
-  @keyframes star-away{
-    0%{transform:translateY(0) scale(1);opacity:1;filter:brightness(10) blur(0)}
-    55%{transform:translateY(-22px) scale(.55);opacity:.7;filter:brightness(14) blur(.3px)}
-    100%{transform:translateY(-64px) scale(.12);opacity:0;filter:brightness(18) blur(1.4px)}
-  }
-  .listen-bar{background:#000;color:#f5f5f7;padding:18px 16px 12px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06)}
-  .listen-bar .row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
-  .listen-bar button{border-radius:980px;padding:9px 16px;font:600 13px/1 -apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer}
-  #sp-play{background:#f5f5f7;color:#111;border:0}
-  #sp-next,#sp-shuffle{background:transparent;color:#f5f5f7;border:1px solid rgba(255,255,255,.22)}
-  #sp-label{margin:0 0 8px;font-size:12px;color:#a1a1a6;min-height:1em}
-  #sp-frame{border:0;border-radius:12px;width:min(420px,100%);height:152px;background:#121212}
+  .listen-wrap{background:#000;padding:24px 16px 10px;text-align:center}
+  .listen-wrap iframe{border:0;border-radius:12px;width:min(420px,100%);height:152px;background:#121212}
   .hero{
     min-height:92vh;position:relative;overflow:hidden;
     background-image:linear-gradient(180deg,rgba(0,0,0,.22),rgba(0,0,0,.58)),url('assets/forest.jpg');
@@ -38,24 +30,25 @@
   .hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:#fff;opacity:var(--wash,0)}
   .hero{filter:grayscale(var(--gray,0))}
   .hero > *{position:relative;z-index:1}
-  .pulse-star{width:84px;height:84px;margin-bottom:16px;animation:hero-star 7s cubic-bezier(.45,0,.2,1) infinite;filter:drop-shadow(0 0 18px rgba(255,255,255,.35))}
+  .pulse-star{
+    width:84px;height:84px;margin-bottom:16px;
+    animation:hero-star 7.2s cubic-bezier(.45,0,.2,1) infinite;
+  }
   @keyframes hero-star{
-    0%{opacity:.42;transform:translateY(10px) scale(.88)}
-    45%{opacity:1;transform:translateY(-14px) scale(1.08)}
-    100%{opacity:.42;transform:translateY(10px) scale(.88)}
+    0%{opacity:.4;transform:translateY(10px) scale(.88);filter:drop-shadow(0 0 10px rgba(232,196,154,.4)) hue-rotate(0deg)}
+    42%{opacity:1;transform:translateY(-16px) scale(1.08);filter:drop-shadow(0 0 22px rgba(122,155,176,.6)) hue-rotate(48deg)}
+    100%{opacity:.4;transform:translateY(10px) scale(.88);filter:drop-shadow(0 0 10px rgba(232,196,154,.4)) hue-rotate(0deg)}
   }
   .xing{background:#000;color:#f5f5f7;text-align:center;padding:72px 16px}
   .xing h2{font-size:clamp(30px,5vw,46px);letter-spacing:-.035em;font-weight:600;margin:0}
   .xing .sub{margin:12px auto 0;max-width:36em;font-size:18px;color:#a1a1a6}
   .chart{max-width:920px;margin:28px auto 0}
   .chart svg{width:100%;height:auto;display:block}
-  .key{display:flex;justify-content:center;gap:18px;margin-top:12px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#86868b;flex-wrap:wrap}
-  .key i{display:inline-block;width:16px;height:2px;margin-right:6px;vertical-align:middle}
 </style>
 </head>
 <body>
 <nav class="nav"><div class="nav-in">
-  <a class="brand" href="index.html" id="brand"><img class="nav-star" id="nav-star" src="assets/star.png" alt=""/>SEE, R</a>
+  <a class="brand" href="index.html"><img class="nav-star" src="assets/star.png" alt=""/>SEE, R</a>
   <button id="menu" aria-label="Menu">☰</button>
   <div class="nav-links" id="nav-links">
     <a href="seersolutions/index.html">SEER Solutions</a>
@@ -68,14 +61,8 @@
   </div>
 </div></nav>
 
-<section class="listen-bar" id="listen">
-  <div class="row">
-    <button type="button" id="sp-play">Listen</button>
-    <button type="button" id="sp-next">Next</button>
-    <button type="button" id="sp-shuffle">Shuffle</button>
-  </div>
-  <p id="sp-label"></p>
-  <iframe id="sp-frame" title="Spotify" src="about:blank" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+<section class="listen-wrap">
+  <iframe title="Spotify" src="https://open.spotify.com/embed/track/2lJ4d8MCT6ZlDRHKJ1br14?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 </section>
 
 <header class="hero" id="hero">
@@ -85,29 +72,23 @@
   <blockquote class="verse">“Your body is the primary place of your spiritual life. If you do not meet God in your body, in the concrete places where your feet stand, you will not meet Him anywhere.”<cite>Dallas Willard · The Divine Conspiracy</cite></blockquote>
 </header>
 
-<section class="xing" id="gap">
+<section class="xing">
   <h2>A week is still seven days.</h2>
-  <p class="sub">Gordon Moore said the chip doubles about every two years. A person does not. von Neumann watched that curve and named “some essential singularity… beyond which human affairs, as we know them, could not continue.” The gold line is the machine. The blue line is us. The star is the gap this record is made in — a portfolio of thought, not a store.</p>
-  <div class="chart"><svg viewBox="0 0 920 300" aria-hidden="true">
-    <defs>
-      <linearGradient id="mach" x1="0" x2="1"><stop offset="0%" stop-color="#c9a066"/><stop offset="100%" stop-color="#f0d7a8"/></linearGradient>
-    </defs>
-    <line x1="70" y1="36" x2="70" y2="240" stroke="rgba(255,255,255,.12)"/>
-    <line x1="70" y1="240" x2="880" y2="240" stroke="rgba(255,255,255,.12)"/>
-    <text x="78" y="54" fill="#86868b" font-size="11">capability</text>
-    <text x="820" y="258" fill="#86868b" font-size="11">time</text>
-    <path d="M70 210 L880 168" fill="none" stroke="#7a9bb0" stroke-width="3" stroke-linecap="round"/>
-    <path d="M70 210 C 220 208, 360 198, 480 150 S 720 48, 880 28" fill="none" stroke="url(#mach)" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1400" stroke-dashoffset="1400">
-      <animate attributeName="stroke-dashoffset" from="1400" to="0" dur="4.8s" fill="freeze"/>
+  <p class="sub">Gordon Moore said the chip doubles about every two years. A person does not. von Neumann named “some essential singularity… beyond which human affairs, as we know them, could not continue.” Gold is the machine. Blue is us. The star is the gap this record is made in.</p>
+  <div class="chart"><svg viewBox="0 0 920 280" aria-hidden="true">
+    <line x1="60" y1="30" x2="60" y2="230" stroke="rgba(255,255,255,.12)"/>
+    <line x1="60" y1="230" x2="880" y2="230" stroke="rgba(255,255,255,.12)"/>
+    <path d="M60 200 L880 165" fill="none" stroke="#7a9bb0" stroke-width="2.5"/>
+    <path d="M60 200 C 260 198, 420 180, 520 140 S 740 36, 880 22" fill="none" stroke="#e8c49a" stroke-width="3">
+      <animate attributeName="stroke-dasharray" from="0,1400" to="1400,0" dur="5.2s" fill="freeze"/>
     </path>
-    <image id="gap-star" href="assets/star.png" x="468" y="128" width="30" height="30"/>
+    <image id="hub-star" href="assets/star.png" x="508" y="118" width="26" height="26"/>
   </svg></div>
-  <div class="key"><span><i style="background:#7a9bb0"></i>Human pace</span><span><i style="background:#e8c49a"></i>Machine curve</span><span>★ the gap</span></div>
 </section>
 
 <section class="unit gray" id="work">
   <h2>SEER Solutions</h2>
-  <p class="sub">Analytics, AI implementation, and coaching that move KPIs. Free strategy session on Calendly.</p>
+  <p class="sub">Strategy, implementation, coaching. KPIs first. Free session on Calendly.</p>
   <div class="links"><a href="seersolutions/index.html">Learn more ›</a></div>
 </section>
 <section class="unit light">
@@ -143,15 +124,6 @@
 </div><p>Copyright © 2026 SEE, R. Kennesaw, Georgia.</p></div></footer>
 <script>
 document.getElementById('menu').onclick=function(){document.getElementById('nav-links').classList.toggle('open');};
-(function(){
-  var img=document.getElementById('nav-star'), brand=document.getElementById('brand');
-  brand.addEventListener('click', function(e){
-    if(img.classList.contains('away')) return;
-    e.preventDefault();
-    img.classList.add('away');
-    setTimeout(function(){ img.classList.remove('away'); location.href='index.html'; }, 2600);
-  });
-})();
 var hero=document.getElementById('hero');
 function wash(){
   var y=Math.min(1, window.scrollY/(window.innerHeight*0.9));
@@ -161,40 +133,19 @@ function wash(){
 }
 window.addEventListener('scroll', wash, {passive:true}); wash();
 (function(){
-  var star=document.getElementById('gap-star'); if(!star) return;
+  var star=document.getElementById('hub-star'); if(!star) return;
   var t0=null;
   function tick(ts){
     if(!t0) t0=ts;
-    var p=((ts-t0)%5200)/5200;
+    var p=((ts-t0)%6400)/6400;
     var s=Math.sin(p*Math.PI*2);
-    var lift=Math.pow(0.5+0.5*s, 1.7);
-    star.setAttribute('x', String(468+s*10));
-    star.setAttribute('y', String(148 - lift*36));
-    star.setAttribute('width', String(30 - lift*10));
-    star.setAttribute('height', String(30 - lift*10));
+    star.setAttribute('x', String(508+s*8));
+    star.setAttribute('y', String(118-Math.abs(s)*12));
+    star.setAttribute('opacity', String(0.45+0.55*(0.5+0.5*s)));
+    star.style.filter='hue-rotate('+((s+1)*32)+'deg');
     requestAnimationFrame(tick);
   }
   requestAnimationFrame(tick);
-})();
-(function(){
-  var tracks=[{id:"2lJ4d8MCT6ZlDRHKJ1br14",name:"Bonobo — Cirrus"},{id:"5DAjrJqXqYtgr67pVhmUeR",name:"Bonobo — Kerala"},{id:"15IVKRhTPXp4lKtwl568KS",name:"Bonobo — Surface"},{id:"0bcqlXTDN4fcZx2viQITW1",name:"Can't You See"}];
-  function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t;} return a;}
-  var queue=shuffle(tracks.slice()), i=0;
-  var frame=document.getElementById('sp-frame'), label=document.getElementById('sp-label');
-  function src(id,auto){return 'https://open.spotify.com/embed/track/'+id+'?utm_source=generator'+(auto?'&autoplay=1':'');}
-  function show(auto){
-    var t=queue[i];
-    label.textContent=t.name+' · '+(i+1)+'/'+queue.length;
-    frame.src=src(t.id, !!auto);
-  }
-  show(false);
-  document.getElementById('sp-play').onclick=function(){show(true);};
-  document.getElementById('sp-next').onclick=function(){i=(i+1)%queue.length; show(true);};
-  document.getElementById('sp-shuffle').onclick=function(){
-    var cur=queue[i].id; queue=shuffle(tracks.slice());
-    if(queue[0].id===cur && queue.length>1){var t=queue[0]; queue[0]=queue[1]; queue[1]=t;}
-    i=0; show(true);
-  };
 })();
 </script>
 </body>
