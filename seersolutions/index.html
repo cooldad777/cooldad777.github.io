@@ -4,169 +4,145 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>SEER Solutions | SEE, R</title>
-<meta name="description" content="SEER Solutions — analytics, AI implementation, and AI coaching that move KPIs. Kennesaw, Georgia."/>
+<meta name="description" content="SEER Solutions — analytics, AI implementation, and coaching with KPI-backed results. Kennesaw, Georgia."/>
 <link rel="icon" href="../assets/favicon.png"/>
+<link rel="stylesheet" href="../assets/apple.css"/>
 <style>
-:root{--ink:#1d1d1f;--muted:#6e6e73;--line:rgba(0,0,0,.08);--blue:#0066cc;--bg:#f5f5f7}
-*{box-sizing:border-box} html{scroll-behavior:smooth}
-body{margin:0;font:17px/1.47 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
-a{color:var(--blue);text-decoration:none}
-.nav{position:fixed;inset:0 0 auto;z-index:30;height:48px;display:flex;align-items:center;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
-.nav-inner{width:min(1040px,100%);margin:0 auto;padding:0 22px;display:flex;align-items:center;gap:18px}
-.brand{display:flex;align-items:center;gap:8px;color:var(--ink);font-weight:600}
-.brand img{width:22px;height:22px;animation:nav-rise 12s cubic-bezier(.16,1,.3,1) infinite;transform-origin:center}
-@keyframes nav-rise{
-  0%{transform:translateY(0) scale(1);filter:hue-rotate(0deg)}
-  65%{transform:translateY(-7px) scale(.62);filter:hue-rotate(36deg)}
-  100%{transform:translateY(-12px) scale(.28);filter:hue-rotate(70deg);opacity:.25}
-}
-.nav-links{margin-left:auto;display:flex;gap:16px;align-items:center}
-.nav-links a{color:#424245;font-size:13px}
-.nav-links .book{background:#1d1d1f;color:#fff!important;border-radius:980px;padding:7px 14px}
-#menu{display:none;margin-left:auto;background:0;border:0;font-size:20px}
-@media(max-width:760px){
-  #menu{display:block}
-  .nav-links{display:none;position:absolute;top:48px;left:0;right:0;flex-direction:column;padding:14px 22px 20px;background:rgba(255,255,255,.96)}
-  .nav-links.open{display:flex}
-}
-.hero{padding:110px 22px 48px;background:radial-gradient(1000px 420px at 75% -10%,rgba(180,210,255,.4),transparent 60%),linear-gradient(180deg,#f5f5f7,#fff 72%)}
-.hero-grid{width:min(1040px,100%);margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
-@media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
-.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0}
-h1{font-size:clamp(36px,6vw,56px);letter-spacing:-.04em;font-weight:600;margin:8px 0 0}
-.lead{margin:12px 0 0;font-size:20px;color:#3a3a3c;max-width:30em}
-.cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
-.cta{display:inline-block;background:#1d1d1f;color:#fff;border-radius:980px;padding:12px 18px;font-size:15px}
-.rail{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
-@media(max-width:700px){.rail{grid-template-columns:1fr}}
-.rail div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px}
-.rail b{display:block;font-size:13px;letter-spacing:-.01em}
-.rail span{display:block;margin-top:4px;font-size:12px;color:var(--muted)}
-.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.tools span{font-size:12px;border:1px solid var(--line);border-radius:980px;padding:6px 11px;color:#424245;background:#fff}
-.wrap{width:min(1040px,100%);margin:0 auto;padding:0 22px}
-.band{padding:64px 0}
-.band.gray{background:var(--bg)}
-h2{font-size:clamp(26px,4vw,34px);letter-spacing:-.03em;margin:0 0 10px}
-.sub{color:var(--muted);max-width:40em;margin:0}
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
-@media(max-width:860px){.grid3{grid-template-columns:1fr}}
-.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 8px 28px rgba(0,0,0,.04)}
-.card em{display:block;font-style:normal;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-.card h3{margin:0 0 8px;font-size:21px;letter-spacing:-.02em}
-.card p{margin:0;color:#3a3a3c;font-size:15px}
-.viz-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:14px;margin-top:24px}
-@media(max-width:900px){.viz-grid{grid-template-columns:1fr}}
-.viz-box{background:#0b0b0c;color:#f5f5f7;border-radius:22px;padding:18px;position:relative;overflow:hidden}
-.viz-box h3{margin:0 0 6px;font-size:16px;font-weight:600}
-.viz-box .hint{margin:0 0 12px;font-size:12px;color:#a1a1a6}
-#exp-svg{width:100%;height:220px;display:block}
-.dash-top{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-.chip{font-size:11px;border-radius:980px;padding:5px 10px;border:1px solid rgba(255,255,255,.14);color:#d2d2d7;background:transparent;cursor:pointer}
-.chip.on{background:#f5f5f7;color:#111;border-color:#f5f5f7}
-.kpis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
-@media(max-width:520px){.kpis{grid-template-columns:1fr}}
-.kpi{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:10px}
-.kpi b{display:block;font-size:11px;color:#86868b;font-weight:500}
-.kpi strong{display:block;margin-top:4px;font-size:20px;letter-spacing:-.03em}
-.kpi span{font-size:11px;color:#8bbf8a}
-.bars{display:flex;align-items:flex-end;gap:6px;height:90px;margin-top:14px}
-.bars i{flex:1;display:block;border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#7a9bb0,#e8c49a);opacity:.85}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
-@media(max-width:860px){.steps{grid-template-columns:1fr 1fr}}
-@media(max-width:520px){.steps{grid-template-columns:1fr}}
-.step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}
-.step b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.step p{margin:0;color:#3a3a3c;font-size:14px}
-.cta-band{background:var(--bg);text-align:center;padding:72px 22px}
-.cta-band .pill{display:inline-block;margin-top:18px;background:#1d1d1f;color:#fff;border-radius:980px;padding:12px 20px}
-footer{padding:36px 22px 64px;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
-.foot{width:min(1040px,100%);margin:0 auto;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .top{padding:110px 22px 48px;background:linear-gradient(180deg,#f5f5f7,#fff 70%)}
+  .top-in{width:min(980px,100%);margin:0 auto;display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:start}
+  @media(max-width:900px){.top-in{grid-template-columns:1fr}}
+  .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6e6e73;margin:0}
+  h1{font-size:clamp(34px,6vw,52px);letter-spacing:-.04em;margin:8px 0 0;font-weight:600}
+  .lead{font-size:19px;color:#3a3a3c;max-width:34em;margin:14px 0 0}
+  .bio{font-size:15px;color:#3a3a3c;max-width:36em;margin:14px 0 0;line-height:1.5}
+  .cta{display:inline-block;margin-top:20px;background:#1d1d1f;color:#fff;border-radius:980px;padding:12px 18px;font-size:15px}
+  .tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .tools span{font-size:12px;border:1px solid rgba(0,0,0,.08);border-radius:980px;padding:6px 11px;background:#fff}
+  .panel{background:#0b0b0c;color:#f5f5f7;border-radius:20px;padding:16px}
+  .panel h3{margin:0 0 6px;font-size:14px;font-weight:600}
+  .panel .hint{margin:0 0 10px;font-size:11px;color:#86868b}
+  .wrap{width:min(980px,100%);margin:0 auto;padding:0 22px}
+  .band{padding:56px 0}
+  .band.gray{background:#f5f5f7}
+  h2{font-size:clamp(24px,3.5vw,32px);letter-spacing:-.03em;margin:0 0 10px}
+  .sub{color:#6e6e73;max-width:40em;margin:0}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+  @media(max-width:800px){.grid3{grid-template-columns:1fr}}
+  .card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:18px;padding:20px}
+  .card em{display:block;font-style:normal;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6e6e73;margin-bottom:8px}
+  .card h3{margin:0 0 8px;font-size:20px}
+  .card p{margin:0;color:#3a3a3c;font-size:15px}
+  .board{background:#111;color:#f5f5f7;border-radius:20px;padding:18px;margin-top:18px}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+  .chip{border:1px solid rgba(255,255,255,.18);background:transparent;color:#d2d2d7;border-radius:980px;padding:6px 12px;font-size:12px;cursor:pointer}
+  .chip.on{background:#f5f5f7;color:#111;border-color:#f5f5f7}
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  @media(max-width:640px){.kpis{grid-template-columns:1fr}}
+  .kpi{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:12px}
+  .kpi b{display:block;font-size:11px;color:#86868b;font-weight:500}
+  .kpi strong{display:block;margin-top:4px;font-size:22px;letter-spacing:-.03em}
+  .kpi span{font-size:11px;color:#8bbf8a}
+  .bars{display:flex;align-items:flex-end;gap:6px;height:88px;margin-top:14px}
+  .bars i{flex:1;display:block;border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#7a9bb0,#e8c49a)}
+  .proof{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+  @media(max-width:800px){.proof{grid-template-columns:1fr}}
+  .proof article{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:18px}
+  .proof h3{margin:0 0 8px;font-size:17px}
+  .proof p{margin:0;color:#3a3a3c;font-size:14px}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
+  @media(max-width:800px){.steps{grid-template-columns:1fr 1fr}}
+  .step{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:14px;padding:16px}
+  .step b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6e6e73;margin-bottom:6px}
+  .step p{margin:0;font-size:14px;color:#3a3a3c}
+  .cta-band{text-align:center;padding:64px 22px;background:#f5f5f7}
+  .pill{display:inline-block;margin-top:14px;background:#1d1d1f;color:#fff;border-radius:980px;padding:12px 18px}
 </style>
 </head>
 <body>
-<nav class="nav"><div class="nav-inner">
+<nav class="nav"><div class="nav-in">
   <a class="brand" href="../index.html"><img src="../assets/star.png" alt=""/>SEE, R</a>
-  <button id="menu" type="button" aria-label="Menu">☰</button>
+  <button id="menu" aria-label="Menu">☰</button>
   <div class="nav-links" id="nav-links">
-    <a href="#offers">Offers</a>
-    <a href="#board">Scoreboard</a>
-    <a href="#path">How it works</a>
+    <a href="index.html">SEER Solutions</a>
+    <a href="../chronicle/index.html">Chronicle</a>
     <a class="book" href="https://calendly.com/ryanrsee" target="_blank" rel="noopener">Book a free session</a>
   </div>
 </div></nav>
 
-<header class="hero"><div class="hero-grid">
+<header class="top"><div class="top-in">
   <div>
-    <p class="eyebrow">Kennesaw, Georgia</p>
-    <h1>SEER Solutions</h1>
-    <p class="lead">The curve already moved. Most teams are still buying tools. SEER builds the work that fits your shop — and puts a number on it before the spend scales.</p>
-    <div class="cta-row">
-      <a class="cta" href="https://calendly.com/ryanrsee" target="_blank" rel="noopener">Book a free strategy session</a>
-    </div>
-    <div class="rail" aria-label="How we work">
-      <div><b>Scoreboard before SOW</b><span>The number is written first.</span></div>
-      <div><b>You keep the artifacts</b><span>Files, models, dashboards.</span></div>
-      <div><b>Calendly to start</b><span>One question worth solving.</span></div>
-    </div>
+    <p class="eyebrow">SEER Solutions</p>
+    <h1>AI that fits your business — and proves it on the scoreboard</h1>
+    <p class="lead">Struggling to adapt to effective, cost-sensitive AI practice? You need a solution shaped to your context, with clear KPIs that show value.</p>
+    <p class="bio">Ryan is an analytics and strategic account management executive with 15 years in big data, used to the executive boardroom. He works from the client’s seat: clear, demonstrable results. Early adoption of advanced AI methods means robust, nimble builds with low overhead — and timestamped KPIs that prove added value.</p>
+    <a class="cta" href="https://calendly.com/ryanrsee" target="_blank" rel="noopener">Book a free strategy session</a>
     <div class="tools" aria-label="Tools">
       <span>Power BI</span><span>Tableau</span><span>SQL</span><span>Azure</span><span>Salesforce</span><span>HubSpot</span><span>Jira</span>
     </div>
   </div>
-  <div class="viz-box">
-    <h3>Machine curve · human week</h3>
-    <p class="hint">Gold is the machine. Blue is a normal week of operations. The star is the gap — where the work lives.</p>
-    <svg id="exp-svg" viewBox="0 0 520 220" role="img" aria-label="Animated exponential curve with star">
-      <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0%" stop-color="#e8c49a"/><stop offset="100%" stop-color="#fff1d6"/></linearGradient></defs>
-      <line x1="36" y1="20" x2="36" y2="190" stroke="rgba(255,255,255,.12)"/>
-      <line x1="36" y1="190" x2="500" y2="190" stroke="rgba(255,255,255,.12)"/>
-      <path d="M36 165 L500 145" fill="none" stroke="#7a9bb0" stroke-width="2.5"/>
-      <path id="gold" d="M36 165 C 160 163, 250 150, 320 110 S 430 35, 500 18" fill="none" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round"/>
-      <image href="../assets/star.png" id="star" x="302" y="88" width="28" height="28"/>
+  <aside class="panel" aria-label="Exponential gap chart">
+    <h3>Machine curve vs operating pace</h3>
+    <p class="hint">Gold = tech capability · blue = how orgs usually adapt · star = where we intervene</p>
+    <svg viewBox="0 0 420 210" width="100%" height="210" aria-hidden="true">
+      <line x1="28" y1="18" x2="28" y2="180" stroke="rgba(255,255,255,.12)"/>
+      <line x1="28" y1="180" x2="400" y2="180" stroke="rgba(255,255,255,.12)"/>
+      <path d="M28 155 L400 130" fill="none" stroke="#7a9bb0" stroke-width="2.5"/>
+      <path d="M28 155 C 120 154, 190 148, 250 110 S 340 42, 400 24" fill="none" stroke="#e8c49a" stroke-width="3">
+        <animate attributeName="stroke-dasharray" from="0,800" to="800,0" dur="4.2s" fill="freeze"/>
+      </path>
+      <image href="../assets/star.png" x="238" y="88" width="24" height="24">
+        <animate attributeName="opacity" values=".4;1;.4" dur="3.2s" repeatCount="indefinite"/>
+      </image>
     </svg>
-  </div>
+  </aside>
 </div></header>
 
-<section class="band" id="offers"><div class="wrap">
-  <p class="eyebrow">01 / 02 / 03</p>
-  <h2>What SEER Solutions does</h2>
-  <p class="sub">Full-pipeline builds for the blockage you actually have. Coaching so the tools get used. Dashboards leadership will look at.</p>
+<section class="band"><div class="wrap">
+  <p class="eyebrow">What we do</p>
+  <h2>Full-pipeline builds. AI coaching. Advanced analytics.</h2>
+  <p class="sub">Custom work against real operational bottlenecks — not generic chatbot retainers.</p>
   <div class="grid3">
-    <article class="card"><em>01 · Implementation</em><h3>I build it with you</h3><p>Agents, models, and the path to the board. In your stack. You keep the artifacts.</p></article>
-    <article class="card"><em>02 · AI coaching</em><h3>Best practices, not panic</h3><p>How operators actually use this: maximum impact, minimum waste, a person still owns the number.</p></article>
-    <article class="card"><em>03 · Analytics</em><h3>See clearly, then move</h3><p>Extract → model → refresh → story. Power BI first. Strategy before charts.</p></article>
+    <article class="card"><em>Implementation</em><h3>Build the path</h3><p>End-to-end solutions for specific corporate roadblocks and inefficiencies — agents, models, and the route to a live scoreboard. You keep the artifacts.</p></article>
+    <article class="card"><em>AI coaching</em><h3>Tap the power without waste</h3><p>How to use AI in your business or personal context with discipline: maximum impact, minimum token overhead, human gates on decisions that matter.</p></article>
+    <article class="card"><em>Analytics</em><h3>Dashboards that decide</h3><p>Advanced analytics and dashboard craft for leaders who need the story and the number — Power BI first, Tableau when it fits, SQL and Azure underneath.</p></article>
   </div>
 </div></section>
 
-<section class="band gray" id="board"><div class="wrap">
-  <p class="eyebrow">Scoreboard</p>
-  <h2>We write the scoreboard first. Then we build.</h2>
-  <p class="sub">Click a lens. On a real engagement this sits on your definitions and your system of record.</p>
-  <div class="viz-grid">
-    <div class="viz-box">
-      <h3>KPI board</h3>
-      <p class="hint">Sample shape — your numbers replace these.</p>
-      <div class="dash-top" id="chips">
-        <button type="button" class="chip on" data-view="rev">Revenue impact</button>
-        <button type="button" class="chip" data-view="ops">Ops cycle</button>
-        <button type="button" class="chip" data-view="ai">AI assist</button>
-      </div>
-      <div class="kpis" id="kpis"></div>
-      <div class="bars" id="bars" aria-hidden="true"></div>
+<section class="band gray"><div class="wrap">
+  <p class="eyebrow">Demo</p>
+  <h2>Mock scoreboard</h2>
+  <p class="sub">Click a lens. On a real engagement we build this on your definitions and your system of record. Demo only — not client data.</p>
+  <div class="board">
+    <div class="chips" id="chips">
+      <button type="button" class="chip on" data-v="rev">Revenue impact</button>
+      <button type="button" class="chip" data-v="ops">Ops cycle</button>
+      <button type="button" class="chip" data-v="ai">AI assist</button>
     </div>
-    <div>
-      <h2 style="font-size:24px">Collaborative KPIs</h2>
-      <p class="sub">Agreed-upon metrics for success and added value, baked into the AI work so results are easy to see. Next dollar follows measured lift.</p>
-      <div class="tools" style="margin-top:20px">
-        <span>Fixed scope</span><span>You keep the files</span><span>Number on the board</span>
-      </div>
-    </div>
+    <div class="kpis" id="kpis"></div>
+    <div class="bars" id="bars" aria-hidden="true"></div>
+  </div>
+  <p class="sub" style="margin-top:16px"><strong>Collaborative KPIs.</strong> Agreed metrics to gauge success and added value — baked into the solution so results are easy to show.</p>
+</div></section>
+
+<section class="band"><div class="wrap">
+  <p class="eyebrow">Public-safe patterns</p>
+  <h2>Results without naming employers</h2>
+  <p class="sub">Patterns I have run. Details stay private. The method is what you buy. Healthcare / big-data work is PHI-aware; proposals are fixed-scope.</p>
+  <div class="proof">
+    <article>
+      <h3>Voice → hard SQL, weeks to hours</h3>
+      <p>Discovery files and architect pairing so complex warehouse questions could be asked in plain language. Senior developer time recovered in weeks across a few days of use — without publishing the client stack.</p>
+    </article>
+    <article>
+      <h3>Salesforce analytics agent</h3>
+      <p>Automated intake and routing for analytics requests inside Salesforce so the queue did not die in inboxes. Humans kept approval and definitions; the agent handled the grind.</p>
+    </article>
   </div>
 </div></section>
 
-<section class="band" id="path"><div class="wrap">
-  <p class="eyebrow">How it works</p>
-  <h2>Free session → scoreboard → build → proof</h2>
+<section class="band gray"><div class="wrap">
+  <p class="eyebrow">Engagement</p>
+  <h2>Free strategy session → scoreboard → build</h2>
   <p class="sub">Low barrier to start. High bar on measurement. If we discuss a project, we write the indicators before the statement of work.</p>
   <div class="steps">
     <div class="step"><b>01 · Session</b><p>Free strategy consult (Calendly). One business question worth solving.</p></div>
@@ -176,64 +152,41 @@ footer{padding:36px 22px 64px;font-size:12px;color:var(--muted);border-top:1px s
   </div>
 </div></section>
 
-<section class="band gray"><div class="wrap">
+<section class="band"><div class="wrap">
   <p class="eyebrow">Who is SEER</p>
   <h2>Ryan See</h2>
-  <p class="sub">Ryan See builds analytics and AI that a board can read in one minute. Fifteen years in big data. Audience is the executive room. Early on the tools, late on the hype. You keep the files. You keep the scoreboard.</p>
+  <p class="sub">Founder, SEER Solutions. Senior operations and analytics leadership across private equity–backed companies. Healthcare analytics, systems, storytelling with data. Power BI, SQL, Azure, Tableau, Salesforce. Kennesaw, Georgia.</p>
 </div></section>
 
 <section class="cta-band">
   <p class="eyebrow">Kennesaw, Georgia</p>
   <h2>Book a free strategy session</h2>
-  <p class="sub" style="margin:10px auto 0;max-width:28em">Book the session. We set the number before the statement of work.</p>
   <a class="pill" href="https://calendly.com/ryanrsee" target="_blank" rel="noopener">calendly.com/ryanrsee</a>
 </section>
-
-<footer><div class="foot">
-  <span>SEER Solutions · Kennesaw, Georgia</span>
-  <span><a href="../index.html">SEE, R</a> · <a href="mailto:ryanrsee@gmail.com">ryanrsee@gmail.com</a></span>
-</div></footer>
+<footer><div class="foot"><div class="foot-links">
+  <a href="../index.html">SEE, R</a>
+  <a href="index.html">SEER Solutions</a>
+  <a href="mailto:ryanrsee@gmail.com">ryanrsee@gmail.com</a>
+</div><p>SEER Solutions · Kennesaw, Georgia · Copyright © 2026 SEE, R.</p></div></footer>
 <script>
-(function(){
-  const b=document.getElementById('menu'), n=document.getElementById('nav-links');
-  if(b) b.onclick=function(){n.classList.toggle('open');};
-  const star=document.getElementById('star');
-  const gold=document.getElementById('gold');
-  let t0=null;
-  function pulse(ts){
-    if(!t0) t0=ts;
-    const p=((ts-t0)%5200)/5200;
-    const wave=0.5-0.5*Math.cos(p*Math.PI*2);
-    const o=0.4+0.6*wave;
-    const s=0.88+0.18*wave;
-    const hue=18+50*wave;
-    if(star){
-      star.setAttribute('opacity',o);
-      star.setAttribute('transform','translate(316 102) scale('+s+') translate(-316 -102)');
-      star.style.filter='hue-rotate('+hue+'deg) saturate(1.2)';
-    }
-    if(gold) gold.style.filter='hue-rotate('+(-12+24*wave)+'deg');
-    requestAnimationFrame(pulse);
-  }
-  requestAnimationFrame(pulse);
-  const data={
-    rev:{kpis:[['Pipeline lift','+18%','vs prior quarter'],['Revenue / FTE','$412k','definition locked'],['Forecast miss','3.1%','grain: week']],bars:[40,55,48,62,70,78,85]},
-    ops:{kpis:[['Cycle time','-27%','request → answer'],['Manual pulls','-81%','hours / month'],['Refresh SLA','99.2%','daily board']],bars:[70,66,60,52,44,38,30]},
-    ai:{kpis:[['Token / win','↓ 64%','same output'],['Human gate','100%','numbers owned'],['Reuse rate','4.2×','prompt → playbook']],bars:[20,28,35,42,55,60,72]}
-  };
-  const kpis=document.getElementById('kpis'), bars=document.getElementById('bars'), chips=document.getElementById('chips');
-  function render(view){
-    const d=data[view];
-    kpis.innerHTML=d.kpis.map(function(x){return '<div class="kpi"><b>'+x[0]+'</b><strong>'+x[1]+'</strong><span>'+x[2]+'</span></div>';}).join('');
-    bars.innerHTML=d.bars.map(function(h){return '<i style="height:'+h+'%"></i>';}).join('');
-  }
-  chips.addEventListener('click',function(e){
-    const btn=e.target.closest('.chip'); if(!btn) return;
-    chips.querySelectorAll('.chip').forEach(function(c){c.classList.remove('on');});
-    btn.classList.add('on'); render(btn.dataset.view);
-  });
-  render('rev');
-})();
+document.getElementById('menu').onclick=function(){document.getElementById('nav-links').classList.toggle('open');};
+const data={
+  rev:{kpis:[['Pipeline lift','+18%','vs prior quarter'],['Revenue / FTE','$412k','definition locked'],['Forecast miss','3.1%','grain: week']],bars:[40,55,48,62,70,78,85]},
+  ops:{kpis:[['Cycle time','-27%','request → answer'],['Manual pulls','-81%','hours / month'],['Refresh SLA','99.2%','daily board']],bars:[70,66,60,52,44,38,30]},
+  ai:{kpis:[['Token / win','↓ 64%','same output'],['Human gate','100%','numbers owned'],['Reuse rate','4.2×','prompt → playbook']],bars:[20,28,35,42,55,60,72]}
+};
+const kpis=document.getElementById('kpis'), bars=document.getElementById('bars'), chips=document.getElementById('chips');
+function render(v){
+  const d=data[v];
+  kpis.innerHTML=d.kpis.map(x=>'<div class="kpi"><b>'+x[0]+'</b><strong>'+x[1]+'</strong><span>'+x[2]+'</span></div>').join('');
+  bars.innerHTML=d.bars.map(h=>'<i style="height:'+h+'%"></i>').join('');
+}
+chips.addEventListener('click',function(e){
+  const btn=e.target.closest('.chip'); if(!btn) return;
+  chips.querySelectorAll('.chip').forEach(c=>c.classList.remove('on'));
+  btn.classList.add('on'); render(btn.dataset.v);
+});
+render('rev');
 </script>
 </body>
 </html>

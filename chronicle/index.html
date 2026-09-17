@@ -1,20 +1,64 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><title>Seer Chronicle | SEE, R</title><link rel="icon" href="../assets/favicon.png"/><link rel="stylesheet" href="../assets/apple.css"/></head><body>
-<nav class="nav"><div class="nav-in"><a class="brand" href="../index.html"><img src="../assets/star.png" alt=""/>SEE, R</a><button id="menu">☰</button><div class="nav-links" id="nav-links"><a href="index.html">Chronicle</a><a href="../convergence/index.html">Convergence</a></div></div></nav>
-<header class="hero plain"><h1>Chronicle</h1><p class="sub">A dated public log of how the thinking moved — including what is still unfinished.</p></header>
-<section class="unit gray" id="list"><p class="sub">Loading the trail…</p></section>
-<footer><div class="foot"><p><a href="../index.html">SEE, R</a></p></div></footer>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Chronicle | SEE, R</title>
+<meta name="description" content="Timestamped public timeline of AI learning — SEE, R."/>
+<link rel="icon" href="../assets/favicon.png"/>
+<link rel="stylesheet" href="../assets/apple.css"/>
+<style>
+  .trail{max-width:720px;margin:0 auto;padding:24px 0 64px}
+  .stamp{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:18px 20px;margin:0 0 12px;text-align:left;box-shadow:0 6px 20px rgba(0,0,0,.04)}
+  .stamp .when{font-size:12px;color:#6e6e73;letter-spacing:.06em;text-transform:uppercase}
+  .stamp h3{font-size:18px;margin:6px 0 8px;letter-spacing:-.02em}
+  .stamp p{margin:0;color:#3a3a3c;font-size:15px}
+  .stamp .moved{margin-top:8px;color:#1d1d1f}
+  .empty{color:#6e6e73;text-align:center;padding:40px 16px}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="../index.html"><img src="../assets/star.png" alt=""/>SEE, R</a>
+  <button id="menu" aria-label="Menu">☰</button>
+  <div class="nav-links" id="nav-links">
+    <a href="../seersolutions/index.html">SEER Solutions</a>
+    <a href="index.html">Chronicle</a>
+    <a href="../garden/index.html">AI Portfolio</a>
+    <a href="mailto:ryanrsee@gmail.com">Contact</a>
+  </div>
+</div></nav>
+<header class="hero plain">
+  <h1>Chronicle</h1>
+  <p class="sub">Timestamped public timeline of AI learning. Append-only. What moved, and what is still open.</p>
+</header>
+<section class="unit gray"><div class="trail" id="list"><p class="empty">Loading the trail…</p></div></section>
+<footer><div class="foot"><div class="foot-links">
+  <a href="../index.html">SEE, R</a>
+  <a href="../seersolutions/index.html">SEER Solutions</a>
+  <a href="mailto:ryanrsee@gmail.com">ryanrsee@gmail.com</a>
+</div><p>Copyright © 2026 SEE, R. Kennesaw, Georgia.</p></div></footer>
 <script>
 document.getElementById('menu').onclick=function(){document.getElementById('nav-links').classList.toggle('open');};
 const root=document.getElementById('list');
 function card(e){
   const d=document.createElement('article'); d.className='stamp';
-  d.innerHTML='<div class="when">'+(e.timestamp||'')+' · '+((e.models||[]).join(', '))+'</div><h3>'+(e.what||e.id)+'</h3><p>'+(e.moved||e.why||'')+'</p>';
+  const models=(e.models||[]).join(', ');
+  const body=e.moved||e.why||'';
+  const mystery=e.mystery?('<p class="moved"><strong>Still open:</strong> '+e.mystery+'</p>'):'';
+  d.innerHTML='<div class="when">'+(e.timestamp||'')+(models?' · '+models:'')+'</div><h3>'+(e.what||e.id)+'</h3><p>'+body+'</p>'+mystery;
   return d;
 }
-fetch('entries.jsonl').then(function(r){return r.text();}).then(function(t){
-  const list=t.split(/\n/).map(function(l){l=l.trim();if(!l)return null;try{return JSON.parse(l);}catch(e){return null;}}).filter(Boolean);
-  list.sort(function(a,b){return String(b.timestamp).localeCompare(String(a.timestamp));});
-  root.innerHTML=''; list.forEach(function(e){root.appendChild(card(e));});
-}).catch(function(){root.innerHTML='<p class="sub">The trail file could not load.</p>';});
+fetch('entries.jsonl',{cache:'no-store'}).then(r=>{
+  if(!r.ok) throw new Error('missing');
+  return r.text();
+}).then(t=>{
+  const list=t.split(/\n/).map(l=>{l=l.trim(); if(!l) return null; try{return JSON.parse(l);}catch(e){return null;}}).filter(Boolean);
+  list.sort((a,b)=>String(b.timestamp||'').localeCompare(String(a.timestamp||'')));
+  root.innerHTML='';
+  if(!list.length){root.innerHTML='<p class="empty">No stamps yet.</p>'; return;}
+  list.forEach(e=>root.appendChild(card(e)));
+}).catch(()=>{root.innerHTML='<p class="empty">The trail file could not load. Try a hard refresh.</p>';});
 </script>
-</body></html>
+</body>
+</html>
