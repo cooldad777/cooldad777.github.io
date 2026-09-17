@@ -35,6 +35,66 @@
     <a href="mailto:ryanrsee@gmail.com">Contact</a>
   </div>
 </div></nav>
+
+<section class="unit dark" id="listen" style="text-align:center;padding:28px 16px 8px">
+  <p class="eyebrow" style="letter-spacing:.14em;text-transform:uppercase;font-size:11px;color:#86868b;margin:0 0 8px">Listen</p>
+  <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:0 0 12px">
+    <button type="button" id="sp-play" style="background:#f5f5f7;color:#111;border:0;border-radius:980px;padding:10px 18px;font:600 14px/1 -apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer">Listen</button>
+    <button type="button" id="sp-next" style="background:transparent;color:#f5f5f7;border:1px solid rgba(255,255,255,.2);border-radius:980px;padding:10px 16px;font:500 14px/1 -apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer">Next</button>
+    <button type="button" id="sp-shuffle" style="background:transparent;color:#f5f5f7;border:1px solid rgba(255,255,255,.2);border-radius:980px;padding:10px 16px;font:500 14px/1 -apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer">Shuffle</button>
+  </div>
+  <p id="sp-label" style="margin:0 0 10px;font-size:13px;color:#a1a1a6"></p>
+  <div style="max-width:420px;margin:0 auto">
+    <iframe id="sp-frame" style="border-radius:12px" src="about:blank" width="100%" height="152" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Spotify"></iframe>
+  </div>
+  <p style="margin:10px 0 0;font-size:11px;color:#86868b">Browser may require one tap — Listen is that tap.</p>
+</section>
+<script>
+(function(){
+  // Primaries first (random start among these), then the rest.
+  var PRIMARIES = ["3WJWSZJHEZ6mjBUb9kyX6g","0bcqlXTDN4fcZx2viQITW1"];
+  var MORE = ["4zAIwci5B82d59OhGOkJRl","5QxYahCQ0yc7AX7EQQc5d6"];
+  var NAMES = {
+    "3WJWSZJHEZ6mjBUb9kyX6g":"Primary pick",
+    "0bcqlXTDN4fcZx2viQITW1":"Bonobo",
+    "4zAIwci5B82d59OhGOkJRl":"Track",
+    "5QxYahCQ0yc7AX7EQQc5d6":"Track"
+  };
+  function shuffle(a){ for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+  var start = PRIMARIES[Math.floor(Math.random()*PRIMARIES.length)];
+  var rest = PRIMARIES.concat(MORE).filter(function(id){ return id !== start; });
+  shuffle(rest);
+  var queue = [start].concat(rest);
+  var i = 0;
+  var frame = document.getElementById("sp-frame");
+  var label = document.getElementById("sp-label");
+  function src(id, auto){
+    return "https://open.spotify.com/embed/track/"+id+"?utm_source=generator"+(auto?"&autoplay=1":"");
+  }
+  function show(auto){
+    var id = queue[i];
+    label.textContent = (NAMES[id]||"Track") + " · " + (i+1) + "/" + queue.length;
+    frame.src = src(id, !!auto);
+  }
+  show(false);
+  document.getElementById("sp-play").onclick = function(){
+    // User gesture: reload embed with autoplay. Cross-origin iframe buttons cannot be clicked from our page.
+    show(true);
+  };
+  document.getElementById("sp-next").onclick = function(){
+    i = (i+1) % queue.length;
+    show(true);
+  };
+  document.getElementById("sp-shuffle").onclick = function(){
+    var cur = queue[i];
+    var pool = queue.slice();
+    shuffle(pool);
+    if(pool[0] === cur && pool.length > 1){ var t=pool[0]; pool[0]=pool[1]; pool[1]=t; }
+    queue = pool; i = 0; show(true);
+  };
+})();
+</script>
+
 <header class="hero">
   <img class="pulse-star" src="assets/star.png" alt=""/>
   <h1>SEE, R</h1>
@@ -65,13 +125,6 @@
   <article class="tile"><h3>AI Portfolio</h3><p>Early builds, shown on purpose.</p><a href="garden/index.html">Open portfolio ›</a></article>
 </div>
 
-<section class="unit gray" id="listen" style="text-align:center">
-  <h2 style="font-size:22px;letter-spacing:-.02em;margin:0 0 8px">Listen</h2>
-  <p class="sub" style="margin:0 auto 16px">A track for the gap between human time and machine time.</p>
-  <div style="max-width:400px;margin:0 auto">
-    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/0bcqlXTDN4fcZx2viQITW1?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="Spotify"></iframe>
-  </div>
-</section>
 <section class="unit light"><blockquote class="lewis">“The whole point of seeing through something is to see something through it. To ‘see through’ all things is the same as not to see.”<cite>C. S. Lewis · The Abolition of Man</cite></blockquote></section>
 <footer><div class="foot"><div class="foot-links">
   <a href="grounded/index.html">GROUNDED</a><a href="seersolutions/index.html">SEER Solutions</a><a href="adventure/index.html">Adventure</a><a href="anti-attachment/index.html">Anti-Attachment</a><a href="chronicle/index.html">Chronicle</a><a href="convergence/index.html">Convergence</a><a href="mailto:ryanrsee@gmail.com">ryanrsee@gmail.com</a>
