@@ -4,28 +4,34 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>SEER Solutions | SEE, R</title>
-<meta name="description" content="SEER Solutions — analytics, AI implementation, and coaching with KPI-backed results. Kennesaw, Georgia."/>
+<meta name="description" content="SEER Solutions — AI strategy, implementation, and coaching with a scoreboard before the statement of work. Kennesaw, Georgia."/>
 <link rel="icon" href="../assets/favicon.png"/>
 <link rel="stylesheet" href="../assets/apple.css"/>
 <style>
-  .top{padding:110px 22px 48px;background:linear-gradient(180deg,#f5f5f7,#fff 70%)}
-  .top-in{width:min(980px,100%);margin:0 auto;display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:start}
+  .top{padding:110px 22px 52px;background:linear-gradient(180deg,#f5f5f7,#fff 72%)}
+  .top-in{width:min(980px,100%);margin:0 auto;display:grid;grid-template-columns:1.12fr .88fr;gap:28px;align-items:start}
   @media(max-width:900px){.top-in{grid-template-columns:1fr}}
   .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#6e6e73;margin:0}
-  .top h1{font-size:clamp(32px,5.5vw,48px);letter-spacing:-.035em;margin:8px 0 0;font-weight:600;line-height:1.1}
+  .top h1{font-size:clamp(32px,5.4vw,48px);letter-spacing:-.035em;margin:8px 0 0;font-weight:600;line-height:1.08}
   .lead{font-size:19px;color:#3a3a3c;max-width:34em;margin:14px 0 0;line-height:1.45}
-  .bio{font-size:15px;color:#3a3a3c;max-width:36em;margin:14px 0 0;line-height:1.55}
   .cta{display:inline-block;margin-top:20px;background:#1d1d1f;color:#fff;border-radius:980px;padding:12px 18px;font-size:15px;text-decoration:none}
-  .tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+  .rail{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:20px}
+  @media(max-width:640px){.rail{grid-template-columns:1fr}}
+  .rail div{background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:14px;padding:12px}
+  .rail b{display:block;font-size:13px}
+  .rail span{display:block;margin-top:3px;font-size:12px;color:#6e6e73}
+  .tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
   .tools span{font-size:12px;border:1px solid rgba(0,0,0,.08);border-radius:980px;padding:6px 11px;background:#fff}
   .panel{background:#0b0b0c;color:#f5f5f7;border-radius:20px;padding:16px}
   .panel h3{margin:0 0 6px;font-size:14px;font-weight:600}
-  .panel .hint{margin:0 0 10px;font-size:11px;color:#86868b}
+  .panel .hint{margin:0 0 8px;font-size:11px;color:#a1a1a6;line-height:1.4}
+  .panel .src{margin:8px 0 0;font-size:10px;color:#86868b;line-height:1.4}
+  .axis{font-size:9px;fill:#86868b}
   .wrap{width:min(980px,100%);margin:0 auto;padding:0 22px}
   .band{padding:56px 0}
   .band.gray{background:#f5f5f7}
-  .band h2{font-size:clamp(24px,3.5vw,32px);letter-spacing:-.03em;margin:0 0 10px}
-  .sub{color:#6e6e73;max-width:40em;margin:0}
+  .band h2{font-size:clamp(24px,3.5vw,32px);letter-spacing:-.03em;margin:8px 0 10px}
+  .sub{color:#6e6e73;max-width:40em;margin:0;line-height:1.5}
   .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
   @media(max-width:800px){.grid3{grid-template-columns:1fr}}
   .card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:18px;padding:20px}
@@ -44,11 +50,11 @@
   .kpi span{font-size:11px;color:#8bbf8a}
   .bars{display:flex;align-items:flex-end;gap:6px;height:88px;margin-top:14px}
   .bars i{flex:1;display:block;border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#7a9bb0,#e8c49a)}
-  .proof{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
-  @media(max-width:800px){.proof{grid-template-columns:1fr}}
-  .proof article{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:18px}
-  .proof h3{margin:0 0 8px;font-size:17px}
-  .proof p{margin:0;color:#3a3a3c;font-size:14px;line-height:1.45}
+  .get{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+  @media(max-width:800px){.get{grid-template-columns:1fr}}
+  .get article{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:16px;padding:18px}
+  .get h3{margin:0 0 8px;font-size:17px}
+  .get p{margin:0;color:#3a3a3c;font-size:14px;line-height:1.45}
   .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:18px}
   @media(max-width:800px){.steps{grid-template-columns:1fr 1fr}}
   .step{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:14px;padding:16px}
@@ -64,55 +70,81 @@
   <a class="brand" href="../index.html"><img src="../assets/star.png" alt=""/>SEE, R</a>
   <button id="menu" aria-label="Menu">☰</button>
   <div class="nav-links" id="nav-links">
-    <a href="index.html">SEER Solutions</a>
-    <a href="../chronicle/index.html">Chronicle</a>
+    <a href="#offers">Offers</a>
+    <a href="#path">How we work</a>
     <a class="book" href="https://calendly.com/ryanrsee" target="_blank" rel="noopener">Book a free session</a>
   </div>
 </div></nav>
 
 <header class="top"><div class="top-in">
   <div>
-    <p class="eyebrow">SEER Solutions</p>
-    <h1>AI that fits your business — and proves it on the scoreboard</h1>
-    <p class="lead">Struggling to adapt to effective, cost-sensitive AI practice? You need a solution shaped to your context, with clear KPIs that show value.</p>
-    <p class="bio">Ryan is an analytics and strategic account management executive with 15 years in big data, used to the executive boardroom. He works from the client’s seat: clear, demonstrable results. Early adoption of advanced AI methods means robust, nimble builds with low overhead — and timestamped KPIs that prove added value.</p>
+    <p class="eyebrow">SEER Solutions · Kennesaw, Georgia</p>
+    <h1>The tools already moved. Most operating models have not.</h1>
+    <p class="lead">SEER is strategy, implementation, and AI coaching for teams that need the work to fit the shop — and a number on the board before spend scales.</p>
     <a class="cta" href="https://calendly.com/ryanrsee" target="_blank" rel="noopener">Book a free strategy session</a>
+    <div class="rail">
+      <div><b>Strategy</b><span>The question and the KPI, written down.</span></div>
+      <div><b>Implementation</b><span>Built in your stack. You keep the files.</span></div>
+      <div><b>AI coaching</b><span>Operators use it. A person still owns the number.</span></div>
+    </div>
     <div class="tools" aria-label="Tools">
       <span>Power BI</span><span>Tableau</span><span>SQL</span><span>Azure</span><span>Salesforce</span><span>HubSpot</span><span>Jira</span>
     </div>
   </div>
-  <aside class="panel" aria-label="Exponential gap chart">
-    <h3>Machine curve vs operating pace</h3>
-    <p class="hint">Gold = tech capability · blue = how orgs usually adapt · star = where we intervene</p>
-    <svg viewBox="0 0 420 210" width="100%" height="210" aria-hidden="true">
-      <line x1="28" y1="18" x2="28" y2="180" stroke="rgba(255,255,255,.12)"/>
-      <line x1="28" y1="180" x2="400" y2="180" stroke="rgba(255,255,255,.12)"/>
-      <path d="M28 155 L400 130" fill="none" stroke="#7a9bb0" stroke-width="2.5"/>
-      <path d="M28 155 C 120 154, 190 148, 250 110 S 340 42, 400 24" fill="none" stroke="#e8c49a" stroke-width="3">
-        <animate attributeName="stroke-dasharray" from="0,800" to="800,0" dur="4.2s" fill="freeze"/>
+  <aside class="panel" aria-label="Training compute versus operating pace">
+    <h3>Training compute vs. how a shop absorbs change</h3>
+    <p class="hint">Log scale. Gold = training compute for notable AI systems (index, 2012 = 1). Blue = output-per-hour if a workplace improves ~2% a year. Star = the gap we work in.</p>
+    <svg viewBox="0 0 420 228" width="100%" height="228" role="img" aria-label="Log chart of AI training compute versus roughly two percent annual productivity">
+      <line x1="48" y1="16" x2="48" y2="178" stroke="rgba(255,255,255,.14)"/>
+      <line x1="48" y1="178" x2="400" y2="178" stroke="rgba(255,255,255,.14)"/>
+      <text class="axis" x="8" y="20">10⁸</text>
+      <text class="axis" x="8" y="60">10⁶</text>
+      <text class="axis" x="8" y="100">10⁴</text>
+      <text class="axis" x="8" y="140">10²</text>
+      <text class="axis" x="14" y="176">1</text>
+      <text class="axis" x="48" y="194">2012</text>
+      <text class="axis" x="150" y="194">2016</text>
+      <text class="axis" x="252" y="194">2020</text>
+      <text class="axis" x="354" y="194">2024</text>
+      <path d="M48 176 L400 174" fill="none" stroke="#7a9bb0" stroke-width="2.4"/>
+      <path d="M48 176 C 120 170, 160 150, 164 129 S 240 100, 266 82 S 340 48, 400 35" fill="none" stroke="#e8c49a" stroke-width="3">
+        <animate attributeName="stroke-dasharray" from="0,900" to="900,0" dur="4.6s" fill="freeze"/>
       </path>
-      <image href="../assets/star.png" x="238" y="88" width="24" height="24">
-        <animate attributeName="opacity" values=".4;1;.4" dur="3.2s" repeatCount="indefinite"/>
+      <image href="../assets/star.png" x="268" y="68" width="22" height="22">
+        <animate attributeName="opacity" values=".35;1;.35" dur="3.4s" repeatCount="indefinite"/>
       </image>
     </svg>
+    <p class="src">Gold uses the published rate: since 2010, training compute for notable systems has doubled about every six months (Epoch AI / Our World in Data). AlexNet (2012) to Gemini 1.0 Ultra (~2023) is about 100 million times more compute. Blue is BLS-range U.S. nonfarm productivity, about 2% a year — a stand-in for how an operating model usually moves. Same twelve years. Different slopes.</p>
   </aside>
 </div></header>
 
-<section class="band"><div class="wrap">
-  <p class="eyebrow">What we do</p>
-  <h2>Full-pipeline builds. AI coaching. Advanced analytics.</h2>
-  <p class="sub">Custom work against real operational bottlenecks — not generic chatbot retainers.</p>
+<section class="band" id="offers"><div class="wrap">
+  <p class="eyebrow">01 / 02 / 03</p>
+  <h2>Strategy. Implementation. AI coaching.</h2>
+  <p class="sub">One firm. You hire the person who does the work — not a chatbot retainer, not a junior bench.</p>
   <div class="grid3">
-    <article class="card"><em>Implementation</em><h3>Build the path</h3><p>End-to-end solutions for specific corporate roadblocks and inefficiencies — agents, models, and the route to a live scoreboard. You keep the artifacts.</p></article>
-    <article class="card"><em>AI coaching</em><h3>Tap the power without waste</h3><p>How to use AI in your business or personal context with discipline: maximum impact, minimum token overhead, human gates on decisions that matter.</p></article>
-    <article class="card"><em>Analytics</em><h3>Dashboards that decide</h3><p>Advanced analytics and dashboard craft for leaders who need the story and the number — Power BI first, Tableau when it fits, SQL and Azure underneath.</p></article>
+    <article class="card">
+      <em>01 · Strategy</em>
+      <h3>Write the number first</h3>
+      <p>What “better” means in your definitions, grain, and system of record. The scoreboard exists before the statement of work. Next dollar follows measured lift.</p>
+    </article>
+    <article class="card">
+      <em>02 · Implementation</em>
+      <h3>Build it in your stack</h3>
+      <p>Agents, models, pipelines, dashboards. Path to a live board. Healthcare and regulated data when PHI boundaries are clear. You keep the artifacts.</p>
+    </article>
+    <article class="card">
+      <em>03 · AI coaching</em>
+      <h3>Operators, not spectators</h3>
+      <p>How the team actually uses the tools: maximum impact, minimum waste, a human gate on the decision. The build does not die in one person’s head.</p>
+    </article>
   </div>
 </div></section>
 
 <section class="band gray"><div class="wrap">
-  <p class="eyebrow">Demo</p>
-  <h2>Mock scoreboard</h2>
-  <p class="sub">Click a lens. On a real engagement we build this on your definitions and your system of record. Demo only — not client data.</p>
+  <p class="eyebrow">Scoreboard</p>
+  <h2>We stand the metrics up. Then we build.</h2>
+  <p class="sub">Sample board so you can see the shape. On an engagement these cells are your KPIs, not ours.</p>
   <div class="board">
     <div class="chips" id="chips">
       <button type="button" class="chip on" data-v="rev">Revenue impact</button>
@@ -122,46 +154,53 @@
     <div class="kpis" id="kpis"></div>
     <div class="bars" id="bars" aria-hidden="true"></div>
   </div>
-  <p class="sub" style="margin-top:16px"><strong>Collaborative KPIs.</strong> Agreed metrics to gauge success and added value — baked into the solution so results are easy to show.</p>
 </div></section>
 
 <section class="band"><div class="wrap">
-  <p class="eyebrow">Public-safe patterns</p>
-  <h2>Results without naming employers</h2>
-  <p class="sub">Patterns I have run. Details stay private. The method is what you buy. Healthcare / big-data work is PHI-aware; proposals are fixed-scope.</p>
-  <div class="proof">
+  <p class="eyebrow">What you walk away with</p>
+  <h2>The method is the product.</h2>
+  <p class="sub">No client names. No stack tour. You buy a way of working that leaves files and a board behind.</p>
+  <div class="get">
     <article>
-      <h3>Voice → hard SQL, weeks to hours</h3>
-      <p>Discovery files and architect pairing so complex warehouse questions could be asked in plain language. Senior developer time recovered in weeks across a few days of use — without publishing the client stack.</p>
+      <h3>A scoreboard you can defend</h3>
+      <p>Metric, grain, source, owner, and what good looks like in 30 and 90 days — written before build hours start.</p>
     </article>
     <article>
-      <h3>Salesforce analytics agent</h3>
-      <p>Automated intake and routing for analytics requests inside Salesforce so the queue did not die in inboxes. Humans kept approval and definitions; the agent handled the grind.</p>
+      <h3>Working pieces in your environment</h3>
+      <p>Models, queries, refresh, and the dashboard sit in your tenant. When the engagement ends, the work stays.</p>
+    </article>
+    <article>
+      <h3>A coaching cadence</h3>
+      <p>Sessions so the people who run the process can keep it — not a one-week demo that evaporates.</p>
+    </article>
+    <article>
+      <h3>Fixed scope, clear boundary</h3>
+      <p>Proposal names the question. Healthcare and other regulated work stays inside the PHI line you set.</p>
     </article>
   </div>
 </div></section>
 
-<section class="band gray"><div class="wrap">
-  <p class="eyebrow">Engagement</p>
-  <h2>Free strategy session → scoreboard → build</h2>
-  <p class="sub">Low barrier to start. High bar on measurement. If we discuss a project, we write the indicators before the statement of work.</p>
+<section class="band gray" id="path"><div class="wrap">
+  <p class="eyebrow">How we work</p>
+  <h2>Session → scoreboard → build → proof</h2>
+  <p class="sub">Low barrier to start. High bar on measurement.</p>
   <div class="steps">
-    <div class="step"><b>01 · Session</b><p>Free strategy consult (Calendly). One business question worth solving.</p></div>
-    <div class="step"><b>02 · KPIs</b><p>Metrics, grain, source, and what good looks like in 30/90 days.</p></div>
-    <div class="step"><b>03 · Work</b><p>Implementation, coaching, or analytics — beside your people. You keep the artifacts.</p></div>
-    <div class="step"><b>04 · Proof</b><p>Read the scoreboard together. Expand when net impact is visible.</p></div>
+    <div class="step"><b>01 · Session</b><p>Free strategy consult on Calendly. One business question worth solving.</p></div>
+    <div class="step"><b>02 · Scoreboard</b><p>Metrics, grain, source, owner. What good looks like in 30/90 days.</p></div>
+    <div class="step"><b>03 · Build</b><p>Strategy, implementation, or coaching — beside your people. You keep the artifacts.</p></div>
+    <div class="step"><b>04 · Proof</b><p>Read the board together. Expand when net impact is visible.</p></div>
   </div>
 </div></section>
 
 <section class="band"><div class="wrap">
   <p class="eyebrow">Who is SEER</p>
   <h2>Ryan See</h2>
-  <p class="sub">Founder, SEER Solutions. Senior operations and analytics leadership across private equity–backed companies. Healthcare analytics, systems, storytelling with data. Power BI, SQL, Azure, Tableau, Salesforce. Kennesaw, Georgia.</p>
+  <p class="sub">Founder. Fifteen years in analytics and the boardroom. PE-backed operations, healthcare data, storytelling with numbers. Power BI, SQL, Azure, Tableau, Salesforce. Early on the tools. Late on the hype. Kennesaw, Georgia.</p>
 </div></section>
 
 <section class="cta-band">
   <p class="eyebrow">Kennesaw, Georgia</p>
-  <h2>Book a free strategy session</h2>
+  <h2>Book the session. We set the number before the SOW.</h2>
   <a class="pill" href="https://calendly.com/ryanrsee" target="_blank" rel="noopener">calendly.com/ryanrsee</a>
 </section>
 <footer><div class="foot"><div class="foot-links">
