@@ -4,164 +4,229 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>SEER Solutions | SEE, R</title>
-<meta name="description" content="SEER Solutions — analytics, dashboards, AI in the data model, and AI coaching for small and midsize businesses. Kennesaw, Georgia."/>
+<meta name="description" content="SEER Solutions — analytics, AI implementation, and AI coaching that move KPIs. Power BI, big-data storytelling. Kennesaw, Georgia."/>
 <link rel="icon" href="../assets/favicon.png"/>
 <style>
-  :root{--ink:#1d1d1f;--muted:#6e6e73;--line:rgba(0,0,0,.08);--blue:#0066cc;--glass:rgba(255,255,255,.62)}
-  *{box-sizing:border-box} html{scroll-behavior:smooth}
-  body{margin:0;font:17px/1.47 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
-  a{color:var(--blue);text-decoration:none}
-  .nav{position:fixed;inset:0 0 auto;z-index:20;height:48px;display:flex;align-items:center;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
-  .nav-in{width:min(980px,100%);margin:0 auto;padding:0 22px;display:flex;align-items:center;gap:18px}
-  .brand{display:flex;align-items:center;gap:8px;color:var(--ink);font-weight:600}
-  .brand img{width:22px;height:22px}
-  .nav-links{margin-left:auto;display:flex;gap:18px}
-  .nav-links a{color:#424245;font-size:13px}
-  #menu{display:none;margin-left:auto;background:0;border:0;font-size:20px}
-  @media(max-width:720px){
-    #menu{display:block}
-    .nav-links{display:none;position:absolute;top:48px;left:0;right:0;flex-direction:column;padding:14px 22px 20px;background:rgba(255,255,255,.96);backdrop-filter:blur(16px)}
-    .nav-links.open{display:flex}
-  }
-  .hero{min-height:78vh;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 22px 56px;background:radial-gradient(1200px 500px at 70% -10%,rgba(180,210,255,.35),transparent 60%),linear-gradient(180deg,#f5f5f7 0%,#fff 70%)}
-  .hero-in{width:min(980px,100%);margin:0 auto;text-align:center}
-  .star{width:72px;height:72px;margin-bottom:14px;animation:breathe 4.2s ease-in-out infinite;filter:drop-shadow(0 8px 24px rgba(0,0,0,.12))}
-  @keyframes breathe{0%,100%{opacity:.45;transform:scale(.94)}50%{opacity:1;transform:scale(1)}}
-  .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-  h1{font-size:clamp(40px,7vw,64px);letter-spacing:-.04em;font-weight:600;margin:8px 0 0}
-  .lead{margin:12px auto 0;max-width:28em;font-size:21px;color:#3a3a3c}
-  .hero .cta{display:inline-block;margin-top:22px;background:#1d1d1f;color:#fff;border-radius:980px;padding:12px 20px;font-size:15px;transition:transform .2s ease}
-  .hero .cta:hover{transform:translateY(-1px)}
-  .wrap{width:min(980px,100%);margin:0 auto;padding:0 22px}
-  .band{padding:64px 0}
-  .band.gray{background:#f5f5f7}
-  h2{font-size:32px;letter-spacing:-.03em;margin:0 0 10px}
-  .sub{color:var(--muted);max-width:38em}
-  .glass{background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.7);box-shadow:0 8px 32px rgba(0,0,0,.06);border-radius:22px}
-  .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:28px}
-  @media(max-width:800px){.grid{grid-template-columns:1fr}}
-  .card{padding:24px;transition:transform .25s ease,box-shadow .25s}
-  .card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.08)}
-  .card em{display:block;font-style:normal;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-  .card h3{margin:0 0 8px;font-size:22px;letter-spacing:-.02em}
-  .card p{margin:0;color:#3a3a3c;font-size:16px}
-  .rise{animation:rise .7s ease both}
-  @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-  .proof{display:grid;gap:14px;margin-top:24px}
-  .proof article{padding:24px 26px}
-  .proof h3{margin:0 0 8px;font-size:20px}
-  .proof p{margin:0;color:#3a3a3c}
-  .steps{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;margin-top:24px}
-  @media(max-width:800px){.steps{grid-template-columns:1fr 1fr}}
-  @media(max-width:520px){.steps{grid-template-columns:1fr}}
-  .step{padding:20px}
-  .step b{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-  ul.ideas{margin:18px 0 0;padding:0;list-style:none}
-  ul.ideas li{padding:14px 0;border-bottom:1px solid var(--line);color:#3a3a3c}
-  ul.ideas li:first-child{border-top:1px solid var(--line)}
-  .cta-band{background:#f5f5f7;text-align:center;padding:72px 22px}
-  .cta-band .pill{display:inline-block;margin-top:18px;background:#1d1d1f;color:#fff;border-radius:980px;padding:12px 20px}
-  footer{padding:36px 22px 64px;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
-  .foot{width:min(980px,100%);margin:0 auto;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+:root{--ink:#1d1d1f;--muted:#6e6e73;--line:rgba(0,0,0,.08);--blue:#0066cc;--bg:#f5f5f7}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font:17px/1.47 -apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+a{color:var(--blue);text-decoration:none}
+.nav{position:fixed;inset:0 0 auto;z-index:30;height:48px;display:flex;align-items:center;background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--line)}
+.nav-inner{width:min(1040px,100%);margin:0 auto;padding:0 22px;display:flex;align-items:center;gap:18px}
+.brand{display:flex;align-items:center;gap:8px;color:var(--ink);font-weight:600}
+.brand img{width:22px;height:22px}
+.nav-links{margin-left:auto;display:flex;gap:16px;align-items:center}
+.nav-links a{color:#424245;font-size:13px}
+.nav-links .book{background:#1d1d1f;color:#fff!important;border-radius:980px;padding:7px 14px}
+#menu{display:none;margin-left:auto;background:0;border:0;font-size:20px}
+@media(max-width:760px){
+  #menu{display:block}
+  .nav-links{display:none;position:absolute;top:48px;left:0;right:0;flex-direction:column;padding:14px 22px 20px;background:rgba(255,255,255,.96)}
+  .nav-links.open{display:flex}
+}
+.hero{padding:110px 22px 48px;background:radial-gradient(1000px 420px at 75% -10%,rgba(180,210,255,.4),transparent 60%),linear-gradient(180deg,#f5f5f7,#fff 72%)}
+.hero-grid{width:min(1040px,100%);margin:0 auto;display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:center}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0}
+h1{font-size:clamp(36px,6vw,56px);letter-spacing:-.04em;font-weight:600;margin:8px 0 0}
+.lead{margin:12px 0 0;font-size:20px;color:#3a3a3c;max-width:28em}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.cta{display:inline-block;background:#1d1d1f;color:#fff;border-radius:980px;padding:12px 18px;font-size:15px}
+.cta.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.tools span{font-size:12px;border:1px solid var(--line);border-radius:980px;padding:6px 11px;color:#424245;background:#fff}
+.wrap{width:min(1040px,100%);margin:0 auto;padding:0 22px}
+.band{padding:64px 0}
+.band.gray{background:var(--bg)}
+h2{font-size:clamp(26px,4vw,34px);letter-spacing:-.03em;margin:0 0 10px}
+.sub{color:var(--muted);max-width:40em;margin:0}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:26px}
+@media(max-width:860px){.grid3{grid-template-columns:1fr}}
+.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:0 8px 28px rgba(0,0,0,.04)}
+.card em{display:block;font-style:normal;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.card h3{margin:0 0 8px;font-size:21px;letter-spacing:-.02em}
+.card p{margin:0;color:#3a3a3c;font-size:15px}
+.viz-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:14px;margin-top:24px}
+@media(max-width:900px){.viz-grid{grid-template-columns:1fr}}
+.viz-box{background:#0b0b0c;color:#f5f5f7;border-radius:22px;padding:18px;position:relative;overflow:hidden}
+.viz-box h3{margin:0 0 6px;font-size:16px;font-weight:600}
+.viz-box .hint{margin:0 0 12px;font-size:12px;color:#a1a1a6}
+#exp-svg{width:100%;height:220px;display:block}
+.dash-top{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.chip{font-size:11px;border-radius:980px;padding:5px 10px;border:1px solid rgba(255,255,255,.14);color:#d2d2d7;background:transparent;cursor:pointer}
+.chip.on{background:#f5f5f7;color:#111;border-color:#f5f5f7}
+.kpis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+@media(max-width:520px){.kpis{grid-template-columns:1fr}}
+.kpi{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:10px}
+.kpi b{display:block;font-size:11px;color:#86868b;font-weight:500}
+.kpi strong{display:block;margin-top:4px;font-size:20px;letter-spacing:-.03em}
+.kpi span{font-size:11px;color:#8bbf8a}
+.bars{display:flex;align-items:flex-end;gap:6px;height:90px;margin-top:14px}
+.bars i{flex:1;display:block;border-radius:6px 6px 2px 2px;background:linear-gradient(180deg,#7a9bb0,#e8c49a);opacity:.85}
+.proof{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+@media(max-width:800px){.proof{grid-template-columns:1fr}}
+.proof article{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}
+.proof h3{margin:0 0 8px;font-size:18px}
+.proof p{margin:0;color:#3a3a3c}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+@media(max-width:860px){.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.steps{grid-template-columns:1fr}}
+.step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}
+.step b{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.step p{margin:0;color:#3a3a3c;font-size:14px}
+.cta-band{background:var(--bg);text-align:center;padding:72px 22px}
+.cta-band .pill{display:inline-block;margin-top:18px;background:#1d1d1f;color:#fff;border-radius:980px;padding:12px 20px}
+footer{padding:36px 22px 64px;font-size:12px;color:var(--muted);border-top:1px solid var(--line)}
+.foot{width:min(1040px,100%);margin:0 auto;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 </style>
 </head>
 <body>
-<nav class="nav"><div class="nav-in">
+<nav class="nav"><div class="nav-inner">
   <a class="brand" href="../index.html"><img src="../assets/star.png" alt=""/>SEE, R</a>
   <button id="menu" type="button" aria-label="Menu">☰</button>
   <div class="nav-links" id="nav-links">
-    <a href="index.html">SEER Solutions</a>
-    <a href="../index.html">SEE, R</a>
-    <a href="mailto:ryanrsee@gmail.com">Contact</a>
+    <a href="#offers">Offers</a>
+    <a href="#proof">Results</a>
+    <a href="#path">How it works</a>
+    <a class="book" href="https://calendly.com/ryanrsee" target="_blank" rel="noopener">Book a free session</a>
   </div>
 </div></nav>
-<header class="hero">
-  <div class="hero-in rise">
-    <img class="star" src="../assets/star.png" alt=""/>
-    <p class="eyebrow">Kennesaw, Georgia · small and midsize business</p>
+
+<header class="hero"><div class="hero-grid">
+  <div>
+    <p class="eyebrow">Kennesaw, Georgia · midsize &amp; PE-backed teams</p>
     <h1>SEER Solutions</h1>
-    <p class="lead">Large-scale analytics. Dashboards built through the full ETL path. AI in the data model. Coaching so the people can run it. KPIs you and we both champion.</p>
-    <a class="cta" href="mailto:ryanrsee@gmail.com?subject=SEER%20Solutions%20%E2%80%94%20free%20consult">Start with a free consult</a>
+    <p class="lead">Data expert who puts AI to work — analytics, implementation, and coaching that move KPIs.</p>
+    <div class="cta-row">
+      <a class="cta" href="https://calendly.com/ryanrsee" target="_blank" rel="noopener">Book a free strategy session</a>
+      <a class="cta ghost" href="mailto:ryanrsee@gmail.com?subject=SEER%20Solutions">Email Ryan</a>
+    </div>
+    <div class="tools" aria-label="Tools">
+      <span>Power BI</span><span>Tableau</span><span>SQL</span><span>Azure</span><span>Salesforce</span><span>HubSpot</span><span>Jira</span>
+    </div>
   </div>
-</header>
-<section class="band"><div class="wrap">
-  <p class="eyebrow">What this arm is</p>
-  <h2>The business door of SEE, R</h2>
-  <p class="sub">SEER Solutions is counsel that stays inside the work. Not a slide deck. Not a junior bench. The person you meet does the work. You keep the files. You keep the scoreboard.</p>
-  <div class="grid">
-    <article class="glass card rise">
-      <em>Analytics</em>
-      <h3>Dashboards with an ETL spine</h3>
-      <p>Large-scale analytics and dashboard craft: extract, model, refresh, then the picture. Tableau, SQL, Azure, Power BI — in service of the number, not a stack pitch.</p>
-    </article>
-    <article class="glass card rise">
-      <em>Integration</em>
-      <h3>AI inside the data model</h3>
-      <p>The model sits next to the system of record. Definitions first. Grain named in writing. If two reports disagree, that is the job.</p>
-    </article>
-    <article class="glass card rise">
-      <em>Coaching</em>
-      <h3>The tool without an owner’s manual</h3>
-      <p>Most teams were handed a powerful instrument and no technique. I teach how to ask, how to check the source, how to refuse a confident wrong answer — while we build, or on the work already on the desk.</p>
-    </article>
+  <div class="viz-box">
+    <h3>Exponential tech · human week</h3>
+    <p class="hint">Gold = machine curve · blue = human pace · star = the gap we work in</p>
+    <svg id="exp-svg" viewBox="0 0 520 220" role="img" aria-label="Animated exponential curve with star">
+      <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0%" stop-color="#e8c49a"/><stop offset="100%" stop-color="#fff1d6"/></linearGradient></defs>
+      <line x1="36" y1="20" x2="36" y2="190" stroke="rgba(255,255,255,.12)"/>
+      <line x1="36" y1="190" x2="500" y2="190" stroke="rgba(255,255,255,.12)"/>
+      <path d="M36 165 L500 145" fill="none" stroke="#7a9bb0" stroke-width="2.5"/>
+      <path d="M36 165 C 160 163, 250 150, 320 110 S 430 35, 500 18" fill="none" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round"/>
+      <image href="../assets/star.png" id="star" x="302" y="88" width="28" height="28"/>
+    </svg>
+  </div>
+</div></header>
+
+<section class="band" id="offers"><div class="wrap">
+  <p class="eyebrow">One firm · three ways to hire me</p>
+  <h2>What SEER Solutions sells</h2>
+  <p class="sub">Not a chatbot retainer. Not a junior bench. You hire the person who does the work — for a build, for coaching, or for analytics leadership can read in one minute.</p>
+  <div class="grid3">
+    <article class="card"><em>Implementation</em><h3>I build it with you</h3><p>AI and analytics in your stack: agents, models, path to the scoreboard. Healthcare and regulated data when PHI boundaries are clear. You keep the files.</p></article>
+    <article class="card"><em>AI coaching</em><h3>Best practices, not panic</h3><p>For leaders who feel behind or only hear doomer noise. How operators actually use these tools: maximum impact, minimal token waste, clear ownership of the number.</p></article>
+    <article class="card"><em>Analytics</em><h3>See clearly, then move</h3><p>Large-scale / big-data analytics and dashboard craft. Extract → model → refresh → visualize → story. Power BI first; Tableau when it fits. Strategy before pretty charts.</p></article>
   </div>
 </div></section>
-<section class="band gray"><div class="wrap">
-  <p class="eyebrow">Work you can inspect</p>
-  <h2>Two public-safe results</h2>
-  <p class="sub">No employer names. No client names. The pattern is the point.</p>
+
+<section class="band gray" id="viz"><div class="wrap">
+  <p class="eyebrow">See the shape</p>
+  <h2>Signal before spend</h2>
+  <p class="sub">Mock scoreboard — click a lens. On a real engagement we build this on your definitions and your system of record.</p>
+  <div class="viz-grid">
+    <div class="viz-box">
+      <h3>Mock KPI board</h3>
+      <p class="hint">Demo only · not client data</p>
+      <div class="dash-top" id="chips">
+        <button type="button" class="chip on" data-view="rev">Revenue impact</button>
+        <button type="button" class="chip" data-view="ops">Ops cycle</button>
+        <button type="button" class="chip" data-view="ai">AI assist</button>
+      </div>
+      <div class="kpis" id="kpis"></div>
+      <div class="bars" id="bars" aria-hidden="true"></div>
+    </div>
+    <div>
+      <h2 style="font-size:24px">Why KPIs first</h2>
+      <p class="sub">Before any build, we agree what “better” means in numbers you trust — or we stand those numbers up. Then the work gets a scorecard. Next dollar follows measured lift, not a vague retainer.</p>
+      <div class="tools" style="margin-top:20px">
+        <span>Healthcare / big data</span><span>PHI-aware</span><span>Fixed-scope proposals</span>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="band" id="proof"><div class="wrap">
+  <p class="eyebrow">Public-safe patterns</p>
+  <h2>Results without naming employers</h2>
+  <p class="sub">Patterns I have run. Details stay private. The method is what you buy.</p>
   <div class="proof">
-    <article class="glass">
-      <h3>MultiValue to Power BI</h3>
-      <p>Primary point of contact on a platform migration: ETL pipelines, schema strategy, and the language data engineers actually speak. Curated dashboards that told a fuller story. In the current phase, analyst effort on that work dropped by about half. Manual extracts and pivot tables fell by orders of magnitude.</p>
-    </article>
-    <article class="glass">
-      <h3>Hours, not weeks, on a hard model</h3>
-      <p>Built an AI-assisted model over a large, messy dataset. Work that had taken senior developers weeks came back in about thirty minutes. That method is becoming teachable practice — not a party trick. The point is a repeatable way to ask, check, and ship.</p>
-    </article>
+    <article><h3>Voice → hard SQL, weeks to hours</h3><p>Discovery files and architect pairing so complex warehouse questions could be asked in plain language. Senior developer time recovered in weeks across a few days of use — without publishing the client stack.</p></article>
+    <article><h3>Salesforce analytics agent</h3><p>Automated intake and routing for analytics requests inside Salesforce so the queue did not die in inboxes. Humans kept approval and definitions; the agent handled the grind.</p></article>
   </div>
 </div></section>
-<section class="band"><div class="wrap">
-  <p class="eyebrow">How an engagement runs</p>
-  <h2>You can see movement before you scale spend</h2>
-  <p class="sub">Starts with a free consult. We write the KPIs together. We measure against them. The next dollar follows the scoreboard — not a retainer that hopes.</p>
+
+<section class="band gray" id="path"><div class="wrap">
+  <p class="eyebrow">Engagement</p>
+  <h2>Free strategy session → scoreboard → build</h2>
+  <p class="sub">Low barrier to start. High bar on measurement. If we discuss a project, we write the indicators before the statement of work.</p>
   <div class="steps">
-    <div class="glass step"><b>01</b><p>Free consult. One question the owner will still stand behind next month.</p></div>
-    <div class="glass step"><b>02</b><p>KPIs agreed in writing: the number, the grain, the system of record, what “good” looks like.</p></div>
-    <div class="glass step"><b>03</b><p>Do the work next to your people. Coaching is in the room, not a handoff memo.</p></div>
-    <div class="glass step"><b>04</b><p>Read the scoreboard together. Expand only if the indicators moved.</p></div>
+    <div class="step"><b>01 · Session</b><p>Free strategy consult (Calendly). One business question worth solving.</p></div>
+    <div class="step"><b>02 · KPIs</b><p>Metrics, grain, source, and what good looks like in 30/90 days.</p></div>
+    <div class="step"><b>03 · Work</b><p>Implementation, coaching, or analytics — beside your people. You keep the artifacts.</p></div>
+    <div class="step"><b>04 · Proof</b><p>Read the scoreboard together. Expand when net impact is visible.</p></div>
   </div>
 </div></section>
-<section class="band gray"><div class="wrap">
-  <p class="eyebrow">How I actually work with AI</p>
-  <h2>Practice, not fluff</h2>
-  <ul class="ideas">
-    <li>Write the definition before you draw the dashboard.</li>
-    <li>Name the system of record. If two numbers disagree, stop and reconcile. Do not average them.</li>
-    <li>The model is staff on demand. It is not a counselor and it does not own the number.</li>
-    <li>Load the smallest true brief. Date every fact. Label assumptions out loud.</li>
-    <li>Teach the technique in the same week you build the thing. Otherwise the tool leaves with the vendor.</li>
-    <li>A confident wrong answer costs more than a slow right one. Gates before speed.</li>
-  </ul>
-</div></section>
+
 <section class="band"><div class="wrap">
-  <p class="eyebrow">Who does the work</p>
+  <p class="eyebrow">Who you hire</p>
   <h2>Ryan See</h2>
-  <p class="sub">Founder, SEER Solutions. Senior leadership in operations and analytics across private equity–backed companies — including director and VP seats. Client success, revenue-cycle operations, and data. Tableau, SQL, Azure, Power BI. Kennesaw, Georgia. That is where the LLC will sit.</p>
+  <p class="sub">Founder, SEER Solutions. Senior operations and analytics leadership across private equity–backed companies. Healthcare analytics, systems, storytelling with data. Power BI, SQL, Azure, Tableau, Salesforce. Based in Kennesaw, Georgia — where the LLC will sit.</p>
 </div></section>
+
 <section class="cta-band">
   <p class="eyebrow">Kennesaw, Georgia</p>
-  <h2>Start with a free consult</h2>
-  <p class="sub" style="margin:10px auto 0">We write the KPIs. We measure. You see the board before you spend more.</p>
-  <a class="pill" href="mailto:ryanrsee@gmail.com?subject=SEER%20Solutions%20%E2%80%94%20free%20consult">ryanrsee@gmail.com</a>
+  <h2>Book the free strategy session</h2>
+  <p class="sub" style="margin:10px auto 0;max-width:28em">We set the KPIs. We measure. You see the board before you scale spend.</p>
+  <a class="pill" href="https://calendly.com/ryanrsee" target="_blank" rel="noopener">calendly.com/ryanrsee</a>
 </section>
+
 <footer><div class="foot">
   <span>SEER Solutions · Kennesaw, Georgia</span>
   <span><a href="../index.html">SEE, R</a> · <a href="mailto:ryanrsee@gmail.com">ryanrsee@gmail.com</a></span>
 </div></footer>
 <script>
-  const b=document.getElementById('menu'),n=document.getElementById('nav-links');
-  if(b)b.onclick=function(){n.classList.toggle('open');};
+(function(){
+  const b=document.getElementById('menu'), n=document.getElementById('nav-links');
+  if(b) b.onclick=function(){n.classList.toggle('open');};
+  const star=document.getElementById('star'); let t0=null;
+  function pulse(ts){
+    if(!t0) t0=ts;
+    const p=((ts-t0)%4200)/4200;
+    const o=0.35+0.65*(0.5-0.5*Math.cos(p*Math.PI*2));
+    const s=0.92+0.08*(0.5-0.5*Math.cos(p*Math.PI*2));
+    if(star){star.setAttribute('opacity',o); star.setAttribute('transform','translate(316 102) scale('+s+') translate(-316 -102)');}
+    requestAnimationFrame(pulse);
+  }
+  requestAnimationFrame(pulse);
+  const data={
+    rev:{kpis:[['Pipeline lift','+18%','vs prior quarter'],['Revenue / FTE','$412k','definition locked'],['Forecast miss','3.1%','grain: week']],bars:[40,55,48,62,70,78,85]},
+    ops:{kpis:[['Cycle time','-27%','request → answer'],['Manual pulls','-81%','hours / month'],['Refresh SLA','99.2%','daily board']],bars:[70,66,60,52,44,38,30]},
+    ai:{kpis:[['Token / win','↓ 64%','same output'],['Human gate','100%','numbers owned'],['Reuse rate','4.2×','prompt → playbook']],bars:[20,28,35,42,55,60,72]}
+  };
+  const kpis=document.getElementById('kpis'), bars=document.getElementById('bars'), chips=document.getElementById('chips');
+  function render(view){
+    const d=data[view];
+    kpis.innerHTML=d.kpis.map(function(x){return '<div class="kpi"><b>'+x[0]+'</b><strong>'+x[1]+'</strong><span>'+x[2]+'</span></div>';}).join('');
+    bars.innerHTML=d.bars.map(function(h){return '<i style="height:'+h+'%"></i>';}).join('');
+  }
+  chips.addEventListener('click',function(e){
+    const btn=e.target.closest('.chip'); if(!btn) return;
+    chips.querySelectorAll('.chip').forEach(function(c){c.classList.remove('on');});
+    btn.classList.add('on'); render(btn.dataset.view);
+  });
+  render('rev');
+})();
 </script>
 </body>
 </html>
