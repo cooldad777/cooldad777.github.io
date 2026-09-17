@@ -9,26 +9,31 @@
 <link rel="icon" href="assets/favicon.png"/>
 <link rel="stylesheet" href="assets/apple.css"/>
 <style>
-  .brand img.nav-star{height:18px;filter:brightness(10);transform-origin:50% 80%;will-change:transform,opacity,filter}
-  .brand img.nav-star.lift{animation:star-away 2.8s cubic-bezier(.22,1,.36,1) forwards}
+  .brand img.nav-star{
+    height:18px;filter:brightness(10);
+    transform-origin:50% 90%;
+    will-change:transform,opacity,filter;
+  }
+  .brand img.nav-star.away{
+    animation:star-away 2.6s cubic-bezier(.22,1,.36,1) forwards;
+  }
   @keyframes star-away{
     0%{transform:translateY(0) scale(1);opacity:1;filter:brightness(10) blur(0)}
-    40%{transform:translateY(-18px) scale(.72);opacity:.85;filter:brightness(13) blur(.2px)}
-    100%{transform:translateY(-56px) scale(.18);opacity:0;filter:brightness(18) blur(1.2px)}
+    55%{transform:translateY(-22px) scale(.55);opacity:.7;filter:brightness(14) blur(.3px)}
+    100%{transform:translateY(-64px) scale(.12);opacity:0;filter:brightness(18) blur(1.4px)}
   }
-  .listen-bar{background:#000;color:#f5f5f7;padding:18px 16px 10px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06)}
+  .listen-bar{background:#000;color:#f5f5f7;padding:18px 16px 12px;text-align:center;border-bottom:1px solid rgba(255,255,255,.06)}
   .listen-bar .row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
   .listen-bar button{border-radius:980px;padding:9px 16px;font:600 13px/1 -apple-system,BlinkMacSystemFont,sans-serif;cursor:pointer}
   #sp-play{background:#f5f5f7;color:#111;border:0}
   #sp-next,#sp-shuffle{background:transparent;color:#f5f5f7;border:1px solid rgba(255,255,255,.22)}
-  #sp-label{margin:0 0 8px;font-size:12px;color:#a1a1a6}
+  #sp-label{margin:0 0 8px;font-size:12px;color:#a1a1a6;min-height:1em}
   #sp-frame{border:0;border-radius:12px;width:min(420px,100%);height:152px;background:#121212}
   .hero{
-    --hero-img:url('assets/forest.jpg');
     min-height:92vh;position:relative;overflow:hidden;
     background-image:linear-gradient(180deg,rgba(0,0,0,.22),rgba(0,0,0,.58)),url('assets/forest.jpg');
     background-size:cover;background-position:center 28%;
-    transition:filter .2s linear;
+    justify-content:center;
   }
   .hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:#fff;opacity:var(--wash,0)}
   .hero{filter:grayscale(var(--gray,0))}
@@ -44,13 +49,13 @@
   .xing .sub{margin:12px auto 0;max-width:36em;font-size:18px;color:#a1a1a6}
   .chart{max-width:920px;margin:28px auto 0}
   .chart svg{width:100%;height:auto;display:block}
-  .key{display:flex;justify-content:center;gap:18px;margin-top:12px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#86868b}
+  .key{display:flex;justify-content:center;gap:18px;margin-top:12px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#86868b;flex-wrap:wrap}
   .key i{display:inline-block;width:16px;height:2px;margin-right:6px;vertical-align:middle}
 </style>
 </head>
 <body>
 <nav class="nav"><div class="nav-in">
-  <a class="brand" href="index.html" id="brand-star"><img class="nav-star" id="nav-star" src="assets/star.png" alt=""/>SEE, R</a>
+  <a class="brand" href="index.html" id="brand"><img class="nav-star" id="nav-star" src="assets/star.png" alt=""/>SEE, R</a>
   <button id="menu" aria-label="Menu">☰</button>
   <div class="nav-links" id="nav-links">
     <a href="seersolutions/index.html">SEER Solutions</a>
@@ -91,17 +96,13 @@
     <line x1="70" y1="240" x2="880" y2="240" stroke="rgba(255,255,255,.12)"/>
     <text x="78" y="54" fill="#86868b" font-size="11">capability</text>
     <text x="820" y="258" fill="#86868b" font-size="11">time</text>
-    <!-- human ~linear -->
     <path d="M70 210 L880 168" fill="none" stroke="#7a9bb0" stroke-width="3" stroke-linecap="round"/>
-    <!-- machine exponential -->
-    <path id="machine" d="M70 210 C 220 208, 360 198, 480 150 S 720 48, 880 28" fill="none" stroke="url(#mach)" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1400" stroke-dashoffset="1400">
+    <path d="M70 210 C 220 208, 360 198, 480 150 S 720 48, 880 28" fill="none" stroke="url(#mach)" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1400" stroke-dashoffset="1400">
       <animate attributeName="stroke-dashoffset" from="1400" to="0" dur="4.8s" fill="freeze"/>
     </path>
-    <image id="gap-star" href="assets/star.png" x="468" y="128" width="30" height="30">
-      <animate attributeName="opacity" values=".35;1;.35" dur="3.6s" repeatCount="indefinite"/>
-    </image>
+    <image id="gap-star" href="assets/star.png" x="468" y="128" width="30" height="30"/>
   </svg></div>
-  <div class="key"><span><i style="background:#7a9bb0"></i>Human pace</span><span><i style="background:#e8c49a"></i>Machine curve</span><span>★ gap</span></div>
+  <div class="key"><span><i style="background:#7a9bb0"></i>Human pace</span><span><i style="background:#e8c49a"></i>Machine curve</span><span>★ the gap</span></div>
 </section>
 
 <section class="unit gray" id="work">
@@ -141,39 +142,32 @@
   <a href="mailto:ryanrsee@gmail.com">ryanrsee@gmail.com</a>
 </div><p>Copyright © 2026 SEE, R. Kennesaw, Georgia.</p></div></footer>
 <script>
-const b=document.getElementById('menu'),n=document.getElementById('nav-links');
-if(b)b.onclick=function(){n.classList.toggle('open');};
-// nav star: Apple-smooth recede on click, then reset
+document.getElementById('menu').onclick=function(){document.getElementById('nav-links').classList.toggle('open');};
 (function(){
-  const img=document.getElementById('nav-star');
-  const link=document.getElementById('brand-star');
-  if(!img||!link) return;
-  link.addEventListener('click', function(e){
-    if(img.classList.contains('lift')) return;
+  var img=document.getElementById('nav-star'), brand=document.getElementById('brand');
+  brand.addEventListener('click', function(e){
+    if(img.classList.contains('away')) return;
     e.preventDefault();
-    img.classList.add('lift');
-    setTimeout(function(){ img.classList.remove('lift'); location.href='index.html'; }, 2800);
+    img.classList.add('away');
+    setTimeout(function(){ img.classList.remove('away'); location.href='index.html'; }, 2600);
   });
 })();
-const hero=document.getElementById('hero');
+var hero=document.getElementById('hero');
 function wash(){
-  const y=Math.min(1, window.scrollY/(window.innerHeight*0.9));
-  // ease: wash accelerates then settles
-  const e=y*y*(3-2*y);
-  hero.style.setProperty('--gray', (e*1).toFixed(3));
+  var y=Math.min(1, window.scrollY/(window.innerHeight*0.9));
+  var e=y*y*(3-2*y);
+  hero.style.setProperty('--gray', e.toFixed(3));
   hero.style.setProperty('--wash', (e*0.62).toFixed(3));
 }
 window.addEventListener('scroll', wash, {passive:true}); wash();
-// gap star drift
 (function(){
-  const star=document.getElementById('gap-star'); if(!star) return;
-  let t0=null;
+  var star=document.getElementById('gap-star'); if(!star) return;
+  var t0=null;
   function tick(ts){
     if(!t0) t0=ts;
-    const p=((ts-t0)%5200)/5200;
-    const s=Math.sin(p*Math.PI*2);
-    // exponential-ish vertical ease: more time near the top
-    const lift=(Math.pow(0.5+0.5*s, 1.7));
+    var p=((ts-t0)%5200)/5200;
+    var s=Math.sin(p*Math.PI*2);
+    var lift=Math.pow(0.5+0.5*s, 1.7);
     star.setAttribute('x', String(468+s*10));
     star.setAttribute('y', String(148 - lift*36));
     star.setAttribute('width', String(30 - lift*10));
@@ -182,30 +176,24 @@ window.addEventListener('scroll', wash, {passive:true}); wash();
   }
   requestAnimationFrame(tick);
 })();
-// Spotify
 (function(){
-  var PRIMARIES=["3WJWSZJHEZ6mjBUb9kyX6g","0bcqlXTDN4fcZx2viQITW1"];
-  var MORE=["4zAIwci5B82d59OhGOkJRl","5QxYahCQ0yc7AX7EQQc5d6"];
-  var NAMES={"3WJWSZJHEZ6mjBUb9kyX6g":"Primary pick","0bcqlXTDN4fcZx2viQITW1":"Bonobo","4zAIwci5B82d59OhGOkJRl":"Track","5QxYahCQ0yc7AX7EQQc5d6":"Track"};
+  var tracks=[{id:"2lJ4d8MCT6ZlDRHKJ1br14",name:"Bonobo — Cirrus"},{id:"5DAjrJqXqYtgr67pVhmUeR",name:"Bonobo — Kerala"},{id:"15IVKRhTPXp4lKtwl568KS",name:"Bonobo — Surface"},{id:"0bcqlXTDN4fcZx2viQITW1",name:"Can't You See"}];
   function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t;} return a;}
-  var start=PRIMARIES[Math.floor(Math.random()*PRIMARIES.length)];
-  var rest=PRIMARIES.concat(MORE).filter(function(id){return id!==start;});
-  shuffle(rest);
-  var queue=[start].concat(rest), i=0;
+  var queue=shuffle(tracks.slice()), i=0;
   var frame=document.getElementById('sp-frame'), label=document.getElementById('sp-label');
   function src(id,auto){return 'https://open.spotify.com/embed/track/'+id+'?utm_source=generator'+(auto?'&autoplay=1':'');}
   function show(auto){
-    var id=queue[i];
-    label.textContent=(NAMES[id]||'Track')+' · '+(i+1)+'/'+queue.length;
-    frame.src=src(id,!!auto);
+    var t=queue[i];
+    label.textContent=t.name+' · '+(i+1)+'/'+queue.length;
+    frame.src=src(t.id, !!auto);
   }
   show(false);
   document.getElementById('sp-play').onclick=function(){show(true);};
   document.getElementById('sp-next').onclick=function(){i=(i+1)%queue.length; show(true);};
   document.getElementById('sp-shuffle').onclick=function(){
-    var cur=queue[i]; var pool=queue.slice(); shuffle(pool);
-    if(pool[0]===cur && pool.length>1){var t=pool[0]; pool[0]=pool[1]; pool[1]=t;}
-    queue=pool; i=0; show(true);
+    var cur=queue[i].id; queue=shuffle(tracks.slice());
+    if(queue[0].id===cur && queue.length>1){var t=queue[0]; queue[0]=queue[1]; queue[1]=t;}
+    i=0; show(true);
   };
 })();
 </script>
