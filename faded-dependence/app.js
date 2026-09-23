@@ -1,12 +1,14 @@
 /**
- * Faded Dependence — session timer → fade → pattern → sleep lock
+ * Faded Dependence — allotted screen time → fade → pattern → hard lock → rest
  * Lightweight for fragile iPhone Safari / Add to Home Screen.
+ * Honest limit: a web app cannot OS-lock iPhone (Home / app switch still work).
  */
 (function () {
   "use strict";
 
   const STORAGE_KEY = "faded-dependence-settings-v1";
   const CIRC = 2 * Math.PI * 88;
+  const LOCK_MS = 60 * 1000;
 
   const DEFAULTS = {
     defaultMinutes: 5,
@@ -31,6 +33,7 @@
     viewIdle: document.getElementById("view-idle"),
     viewActive: document.getElementById("view-active"),
     viewPattern: document.getElementById("view-pattern"),
+    viewLock: document.getElementById("view-lock"),
     viewSleep: document.getElementById("view-sleep"),
     countdown: document.getElementById("countdown"),
     phaseLabel: document.getElementById("phase-label"),
@@ -39,6 +42,9 @@
     patternSub: document.getElementById("pattern-sub"),
     patternHeading: document.getElementById("pattern-heading"),
     patternTimer: document.getElementById("pattern-timer"),
+    lockCountdown: document.getElementById("lock-countdown"),
+    lockRingProgress: document.getElementById("lock-ring-progress"),
+    lockMessage: document.getElementById("lock-message"),
     sleepClock: document.getElementById("sleep-clock"),
     settingsSheet: document.getElementById("settings-sheet"),
     settingsBackdrop: document.getElementById("settings-backdrop"),
@@ -50,9 +56,11 @@
     setVibrate: document.getElementById("set-vibrate"),
     setReduced: document.getElementById("set-reduced"),
     toast: document.getElementById("toast"),
+    stars: document.getElementById("stars"),
   };
 
   el.ringProgress.style.strokeDasharray = String(CIRC);
+  el.lockRingProgress.style.strokeDasharray = String(CIRC);
 
   let sessionMinutes = settings.defaultMinutes;
   let remainingMs = 0;
@@ -71,6 +79,14 @@
   let pointerActive = false;
   let toastTimer = 0;
   let patternHandlers = null;
+  let lockRemainingMs = 0;
+  let lockTotalMs = LOCK_MS;
+  let lockRaf = 0;
+  let lockLastTick = 0;
+  let starsCtx = null;
+  let stars = [];
+  let starsRaf = 0;
+  let starsRunning = false;
 
   function loadSettings() {
     try {
@@ -121,8 +137,19 @@
     el.viewIdle.hidden = name !== "idle";
     el.viewActive.hidden = name !== "active";
     el.viewPattern.hidden = name !== "pattern";
+    el.viewLock.hidden = name !== "lock";
     el.viewSleep.hidden = name !== "sleep";
     el.app.dataset.state = name === "active" ? "active" : name;
+
+    if (name === "lock" || name === "sleep") {
+      startStars();
+    } else {
+      stopStars();
+    }
+
+    if (name === "lock") {
+      closeSettings();
+    }
   }
 
   function resetFadeVars() {
@@ -134,11 +161,13 @@
   }
 
   function applyFadeProgress(t) {
+    // Richer fade: opacity, blur, desat, vignette via rAF
     var reduced = prefersReduced();
-    var opacity = 1 - t * 0.72;
-    var blur = reduced ? 0 : t * 6;
-    var sat = 1 - t * 0.85;
-    var vig = t * 0.75;
+    var ease = t * t * (3 - 2 * t); // smoothstep
+    var opacity = 1 - ease * 0.78;
+    var blur = reduced ? 0 : ease * 8;
+    var sat = 1 - ease * 0.92;
+    var vig = ease * 0.82;
     var root = document.documentElement;
     root.style.setProperty("--fade-opacity", String(opacity));
     root.style.setProperty("--fade-blur", blur.toFixed(2) + "px");
@@ -202,9 +231,9 @@
       var t = 1 - remainingMs / leadMs;
       applyFadeProgress(Math.min(1, Math.max(0, t)));
     } else if (remainingMs > leadMs) {
-      phase = "focused";
-      el.app.dataset.phase = "focused";
-      el.phaseLabel.textContent = "Focused";
+      phase = "screentime";
+      el.app.dataset.phase = "screentime";
+      el.phaseLabel.textContent = "Screen time";
       resetFadeVars();
     }
 
@@ -222,6 +251,7 @@
 
   function startSession(minutes) {
     cancelAnimationFrame(rafId);
+    cancelAnimationFrame(lockRaf);
     clearPattern();
     stopSleepClock();
     resetFadeVars();
@@ -230,20 +260,13 @@
     totalMs = minutes * 60 * 1000;
     remainingMs = totalMs;
     lastTick = 0;
-    phase = "focused";
-    el.app.dataset.phase = "focused";
-    el.phaseLabel.textContent = "Focused";
+    phase = "screentime";
+    el.app.dataset.phase = "screentime";
+    el.phaseLabel.textContent = "Screen time";
     setView("active");
     updateRing();
     vibrate(20);
     rafId = requestAnimationFrame(tick);
-  }
-
-  function endSessionToSleep() {
-    cancelAnimationFrame(rafId);
-    rafId = 0;
-    clearPattern();
-    enterSleepLock();
   }
 
   function clearPattern() {
@@ -295,12 +318,21 @@
     var trailSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     trailSvg.classList.add("pattern-trail");
     trailSvg.setAttribute("viewBox", "0 0 " + size + " " + size);
+    // Soft glow underlay
+    var glowPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    glowPath.setAttribute("fill", "none");
+    glowPath.setAttribute("stroke", "rgba(126,184,255,0.2)");
+    glowPath.setAttribute("stroke-width", "8");
+    glowPath.setAttribute("stroke-linecap", "round");
+    glowPath.setAttribute("stroke-linejoin", "round");
     trailPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
     trailPath.setAttribute("fill", "none");
-    trailPath.setAttribute("stroke", "rgba(126,184,255,0.35)");
+    trailPath.setAttribute("stroke", "rgba(126,184,255,0.75)");
     trailPath.setAttribute("stroke-width", "3");
     trailPath.setAttribute("stroke-linecap", "round");
     trailPath.setAttribute("stroke-linejoin", "round");
+    trailPath._glow = glowPath;
+    trailSvg.appendChild(glowPath);
     trailSvg.appendChild(trailPath);
     canvas.appendChild(trailSvg);
 
@@ -324,7 +356,7 @@
     var rect = el.patternCanvas.getBoundingClientRect();
     var x = clientX - rect.left;
     var y = clientY - rect.top;
-    return Math.hypot(x - node.x, y - node.y) <= 32;
+    return Math.hypot(x - node.x, y - node.y) <= 34;
   }
 
   function updateTrail(clientX, clientY) {
@@ -339,6 +371,7 @@
     }
     d += "L" + x + " " + y;
     trailPath.setAttribute("d", d);
+    if (trailPath._glow) trailPath._glow.setAttribute("d", d);
   }
 
   function finalizeTrail() {
@@ -348,7 +381,9 @@
       var n = patternNodes[i];
       d += (i === 0 ? "M" : "L") + n.x + " " + n.y + " ";
     }
-    trailPath.setAttribute("d", d.trim());
+    d = d.trim();
+    trailPath.setAttribute("d", d);
+    if (trailPath._glow) trailPath._glow.setAttribute("d", d);
   }
 
   function onNodeReached(idx) {
@@ -428,11 +463,11 @@
     setView("pattern");
 
     if (mode === "unlock") {
-      el.patternHeading.textContent = "Unlock session?";
-      el.patternSub.textContent = "Trace the glowing path to start again.";
+      el.patternHeading.textContent = "Start again?";
+      el.patternSub.textContent = "Trace the path to unlock more screen time — or put it down.";
     } else {
-      el.patternHeading.textContent = "Stay awake?";
-      el.patternSub.textContent = "Trace the glowing path — slowly, in order.";
+      el.patternHeading.textContent = "Need more screen time?";
+      el.patternSub.textContent = "Trace the path to unlock more — or put it down.";
     }
 
     requestAnimationFrame(function () {
@@ -452,16 +487,16 @@
     if (mode === "unlock") {
       resetFadeVars();
       startSession(sessionMinutes);
-      showToast("Session started");
+      showToast("Screen time started");
       return;
     }
     var bonus = settings.bonusMinutes;
     remainingMs = bonus * 60 * 1000;
     totalMs = remainingMs;
     lastTick = 0;
-    phase = "focused";
-    el.app.dataset.phase = "focused";
-    el.phaseLabel.textContent = "Revived";
+    phase = "screentime";
+    el.app.dataset.phase = "screentime";
+    el.phaseLabel.textContent = "More time";
     resetFadeVars();
     el.app.classList.add("is-reviving");
     setView("active");
@@ -469,8 +504,8 @@
     showToast("+" + bonus + " min — earned");
     setTimeout(function () {
       el.app.classList.remove("is-reviving");
-      if (phase === "focused" || phase === "fading") {
-        el.phaseLabel.textContent = phase === "fading" ? "Fading" : "Focused";
+      if (phase === "screentime" || phase === "fading") {
+        el.phaseLabel.textContent = phase === "fading" ? "Fading" : "Screen time";
       }
     }, 1600);
     rafId = requestAnimationFrame(tick);
@@ -478,7 +513,71 @@
 
   function onPatternFail() {
     clearPattern();
-    enterSleepLock();
+    enterHardLock();
+  }
+
+  /* ——— 1-minute hard lock ——— */
+  function enterHardLock() {
+    clearPattern();
+    cancelAnimationFrame(rafId);
+    rafId = 0;
+    cancelAnimationFrame(lockRaf);
+    stopSleepClock();
+    closeSettings();
+
+    phase = "lock";
+    lockTotalMs = LOCK_MS;
+    lockRemainingMs = LOCK_MS;
+    lockLastTick = 0;
+    resetFadeVars();
+    document.documentElement.style.setProperty("--vignette", "0.88");
+    setView("lock");
+    el.app.dataset.state = "lock";
+    el.app.dataset.phase = "lock";
+    updateLockUI();
+    vibrate([80, 40, 80]);
+    lockRaf = requestAnimationFrame(lockTick);
+  }
+
+  function updateLockUI() {
+    var p = lockTotalMs > 0 ? lockRemainingMs / lockTotalMs : 0;
+    el.lockRingProgress.style.strokeDashoffset = String(CIRC * (1 - p));
+    el.lockCountdown.textContent = formatTime(lockRemainingMs);
+    el.lockCountdown.setAttribute("datetime", "PT" + Math.ceil(lockRemainingMs / 1000) + "S");
+  }
+
+  function lockTick(now) {
+    if (!lockLastTick) lockLastTick = now;
+    var dt = now - lockLastTick;
+    lockLastTick = now;
+    lockRemainingMs = Math.max(0, lockRemainingMs - dt);
+    updateLockUI();
+
+    if (lockRemainingMs <= 0) {
+      cancelAnimationFrame(lockRaf);
+      lockRaf = 0;
+      enterRest();
+      return;
+    }
+    lockRaf = requestAnimationFrame(lockTick);
+  }
+
+  function enterRest() {
+    cancelAnimationFrame(lockRaf);
+    lockRaf = 0;
+    clearPattern();
+    cancelAnimationFrame(rafId);
+    rafId = 0;
+    phase = "sleep";
+    resetFadeVars();
+    document.documentElement.style.setProperty("--vignette", "0.55");
+    setView("sleep");
+    el.app.dataset.state = "sleep";
+    el.app.dataset.phase = "sleep";
+    updateSleepClock();
+    stopSleepClock();
+    sleepClockId = setInterval(updateSleepClock, 1000);
+    vibrate([40]);
   }
 
   function updateSleepClock() {
@@ -490,21 +589,6 @@
     el.sleepClock.setAttribute("datetime", now.toISOString());
   }
 
-  function enterSleepLock() {
-    clearPattern();
-    cancelAnimationFrame(rafId);
-    rafId = 0;
-    phase = "sleep";
-    resetFadeVars();
-    document.documentElement.style.setProperty("--vignette", "0.55");
-    setView("sleep");
-    el.app.dataset.state = "sleep";
-    updateSleepClock();
-    stopSleepClock();
-    sleepClockId = setInterval(updateSleepClock, 1000);
-    vibrate([80]);
-  }
-
   function stopSleepClock() {
     if (sleepClockId) {
       clearInterval(sleepClockId);
@@ -512,7 +596,87 @@
     }
   }
 
+  /* ——— Starfield (tiny canvas; skipped when reduced motion) ——— */
+  function initStars() {
+    if (!el.stars) return;
+    starsCtx = el.stars.getContext("2d");
+    resizeStars();
+  }
+
+  function resizeStars() {
+    if (!el.stars || !starsCtx) return;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    el.stars.width = Math.floor(w * dpr);
+    el.stars.height = Math.floor(h * dpr);
+    el.stars.style.width = w + "px";
+    el.stars.style.height = h + "px";
+    starsCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    stars = [];
+    var count = Math.min(48, Math.floor((w * h) / 18000));
+    for (var i = 0; i < count; i++) {
+      stars.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.4 + 0.3,
+        a: Math.random() * 0.5 + 0.15,
+        s: Math.random() * 0.4 + 0.1,
+        p: Math.random() * Math.PI * 2,
+      });
+    }
+  }
+
+  function drawStars(now) {
+    if (!starsRunning || !starsCtx || prefersReduced()) {
+      starsRaf = 0;
+      return;
+    }
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    starsCtx.clearRect(0, 0, w, h);
+    var t = now * 0.001;
+    for (var i = 0; i < stars.length; i++) {
+      var s = stars[i];
+      var tw = s.a * (0.55 + 0.45 * Math.sin(t * s.s + s.p));
+      starsCtx.beginPath();
+      starsCtx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      starsCtx.fillStyle = "rgba(200, 210, 240," + tw.toFixed(3) + ")";
+      starsCtx.fill();
+    }
+    starsRaf = requestAnimationFrame(drawStars);
+  }
+
+  function startStars() {
+    if (prefersReduced()) {
+      stopStars();
+      return;
+    }
+    if (!starsCtx) initStars();
+    resizeStars();
+    if (!starsRunning) {
+      starsRunning = true;
+      starsRaf = requestAnimationFrame(drawStars);
+    }
+  }
+
+  function stopStars() {
+    starsRunning = false;
+    if (starsRaf) {
+      cancelAnimationFrame(starsRaf);
+      starsRaf = 0;
+    }
+    if (starsCtx && el.stars) {
+      starsCtx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    }
+  }
+
+  window.addEventListener("resize", function () {
+    if (starsRunning) resizeStars();
+  });
+
   function openSettings() {
+    if (phase === "lock") return;
     el.setDefaultMinutes.value = String(settings.defaultMinutes);
     el.setFadeLead.value = String(settings.fadeLeadSeconds);
     el.setBonusMinutes.value = String(settings.bonusMinutes);
@@ -548,8 +712,12 @@
     startSession(sessionMinutes);
   });
 
+  // End session → hard lock (same cost as failing the pattern)
   el.btnEnd.addEventListener("click", function () {
-    endSessionToSleep();
+    cancelAnimationFrame(rafId);
+    rafId = 0;
+    clearPattern();
+    enterHardLock();
   });
 
   el.btnPatternGiveup.addEventListener("click", function () {
@@ -557,6 +725,7 @@
   });
 
   el.btnNewSession.addEventListener("click", function () {
+    if (phase === "lock") return;
     stopSleepClock();
     startPatternChallenge("unlock");
   });
@@ -566,11 +735,24 @@
   el.settingsBackdrop.addEventListener("click", closeSettings);
   el.btnSettingsSave.addEventListener("click", persistSettingsFromForm);
 
+  // During hard lock: swallow taps that might dismiss / navigate UI
+  el.viewLock.addEventListener(
+    "pointerdown",
+    function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    },
+    true
+  );
+
   document.addEventListener("visibilitychange", function () {
     if (document.hidden) {
       lastTick = 0;
-    } else if (phase === "focused" || phase === "fading") {
+      lockLastTick = 0;
+    } else if (phase === "screentime" || phase === "fading") {
       lastTick = 0;
+    } else if (phase === "lock") {
+      lockLastTick = 0;
     }
     if (!document.hidden && phase === "sleep") updateSleepClock();
   });
@@ -581,6 +763,7 @@
     resetFadeVars();
     setView("idle");
     el.app.dataset.phase = "idle";
+    initStars();
 
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker.register("./sw.js").catch(function () {

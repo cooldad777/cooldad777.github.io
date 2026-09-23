@@ -1,8 +1,8 @@
 {
   "name": "Faded Dependence",
   "short_name": "Faded",
-  "description": "Gentle sessions that fade your screen — less phone dependence, more rest.",
-  "start_url": "./index.html",
+  "description": "Allotted screen time that fades — more time only if you earn it. Less phone dependence.",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",

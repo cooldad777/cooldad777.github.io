@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no" />
   <meta name="theme-color" content="#0a0c10" />
   <meta name="color-scheme" content="dark" />
-  <meta name="description" content="Gentle sessions that fade your screen — less phone dependence, more rest." />
+  <meta name="description" content="Allotted screen time that fades — more time only if you earn it. Less phone dependence." />
 
   <!-- iOS / Add to Home Screen -->
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -21,9 +21,10 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div id="app" class="app" data-state="idle">
-    <!-- Soft vignette / fade overlay (driven by CSS vars) -->
+  <div id="app" class="app" data-state="idle" data-phase="idle">
     <div id="fade-layer" class="fade-layer" aria-hidden="true"></div>
+    <div id="aurora" class="aurora" aria-hidden="true"></div>
+    <canvas id="stars" class="stars" aria-hidden="true"></canvas>
 
     <header class="header">
       <div class="brand">
@@ -41,10 +42,10 @@
     <main class="main">
       <!-- IDLE / SETUP -->
       <section id="view-idle" class="view view-idle" aria-labelledby="idle-heading">
-        <p id="idle-heading" class="tagline">Wind down. Let the screen fade. Earn more time only if you really need it.</p>
+        <p id="idle-heading" class="tagline">Allotted screen time that fades. More time only if you earn it — friction against dependence.</p>
 
         <div class="timer-setup">
-          <label class="setup-label" for="minutes-slider">Session length</label>
+          <label class="setup-label" for="minutes-slider">Screen time</label>
           <div class="minutes-display" aria-live="polite">
             <span id="minutes-value">5</span><span class="unit">min</span>
           </div>
@@ -59,7 +60,7 @@
             aria-valuemin="1"
             aria-valuemax="10"
             aria-valuenow="5"
-            aria-label="Session minutes"
+            aria-label="Screen time minutes"
           />
           <div class="chips" role="group" aria-label="Quick presets">
             <button type="button" class="chip" data-minutes="3">3 min</button>
@@ -68,14 +69,14 @@
         </div>
 
         <button type="button" id="btn-start" class="btn btn-primary btn-lg">
-          Start session
+          Start screen time
         </button>
-        <p class="hint">At the end, the UI fades. Keep going only by completing a short finger pattern.</p>
+        <p class="hint">When time runs out the UI fades. More minutes only via the finger pattern — or put it down.</p>
       </section>
 
       <!-- ACTIVE SESSION -->
       <section id="view-active" class="view view-active" hidden aria-labelledby="active-heading">
-        <h2 id="active-heading" class="sr-only">Session in progress</h2>
+        <h2 id="active-heading" class="sr-only">Screen time in progress</h2>
         <div class="ring-wrap">
           <svg class="progress-ring" viewBox="0 0 200 200" aria-hidden="true">
             <circle class="ring-track" cx="100" cy="100" r="88" />
@@ -83,7 +84,7 @@
           </svg>
           <div class="ring-center">
             <time id="countdown" class="countdown" datetime="">5:00</time>
-            <span id="phase-label" class="phase-label">Focused</span>
+            <span id="phase-label" class="phase-label">Screen time</span>
           </div>
         </div>
         <button type="button" id="btn-end" class="btn btn-ghost">End session</button>
@@ -91,25 +92,42 @@
 
       <!-- PATTERN CHALLENGE -->
       <section id="view-pattern" class="view view-pattern" hidden aria-labelledby="pattern-heading">
-        <h2 id="pattern-heading" class="pattern-title">Stay awake?</h2>
-        <p id="pattern-sub" class="pattern-sub">Trace the glowing path — slowly, in order.</p>
+        <h2 id="pattern-heading" class="pattern-title">Need more screen time?</h2>
+        <p id="pattern-sub" class="pattern-sub">Trace the path to unlock more — or put it down.</p>
         <div id="pattern-canvas" class="pattern-canvas" role="application" aria-label="Finger pattern challenge"></div>
         <div class="pattern-meta">
           <span id="pattern-timer" class="pattern-timer">0:12</span>
-          <button type="button" id="btn-pattern-giveup" class="btn btn-ghost btn-sm">I’m done</button>
+          <button type="button" id="btn-pattern-giveup" class="btn btn-ghost btn-sm">Put it down</button>
         </div>
       </section>
 
-      <!-- SLEEP LOCK -->
+      <!-- HARD LOCK (1 minute) -->
+      <section id="view-lock" class="view view-lock" hidden aria-labelledby="lock-heading">
+        <p class="lock-eyebrow">Dependence pause</p>
+        <h2 id="lock-heading" class="lock-title">Locked</h2>
+        <div class="lock-ring-wrap">
+          <svg class="lock-ring" viewBox="0 0 200 200" aria-hidden="true">
+            <circle class="lock-ring-track" cx="100" cy="100" r="88" />
+            <circle id="lock-ring-progress" class="lock-ring-progress" cx="100" cy="100" r="88" />
+          </svg>
+          <div class="lock-ring-center">
+            <time id="lock-countdown" class="lock-countdown" datetime="">1:00</time>
+          </div>
+        </div>
+        <p id="lock-message" class="lock-message">The phone can wait. Sit with the urge — it will pass.</p>
+        <p class="lock-sub">No escape. This minute is the cost of more screen time.</p>
+      </section>
+
+      <!-- REST / SLEEP (after hard lock) -->
       <section id="view-sleep" class="view view-sleep" hidden aria-labelledby="sleep-heading">
-        <p class="sleep-eyebrow">Rest mode</p>
+        <p class="sleep-eyebrow">Rest</p>
         <time id="sleep-clock" class="sleep-clock">12:00</time>
         <h2 id="sleep-heading" class="sleep-message">Phone can wait.</h2>
         <p class="sleep-sub">Breathe. Put it down. Come back when you’re ready.</p>
         <button type="button" id="btn-new-session" class="btn btn-primary">
           New session
         </button>
-        <p class="hint sleep-hint">Starting again needs a short pattern first.</p>
+        <p class="hint sleep-hint">Starting again still needs the pattern.</p>
       </section>
     </main>
 
@@ -153,7 +171,6 @@
       </div>
     </div>
 
-    <!-- Toast -->
     <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
   </div>
 

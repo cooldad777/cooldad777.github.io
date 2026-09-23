@@ -1,5 +1,5 @@
 /* Faded Dependence — offline shell */
-const CACHE = "faded-dependence-v1";
+const CACHE = "faded-dependence-v2";
 const ASSETS = [
   "./",
   "./index.html",
@@ -41,6 +41,6 @@ self.addEventListener("fetch", (event) => {
           return res;
         })
         .catch(() => caches.match("./index.html"));
-      })
+    })
   );
 });

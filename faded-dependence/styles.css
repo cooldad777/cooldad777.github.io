@@ -1,4 +1,4 @@
-/* Faded Dependence — calm dark wind-down UI */
+/* Faded Dependence — allotted screen time that fades */
 
 :root {
   --bg: #0a0c10;
@@ -12,6 +12,7 @@
   --accent-glow: rgba(126, 184, 255, 0.45);
   --success: #8fd4a8;
   --danger-soft: #c9a0a8;
+  --lock: #9aa4c7;
   --ring-track: rgba(255, 255, 255, 0.08);
   --ring-fill: #7eb8ff;
   --safe-top: env(safe-area-inset-top, 0px);
@@ -22,7 +23,6 @@
   --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
     "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
-  /* Driven by JS during fade */
   --fade-opacity: 1;
   --fade-blur: 0px;
   --fade-sat: 1;
@@ -79,20 +79,34 @@ body {
   isolation: isolate;
 }
 
-/* Fade / desat / blur applied to content (not sleep lock) */
 .app[data-state="active"] .main,
 .app[data-state="pattern"] .main,
 .app[data-state="idle"] .main {
   opacity: var(--fade-opacity);
   filter: blur(var(--fade-blur)) saturate(var(--fade-sat));
-  transition: none; /* rAF-driven */
+  transition: none;
 }
 
-.app[data-state="sleep"] {
+.app[data-state="sleep"],
+.app[data-state="lock"] {
   --fade-opacity: 1;
   --fade-blur: 0px;
   --fade-sat: 1;
+}
+
+.app[data-state="lock"] {
+  --vignette: 0.88;
+}
+
+.app[data-state="sleep"] {
   --vignette: 0.55;
+}
+
+.app[data-state="lock"] .header,
+.app[data-state="lock"] #btn-settings {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
 }
 
 .fade-layer {
@@ -102,10 +116,52 @@ body {
   z-index: 5;
   background: radial-gradient(
     ellipse at center,
-    transparent 35%,
-    rgba(0, 0, 0, calc(var(--vignette) * 0.85)) 100%
+    transparent 28%,
+    rgba(0, 0, 0, calc(var(--vignette) * 0.92)) 100%
   );
   opacity: 1;
+}
+
+/* Soft aurora for lock / sleep */
+.aurora {
+  pointer-events: none;
+  position: fixed;
+  inset: -20%;
+  z-index: 0;
+  opacity: 0;
+  background:
+    radial-gradient(ellipse 50% 40% at 30% 40%, rgba(80, 110, 180, 0.18), transparent 60%),
+    radial-gradient(ellipse 45% 35% at 70% 60%, rgba(100, 80, 160, 0.12), transparent 55%),
+    radial-gradient(ellipse 40% 30% at 50% 80%, rgba(60, 140, 160, 0.1), transparent 50%);
+  filter: blur(40px);
+  transition: opacity 0.8s ease;
+}
+
+.app[data-state="lock"] .aurora,
+.app[data-state="sleep"] .aurora {
+  opacity: 1;
+  animation: aurora-drift 18s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-drift {
+  from { transform: translate(-2%, -1%) scale(1); }
+  to { transform: translate(3%, 2%) scale(1.05); }
+}
+
+.stars {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.app[data-state="lock"] .stars,
+.app[data-state="sleep"] .stars {
+  opacity: 0.7;
 }
 
 /* Header */
@@ -173,7 +229,6 @@ body {
   color: var(--accent);
 }
 
-/* Main */
 .main {
   flex: 1;
   display: flex;
@@ -201,7 +256,6 @@ body {
   align-self: center;
 }
 
-/* Timer setup */
 .timer-setup {
   background: var(--bg-elevated);
   border-radius: var(--radius-lg);
@@ -323,7 +377,6 @@ body {
   transform: scale(0.97);
 }
 
-/* Buttons */
 .btn {
   font-family: inherit;
   font-size: 1.05rem;
@@ -413,13 +466,15 @@ body {
   stroke: var(--ring-fill);
   stroke-width: 8;
   stroke-linecap: round;
-  stroke-dasharray: 553; /* 2πr ≈ 2*3.1416*88 */
+  stroke-dasharray: 553;
   stroke-dashoffset: 0;
   transition: stroke 0.3s ease;
+  filter: drop-shadow(0 0 6px rgba(126, 184, 255, 0.35));
 }
 
 .app[data-phase="fading"] .ring-progress {
   stroke: var(--danger-soft);
+  filter: drop-shadow(0 0 8px rgba(201, 160, 168, 0.4));
 }
 
 .ring-center {
@@ -470,15 +525,19 @@ body {
   color: var(--text-muted);
   text-align: center;
   font-size: 0.95rem;
+  max-width: 22em;
 }
 
 .pattern-canvas {
   position: relative;
   width: min(320px, 88vw);
   aspect-ratio: 1;
-  background: var(--bg-elevated);
+  background:
+    radial-gradient(ellipse at 50% 40%, rgba(126, 184, 255, 0.06), transparent 55%),
+    var(--bg-elevated);
   border-radius: var(--radius-lg);
   border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.35);
   touch-action: none;
   overflow: hidden;
   user-select: none;
@@ -487,9 +546,9 @@ body {
 
 .pattern-node {
   position: absolute;
-  width: 44px;
-  height: 44px;
-  margin: -22px 0 0 -22px;
+  width: 48px;
+  height: 48px;
+  margin: -24px 0 0 -24px;
   border-radius: 50%;
   background: var(--bg-soft);
   border: 2px solid rgba(255, 255, 255, 0.15);
@@ -504,8 +563,12 @@ body {
 
 .pattern-node.is-next {
   border-color: var(--accent);
-  box-shadow: 0 0 0 4px var(--accent-soft), 0 0 24px var(--accent-glow);
   color: var(--accent);
+  background: rgba(126, 184, 255, 0.12);
+  box-shadow:
+    0 0 0 4px var(--accent-soft),
+    0 0 28px var(--accent-glow),
+    0 0 48px rgba(126, 184, 255, 0.25);
   animation: node-pulse 1.4s ease-in-out infinite;
 }
 
@@ -513,7 +576,7 @@ body {
   background: var(--accent-soft);
   border-color: var(--accent);
   color: var(--accent);
-  box-shadow: none;
+  box-shadow: 0 0 16px rgba(126, 184, 255, 0.35);
   animation: none;
 }
 
@@ -534,11 +597,17 @@ body {
   0%,
   100% {
     transform: scale(1);
-    box-shadow: 0 0 0 4px var(--accent-soft), 0 0 18px var(--accent-glow);
+    box-shadow:
+      0 0 0 4px var(--accent-soft),
+      0 0 22px var(--accent-glow),
+      0 0 40px rgba(126, 184, 255, 0.2);
   }
   50% {
-    transform: scale(1.06);
-    box-shadow: 0 0 0 8px rgba(126, 184, 255, 0.12), 0 0 28px var(--accent-glow);
+    transform: scale(1.08);
+    box-shadow:
+      0 0 0 10px rgba(126, 184, 255, 0.1),
+      0 0 36px var(--accent-glow),
+      0 0 60px rgba(126, 184, 255, 0.3);
   }
 }
 
@@ -556,7 +625,112 @@ body {
   font-size: 1.1rem;
 }
 
-/* Sleep lock */
+/* Hard lock */
+.view-lock {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  padding-bottom: 24px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.lock-eyebrow {
+  margin: 0;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--text-dim);
+}
+
+.lock-title {
+  margin: 0 0 8px;
+  font-size: 2.4rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  text-shadow: 0 0 40px rgba(154, 164, 199, 0.35);
+  animation: lock-breathe 4s ease-in-out infinite;
+}
+
+.lock-ring-wrap {
+  position: relative;
+  width: min(260px, 70vw);
+  aspect-ratio: 1;
+  margin: 12px 0 20px;
+}
+
+.lock-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+  filter: drop-shadow(0 0 12px rgba(154, 164, 199, 0.25));
+}
+
+.lock-ring-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.06);
+  stroke-width: 6;
+}
+
+.lock-ring-progress {
+  fill: none;
+  stroke: var(--lock);
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-dasharray: 553;
+  stroke-dashoffset: 0;
+  transition: none;
+}
+
+.lock-ring-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lock-countdown {
+  font-size: 3.6rem;
+  font-weight: 200;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--text);
+  opacity: 0.95;
+}
+
+.lock-message {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  max-width: 18em;
+}
+
+.lock-sub {
+  margin: 4px 0 0;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  max-width: 20em;
+}
+
+@keyframes lock-breathe {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+/* Sleep / rest */
 .view-sleep {
   align-items: center;
   justify-content: center;
@@ -736,7 +910,6 @@ body {
   flex: 1;
 }
 
-/* Toast */
 .toast {
   position: fixed;
   left: 50%;
@@ -770,10 +943,11 @@ body {
   }
 }
 
-/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .pattern-node.is-next {
-    animation: none;
+  .pattern-node.is-next,
+  .lock-title,
+  .aurora {
+    animation: none !important;
   }
   .sheet-panel,
   .toast,
@@ -783,8 +957,10 @@ body {
   }
 }
 
-.app[data-reduced="1"] .pattern-node.is-next {
-  animation: none;
+.app[data-reduced="1"] .pattern-node.is-next,
+.app[data-reduced="1"] .lock-title,
+.app[data-reduced="1"] .aurora {
+  animation: none !important;
 }
 
 .app[data-reduced="1"] .sheet-panel,
@@ -792,7 +968,11 @@ body {
   animation: none;
 }
 
-/* Revive flash */
+.app[data-reduced="1"] .stars {
+  opacity: 0 !important;
+}
+
 .app.is-reviving .ring-progress {
   stroke: var(--success);
+  filter: drop-shadow(0 0 10px rgba(143, 212, 168, 0.45));
 }
