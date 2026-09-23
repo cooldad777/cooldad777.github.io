@@ -1,5 +1,5 @@
 /* Faded Dependence — offline shell */
-const CACHE = "faded-dependence-v2";
+const CACHE = "faded-dependence-v3";
 const ASSETS = [
   "./",
   "./index.html",

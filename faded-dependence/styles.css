@@ -506,6 +506,73 @@ body {
   color: var(--danger-soft);
 }
 
+/* Scripture — calm, muted; does not compete with countdown */
+.verse {
+  margin: 0;
+  max-width: 22em;
+  text-align: center;
+  color: var(--text-dim);
+}
+
+.verse-text {
+  margin: 0;
+  font-size: 0.92rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: var(--text-muted);
+}
+
+.verse-cite {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  color: var(--text-dim);
+}
+
+.verse-fading {
+  margin-top: -8px;
+  margin-bottom: 0;
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.verse-fading:not([hidden]) {
+  opacity: 1;
+}
+
+.app[data-phase="fading"] .verse-fading:not([hidden]) {
+  animation: verse-in 0.85s ease both;
+}
+
+.verse-lock {
+  margin: 12px 0 4px;
+  max-width: 20em;
+}
+
+.verse-sleep {
+  margin: 4px 0 8px;
+  max-width: 18em;
+}
+
+.verse-sleep .verse-text {
+  font-size: 0.95rem;
+}
+
+@keyframes verse-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* Pattern challenge */
 .view-pattern {
   align-items: center;
@@ -946,12 +1013,14 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .pattern-node.is-next,
   .lock-title,
-  .aurora {
+  .aurora,
+  .verse-fading {
     animation: none !important;
   }
   .sheet-panel,
   .toast,
-  .btn {
+  .btn,
+  .verse-fading {
     animation: none;
     transition: none;
   }
@@ -959,8 +1028,10 @@ body {
 
 .app[data-reduced="1"] .pattern-node.is-next,
 .app[data-reduced="1"] .lock-title,
-.app[data-reduced="1"] .aurora {
+.app[data-reduced="1"] .aurora,
+.app[data-reduced="1"] .verse-fading {
   animation: none !important;
+  transition: none;
 }
 
 .app[data-reduced="1"] .sheet-panel,

@@ -45,6 +45,9 @@
     lockCountdown: document.getElementById("lock-countdown"),
     lockRingProgress: document.getElementById("lock-ring-progress"),
     lockMessage: document.getElementById("lock-message"),
+    verseFading: document.getElementById("verse-fading"),
+    verseLock: document.getElementById("verse-lock"),
+    verseSleep: document.getElementById("verse-sleep"),
     sleepClock: document.getElementById("sleep-clock"),
     settingsSheet: document.getElementById("settings-sheet"),
     settingsBackdrop: document.getElementById("settings-backdrop"),
@@ -211,11 +214,19 @@
     el.countdown.setAttribute("datetime", "PT" + Math.ceil(remainingMs / 1000) + "S");
   }
 
+
+  function showFadingVerse(show) {
+    if (!el.verseFading) return;
+    el.verseFading.hidden = !show;
+    el.verseFading.setAttribute("aria-hidden", show ? "false" : "true");
+  }
+
   function enterFading() {
     if (phase === "fading") return;
     phase = "fading";
     el.app.dataset.phase = "fading";
     el.phaseLabel.textContent = "Fading";
+    showFadingVerse(true);
     vibrate([30, 40, 30]);
   }
 
@@ -231,6 +242,7 @@
       var t = 1 - remainingMs / leadMs;
       applyFadeProgress(Math.min(1, Math.max(0, t)));
     } else if (remainingMs > leadMs) {
+      if (phase === "fading") showFadingVerse(false);
       phase = "screentime";
       el.app.dataset.phase = "screentime";
       el.phaseLabel.textContent = "Screen time";
@@ -263,6 +275,7 @@
     phase = "screentime";
     el.app.dataset.phase = "screentime";
     el.phaseLabel.textContent = "Screen time";
+    showFadingVerse(false);
     setView("active");
     updateRing();
     vibrate(20);
@@ -497,6 +510,7 @@
     phase = "screentime";
     el.app.dataset.phase = "screentime";
     el.phaseLabel.textContent = "More time";
+    showFadingVerse(false);
     resetFadeVars();
     el.app.classList.add("is-reviving");
     setView("active");
@@ -531,9 +545,14 @@
     lockLastTick = 0;
     resetFadeVars();
     document.documentElement.style.setProperty("--vignette", "0.88");
+    showFadingVerse(false);
     setView("lock");
     el.app.dataset.state = "lock";
     el.app.dataset.phase = "lock";
+    if (el.verseLock) {
+      el.verseLock.hidden = false;
+      el.verseLock.setAttribute("aria-hidden", "false");
+    }
     updateLockUI();
     vibrate([80, 40, 80]);
     lockRaf = requestAnimationFrame(lockTick);
@@ -574,6 +593,10 @@
     setView("sleep");
     el.app.dataset.state = "sleep";
     el.app.dataset.phase = "sleep";
+    if (el.verseSleep) {
+      el.verseSleep.hidden = false;
+      el.verseSleep.setAttribute("aria-hidden", "false");
+    }
     updateSleepClock();
     stopSleepClock();
     sleepClockId = setInterval(updateSleepClock, 1000);
