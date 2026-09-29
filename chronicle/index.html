@@ -6,16 +6,16 @@
 <title>Chronicle | SEE, R</title>
 <meta name="description" content="Timestamped public timeline of AI learning — SEE, R."/>
 <link rel="icon" href="../assets/favicon.png"/>
-<link rel="stylesheet" href="../assets/apple.css"/>
+<link rel="stylesheet" href="../assets/apple.css?v=glass3"/>
 </head>
 <body>
 <nav class="nav"><div class="nav-in">
   <a class="brand" href="../index.html"><img src="../assets/star.png" alt=""/>SEE, R</a>
   <button id="menu" aria-label="Menu">☰</button>
-  <div class="nav-links" id="nav-links">
+    <div class="nav-links" id="nav-links">
     <a href="../seersolutions/index.html">SEER Solutions</a>
-    <a href="index.html">Chronicle</a>
-    <a href="../garden/index.html">AI Portfolio</a>
+    <a href="../portfolio/index.html">Portfolio</a>
+    <a href="../grounded/index.html">GROUNDED</a>
     <a href="mailto:ryanrsee@gmail.com">Contact</a>
   </div>
 </div></nav>
@@ -51,5 +51,6 @@ fetch('entries.jsonl',{cache:'no-store'}).then(function(r){
   list.forEach(function(e){root.appendChild(card(e));});
 }).catch(function(){root.innerHTML='<p class="sub">The trail file could not load. Try a hard refresh.</p>';});
 </script>
+<script src="../assets/bed-audio.js?v=glass3"></script>
 </body>
 </html>
