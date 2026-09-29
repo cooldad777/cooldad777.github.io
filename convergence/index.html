@@ -1,1 +1,156 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>The Convergence | SEE, R</title>
+<link rel="icon" href="../assets/favicon.png"/>
+<link rel="stylesheet" href="../assets/apple.css?v=glass3"/>
+<style>
+  body{background:#f5f5f7}
+  .hero{--hero-img:url('../assets/forest.jpg');min-height:32vh;padding:92px 22px 24px}
+  .hero img.spin{height:40px;margin:0 auto 8px;display:block;animation:spin 18s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .stage{max-width:980px;margin:0 auto;padding:12px 16px 80px}
+  .famrow{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+  .fam{border:0;background:#fff;border-radius:14px;padding:12px 14px;min-height:52px;min-width:130px;flex:1 1 130px;text-align:left;cursor:pointer;font:inherit}
+  .fam b{display:block;font-size:14px}.fam span{display:block;font-size:11px;color:#6e6e73;margin-top:2px}
+  .fam.on{background:#1d1d1f;color:#fff}.fam.on span{color:#a1a1a6}
+  .board{background:#fff;border-radius:22px;padding:24px}
+  .crumb{font-size:12px;color:#6e6e73;margin-bottom:8px}.crumb b{color:#1d1d1f}
+  .kicker{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6e6e73;margin:16px 0 8px}
+  .board h2{font-size:clamp(26px,5vw,42px);letter-spacing:-.03em;margin:0 0 8px}
+  .more{font-size:16px;color:#3a3a3c;line-height:1.5}
+  .quote{margin:14px 0;padding:16px 18px;background:#f5f5f7;border-radius:14px;font-size:18px}
+  .quote cite{display:block;margin-top:8px;font-size:12px;font-style:normal;color:#6e6e73}
+  .split{display:flex;height:12px;border-radius:8px;overflow:hidden;background:#eee;margin:8px 0}
+  .split b{display:block;height:100%}
+  .legend{display:flex;flex-wrap:wrap;gap:8px}
+  .legend button,.twigs button,.kids button{border:0;background:#f5f5f7;border-radius:980px;padding:8px 12px;min-height:40px;font:600 12px -apple-system,sans-serif;cursor:pointer}
+  .legend button.on,.twigs button.on,.kids button.on{background:#1d1d1f;color:#fff}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:800px){.cols{grid-template-columns:1fr}}
+  .twigs,.kids,.flow{display:flex;flex-wrap:wrap;gap:8px}
+  .flow .step{flex:1 1 130px;background:#f5f5f7;border-radius:14px;padding:12px}
+  .track{display:flex;overflow-x:auto;padding:8px 0 16px}
+  .track button{flex:0 0 168px;border:0;background:#f5f5f7;border-radius:14px;padding:12px;margin-right:8px;text-align:left;cursor:pointer;font:inherit;border-left:3px solid #d2d2d7}
+  .track button.on{background:#1d1d1f;color:#fff}
+  .track button .d{display:block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;opacity:.7}
+  .gbox{background:#f5f5f7;border-radius:14px;padding:12px 14px;margin:8px 0}
+  .gbox em{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#6e6e73;font-style:normal;margin-bottom:4px}
+</style></head>
+<body>
+<nav class="nav"><div class="nav-in">
+  <a class="brand" href="../index.html"><img src="../assets/star.png" alt=""/>SEE, R</a>
+  <button id="menu" type="button">☰</button>
+    <div class="nav-links" id="nav-links">
+    <a href="../seersolutions/index.html">SEER Solutions</a>
+    <a href="../portfolio/index.html">Portfolio</a>
+    <a href="../grounded/index.html">GROUNDED</a>
+    <a href="mailto:ryanrsee@gmail.com">Contact</a>
+  </div>
+</div></nav>
+<header class="hero">
+  <img class="spin" src="../assets/star.png" alt=""/>
+  <h1>The Convergence</h1>
+  <p class="sub">Grain 1 worldview · Grain 2 body · Grain 3 denomination · Grain 4 spin-off</p>
+</header>
+<div class="stage"><div class="famrow" id="famrow"></div><div id="board"></div></div>
+<footer><div class="foot"><p>SEE, R · Kennesaw, Georgia</p></div></footer>
+<script src="xian.js"></script><script src="xian-patch.js"></script><script src="islam.js"></script><script src="rest.js"></script><script src="rest-patch.js"></script><script src="grains.js"></script><script src="flow.js"></script><script src="news-track.js"></script><script src="data.js"></script>
+<script>
+(function(){
+  const row=document.getElementById('famrow'), board=document.getElementById('board');
+  const data=window.CONV||[];
+  let on=data[0]||null, g2=null, g3=null, g4=null, ev=(window.TRACK&&TRACK[TRACK.length-1])||null;
+  function q(obj){ if(!obj) return ''; return '<blockquote class="quote">“'+obj.t+'”<cite>'+obj.s+'</cite></blockquote>'; }
+  function g3list(){
+    if(on&&on.id==='christianity'&&window.G3&&G3.christianity){
+      if(g2&&G3.christianity[g2]) return G3.christianity[g2];
+      var all=[]; Object.keys(G3.christianity).forEach(function(k){ all=all.concat(G3.christianity[k]); }); return all;
+    }
+    return on&&on.twigs||[];
+  }
+  function tiles(){
+    row.innerHTML='';
+    data.forEach(function(x){
+      var b=document.createElement('button'); b.type='button';
+      b.className='fam'+(on&&on.id===x.id?' on':'');
+      b.innerHTML='<b>'+x.name+'</b><span>Grain 1 · '+x.short+'</span>';
+      b.addEventListener('click', function(){ on=x; g2=null; g3=null; g4=null; draw(); });
+      row.appendChild(b);
+    });
+  }
+  function reading(){ return window.trackReading ? trackReading(on,g2,g3,g4,ev) : ''; }
+  function draw(){
+    tiles();
+    if(!on){ board.innerHTML='<div class="board"><p class="more">Could not load.</p></div>'; return; }
+    var wrap=document.createElement('div'); wrap.className='board';
+    var crumb='<div class="crumb">Grain 1 <b>'+on.name+'</b>'+(g2?' → Grain 2 <b>'+g2+'</b>':'')+(g3?' → Grain 3 <b>'+g3.n+'</b>':'')+(g4?' → Grain 4 <b>'+g4.n+'</b>':'')+'</div>';
+    var h=crumb+'<p class="kicker">Grain 1 · worldview</p><h2>'+on.name+'</h2><p class="more">'+on.pop+'</p><p class="more">'+on.what+'</p>'+q(on.quote);
+    if(on.parts&&on.parts.length){
+      h+='<p class="kicker">Grain 2 · major body (with people)</p><div class="split">';
+      on.parts.forEach(function(p){ h+='<b style="width:'+p.w+'%;background:'+p.c+'"></b>'; });
+      h+='</div><div class="legend" id="g2row"></div>';
+    }
+    h+='<div class="cols"><div><p class="kicker" style="margin-top:0">Edge of history</p><p class="more">'+on.end+'</p>'+q(on.qEnd)+'</div>';
+    h+='<div><p class="kicker" style="margin-top:0">Unrestrained power</p><p class="more">'+on.power+'</p>'+q(on.qPow)+'</div></div>';
+    h+='<p class="kicker">Where the new tools rhyme</p><p class="more">'+on.tech+'</p>';
+    h+='<p class="kicker">What this lens expects next</p><div class="flow"></div>';
+    h+='<p class="kicker">Tracker · last 30 days</p><div class="track" id="track"></div><div id="event"></div>';
+    var list=g3list();
+    if(list.length) h+='<p class="kicker">Grain 3 · denomination'+(g2?(' · under '+g2):'')+'</p><div class="twigs"></div><div class="kids"></div><p class="more twigread"></p>';
+    wrap.innerHTML=h; board.innerHTML=''; board.appendChild(wrap);
+    var g2row=wrap.querySelector('#g2row');
+    if(g2row&&on.parts){
+      on.parts.forEach(function(p){
+        var b=document.createElement('button'); b.type='button'; b.className=g2===p.n?'on':'';
+        b.textContent=p.n+' · '+p.l;
+        b.addEventListener('click', function(){ g2=p.n; g3=null; g4=null; draw(); });
+        g2row.appendChild(b);
+      });
+    }
+    var fl=wrap.querySelector('.flow');
+    var steps=(g3&&g3.flow)||on.flow||(window.FLOWS&&FLOWS[on.id])||[];
+    steps.forEach(function(s,i){ var d=document.createElement('div'); d.className='step'; d.innerHTML='<em>'+(i?'then':'start')+'</em><b>'+s.n+'</b><p class="more">'+s.d+'</p>'; fl.appendChild(d); });
+    var tr=wrap.querySelector('#track'), evbox=wrap.querySelector('#event');
+    if(tr&&window.TRACK){
+      TRACK.forEach(function(e){
+        var b=document.createElement('button'); b.type='button'; b.className=ev&&ev.id===e.id?'on':'';
+        b.innerHTML='<span class="d">'+e.date+'</span><b>'+e.title+'</b>';
+        b.addEventListener('click', function(){ ev=e; draw(); });
+        tr.appendChild(b);
+      });
+      if(ev){
+        evbox.innerHTML='<p class="more"><b>'+ev.title+'.</b> '+ev.what+' <a href="'+ev.href+'" target="_blank" rel="noopener">Source</a></p>'+reading();
+      }
+    }
+    var box=wrap.querySelector('.twigs'), rec=wrap.querySelector('.twigread'), kids=wrap.querySelector('.kids');
+    if(box){
+      list.forEach(function(t){
+        var b=document.createElement('button'); b.type='button'; b.textContent=t.n;
+        if(g3&&g3.n===t.n) b.className='on';
+        b.addEventListener('click', function(){ g3=t; g4=null; draw(); });
+        box.appendChild(b);
+      });
+      if(g3){
+        rec.innerHTML='<b>'+g3.n+'.</b> '+(g3.pop?g3.pop+' ':'')+g3.w+(g3.q?q(g3.q):'');
+        if(kids&&g3.kids){
+          var lab=document.createElement('p'); lab.className='kicker'; lab.textContent='Grain 4 · spin-off'; kids.appendChild(lab);
+          g3.kids.forEach(function(k){
+            var b=document.createElement('button'); b.type='button'; b.textContent=k.n;
+            if(g4&&g4.n===k.n) b.className='on';
+            b.addEventListener('click', function(){ g4=k; draw(); });
+            kids.appendChild(b);
+          });
+          if(g4) rec.innerHTML+='<p class="more"><b>Grain 4 · '+g4.n+'.</b> '+g4.w+'</p>';
+        }
+      }
+    }
+  }
+  draw();
+  var m=document.getElementById('menu'), n=document.getElementById('nav-links');
+  if(m) m.addEventListener('click', function(){ n.classList.toggle('open'); });
+})();
+</script><script src="../assets/bed-audio.js?v=glass3"></script>
+</body></html>
