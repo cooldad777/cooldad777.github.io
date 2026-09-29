@@ -15,6 +15,9 @@
     visited: 'seer_bed_portfolio_visit'
   };
   var DEFAULT_VOL = 0.72;
+  /** Soft start so bed doesn't startle; ~4.5s to preferred volume (Settled). */
+  var FADE_IN_MS = 4500;
+  var fadeRaf = null;
   var DUCK_RE = /\/faded-dependence(\/|$)|\/halo-cut(\/|$)/i;
 
   function assetBase() {
@@ -114,8 +117,8 @@
     if (playIcon) playIcon.hidden = playing;
     if (pauseIcon) pauseIcon.hidden = !playing;
     var slider = root.querySelector('.seer-bed-vol');
-    if (slider && Math.abs(parseFloat(slider.value) - audio.volume) > 0.01) {
-      slider.value = String(audio.volume);
+    if (slider && fadeRaf == null && Math.abs(parseFloat(slider.value) - vol) > 0.01) {
+      slider.value = String(vol);
     }
   }
 
@@ -125,9 +128,44 @@
     } catch (e) {}
   }
 
+
+  function cancelFade() {
+    if (fadeRaf != null) {
+      cancelAnimationFrame(fadeRaf);
+      fadeRaf = null;
+    }
+  }
+
+  /** Ease-out cubic from current volume to target over ms. Slider stays at target. */
+  function fadeInTo(target, ms) {
+    cancelFade();
+    if (ms <= 0) {
+      audio.volume = target;
+      return;
+    }
+    var from = audio.volume;
+    var start = performance.now();
+    var sliderEl = root.querySelector('.seer-bed-vol');
+    if (sliderEl) sliderEl.value = String(target);
+    function frame(now) {
+      var t = Math.min(1, (now - start) / ms);
+      var e = 1 - Math.pow(1 - t, 3);
+      audio.volume = from + (target - from) * e;
+      if (t < 1) {
+        fadeRaf = requestAnimationFrame(frame);
+      } else {
+        fadeRaf = null;
+        audio.volume = target;
+      }
+    }
+    fadeRaf = requestAnimationFrame(frame);
+  }
+
   function tryPlay() {
     if (isDuckZone()) return Promise.resolve(false);
     if (globalPause) return Promise.resolve(false);
+    var fromPaused = audio.paused;
+    if (fromPaused) audio.volume = 0;
     return audio.play().then(function () {
       started = true;
       wantPlay = true;
@@ -135,15 +173,19 @@
       ssSet(KEYS.playing, '1');
       ssSet(KEYS.paused, '0');
       showControl(true);
+      if (fromPaused) fadeInTo(vol, FADE_IN_MS);
+      else audio.volume = vol;
       syncUI();
       return true;
     }).catch(function () {
+      audio.volume = vol;
       syncUI();
       return false;
     });
   }
 
   function pauseGlobal() {
+    cancelFade();
     globalPause = true;
     wantPlay = false;
     ssSet(KEYS.paused, '1');
@@ -154,6 +196,7 @@
   }
 
   function pauseDuck() {
+    cancelFade();
     audio.pause();
     persistPos();
     syncUI();
@@ -186,6 +229,7 @@
 
   var slider = root.querySelector('.seer-bed-vol');
   slider.addEventListener('input', function () {
+    cancelFade();
     vol = parseFloat(slider.value);
     if (isNaN(vol)) vol = DEFAULT_VOL;
     audio.volume = vol;
