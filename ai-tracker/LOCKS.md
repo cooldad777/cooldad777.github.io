@@ -1,4 +1,7 @@
 # LOCKS — Settled as of 2026-09-09
+
+> **SUPERSEDE 2026-09-29 (Pass 1):** Firm **door name** is **SEER Solutions** (hire door at `/seersolutions/`). Older rows below that say **SEER Consulting** / whisper **SEER AI Consulting** are historical — do not use Consulting as the public door label on new render. PROCESS_LOG entries that mention Consulting stay as dated history (no silent rewrite).
+
 **Public-safe.** No employer names. **Location: Kennesaw, GA.**  
 **Rule:** Do not invent past this table. Supersede with a dated Response entry if Ryan changes a lock.
 
