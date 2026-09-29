@@ -129,6 +129,9 @@
   }
 
 
+  var unlockArmed = false;
+  var unlockHandlers = [];
+
   function cancelFade() {
     if (fadeRaf != null) {
       cancelAnimationFrame(fadeRaf);
@@ -136,14 +139,15 @@
     }
   }
 
-  /** Ease-out cubic from current volume to target over ms. Slider stays at target. */
-  function fadeInTo(target, ms) {
+  /** Ease-out cubic. fromOverride forces start level (iOS often ignores volume set before play). */
+  function fadeInTo(target, ms, fromOverride) {
     cancelFade();
+    var from = (typeof fromOverride === 'number') ? fromOverride : audio.volume;
     if (ms <= 0) {
       audio.volume = target;
       return;
     }
-    var from = audio.volume;
+    audio.volume = from;
     var start = performance.now();
     var sliderEl = root.querySelector('.seer-bed-vol');
     if (sliderEl) sliderEl.value = String(target);
@@ -161,11 +165,47 @@
     fadeRaf = requestAnimationFrame(frame);
   }
 
-  function tryPlay() {
+  function disarmUnlock() {
+    unlockArmed = false;
+    for (var i = 0; i < unlockHandlers.length; i++) {
+      var h = unlockHandlers[i];
+      document.removeEventListener(h.type, h.fn, h.opts);
+    }
+    unlockHandlers = [];
+  }
+
+  /** iOS blocks autoplay until a real gesture; pull-to-refresh was accidentally that gesture. */
+  function armUnlock() {
+    if (unlockArmed || globalPause || isDuckZone()) return;
+    unlockArmed = true;
+    var unlock = function () {
+      if (globalPause || isDuckZone()) return;
+      tryPlay({ fade: true }).then(function (ok) {
+        if (ok) disarmUnlock();
+      });
+    };
+    var specs = [
+      { type: 'touchstart', opts: { capture: true, passive: true } },
+      { type: 'pointerdown', opts: { capture: true } },
+      { type: 'click', opts: { capture: true } },
+      { type: 'keydown', opts: { capture: true } }
+    ];
+    for (var i = 0; i < specs.length; i++) {
+      (function (spec) {
+        var fn = function () { unlock(); };
+        unlockHandlers.push({ type: spec.type, fn: fn, opts: spec.opts });
+        document.addEventListener(spec.type, fn, spec.opts);
+      })(specs[i]);
+    }
+  }
+
+  function tryPlay(opts) {
+    opts = opts || {};
+    var doFade = opts.fade !== false;
     if (isDuckZone()) return Promise.resolve(false);
     if (globalPause) return Promise.resolve(false);
     var fromPaused = audio.paused;
-    if (fromPaused) audio.volume = 0;
+    /* Keep preferred vol in `vol`; do not pre-set element volume (iOS ignores it). */
     return audio.play().then(function () {
       started = true;
       wantPlay = true;
@@ -173,19 +213,29 @@
       ssSet(KEYS.playing, '1');
       ssSet(KEYS.paused, '0');
       showControl(true);
-      if (fromPaused) fadeInTo(vol, FADE_IN_MS);
-      else audio.volume = vol;
+      disarmUnlock();
+      if (doFade && fromPaused) {
+        audio.volume = 0;
+        requestAnimationFrame(function () {
+          audio.volume = 0;
+          fadeInTo(vol, FADE_IN_MS, 0);
+        });
+      } else {
+        audio.volume = vol;
+      }
       syncUI();
       return true;
     }).catch(function () {
-      audio.volume = vol;
+      /* Stay silent until gesture — do NOT jump to full vol here. */
       syncUI();
+      armUnlock();
       return false;
     });
   }
 
   function pauseGlobal() {
     cancelFade();
+    disarmUnlock();
     globalPause = true;
     wantPlay = false;
     ssSet(KEYS.paused, '1');
@@ -258,27 +308,21 @@
 
     if (isPortfolioPage()) {
       showControl(true);
-      /* Try play on Portfolio entry; browsers may block without gesture */
-      tryPlay().then(function (ok) {
-        if (!ok) {
-          showControl(true);
-          /* First tap/click/key anywhere unlocks bed (autoplay policy) */
-          var unlock = function () {
-            document.removeEventListener('pointerdown', unlock, true);
-            document.removeEventListener('keydown', unlock, true);
-            if (globalPause) return;
-            tryPlay();
-          };
-          document.addEventListener('pointerdown', unlock, true);
-          document.addEventListener('keydown', unlock, true);
-        }
+      /* Arm unlock first so the first finger-down starts + fades (no pull-refresh needed). */
+      armUnlock();
+      tryPlay({ fade: true }).then(function (ok) {
+        if (!ok) showControl(true);
         syncUI();
       });
       return;
     }
 
     if (started && wantPlay && !globalPause) {
-      tryPlay();
+      armUnlock();
+      tryPlay({ fade: true });
+    } else if (visitedPortfolio && !globalPause) {
+      showControl(true);
+      armUnlock();
     }
     syncUI();
   }
