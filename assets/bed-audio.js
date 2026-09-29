@@ -154,12 +154,13 @@
     function frame(now) {
       var t = Math.min(1, (now - start) / ms);
       var e = 1 - Math.pow(1 - t, 3);
-      audio.volume = from + (target - from) * e;
+      var dest = vol; /* live preferred volume — slider can change mid-fade */
+      audio.volume = from + (dest - from) * e;
       if (t < 1) {
         fadeRaf = requestAnimationFrame(frame);
       } else {
         fadeRaf = null;
-        audio.volume = target;
+        audio.volume = dest;
       }
     }
     fadeRaf = requestAnimationFrame(frame);
@@ -178,8 +179,14 @@
   function armUnlock() {
     if (unlockArmed || globalPause || isDuckZone()) return;
     unlockArmed = true;
-    var unlock = function () {
+    var unlock = function (ev) {
       if (globalPause || isDuckZone()) return;
+      if (!audio.paused) {
+        disarmUnlock();
+        return;
+      }
+      /* Never steal slider/toggle — those have their own handlers. */
+      if (ev && ev.target && root.contains(ev.target)) return;
       tryPlay({ fade: true }).then(function (ok) {
         if (ok) disarmUnlock();
       });
@@ -192,7 +199,7 @@
     ];
     for (var i = 0; i < specs.length; i++) {
       (function (spec) {
-        var fn = function () { unlock(); };
+        var fn = function (ev) { unlock(ev); };
         unlockHandlers.push({ type: spec.type, fn: fn, opts: spec.opts });
         document.addEventListener(spec.type, fn, spec.opts);
       })(specs[i]);
@@ -262,7 +269,9 @@
   }
 
   var toggle = root.querySelector('.seer-bed-toggle');
-  toggle.addEventListener('click', function () {
+  toggle.addEventListener('pointerdown', function (ev) { ev.stopPropagation(); });
+  toggle.addEventListener('click', function (ev) {
+    ev.stopPropagation();
     if (!audio.paused) {
       pauseGlobal();
       return;
@@ -274,16 +283,27 @@
       syncUI();
       return;
     }
-    tryPlay();
+    tryPlay({ fade: true });
   });
 
   var slider = root.querySelector('.seer-bed-vol');
+  slider.addEventListener('pointerdown', function (ev) {
+    ev.stopPropagation();
+    cancelFade();
+  });
+  slider.addEventListener('touchstart', function (ev) {
+    ev.stopPropagation();
+    cancelFade();
+  }, { passive: true });
   slider.addEventListener('input', function () {
     cancelFade();
     vol = parseFloat(slider.value);
     if (isNaN(vol)) vol = DEFAULT_VOL;
     audio.volume = vol;
     ssSet(KEYS.vol, vol.toFixed(2));
+    if (audio.paused && !globalPause && !isDuckZone()) {
+      tryPlay({ fade: false });
+    }
   });
 
   audio.addEventListener('play', syncUI);
