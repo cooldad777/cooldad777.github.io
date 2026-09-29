@@ -3,6 +3,7 @@
  * Settled: PORTFOLIO-AUDIO.md · HUB-IA-2026-09-29.md
  * No Spotify. sessionStorage persistence. Duck /faded-dependence/ (+ future /halo-cut/).
  * Volume via Web Audio GainNode (iOS Safari ignores HTMLMediaElement.volume).
+ * Soft unlock fade: GainNode linearRamp ~4s 0→target; slider retargets mid-ramp.
  */
 (function () {
   'use strict';
@@ -16,9 +17,12 @@
     visited: 'seer_bed_portfolio_visit'
   };
   var DEFAULT_VOL = 0.72;
-  /** Soft start so bed doesn't startle; ~4.5s to preferred volume (Settled). */
-  var FADE_IN_MS = 4500;
+  /** Soft start so bed doesn't startle; ~4s linear to preferred volume. */
+  var FADE_IN_MS = 4000;
   var fadeRaf = null;
+  var fadeGen = 0;
+  var fading = false;
+  var fadeEndPerf = 0;
   var DUCK_RE = /\/faded-dependence(\/|$)|\/halo-cut(\/|$)/i;
 
   /* —— Web Audio graph (GainNode) —— */
@@ -32,17 +36,28 @@
     return window.AudioContext || window.webkitAudioContext || null;
   }
 
+  function clamp01(level) {
+    return Math.max(0, Math.min(1, level));
+  }
+
+  /** Immediate level set (cancels any automation). */
   function setOutputLevel(level) {
-    level = Math.max(0, Math.min(1, level));
+    level = clamp01(level);
     if (useGain && gainNode && audioCtx) {
       try {
         var t = audioCtx.currentTime;
-        /* Cancel any AudioParam automation, then set immediately.
-           Prefer .value= so gain.value reads back right away (setValueAtTime alone
+        var g = gainNode.gain;
+        if (typeof g.cancelAndHoldAtTime === 'function') {
+          try { g.cancelAndHoldAtTime(t); } catch (e0) {
+            g.cancelScheduledValues(t);
+          }
+        } else {
+          g.cancelScheduledValues(t);
+        }
+        /* Prefer .value= so gain.value reads back right away (setValueAtTime alone
            can lag until the next render quantum in Chromium). */
-        gainNode.gain.cancelScheduledValues(t);
-        gainNode.gain.value = level;
-        gainNode.gain.setValueAtTime(level, t);
+        g.value = level;
+        g.setValueAtTime(level, t);
       } catch (e) {
         try { gainNode.gain.value = level; } catch (e2) {}
       }
@@ -63,9 +78,10 @@
   /**
    * Create AudioContext + MediaElementSource + GainNode once.
    * Must run inside a user-gesture for iOS; createMediaElementSource may only be called once per element.
+   * If a prior attempt failed (no graph), allow retry on a later gesture.
    */
   function ensureGraph() {
-    if (graphReady) return useGain;
+    if (useGain && graphReady) return true;
     var Ctor = AudioContextCtor();
     if (!Ctor) {
       graphReady = true;
@@ -89,8 +105,9 @@
       return true;
     } catch (e) {
       /* createMediaElementSource already used, or AudioContext failed */
-      graphReady = true;
-      useGain = !!(gainNode && audioCtx);
+      useGain = !!(gainNode && audioCtx && mediaSource);
+      /* Only lock out retries when we truly have no path left. */
+      graphReady = useGain;
       return useGain;
     }
   }
@@ -200,8 +217,9 @@
     }
     if (playIcon) playIcon.hidden = playing;
     if (pauseIcon) pauseIcon.hidden = !playing;
+    /* Slider shows preferred target, not instantaneous ramp level. */
     var slider = root.querySelector('.seer-bed-vol');
-    if (slider && fadeRaf == null && Math.abs(parseFloat(slider.value) - vol) > 0.01) {
+    if (slider && Math.abs(parseFloat(slider.value) - vol) > 0.01) {
       slider.value = String(vol);
     }
   }
@@ -215,43 +233,155 @@
   var unlockArmed = false;
   var unlockHandlers = [];
 
+  function holdGainAt(t) {
+    if (!(useGain && gainNode && audioCtx)) return getOutputLevel();
+    var g = gainNode.gain;
+    var cur = g.value;
+    try {
+      if (typeof g.cancelAndHoldAtTime === 'function') {
+        g.cancelAndHoldAtTime(t);
+        cur = g.value;
+      } else {
+        g.cancelScheduledValues(t);
+        g.setValueAtTime(cur, t);
+      }
+    } catch (e) {
+      try { g.value = cur; } catch (e2) {}
+    }
+    return cur;
+  }
+
   function cancelFade() {
+    fadeGen += 1;
+    fading = false;
+    fadeEndPerf = 0;
     if (fadeRaf != null) {
       cancelAnimationFrame(fadeRaf);
       fadeRaf = null;
     }
     if (useGain && gainNode && audioCtx) {
       try {
-        gainNode.gain.cancelScheduledValues(audioCtx.currentTime);
+        holdGainAt(audioCtx.currentTime);
       } catch (e) {}
     }
   }
 
-  /** Ease-out cubic. fromOverride forces start level (iOS often ignores volume set before play). */
-  function fadeInTo(target, ms, fromOverride) {
-    cancelFade();
-    var from = (typeof fromOverride === 'number') ? fromOverride : getOutputLevel();
-    if (ms <= 0) {
+  /**
+   * Ramp output toward target over ms.
+   * GainNode path: sample-accurate linearRampToValueAtTime (reliable on iOS).
+   * Fallback: rAF linear on HTMLMediaElement.volume.
+   * Mid-ramp slider changes call this again with a new target (retarget).
+   */
+  function rampTo(target, ms, fromOverride) {
+    target = clamp01(target);
+    var msUse = (typeof ms === 'number' && ms >= 0) ? ms : FADE_IN_MS;
+    var from = (typeof fromOverride === 'number') ? clamp01(fromOverride) : getOutputLevel();
+
+    fadeGen += 1;
+    var gen = fadeGen;
+    if (fadeRaf != null) {
+      cancelAnimationFrame(fadeRaf);
+      fadeRaf = null;
+    }
+
+    if (msUse <= 0 || Math.abs(target - from) < 0.0005) {
+      fading = false;
+      fadeEndPerf = 0;
       setOutputLevel(target);
       return;
     }
+
+    fading = true;
+    fadeEndPerf = performance.now() + msUse;
+
+    if (useGain && gainNode && audioCtx) {
+      try {
+        var t0 = audioCtx.currentTime;
+        var held = (typeof fromOverride === 'number') ? from : holdGainAt(t0);
+        if (typeof fromOverride !== 'number') from = clamp01(held);
+        var g = gainNode.gain;
+        g.setValueAtTime(from, t0);
+        g.linearRampToValueAtTime(target, t0 + msUse / 1000);
+        audio.volume = 1;
+      } catch (e) {
+        /* Fall through to rAF if automation fails */
+        useGain = !!(gainNode && audioCtx);
+        if (!(useGain && gainNode)) {
+          /* element path below */
+        } else {
+          setOutputLevel(target);
+          fading = false;
+          fadeEndPerf = 0;
+          return;
+        }
+      }
+
+      if (useGain && gainNode) {
+        function watch() {
+          if (gen !== fadeGen) return;
+          if (performance.now() >= fadeEndPerf) {
+            fading = false;
+            fadeRaf = null;
+            fadeEndPerf = 0;
+            /* Snap to live preferred vol (may have changed at the last moment). */
+            setOutputLevel(vol);
+            return;
+          }
+          fadeRaf = requestAnimationFrame(watch);
+        }
+        fadeRaf = requestAnimationFrame(watch);
+        return;
+      }
+    }
+
+    /* HTMLMediaElement.volume fallback (non-iOS / no AudioContext). */
     setOutputLevel(from);
     var start = performance.now();
-    var sliderEl = root.querySelector('.seer-bed-vol');
-    if (sliderEl) sliderEl.value = String(target);
     function frame(now) {
-      var t = Math.min(1, (now - start) / ms);
-      var e = 1 - Math.pow(1 - t, 3);
-      var dest = vol; /* live preferred volume — slider can change mid-fade */
-      setOutputLevel(from + (dest - from) * e);
+      if (gen !== fadeGen) return;
+      var t = Math.min(1, (now - start) / msUse);
+      var dest = vol; /* live preferred — slider can change mid-fade */
+      setOutputLevel(from + (dest - from) * t);
       if (t < 1) {
         fadeRaf = requestAnimationFrame(frame);
       } else {
         fadeRaf = null;
+        fading = false;
+        fadeEndPerf = 0;
         setOutputLevel(dest);
       }
     }
     fadeRaf = requestAnimationFrame(frame);
+  }
+
+  /** Unlock/start fade: always from silence to current slider target. */
+  function fadeInTo(target, ms, fromOverride) {
+    var sliderEl = root.querySelector('.seer-bed-vol');
+    if (sliderEl) sliderEl.value = String(clamp01(target));
+    rampTo(target, ms, typeof fromOverride === 'number' ? fromOverride : 0);
+  }
+
+  function remainingFadeMs() {
+    if (!fading || !fadeEndPerf) return 0;
+    return Math.max(0, fadeEndPerf - performance.now());
+  }
+
+  /** Slider moved: update preferred vol; retarget active ramp or set immediately. */
+  function applySliderVol(next, opts) {
+    opts = opts || {};
+    next = clamp01(next);
+    if (isNaN(next)) next = DEFAULT_VOL;
+    vol = next;
+    ssSet(KEYS.vol, vol.toFixed(2));
+    if (fading && !opts.forceImmediate) {
+      /* Retarget smoothly over remaining unlock fade (floor ~250ms). */
+      var rem = remainingFadeMs();
+      var ms = rem > 250 ? rem : 350;
+      rampTo(vol, ms, getOutputLevel());
+    } else {
+      cancelFade();
+      setOutputLevel(vol);
+    }
   }
 
   function disarmUnlock() {
@@ -323,6 +453,7 @@
       disarmUnlock();
       if (doFade && fromPaused) {
         setOutputLevel(0);
+        /* Start ramp on next frame so the zeroed gain commits before automation. */
         requestAnimationFrame(function () {
           setOutputLevel(0);
           fadeInTo(vol, FADE_IN_MS, 0);
@@ -389,25 +520,22 @@
   var slider = root.querySelector('.seer-bed-vol');
   slider.addEventListener('pointerdown', function (ev) {
     ev.stopPropagation();
-    cancelFade();
     ensureGraph();
     resumeCtx();
+    /* Do not cancelFade here — input handler retargets mid-ramp. */
   });
   slider.addEventListener('touchstart', function (ev) {
     ev.stopPropagation();
-    cancelFade();
     ensureGraph();
     resumeCtx();
   }, { passive: true });
   slider.addEventListener('input', function () {
-    cancelFade();
     ensureGraph();
     resumeCtx();
-    vol = parseFloat(slider.value);
-    if (isNaN(vol)) vol = DEFAULT_VOL;
-    setOutputLevel(vol);
-    ssSet(KEYS.vol, vol.toFixed(2));
+    var next = parseFloat(slider.value);
+    applySliderVol(next);
     if (audio.paused && !globalPause && !isDuckZone()) {
+      /* Starting via slider: no unlock fade (user is setting level intentionally). */
       tryPlay({ fade: false });
     }
   });
@@ -426,16 +554,15 @@
     setVol: function (v) {
       v = parseFloat(v);
       if (isNaN(v) || v < 0 || v > 1) return;
-      cancelFade();
-      vol = v;
-      setOutputLevel(vol);
-      ssSet(KEYS.vol, vol.toFixed(2));
+      applySliderVol(v, { forceImmediate: true });
       var s = root.querySelector('.seer-bed-vol');
       if (s) s.value = String(vol);
     },
     getGain: function () { return getOutputLevel(); },
     isPlaying: function () { return !audio.paused && !audio.ended; },
     hasGraph: function () { return !!(useGain && gainNode && audioCtx); },
+    isFading: function () { return !!fading; },
+    remainingFadeMs: remainingFadeMs,
     fadeMs: FADE_IN_MS
   };
 
