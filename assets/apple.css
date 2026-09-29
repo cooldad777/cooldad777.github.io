@@ -67,3 +67,153 @@ footer{background:#f5f5f7;color:#6e6e73;font-size:12px;padding:36px 22px 64px;bo
   html{scroll-behavior:auto}
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 }
+
+/* —— Hub IA 2026-09-29: two unequal doors —— */
+.fork{
+  display:grid;
+  grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr);
+  gap:14px;
+  max-width:980px;
+  margin:0 auto;
+  padding:28px 16px 12px;
+}
+@media(max-width:720px){.fork{grid-template-columns:1fr}}
+.door{
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  text-decoration:none;
+  color:inherit;
+  border-radius:22px;
+  padding:36px 28px 32px;
+  min-height:200px;
+  transition:transform .2s cubic-bezier(.16,1,.3,1), box-shadow .2s ease;
+  border:1px solid rgba(0,0,0,.06);
+}
+.door:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,0,0,.1)}
+.door .eyebrow{
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:#6e6e73;margin-bottom:10px;font-weight:600;
+}
+.door h2{font-size:clamp(26px,4vw,36px);letter-spacing:-.03em;font-weight:600;margin:0}
+.door p{margin:10px 0 0;font-size:16px;color:#6e6e73;max-width:28em;line-height:1.45}
+.door .go{display:inline-block;margin-top:22px;color:#0066cc;font-size:17px}
+.door-a{background:#f5f5f7;min-height:180px}
+.door-b{
+  background:#000;color:#f5f5f7;min-height:240px;
+  border-color:transparent;
+}
+.door-b .eyebrow{color:#a1a1a6}
+.door-b p{color:#a1a1a6}
+.door-b .go{color:#2997ff}
+.door-b:hover{box-shadow:0 22px 48px rgba(0,0,0,.28)}
+
+/* —— Portfolio shelf —— */
+.shelf-hero{background:#000;color:#f5f5f7;text-align:center;padding:88px 22px 48px}
+.shelf-hero h1{font-size:clamp(36px,6vw,56px);letter-spacing:-.035em;font-weight:600;margin:0}
+.shelf-hero .sub{margin:12px auto 0;max-width:32em;font-size:19px;color:#a1a1a6}
+.shelf{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:14px;
+  max-width:980px;
+  margin:0 auto;
+  padding:28px 16px 48px;
+}
+.shelf-card{
+  display:flex;flex-direction:column;
+  background:#fff;border-radius:18px;padding:24px 22px 22px;
+  text-decoration:none;color:inherit;
+  border:1px solid rgba(0,0,0,.06);
+  transition:transform .18s ease, box-shadow .18s ease;
+  min-height:168px;
+}
+.shelf-card:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(0,0,0,.08)}
+.shelf-card.featured{
+  grid-column:1 / -1;
+  background:#111;color:#f5f5f7;
+  border-color:transparent;
+  min-height:200px;
+  padding:32px 28px;
+}
+.shelf-card.featured p{color:#a1a1a6}
+.shelf-card.featured .go{color:#2997ff}
+.shelf-meta{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.badge{
+  display:inline-block;font-size:10px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  border-radius:980px;padding:5px 10px;
+  background:#f5f5f7;color:#6e6e73;
+}
+.shelf-card.featured .badge{background:rgba(255,255,255,.1);color:#d2d2d7}
+.badge-live{background:#e8f5e9;color:#2e5a36}
+.badge-stub{background:#f5f0e6;color:#7a6540}
+.shelf-card.featured .badge-live{background:rgba(139,191,138,.18);color:#8bbf8a}
+.shelf-card.featured .badge-stub{background:rgba(232,196,154,.15);color:#e8c49a}
+.shelf-card h3{font-size:22px;letter-spacing:-.02em;margin:0;font-weight:600}
+.shelf-card p{margin:8px 0 0;font-size:15px;color:#6e6e73;line-height:1.45;flex:1}
+.shelf-card .go{display:inline-block;margin-top:16px;color:#0066cc;font-size:15px}
+.shelf-card .secondary{
+  margin-top:10px;font-size:13px;color:#6e6e73;
+}
+.shelf-card .secondary a{color:#0066cc;text-decoration:none}
+.shelf-card.featured .secondary{color:#a1a1a6}
+.shelf-card.featured .secondary a{color:#2997ff}
+
+/* —— Portfolio bed audio control (glass, centered) —— */
+.seer-bed{
+  position:fixed;
+  top:14px;
+  left:50%;
+  right:auto;
+  transform:translateX(-50%);
+  z-index:60;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  padding:10px 18px 10px 12px;
+  min-width:min(280px, calc(100vw - 32px));
+  background:rgba(255,255,255,.14);
+  backdrop-filter:saturate(180%) blur(22px);
+  -webkit-backdrop-filter:saturate(180%) blur(22px);
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:980px;
+  box-shadow:0 10px 40px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.35);
+  color:#f5f5f7;
+  transition:opacity .25s ease, transform .25s ease, background .25s ease;
+}
+.seer-bed[hidden]{display:none!important}
+.seer-bed-toggle{
+  width:34px;height:34px;border:0;border-radius:50%;
+  background:rgba(255,255,255,.22);color:#fff;
+  display:inline-flex;align-items:center;justify-content:center;
+  cursor:pointer;flex-shrink:0;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.4);
+}
+.seer-bed-toggle:hover{background:rgba(255,255,255,.32)}
+.seer-bed-vol{
+  flex:1;
+  width:140px;
+  max-width:180px;
+  height:6px;
+  accent-color:rgba(255,255,255,.9);
+  cursor:pointer;
+  background:transparent;
+  opacity:.95;
+}
+.seer-bed-hint{
+  font-size:12px;letter-spacing:.03em;color:rgba(255,255,255,.78);
+  white-space:nowrap;padding-right:2px;
+}
+.seer-bed--invite{
+  background:rgba(255,255,255,.2);
+  box-shadow:0 0 0 1px rgba(255,255,255,.35), 0 12px 36px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.45);
+}
+@media(max-width:520px){
+  .seer-bed{top:10px;padding:8px 14px 8px 10px;gap:10px;min-width:min(240px, calc(100vw - 24px))}
+  .seer-bed-vol{width:100px;max-width:120px}
+}
+@media (prefers-reduced-motion:reduce){
+  .door,.shelf-card,.seer-bed{transition:none}
+}
