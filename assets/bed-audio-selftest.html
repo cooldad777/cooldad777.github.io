@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>bed-audio GainNode selftest</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1rem; }
+    #log { white-space: pre-wrap; font-family: ui-monospace, monospace; font-size: 13px; background: #111; color: #eee; padding: 1rem; border-radius: 8px; }
+    .pass { color: #6f6; } .fail { color: #f66; } .info { color: #9cf; }
+    button { font-size: 1rem; padding: 0.5rem 1rem; margin: 0.25rem; }
+  </style>
+</head>
+<body>
+  <h1>bed-audio GainNode selftest</h1>
+  <p>Tap <strong>Run tests</strong> (user gesture required for AudioContext on iOS).</p>
+  <button id="run" type="button">Run tests</button>
+  <div id="log"></div>
+  <script src="bed-audio.js?v=gain48"></script>
+  <script>
+  (function () {
+    var logEl = document.getElementById('log');
+    function log(msg, cls) {
+      var line = document.createElement('div');
+      line.className = cls || 'info';
+      line.textContent = msg;
+      logEl.appendChild(line);
+    }
+    function assert(cond, msg) {
+      if (cond) { log('PASS: ' + msg, 'pass'); return true; }
+      log('FAIL: ' + msg, 'fail');
+      return false;
+    }
+    function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+
+    document.getElementById('run').addEventListener('click', async function () {
+      logEl.textContent = '';
+      var T = window.__seerBedTest;
+      if (!assert(!!T, '__seerBedTest exposed')) return;
+
+      var btn = document.querySelector('#seer-bed .seer-bed-toggle');
+      if (!assert(!!btn, 'toggle button present')) return;
+
+      /* Click play to build graph + start fade inside this gesture */
+      if (T.isPlaying()) {
+        btn.click();
+        await sleep(100);
+      }
+      btn.click();
+      await sleep(80);
+
+      assert(T.hasGraph() || !(window.AudioContext || window.webkitAudioContext),
+        'hasGraph true (or no AudioContext available)');
+
+      if (T.hasGraph()) {
+        var g0 = T.getGain();
+        assert(g0 < 0.15, 'fade start gain near 0 (got ' + g0.toFixed(3) + ')');
+        await sleep(500);
+        var g1 = T.getGain();
+        assert(g1 > g0 + 0.02, 'fade rises within ~500ms (' + g0.toFixed(3) + ' → ' + g1.toFixed(3) + ')');
+
+        T.setVol(0.1);
+        await sleep(50);
+        assert(Math.abs(T.getGain() - 0.1) < 0.05, 'setVol(0.1) → gain≈0.1 (got ' + T.getGain().toFixed(3) + ')');
+
+        T.setVol(0.9);
+        await sleep(50);
+        assert(Math.abs(T.getGain() - 0.9) < 0.05, 'setVol(0.9) → gain≈0.9 (got ' + T.getGain().toFixed(3) + ')');
+
+        assert(Math.abs(document.getElementById('seer-bed-audio').volume - 1) < 0.01,
+          'audio.volume === 1 when graph active');
+      } else {
+        log('AudioContext unavailable — fallback audio.volume path (iOS will not work)', 'info');
+        T.setVol(0.1);
+        assert(Math.abs(T.getGain() - 0.1) < 0.05, 'fallback setVol(0.1)');
+        T.setVol(0.9);
+        assert(Math.abs(T.getGain() - 0.9) < 0.05, 'fallback setVol(0.9)');
+      }
+
+      assert(typeof T.fadeMs === 'number' && T.fadeMs === 4500, 'fadeMs === 4500');
+      log('Done.', 'info');
+    });
+  })();
+  </script>
+</body>
+</html>

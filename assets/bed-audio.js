@@ -2,6 +2,7 @@
  * SEE, R — Portfolio bed audio (sitewide chrome)
  * Settled: PORTFOLIO-AUDIO.md · HUB-IA-2026-09-29.md
  * No Spotify. sessionStorage persistence. Duck /faded-dependence/ (+ future /halo-cut/).
+ * Volume via Web Audio GainNode (iOS Safari ignores HTMLMediaElement.volume).
  */
 (function () {
   'use strict';
@@ -19,6 +20,87 @@
   var FADE_IN_MS = 4500;
   var fadeRaf = null;
   var DUCK_RE = /\/faded-dependence(\/|$)|\/halo-cut(\/|$)/i;
+
+  /* —— Web Audio graph (GainNode) —— */
+  var audioCtx = null;
+  var mediaSource = null;
+  var gainNode = null;
+  var graphReady = false;
+  var useGain = false; /* true once graph is wired; false = fallback to audio.volume */
+
+  function AudioContextCtor() {
+    return window.AudioContext || window.webkitAudioContext || null;
+  }
+
+  function setOutputLevel(level) {
+    level = Math.max(0, Math.min(1, level));
+    if (useGain && gainNode && audioCtx) {
+      try {
+        var t = audioCtx.currentTime;
+        /* Cancel any AudioParam automation, then set immediately.
+           Prefer .value= so gain.value reads back right away (setValueAtTime alone
+           can lag until the next render quantum in Chromium). */
+        gainNode.gain.cancelScheduledValues(t);
+        gainNode.gain.value = level;
+        gainNode.gain.setValueAtTime(level, t);
+      } catch (e) {
+        try { gainNode.gain.value = level; } catch (e2) {}
+      }
+      /* Element volume stays at 1 so GainNode is the only attenuator. */
+      audio.volume = 1;
+    } else {
+      audio.volume = level;
+    }
+  }
+
+  function getOutputLevel() {
+    if (useGain && gainNode) {
+      try { return gainNode.gain.value; } catch (e) { return vol; }
+    }
+    return audio.volume;
+  }
+
+  /**
+   * Create AudioContext + MediaElementSource + GainNode once.
+   * Must run inside a user-gesture for iOS; createMediaElementSource may only be called once per element.
+   */
+  function ensureGraph() {
+    if (graphReady) return useGain;
+    var Ctor = AudioContextCtor();
+    if (!Ctor) {
+      graphReady = true;
+      useGain = false;
+      return false;
+    }
+    try {
+      if (!audioCtx) audioCtx = new Ctor();
+      if (!mediaSource) {
+        mediaSource = audioCtx.createMediaElementSource(audio);
+      }
+      if (!gainNode) {
+        gainNode = audioCtx.createGain();
+        gainNode.gain.value = 0;
+        mediaSource.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+      }
+      audio.volume = 1;
+      useGain = true;
+      graphReady = true;
+      return true;
+    } catch (e) {
+      /* createMediaElementSource already used, or AudioContext failed */
+      graphReady = true;
+      useGain = !!(gainNode && audioCtx);
+      return useGain;
+    }
+  }
+
+  function resumeCtx() {
+    if (audioCtx && audioCtx.state === 'suspended') {
+      try { return audioCtx.resume(); } catch (e) { return Promise.resolve(); }
+    }
+    return Promise.resolve();
+  }
 
   function assetBase() {
     var scripts = document.getElementsByTagName('script');
@@ -54,6 +136,7 @@
   audio.id = 'seer-bed-audio';
   audio.setAttribute('playsinline', '');
   audio.setAttribute('preload', 'metadata');
+  audio.crossOrigin = 'anonymous';
   audio.loop = true;
   audio.src = audioSrc;
 
@@ -62,6 +145,7 @@
   var wantPlay = ssGet(KEYS.playing) === '1';
   var vol = parseFloat(ssGet(KEYS.vol));
   if (isNaN(vol) || vol < 0 || vol > 1) vol = DEFAULT_VOL;
+  /* Initial element volume; once graph is active, element stays at 1. */
   audio.volume = vol;
 
   var pos = parseFloat(ssGet(KEYS.pos));
@@ -128,7 +212,6 @@
     } catch (e) {}
   }
 
-
   var unlockArmed = false;
   var unlockHandlers = [];
 
@@ -137,17 +220,22 @@
       cancelAnimationFrame(fadeRaf);
       fadeRaf = null;
     }
+    if (useGain && gainNode && audioCtx) {
+      try {
+        gainNode.gain.cancelScheduledValues(audioCtx.currentTime);
+      } catch (e) {}
+    }
   }
 
   /** Ease-out cubic. fromOverride forces start level (iOS often ignores volume set before play). */
   function fadeInTo(target, ms, fromOverride) {
     cancelFade();
-    var from = (typeof fromOverride === 'number') ? fromOverride : audio.volume;
+    var from = (typeof fromOverride === 'number') ? fromOverride : getOutputLevel();
     if (ms <= 0) {
-      audio.volume = target;
+      setOutputLevel(target);
       return;
     }
-    audio.volume = from;
+    setOutputLevel(from);
     var start = performance.now();
     var sliderEl = root.querySelector('.seer-bed-vol');
     if (sliderEl) sliderEl.value = String(target);
@@ -155,12 +243,12 @@
       var t = Math.min(1, (now - start) / ms);
       var e = 1 - Math.pow(1 - t, 3);
       var dest = vol; /* live preferred volume — slider can change mid-fade */
-      audio.volume = from + (dest - from) * e;
+      setOutputLevel(from + (dest - from) * e);
       if (t < 1) {
         fadeRaf = requestAnimationFrame(frame);
       } else {
         fadeRaf = null;
-        audio.volume = dest;
+        setOutputLevel(dest);
       }
     }
     fadeRaf = requestAnimationFrame(frame);
@@ -212,8 +300,20 @@
     if (isDuckZone()) return Promise.resolve(false);
     if (globalPause) return Promise.resolve(false);
     var fromPaused = audio.paused;
-    /* Keep preferred vol in `vol`; do not pre-set element volume (iOS ignores it). */
-    return audio.play().then(function () {
+
+    /* Build graph + resume ctx inside the same user gesture as play. */
+    ensureGraph();
+    var resumeP = resumeCtx();
+
+    /* Zero gain synchronously before play so the first buffer is silent on fade-in. */
+    if (doFade && fromPaused) {
+      cancelFade();
+      setOutputLevel(0);
+    }
+
+    return resumeP.then(function () {
+      return audio.play();
+    }).then(function () {
       started = true;
       wantPlay = true;
       ssSet(KEYS.started, '1');
@@ -222,13 +322,13 @@
       showControl(true);
       disarmUnlock();
       if (doFade && fromPaused) {
-        audio.volume = 0;
+        setOutputLevel(0);
         requestAnimationFrame(function () {
-          audio.volume = 0;
+          setOutputLevel(0);
           fadeInTo(vol, FADE_IN_MS, 0);
         });
       } else {
-        audio.volume = vol;
+        setOutputLevel(vol);
       }
       syncUI();
       return true;
@@ -290,16 +390,22 @@
   slider.addEventListener('pointerdown', function (ev) {
     ev.stopPropagation();
     cancelFade();
+    ensureGraph();
+    resumeCtx();
   });
   slider.addEventListener('touchstart', function (ev) {
     ev.stopPropagation();
     cancelFade();
+    ensureGraph();
+    resumeCtx();
   }, { passive: true });
   slider.addEventListener('input', function () {
     cancelFade();
+    ensureGraph();
+    resumeCtx();
     vol = parseFloat(slider.value);
     if (isNaN(vol)) vol = DEFAULT_VOL;
-    audio.volume = vol;
+    setOutputLevel(vol);
     ssSet(KEYS.vol, vol.toFixed(2));
     if (audio.paused && !globalPause && !isDuckZone()) {
       tryPlay({ fade: false });
@@ -313,6 +419,25 @@
   });
   window.addEventListener('pagehide', persistPos);
   window.addEventListener('beforeunload', persistPos);
+
+  /* Test-only helpers (public for now). */
+  window.__seerBedTest = {
+    getVol: function () { return vol; },
+    setVol: function (v) {
+      v = parseFloat(v);
+      if (isNaN(v) || v < 0 || v > 1) return;
+      cancelFade();
+      vol = v;
+      setOutputLevel(vol);
+      ssSet(KEYS.vol, vol.toFixed(2));
+      var s = root.querySelector('.seer-bed-vol');
+      if (s) s.value = String(vol);
+    },
+    getGain: function () { return getOutputLevel(); },
+    isPlaying: function () { return !audio.paused && !audio.ended; },
+    hasGraph: function () { return !!(useGain && gainNode && audioCtx); },
+    fadeMs: FADE_IN_MS
+  };
 
   function mount() {
     document.body.appendChild(audio);
