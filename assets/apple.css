@@ -160,6 +160,31 @@ footer{background:#f5f5f7;color:#6e6e73;font-size:12px;padding:36px 22px 64px;bo
 .shelf-card.featured .secondary{color:#a1a1a6}
 .shelf-card.featured .secondary a{color:#2997ff}
 
+
+/* —— Portfolio Option A clusters —— */
+.shelf-cluster{
+  grid-column:1 / -1;
+  margin:22px 0 2px;
+  font-size:12px;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:#6e6e73;
+}
+.shelf-cluster:first-child{margin-top:4px}
+.shelf-hero .bed-help{
+  margin:18px auto 0;max-width:34em;
+  font-size:14px;color:#86868b;line-height:1.45;
+}
+
+/* —— SEER hours saved band —— */
+.hours-viz{max-width:640px;margin:18px auto 0}
+.hours-viz .row{display:grid;grid-template-columns:7.5em 1fr 5.5em;gap:10px;align-items:center;margin:10px 0}
+.hours-viz .lab{font-size:13px;color:#6e6e73}
+.hours-viz .bar-track{height:14px;background:#ececef;border-radius:980px;overflow:hidden;position:relative}
+.hours-viz .bar{display:block;height:100%;border-radius:980px;background:linear-gradient(90deg,#7a9bb0,#e8c49a)}
+.hours-viz .bar.range{opacity:.85}
+.hours-viz .val{font-size:13px;font-weight:600;color:#1d1d1f;text-align:right}
+.hours-viz .cap{margin-top:14px;font-size:13px;color:#6e6e73;line-height:1.45}
+
 /* —— Portfolio bed audio control (glass, centered) —— */
 .seer-bed{
   position:fixed;
