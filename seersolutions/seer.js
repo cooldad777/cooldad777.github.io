@@ -168,25 +168,4 @@
     steps.forEach(function (li) { li.classList.add("is-active"); });
   }
 
-  /* Star shifts a few pixels with scroll. Static when reduced motion is on. */
-  var star = document.getElementById("gap-star");
-  var gap = document.getElementById("gap");
-  if (star && gap && !reduce) {
-    var ticking = false;
-    function placeStar() {
-      ticking = false;
-      var rect = gap.getBoundingClientRect();
-      var mid = rect.top + rect.height * 0.35;
-      var t = 1 - Math.min(1, Math.max(0, mid / window.innerHeight));
-      var y = (t - 0.5) * 14;
-      star.setAttribute("transform", "translate(0 " + y.toFixed(1) + ")");
-    }
-    window.addEventListener("scroll", function () {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(placeStar);
-      }
-    }, { passive: true });
-    placeStar();
-  }
 })();

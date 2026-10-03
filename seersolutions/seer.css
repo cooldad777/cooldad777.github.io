@@ -205,14 +205,6 @@ h3 { font-size: 1.35rem; margin: 0 0 0.4rem; }
 .gap h2 { font-size: 1.15rem; font-family: var(--sans); letter-spacing: 0; font-weight: 650; }
 .gap .hint, .gap .src { color: var(--on-dark-soft); font-size: 0.86rem; margin: 0.35rem 0 0.7rem; }
 .gap .src { font-size: 0.78rem; line-height: 1.45; }
-.gap svg { display: block; width: 100%; height: auto; }
-.gap-gold { fill: none; stroke: var(--gold-line); stroke-width: 2.6; }
-.gap-blue { fill: none; stroke: #8eafc4; stroke-width: 2.2; }
-@media (prefers-reduced-motion: no-preference) {
-  .gap-gold { stroke-dasharray: 540; stroke-dashoffset: 540; animation: draw 2.6s ease forwards; }
-}
-@keyframes draw { to { stroke-dashoffset: 0; } }
-.axis { fill: #c8c2b4; font-size: 10px; font-family: var(--sans); }
 .chain { list-style: none; margin: 0.8rem 0 0; padding: 0; display: grid; gap: 0.35rem; }
 .chain li { border-top: 1px solid rgba(244, 240, 230, 0.12); padding-top: 0.35rem; }
 .chain button {
