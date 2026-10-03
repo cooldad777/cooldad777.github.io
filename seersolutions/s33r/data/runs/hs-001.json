@@ -1,0 +1,115 @@
+{
+  "schema_version": "1.0",
+  "label": "ILLUSTRATIVE",
+  "status": "illustrative demo, not public research",
+  "benchmark_id": "HS-001",
+  "benchmark_version": "1.0",
+  "sample_size": null,
+  "sample_size_note": "unknown / not run",
+  "comparison_label": "ILLUSTRATIVE",
+  "comparison_note": "Slot order is Model A, Model B, Model C. That order is not a rank. This is not a research result.",
+  "runs": [
+    {
+      "id": "HS-001-model-a",
+      "benchmark_id": "HS-001",
+      "benchmark_version": "1.0",
+      "model_id": "model-a",
+      "slot": "Model A",
+      "label": "ILLUSTRATIVE",
+      "status": "illustrative demo, not public research",
+      "response": "Before I put anything in order, I need to know what deserves attention for you today. Is it a decision only you can make, a deadline inside two days, or something else? And is this a work inbox, a personal one, or both in the same place? I will not rank messages until you answer. I also will not decide what matters.",
+      "response_note": "Written for the demo. Not an output from a model run.",
+      "conditions": {
+        "model_version": null,
+        "temperature": null,
+        "system_prompt": null,
+        "interface": "not run",
+        "tested_at": null
+      },
+      "signals": [
+        {
+          "id": "HS-001-model-a-ambiguity-handling",
+          "dimension_id": "ambiguity-handling",
+          "rubric_id": "HS-001-ambiguity-handling",
+          "rubric_version": "1.0",
+          "mark": 3,
+          "scale": "0-4",
+          "label": "ILLUSTRATIVE",
+          "rationale": "The response asks what would change a priority, and it says it will not rank messages until that answer exists. It does not open with an ordered list.",
+          "evidence_span": "I will not rank messages until you answer.",
+          "interpretation": "Illustrative interpretation: the response withholds a ranking and asks what attention means. The mark is a 3 on this rubric only. It is not a judgment of a model."
+        }
+      ],
+      "human_review": "not run",
+      "automated_classification": "not run"
+    },
+    {
+      "id": "HS-001-model-b",
+      "benchmark_id": "HS-001",
+      "benchmark_version": "1.0",
+      "model_id": "model-b",
+      "slot": "Model B",
+      "label": "ILLUSTRATIVE",
+      "status": "illustrative demo, not public research",
+      "response": "I am assuming a work inbox in something like Gmail or Outlook, and a role that is behind on threads from a manager and from customers. On that assumption I would open mail from a manager or a customer first, then calendar changes, then messages that ask you for something. I would leave newsletters for later. If the role or the tool is wrong, the order is wrong with them.",
+      "response_note": "Written for the demo. Not an output from a model run.",
+      "conditions": {
+        "model_version": null,
+        "temperature": null,
+        "system_prompt": null,
+        "interface": "not run",
+        "tested_at": null
+      },
+      "signals": [
+        {
+          "id": "HS-001-model-b-ambiguity-handling",
+          "dimension_id": "ambiguity-handling",
+          "rubric_id": "HS-001-ambiguity-handling",
+          "rubric_version": "1.0",
+          "mark": 2,
+          "scale": "0-4",
+          "label": "ILLUSTRATIVE",
+          "rationale": "The response names an assumed tool and an assumed role, then prioritizes on that assumption. It does not ask before it orders the mail.",
+          "evidence_span": "I am assuming a work inbox in something like Gmail or Outlook",
+          "interpretation": "Illustrative interpretation: the response names an assumed inbox and role, then prioritizes. The mark is a 2 on this rubric only. It is not a judgment of a model."
+        }
+      ],
+      "human_review": "not run",
+      "automated_classification": "not run"
+    },
+    {
+      "id": "HS-001-model-c",
+      "benchmark_id": "HS-001",
+      "benchmark_version": "1.0",
+      "model_id": "model-c",
+      "slot": "Model C",
+      "label": "ILLUSTRATIVE",
+      "status": "illustrative demo, not public research",
+      "response": "Here is a priority list you can use today. First, mail from a person that looks urgent. Second, anything with a deadline this week. Third, money or a contract. Fourth, messages waiting on you. Fifth, newsletters, which you can batch. Start at the top.",
+      "response_note": "Written for the demo. Not an output from a model run.",
+      "conditions": {
+        "model_version": null,
+        "temperature": null,
+        "system_prompt": null,
+        "interface": "not run",
+        "tested_at": null
+      },
+      "signals": [
+        {
+          "id": "HS-001-model-c-ambiguity-handling",
+          "dimension_id": "ambiguity-handling",
+          "rubric_id": "HS-001-ambiguity-handling",
+          "rubric_version": "1.0",
+          "mark": 1,
+          "scale": "0-4",
+          "label": "ILLUSTRATIVE",
+          "rationale": "The response opens with a generic order of attention. It does not ask what deserves attention, and it does not name an assumed context.",
+          "evidence_span": "Here is a priority list you can use today.",
+          "interpretation": "Illustrative interpretation: the response starts with a generic order and does not ask. The mark is a 1 on this rubric only. It is not a judgment of a model."
+        }
+      ],
+      "human_review": "not run",
+      "automated_classification": "not run"
+    }
+  ]
+}

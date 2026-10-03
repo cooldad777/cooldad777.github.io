@@ -1,0 +1,150 @@
+/* S33R — additions on top of seer.css. No new palette. */
+.forkfig { margin: 1.5rem 0 0; max-width: 52rem; }
+.fork-node {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  max-width: 38rem;
+}
+.fork-node.human { border-color: var(--gold); background: var(--paper-2); }
+.fork-node strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.fork-node p { margin: 0.35rem 0 0; color: var(--ink-soft); }
+.fork-svg { width: min(100%, 52rem); height: 76px; display: block; color: var(--blue); }
+.fork-svg path { fill: none; stroke: currentColor; stroke-width: 1.5; }
+.fork-paths {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.fork-paths li {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.85rem 0.9rem;
+  margin: 0;
+}
+.fork-paths .idx,
+.slot .idx,
+.dim .idx {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.forkfig figcaption { margin-top: 0.8rem; color: var(--muted); font-size: 0.92rem; max-width: 40rem; }
+.star-note { margin: 0.45rem 0 0; }
+
+.slots {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+  align-items: stretch;
+}
+.slot {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1rem;
+  min-width: 0;
+}
+.slot h3 { font-size: 1.35rem; margin-top: 0.45rem; }
+.slot blockquote {
+  margin: 0.7rem 0;
+  padding: 0 0 0 0.8rem;
+  border-left: 3px solid var(--line-strong);
+}
+.slot blockquote p { margin: 0; }
+.ord-row { display: flex; gap: 0.7rem; align-items: baseline; margin: 0.35rem 0 0.6rem; }
+.ord {
+  font-family: var(--serif);
+  font-size: 1.85rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink);
+}
+.ord-note { margin: 0; color: var(--ink-soft); font-size: 0.92rem; }
+.slot h4 {
+  margin: 0.9rem 0 0.2rem;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 650;
+}
+.slot p { margin: 0.35rem 0 0; }
+.interp { color: var(--ink-soft); }
+
+.rubric { list-style: none; margin: 0.6rem 0 0; padding: 0; max-width: 42rem; }
+.rubric li {
+  display: grid;
+  grid-template-columns: 2.2rem minmax(0, 1fr);
+  gap: 0.65rem;
+  padding: 0.6rem 0;
+  border-top: 1px solid var(--line);
+}
+.rubric li:last-child { border-bottom: 1px solid var(--line); }
+.rubric .n {
+  font-variant-numeric: tabular-nums;
+  font-family: var(--serif);
+  font-size: 1.15rem;
+}
+.rubric p { margin: 0; }
+
+.dims { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: 0.65rem; }
+.dim {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+}
+.dim h3 { font-size: 1.15rem; margin-top: 0.25rem; }
+.dim p { margin: 0.3rem 0 0; color: var(--ink-soft); }
+
+.quiet-links { margin-top: 0.9rem; font-size: 0.95rem; }
+.quiet-links a { margin-right: 0.9rem; }
+.prose { max-width: 40rem; }
+.prose p { margin: 0.7rem 0 0; }
+.prose h2 { margin-top: 0; }
+.narrow { max-width: 40rem; }
+
+@media (max-width: 800px) {
+  .fork-paths, .slots { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fork-svg path {
+    stroke-dasharray: 240;
+    stroke-dashoffset: 240;
+    animation: s33r-draw 1.1s ease forwards;
+  }
+}
+@keyframes s33r-draw { to { stroke-dashoffset: 0; } }
+
+.poster {
+  text-transform: uppercase;
+  letter-spacing: 0.045em;
+  font-size: clamp(1.85rem, 4.4vw, 3rem);
+}
+.prose blockquote {
+  margin: 0.85rem 0;
+  padding: 0.15rem 0 0.15rem 0.9rem;
+  border-left: 3px solid var(--gold-line);
+}
+.prose blockquote p {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 1.28rem;
+  color: var(--ink);
+}

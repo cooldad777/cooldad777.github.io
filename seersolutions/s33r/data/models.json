@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "label": "ILLUSTRATIVE",
+  "status": "illustrative demo, not public research",
+  "models": [
+    {
+      "id": "model-a",
+      "slot": "Model A",
+      "provider": null,
+      "model_name": null,
+      "version": "unknown",
+      "interface": "not run",
+      "temperature": null,
+      "system_prompt": "unknown",
+      "tested_at": null,
+      "notes": "illustrative placeholder, not a measured run"
+    },
+    {
+      "id": "model-b",
+      "slot": "Model B",
+      "provider": null,
+      "model_name": null,
+      "version": "unknown",
+      "interface": "not run",
+      "temperature": null,
+      "system_prompt": "unknown",
+      "tested_at": null,
+      "notes": "illustrative placeholder, not a measured run"
+    },
+    {
+      "id": "model-c",
+      "slot": "Model C",
+      "provider": null,
+      "model_name": null,
+      "version": "unknown",
+      "interface": "not run",
+      "temperature": null,
+      "system_prompt": "unknown",
+      "tested_at": null,
+      "notes": "illustrative placeholder, not a measured run"
+    }
+  ]
+}
