@@ -1,85 +1,14 @@
-/* Local interactions only. No network, no audio. */
+/* SEER Solutions V3. Local interaction only. No network calls. */
 (function () {
   "use strict";
 
-  function qsa(root, sel) {
-    return Array.prototype.slice.call(root.querySelectorAll(sel));
-  }
-
-  /* One visible panel per switch when JS runs. Without .js, CSS shows every panel. */
-  function showSwitch(root, id, fromClick) {
-    qsa(root, "[data-switch-btn]").forEach(function (btn) {
-      var on = btn.getAttribute("data-switch-btn") === id;
-      if (btn.getAttribute("role") === "tab") {
-        btn.setAttribute("aria-selected", on ? "true" : "false");
-        btn.tabIndex = on ? 0 : -1;
-      } else {
-        btn.setAttribute("aria-pressed", on ? "true" : "false");
-      }
-    });
-    qsa(root, "[data-switch-panel]").forEach(function (panel) {
-      panel.classList.toggle("is-on", panel.getAttribute("data-switch-panel") === id);
-    });
-    var mode = root.getAttribute("data-switch");
-    if (fromClick && id && mode !== "local" && history.replaceState) {
-      history.replaceState(null, "", "#" + id);
-    }
-  }
-
-  function bindSwitch(root) {
-    var tabs = root.getAttribute("data-switch") === "tabs";
-    qsa(root, "[data-switch-btn]").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        showSwitch(root, btn.getAttribute("data-switch-btn"), true);
-        if (root.classList.contains("board")) markBoardScroll();
-      });
-    });
-    if (!tabs) return;
-    var tabBtns = qsa(root, '[role="tab"]');
-    root.addEventListener("keydown", function (e) {
-      var keys = ["ArrowRight", "ArrowLeft", "Home", "End"];
-      if (keys.indexOf(e.key) === -1) return;
-      var i = tabBtns.indexOf(document.activeElement);
-      if (i < 0) return;
-      e.preventDefault();
-      var next = i;
-      if (e.key === "ArrowRight") next = (i + 1) % tabBtns.length;
-      if (e.key === "ArrowLeft") next = (i - 1 + tabBtns.length) % tabBtns.length;
-      if (e.key === "Home") next = 0;
-      if (e.key === "End") next = tabBtns.length - 1;
-      tabBtns[next].focus();
-      showSwitch(root, tabBtns[next].getAttribute("data-switch-btn"), true);
-      if (root.classList.contains("board")) markBoardScroll();
-    });
-  }
-
-  qsa(document, "[data-switch]").forEach(bindSwitch);
-
-  function markBoardScroll() {
-    var board = document.querySelector(".board");
-    if (!board) return;
-    var el = board.querySelector(".switch-panel.is-on .table-scroll");
-    if (!el) return;
-    board.classList.toggle("can-scroll", el.scrollWidth > el.clientWidth + 2);
-  }
-  markBoardScroll();
-  window.addEventListener("resize", markBoardScroll);
-
-
-  var hash = (location.hash || "").replace(/^#/, "");
-  if (hash) {
-    var safe = window.CSS && CSS.escape ? CSS.escape(hash) : hash.replace(/[^a-zA-Z0-9_-]/g, "");
-    var hashed = document.querySelector('[data-switch-btn="' + safe + '"]');
-    if (hashed) {
-      var root = hashed.closest("[data-switch]");
-      if (root) showSwitch(root, hash, false);
-      markBoardScroll();
-    }
+  function qsa(root, selector) {
+    return Array.prototype.slice.call(root.querySelectorAll(selector));
   }
 
   var menuBtn = document.getElementById("menu");
   var drawer = document.getElementById("nav-links");
-  var navQuery = window.matchMedia("(max-width: 1040px)");
+  var navQuery = window.matchMedia("(max-width: 1050px)");
 
   function focusableIn(node) {
     return qsa(node, "a[href], button:not([disabled])").filter(function (el) {
@@ -104,63 +33,76 @@
     menuBtn.addEventListener("click", function () {
       setNav(menuBtn.getAttribute("aria-expanded") !== "true");
     });
-    var closer = drawer.querySelector(".nav-close");
-    if (closer) closer.addEventListener("click", function () { setNav(false); });
-    drawer.addEventListener("click", function (e) {
-      var a = e.target.closest("a");
-      if (a && navQuery.matches) setNav(false);
+
+    var closeBtn = drawer.querySelector(".nav-close");
+    if (closeBtn) closeBtn.addEventListener("click", function () { setNav(false); });
+
+    drawer.addEventListener("click", function (event) {
+      if (event.target.closest("a") && navQuery.matches) setNav(false);
     });
-    document.addEventListener("keydown", function (e) {
+
+    document.addEventListener("keydown", function (event) {
       if (menuBtn.getAttribute("aria-expanded") !== "true") return;
-      if (e.key === "Escape") {
-        e.preventDefault();
+      if (event.key === "Escape") {
+        event.preventDefault();
         setNav(false);
         return;
       }
-      if (e.key !== "Tab") return;
+      if (event.key !== "Tab") return;
       var nodes = focusableIn(drawer);
       if (!nodes.length) return;
       var first = nodes[0];
       var last = nodes[nodes.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
         last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
         first.focus();
       }
     });
-    navQuery.addEventListener("change", function () {
-      if (!navQuery.matches) setNav(false);
-    });
+
+    if (navQuery.addEventListener) {
+      navQuery.addEventListener("change", function () {
+        if (!navQuery.matches) setNav(false);
+      });
+    }
   }
 
-  var sigNodes = qsa(document, "[data-sig]");
-  var sigDetail = document.getElementById("sig-detail");
-  function showSig(btn) {
-    sigNodes.forEach(function (b) {
-      b.setAttribute("aria-pressed", b === btn ? "true" : "false");
+  var roleRoot = document.querySelector("[data-role-switch]");
+  if (roleRoot) {
+    var roleButtons = qsa(roleRoot, "[data-role-btn]");
+    var rolePanels = qsa(roleRoot, "[data-role-panel]");
+
+    function showRole(id, focus) {
+      roleButtons.forEach(function (button) {
+        var active = button.getAttribute("data-role-btn") === id;
+        button.setAttribute("aria-selected", active ? "true" : "false");
+        button.tabIndex = active ? 0 : -1;
+        if (active && focus) button.focus();
+      });
+      rolePanels.forEach(function (panel) {
+        panel.classList.toggle("is-on", panel.getAttribute("data-role-panel") === id);
+      });
+    }
+
+    roleButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        showRole(button.getAttribute("data-role-btn"), false);
+      });
     });
-    if (sigDetail) sigDetail.textContent = btn.getAttribute("data-detail") || "";
-  }
-  sigNodes.forEach(function (btn) {
-    btn.addEventListener("click", function () { showSig(btn); });
-  });
-  var sigGrid = document.querySelector(".sig-grid");
-  if (sigGrid) {
-    sigGrid.addEventListener("keydown", function (e) {
-      var keys = ["ArrowRight", "ArrowLeft", "ArrowUp", "ArrowDown", "Home", "End"];
-      if (keys.indexOf(e.key) === -1) return;
-      var i = sigNodes.indexOf(document.activeElement);
-      if (i < 0) return;
-      e.preventDefault();
-      var next = i;
-      if (e.key === "ArrowRight" || e.key === "ArrowDown") next = (i + 1) % sigNodes.length;
-      if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = (i - 1 + sigNodes.length) % sigNodes.length;
-      if (e.key === "Home") next = 0;
-      if (e.key === "End") next = sigNodes.length - 1;
-      sigNodes[next].focus();
-      showSig(sigNodes[next]);
+
+    roleRoot.addEventListener("keydown", function (event) {
+      if (["ArrowRight", "ArrowLeft", "Home", "End"].indexOf(event.key) === -1) return;
+      var index = roleButtons.indexOf(document.activeElement);
+      if (index < 0) return;
+      event.preventDefault();
+      var next = index;
+      if (event.key === "ArrowRight") next = (index + 1) % roleButtons.length;
+      if (event.key === "ArrowLeft") next = (index - 1 + roleButtons.length) % roleButtons.length;
+      if (event.key === "Home") next = 0;
+      if (event.key === "End") next = roleButtons.length - 1;
+      showRole(roleButtons[next].getAttribute("data-role-btn"), true);
     });
   }
 })();
