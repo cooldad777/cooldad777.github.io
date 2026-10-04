@@ -2,8 +2,6 @@
 (function () {
   "use strict";
 
-  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
   function qsa(root, sel) {
     return Array.prototype.slice.call(root.querySelectorAll(sel));
   }
@@ -22,8 +20,9 @@
     qsa(root, "[data-switch-panel]").forEach(function (panel) {
       panel.classList.toggle("is-on", panel.getAttribute("data-switch-panel") === id);
     });
-    if (fromClick && id) {
-      if (history.replaceState) history.replaceState(null, "", "#" + id);
+    var mode = root.getAttribute("data-switch");
+    if (fromClick && id && mode !== "local" && history.replaceState) {
+      history.replaceState(null, "", "#" + id);
     }
   }
 
@@ -32,6 +31,7 @@
     qsa(root, "[data-switch-btn]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         showSwitch(root, btn.getAttribute("data-switch-btn"), true);
+        if (root.classList.contains("board")) markBoardScroll();
       });
     });
     if (!tabs) return;
@@ -49,24 +49,37 @@
       if (e.key === "End") next = tabBtns.length - 1;
       tabBtns[next].focus();
       showSwitch(root, tabBtns[next].getAttribute("data-switch-btn"), true);
+      if (root.classList.contains("board")) markBoardScroll();
     });
   }
 
   qsa(document, "[data-switch]").forEach(bindSwitch);
 
+  function markBoardScroll() {
+    var board = document.querySelector(".board");
+    if (!board) return;
+    var el = board.querySelector(".switch-panel.is-on .table-scroll");
+    if (!el) return;
+    board.classList.toggle("can-scroll", el.scrollWidth > el.clientWidth + 2);
+  }
+  markBoardScroll();
+  window.addEventListener("resize", markBoardScroll);
+
+
   var hash = (location.hash || "").replace(/^#/, "");
   if (hash) {
-    var hashed = document.querySelector('[data-switch-btn="' + (window.CSS && CSS.escape ? CSS.escape(hash) : hash) + '"]');
+    var safe = window.CSS && CSS.escape ? CSS.escape(hash) : hash.replace(/[^a-zA-Z0-9_-]/g, "");
+    var hashed = document.querySelector('[data-switch-btn="' + safe + '"]');
     if (hashed) {
       var root = hashed.closest("[data-switch]");
       if (root) showSwitch(root, hash, false);
+      markBoardScroll();
     }
   }
 
-  /* Mobile drawer: trap focus, Escape closes, focus returns to the trigger. */
   var menuBtn = document.getElementById("menu");
   var drawer = document.getElementById("nav-links");
-  var navQuery = window.matchMedia("(max-width: 760px)");
+  var navQuery = window.matchMedia("(max-width: 1040px)");
 
   function focusableIn(node) {
     return qsa(node, "a[href], button:not([disabled])").filter(function (el) {
@@ -122,50 +135,32 @@
     });
   }
 
-  /* Gap nodes: sentences stay visible; pressed state is only a highlight. */
-  qsa(document, ".chain button").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      qsa(document, ".chain button").forEach(function (b) {
-        b.setAttribute("aria-pressed", b === btn ? "true" : "false");
-      });
+  var sigNodes = qsa(document, "[data-sig]");
+  var sigDetail = document.getElementById("sig-detail");
+  function showSig(btn) {
+    sigNodes.forEach(function (b) {
+      b.setAttribute("aria-pressed", b === btn ? "true" : "false");
     });
-  });
-
-  /* Portfolio filter. Cards stay in the DOM; hidden is applied only after JS. */
-  var shelf = document.getElementById("shelf");
-  var shelfStatus = document.getElementById("shelf-status");
-  qsa(document, "[data-filter]").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var kind = btn.getAttribute("data-filter");
-      qsa(document, "[data-filter]").forEach(function (b) {
-        b.setAttribute("aria-pressed", b === btn ? "true" : "false");
-      });
-      if (!shelf) return;
-      var n = 0;
-      qsa(shelf, "[data-kind]").forEach(function (card) {
-        var show = kind === "all" || card.getAttribute("data-kind") === kind;
-        card.hidden = !show;
-        if (show) n += 1;
-      });
-      if (shelfStatus) {
-        shelfStatus.textContent = n + (n === 1 ? " public piece" : " public pieces") + " in " + btn.textContent.trim();
-      }
-    });
-  });
-
-  /* Timeline: mark steps as they enter. Reduced motion marks them all. */
-  var steps = qsa(document, ".method li");
-  if (reduce) {
-    steps.forEach(function (li) { li.classList.add("is-active"); });
-  } else if ("IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) entry.target.classList.add("is-active");
-      });
-    }, { threshold: 0.45, rootMargin: "0px 0px -10% 0px" });
-    steps.forEach(function (li) { io.observe(li); });
-  } else {
-    steps.forEach(function (li) { li.classList.add("is-active"); });
+    if (sigDetail) sigDetail.textContent = btn.getAttribute("data-detail") || "";
   }
-
+  sigNodes.forEach(function (btn) {
+    btn.addEventListener("click", function () { showSig(btn); });
+  });
+  var sigGrid = document.querySelector(".sig-grid");
+  if (sigGrid) {
+    sigGrid.addEventListener("keydown", function (e) {
+      var keys = ["ArrowRight", "ArrowLeft", "ArrowUp", "ArrowDown", "Home", "End"];
+      if (keys.indexOf(e.key) === -1) return;
+      var i = sigNodes.indexOf(document.activeElement);
+      if (i < 0) return;
+      e.preventDefault();
+      var next = i;
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") next = (i + 1) % sigNodes.length;
+      if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = (i - 1 + sigNodes.length) % sigNodes.length;
+      if (e.key === "Home") next = 0;
+      if (e.key === "End") next = sigNodes.length - 1;
+      sigNodes[next].focus();
+      showSig(sigNodes[next]);
+    });
+  }
 })();
