@@ -806,3 +806,31 @@ details.build-log summary{
   font-weight:700;
 }
 details.build-log[open] summary{margin-bottom:1rem}
+
+
+/* Human pace section hotfix: remove pseudo-quantitative comparison entirely. */
+.pace-editorial{
+  max-width:900px;
+  margin:0 auto;
+  padding:clamp(1rem,2vw,2rem) 0;
+}
+.pace-editorial .eco-title{
+  max-width:10ch;
+  font-size:clamp(3rem,7vw,6rem);
+  line-height:.96;
+  letter-spacing:-.055em;
+}
+.pace-lede{
+  margin:1.6rem 0 0;
+  max-width:42rem;
+  font-size:clamp(1.35rem,2.8vw,2rem);
+  line-height:1.35;
+  color:#274535;
+}
+.pace-body{
+  margin:1.1rem 0 0;
+  max-width:42rem;
+  color:#59645e;
+  font-size:1.02rem;
+  line-height:1.7;
+}
