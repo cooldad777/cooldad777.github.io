@@ -344,3 +344,17 @@
 .experience-ready .convergence-depth .stage{
   padding-top:1rem;
 }
+
+
+/* Phone editorial rhythm: large type should not create dead zones. */
+@media(max-width:760px){
+  .experience-ready .prose > h2{
+    margin-top:2.35rem;
+    margin-bottom:.7rem;
+  }
+  .experience-ready .prose > p + h2,
+  .experience-ready .prose > div + h2,
+  .experience-ready .prose > figure + h2{
+    margin-top:2.6rem;
+  }
+}
