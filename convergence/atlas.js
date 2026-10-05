@@ -1,6 +1,6 @@
 (async()=>{'use strict';
 const $=(s,r=document)=>r.querySelector(s);
-const fmtM=n=>n>=1000?(n/1000).toFixed(n%1000===0?1:2).replace(/\.00$/,'')+'B':n+'M';
+const fmtM=n=>n>=1000?(n/1000).toFixed(1).replace(/\.0$/,'')+'B':n+'M';
 const palette={
   christianity:'#8ea98f',
   islam:'#78a288',
