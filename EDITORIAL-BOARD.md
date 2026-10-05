@@ -181,3 +181,14 @@ Public Chronicle entries should summarize durable changes in thinking or directi
 Detailed Chronicle material belongs in the private SEE,R knowledge system.
 
 No automatic public Chronicle publishing. Ryan approves each public digest item.
+
+
+## Chronicle publication rule
+
+The public Chronicle is **curated decision history, not process exhaust**.
+
+Public Chronicle entries summarize durable changes in thinking or direction. They do not publish style or formatting decisions, prompt or agent mechanics, model-by-model process, Git operations, internal naming or filing logic, granular monetization tactics, detailed personal habits, or private context.
+
+Detailed Chronicle material belongs in the private SEE,R knowledge system.
+
+No automatic public Chronicle publishing. Ryan approves each public digest item.
