@@ -1,6 +1,6 @@
 # SEE,R Editorial Board
 
-This is the standing editorial gate for the public site. It is not seven brands or seven writing voices. It is one page reviewed through seven questions, then synthesized into one clear surface.
+This is the standing editorial gate for the public site. It is not a set of competing brands or writing voices. Every page is reviewed through these desks, then synthesized into one clear surface.
 
 ## 1. Explainer desk
 **Question:** Would an intelligent stranger understand what this is in 15 seconds?
@@ -72,29 +72,80 @@ Checks:
 - Do not turn experimental self-reflection prompts into clinical scoring.
 - The better the tool becomes, the more capable the human should become.
 
+## 8. Formatting / interaction desk
+**Question:** Does the page feel effortless to read, scan, touch, and move through?
+
+Checks:
+- No accidental wrapping, cramped mobile layouts, clipped text, orphaned controls, or inconsistent section spacing.
+- Headlines, body copy, cards, buttons, quotes, embeds, forms, and footers use a deliberate rhythm.
+- Every public page is reviewed at phone, tablet, and desktop widths.
+- Touch targets are large enough and hover states are never required to understand content.
+- Long text, code, embeds, and interactive modules cannot force horizontal page scroll.
+- Expansion is progressive: surface first, details second, without hiding the core meaning.
+- Motion may reveal hierarchy, causality, or state changes. Decorative motion alone is removed.
+- Use restrained glass, smooth expansion, gentle depth, subtle parallax, and soft transitions where they clarify the story.
+- Respect `prefers-reduced-motion`; essential meaning never depends on animation.
+- The visual system is hopeful and light by default. Dark sections are earned, not habitual.
+
 ---
 
-## Universal publishing rule
+# LOCKED UNIVERSAL PUBLISHING RULE
 
-Every page gets two layers:
+This rule applies to every future public page and every substantial revision unless Ryan explicitly overrides it.
 
-### Surface
-A normal intelligent reader can answer in 15 seconds:
+## Surface
+A normal intelligent reader should be able to answer within about 15 seconds:
 1. What is this?
 2. Why does it matter?
 3. What can I do next?
 
-### Depth
-The reader who wants the full architecture, evidence, worldview, method, or implementation can continue.
+## Depth
+The reader who wants the full architecture, evidence, worldview, method, implementation, source trail, or experimental detail can continue.
 
-**Plain language on the surface. Moonshot depth one layer down.**
+**PLAIN LANGUAGE ON THE SURFACE. MOONSHOT DEPTH ONE LAYER DOWN.**
 
----
-
-## Visual rule
-
-The emotional progression is:
-
+## Visual / interaction rule
 **FOREST → LIGHT → POSSIBILITY → HUMANITY**
 
-Use dark sections sparingly. Default to warm white / ivory, very light sage and sky, black or deep-forest type, generous space, and few cards. A visual must explain something immediately or it should be removed.
+Default to:
+- warm white / ivory surfaces
+- black or deep-forest typography
+- restrained sage, sky, and sunrise accents
+- generous whitespace
+- few, meaningful cards
+- subtle translucent glass only where it clarifies hierarchy
+- motion that makes the story easier to follow
+- progressive expansion for technical depth
+
+Avoid:
+- pseudo-data
+- diagrams that need a paragraph to decode
+- decorative dashboards
+- dark technology panels by default
+- card walls
+- motion for spectacle
+- dense specialist language above the fold
+
+## Locked visual test
+**If a visual needs a paragraph to explain what the visual means, the visual probably should not exist.**
+
+A visual earns its place only when it does at least one of these immediately:
+- clarifies hierarchy
+- shows a real relationship
+- explains sequence or causality
+- demonstrates an actual interface state
+- adds emotional/narrative context that prose cannot do as efficiently
+
+## Locked formatting test
+Before publication, the Formatting / Interaction desk must pass the page for:
+- 320–430px phone width
+- tablet width
+- desktop width
+- reduced-motion mode
+- keyboard focus
+- long-text / long-link overflow
+- embedded media behavior
+- nav open/close behavior
+- section rhythm and typographic hierarchy
+
+The page is not done because the copy is correct. It is done when the story survives the screen.

@@ -1,0 +1,346 @@
+/* SEE,R experience layer
+   Formatting + motion system. Added after page-level CSS.
+   Scope activates only after assets/experience.js adds .experience-ready. */
+
+:root{
+  --xp-glass:rgba(255,255,255,.70);
+  --xp-glass-strong:rgba(255,255,255,.86);
+  --xp-line:rgba(22,35,28,.085);
+  --xp-line-bright:rgba(255,255,255,.72);
+  --xp-shadow:0 18px 54px rgba(28,52,40,.075);
+  --xp-shadow-lift:0 28px 80px rgba(28,52,40,.12);
+  --xp-radius:24px;
+  --xp-ease:cubic-bezier(.22,.61,.36,1);
+}
+
+.experience-ready{
+  overflow-x:hidden;
+  text-rendering:optimizeLegibility;
+}
+.experience-ready h1,
+.experience-ready h2,
+.experience-ready h3{
+  text-wrap:balance;
+}
+.experience-ready p,
+.experience-ready li,
+.experience-ready blockquote{
+  text-wrap:pretty;
+}
+.experience-ready img,
+.experience-ready video,
+.experience-ready iframe,
+.experience-ready svg,
+.experience-ready canvas{
+  max-width:100%;
+}
+.experience-ready pre,
+.experience-ready code{
+  overflow-wrap:anywhere;
+}
+.experience-ready pre{
+  max-width:100%;
+  overflow:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.experience-ready a,
+.experience-ready button,
+.experience-ready input,
+.experience-ready textarea,
+.experience-ready summary{
+  -webkit-tap-highlight-color:transparent;
+}
+.experience-ready button,
+.experience-ready [role="button"],
+.experience-ready summary{
+  touch-action:manipulation;
+}
+.experience-ready :focus-visible{
+  outline:2px solid rgba(53,105,78,.72);
+  outline-offset:4px;
+}
+
+/* Glass is reserved for navigational and explanatory surfaces. */
+.experience-ready .nav,
+.experience-ready .site-nav,
+.experience-ready .open-fruit-nav{
+  backdrop-filter:saturate(160%) blur(20px);
+  -webkit-backdrop-filter:saturate(160%) blur(20px);
+}
+.experience-ready .world-card,
+.experience-ready .shelf-card,
+.experience-ready .surface-card,
+.experience-ready .lens-card-clean,
+.experience-ready .research-note,
+.experience-ready .editor-note,
+.experience-ready .onramp-box,
+.experience-ready .guard-grid article,
+.experience-ready .service-card,
+.experience-ready .canvas-shell,
+.experience-ready .proof-card,
+.experience-ready .slot,
+.experience-ready .dim,
+.experience-ready .fork-node,
+.experience-ready .fork-paths li,
+.experience-ready .verse,
+.experience-ready .stamp,
+.experience-ready .card{
+  position:relative;
+  isolation:isolate;
+  border-color:var(--xp-line);
+  box-shadow:var(--xp-shadow);
+}
+.experience-ready .world-card::after,
+.experience-ready .shelf-card::after,
+.experience-ready .surface-card::after,
+.experience-ready .lens-card-clean::after,
+.experience-ready .research-note::after,
+.experience-ready .onramp-box::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  border-radius:inherit;
+  opacity:0;
+  background:
+    radial-gradient(360px circle at var(--xp-x,50%) var(--xp-y,20%),
+      rgba(255,255,255,.80),
+      rgba(255,255,255,.20) 35%,
+      transparent 68%);
+  transition:opacity .35s var(--xp-ease);
+}
+@media (hover:hover) and (pointer:fine){
+  .experience-ready .xp-glass-hover:hover::after{opacity:.7}
+  .experience-ready .xp-lift{
+    transition:
+      transform .38s var(--xp-ease),
+      box-shadow .38s var(--xp-ease),
+      border-color .38s var(--xp-ease);
+    will-change:transform;
+  }
+  .experience-ready .xp-lift:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--xp-shadow-lift);
+  }
+}
+.experience-ready .xp-lift:active{
+  transform:translateY(-1px) scale(.995);
+}
+
+/* Consistent section rhythm */
+.experience-ready .prose,
+.experience-ready .stage,
+.experience-ready .shelf,
+.experience-ready .hub-section,
+.experience-ready main > section{
+  scroll-margin-top:76px;
+}
+.experience-ready .prose > h2{
+  margin-top:clamp(2.8rem,7vw,4.8rem);
+}
+.experience-ready .prose > h2:first-child{
+  margin-top:0;
+}
+.experience-ready .prose > p,
+.experience-ready .prose > ul,
+.experience-ready .prose > ol,
+.experience-ready .prose > pre,
+.experience-ready .prose > blockquote{
+  max-width:68ch;
+}
+.experience-ready .prose li + li{margin-top:.35rem}
+.experience-ready .prose a:not(.btn){text-underline-offset:.18em}
+.experience-ready .shelf-card,
+.experience-ready .world-card{
+  min-width:0;
+}
+.experience-ready .foot,
+.experience-ready footer{
+  overflow-wrap:anywhere;
+}
+
+/* Embedded media belongs to the editorial column. */
+.experience-ready iframe{
+  display:block;
+}
+.experience-ready .aw-embed,
+.experience-ready .aw-short-frame{
+  border:1px solid rgba(22,35,28,.08);
+  box-shadow:0 20px 58px rgba(21,38,30,.09);
+}
+.experience-ready .aw-embed iframe,
+.experience-ready .aw-short-frame iframe{
+  transform:translateZ(0);
+}
+
+/* Smooth native expansion */
+.experience-ready details{
+  overflow:clip;
+}
+.experience-ready details > summary{
+  cursor:pointer;
+}
+.experience-ready details > summary::marker{
+  color:rgba(49,95,73,.75);
+}
+@supports (interpolate-size:allow-keywords){
+  :root{interpolate-size:allow-keywords}
+  .experience-ready details::details-content{
+    block-size:0;
+    opacity:0;
+    overflow:hidden;
+    transition:
+      block-size .45s var(--xp-ease),
+      content-visibility .45s allow-discrete,
+      opacity .28s ease;
+  }
+  .experience-ready details[open]::details-content{
+    block-size:auto;
+    opacity:1;
+  }
+}
+
+/* Reveal only after JS is alive. Content remains visible without JS. */
+.experience-motion .story-reveal{
+  opacity:0;
+  transform:translateY(18px) scale(.992);
+  transition:
+    opacity .72s var(--xp-ease),
+    transform .72s var(--xp-ease);
+}
+.experience-motion .story-reveal.is-visible{
+  opacity:1;
+  transform:none;
+}
+.experience-motion .story-reveal[data-xp-delay="1"]{transition-delay:.05s}
+.experience-motion .story-reveal[data-xp-delay="2"]{transition-delay:.10s}
+.experience-motion .story-reveal[data-xp-delay="3"]{transition-delay:.15s}
+.experience-motion .story-reveal[data-xp-delay="4"]{transition-delay:.20s}
+
+/* Hero motion is subtle and narrative, never required. */
+.experience-motion .xp-hero{
+  --xp-hero-shift:0px;
+}
+.experience-motion .xp-hero::before{
+  transform:translate3d(0,var(--xp-hero-shift),0);
+  transition:transform .1s linear;
+}
+
+/* Convergence redraws should feel like state transitions rather than DOM flashes. */
+.experience-ready.page-convergence #board > .board{
+  animation:xp-board-in .34s var(--xp-ease);
+}
+@keyframes xp-board-in{
+  from{opacity:.35;transform:translateY(6px)}
+  to{opacity:1;transform:none}
+}
+
+/* Phone formatting guard */
+@media(max-width:760px){
+  .experience-ready{
+    font-size-adjust:none;
+  }
+  .experience-ready .nav-in,
+  .experience-ready .wrap,
+  .experience-ready .eco-wrap{
+    max-width:100%;
+  }
+  .experience-ready h1{
+    overflow-wrap:break-word;
+  }
+  .experience-ready .cta-row,
+  .experience-ready .foot-links,
+  .experience-ready .research-tags,
+  .experience-ready .hero-principles{
+    gap:.6rem;
+  }
+  .experience-ready .btn,
+  .experience-ready .nav-book{
+    min-height:44px;
+  }
+  .experience-ready .prose{
+    width:min(100% - 1.5rem,760px);
+    margin-inline:auto;
+  }
+  .experience-ready .surface-card,
+  .experience-ready .lens-card-clean,
+  .experience-ready .shelf-card,
+  .experience-ready .world-card{
+    padding-left:1rem;
+    padding-right:1rem;
+  }
+  .experience-ready .aw-shorts-row{
+    grid-template-columns:1fr;
+  }
+}
+
+/* Reduced motion: no hidden content, no parallax, no lift. */
+@media(prefers-reduced-motion:reduce){
+  .experience-ready *,
+  .experience-ready *::before,
+  .experience-ready *::after{
+    scroll-behavior:auto!important;
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.001ms!important;
+  }
+  .experience-motion .story-reveal{
+    opacity:1!important;
+    transform:none!important;
+  }
+}
+
+
+/* Editorial depth controls */
+.experience-ready .xp-expander{
+  margin:1.35rem 0 0;
+  border:1px solid var(--xp-line);
+  border-radius:24px;
+  background:rgba(255,255,255,.76);
+  box-shadow:var(--xp-shadow);
+}
+.experience-ready .xp-expander > summary{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:1rem;
+  min-height:58px;
+  padding:.9rem 1rem;
+  font-weight:700;
+  color:#294d3b;
+}
+.experience-ready .xp-expander > summary::-webkit-details-marker{display:none}
+.experience-ready .xp-expander > summary::after{
+  content:"+";
+  display:grid;
+  place-items:center;
+  width:30px;
+  height:30px;
+  flex:0 0 auto;
+  border-radius:999px;
+  background:#eef4f0;
+  color:#315f49;
+  font-size:1.1rem;
+  font-weight:500;
+  transition:transform .35s var(--xp-ease),background .35s var(--xp-ease);
+}
+.experience-ready .xp-expander[open] > summary::after{
+  transform:rotate(45deg);
+  background:#e4eee8;
+}
+.experience-ready .xp-expander > .xp-expander-body{
+  padding:0 1rem 1rem;
+}
+.experience-ready .convergence-depth{
+  max-width:1010px;
+  margin:0 auto 4rem;
+}
+.experience-ready .convergence-depth > summary{
+  width:min(100% - 2rem,980px);
+  margin:0 auto;
+}
+.experience-ready .convergence-depth .stage{
+  padding-top:1rem;
+}
