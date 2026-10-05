@@ -136,6 +136,19 @@ A visual earns its place only when it does at least one of these immediately:
 - demonstrates an actual interface state
 - adds emotional/narrative context that prose cannot do as efficiently
 
+## Public / private editorial boundary
+
+Public pages should explain the work itself, not the internal filing logic behind it.
+
+Do not publish:
+- why one project is kept separate from another
+- internal taxonomy or PKM rationale
+- private prioritization logic
+- notes written for Ryan or for agent coordination
+- explanations whose only purpose is to justify the site's information architecture
+
+Those belong in the private SEE,R knowledge system unless they directly help a public reader understand or use the project.
+
 ## Locked formatting test
 Before publication, the Formatting / Interaction desk must pass the page for:
 - 320–430px phone width
