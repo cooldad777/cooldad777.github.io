@@ -1,0 +1,175 @@
+{
+  "updated": "2026-10-05",
+  "topics": [
+    {
+      "id": "agents",
+      "name": "AI agents",
+      "adjacent": [
+        "autonomy",
+        "cybersecurity",
+        "governance"
+      ],
+      "signal": "Software is moving from answering questions toward taking multi-step actions across tools and systems.",
+      "whyItMatters": "Agency changes the risk surface: the important question becomes not only what a model says, but what it can do without continuous human intervention.",
+      "resonance": [
+        "delegated authority",
+        "uncontrolled action",
+        "automation of institutions"
+      ],
+      "guardrail": "Agentic capability is not evidence of consciousness, personhood or prophetic fulfillment."
+    },
+    {
+      "id": "attachment",
+      "name": "AI attachment & companions",
+      "adjacent": [
+        "family systems",
+        "mental health",
+        "formation"
+      ],
+      "signal": "Conversational systems can become persistent, personalized sources of reassurance, affirmation and simulated relationship.",
+      "whyItMatters": "The competition can move from attention toward attachment: what a person turns toward for comfort, identity, counsel and belonging.",
+      "resonance": [
+        "idolatry / misplaced trust",
+        "formation",
+        "human relationship displacement"
+      ],
+      "guardrail": "Not every user becomes attached and not every LLM product is designed as a companion."
+    },
+    {
+      "id": "surveillance",
+      "name": "Wearables, surveillance & ambient AI",
+      "adjacent": [
+        "AI glasses",
+        "privacy",
+        "biometrics"
+      ],
+      "signal": "Cameras, microphones and inference are moving into always-on wearable and public environments.",
+      "whyItMatters": "The boundary between seeing and recording becomes harder to notice, and institutional visibility can become continuous.",
+      "resonance": [
+        "watching / control systems",
+        "privacy",
+        "human dignity"
+      ],
+      "guardrail": "Surveillance capability alone does not map cleanly onto a specific apocalyptic symbol."
+    },
+    {
+      "id": "identity-money",
+      "name": "Digital identity, money & access",
+      "adjacent": [
+        "payments",
+        "blockchain settlement",
+        "CBDCs"
+      ],
+      "signal": "Identity, payment and settlement infrastructure is becoming more programmable and digitally mediated.",
+      "whyItMatters": "When identity and commerce become tightly coupled to digital infrastructure, governance and exclusion rules matter more.",
+      "resonance": [
+        "buying and selling",
+        "access control",
+        "institutional trust"
+      ],
+      "guardrail": "A CBDC, blockchain rail or digital ID is not therefore the 'mark of the beast.'"
+    },
+    {
+      "id": "robotics",
+      "name": "Robotics & embodied autonomy",
+      "adjacent": [
+        "humanoids",
+        "industrial automation",
+        "labor"
+      ],
+      "signal": "AI is moving from text and software into machines operating in physical environments.",
+      "whyItMatters": "Embodied autonomy changes labor, logistics, security and the meaning of machine action in shared physical spaces.",
+      "resonance": [
+        "human / machine boundary",
+        "labor displacement",
+        "delegated action"
+      ],
+      "guardrail": "A humanoid form is an interface choice, not evidence of life or spirit."
+    },
+    {
+      "id": "war",
+      "name": "Autonomous weapons & defense AI",
+      "adjacent": [
+        "drones",
+        "targeting",
+        "counter-drone systems"
+      ],
+      "signal": "Militaries are deploying more autonomous sensing, interception and decision-support systems.",
+      "whyItMatters": "Speed can compress the time available for human judgment while diffusing accountability across operators, software and institutions.",
+      "resonance": [
+        "warfare acceleration",
+        "authority",
+        "human life decisions"
+      ],
+      "guardrail": "Wars and weapons have accompanied many eras; new autonomy does not establish a unique prophetic timetable."
+    },
+    {
+      "id": "bio",
+      "name": "AI + biotechnology",
+      "adjacent": [
+        "gene editing",
+        "protein design",
+        "drug discovery"
+      ],
+      "signal": "AI models are increasingly participating in biological discovery and experimental design.",
+      "whyItMatters": "The same acceleration that helps medicine can lower barriers to manipulating biological systems.",
+      "resonance": [
+        "healing",
+        "human enhancement",
+        "creation / creature boundaries"
+      ],
+      "guardrail": "Scientific discovery should be evaluated on evidence and governance, not theological resemblance alone."
+    },
+    {
+      "id": "compute",
+      "name": "Compute, energy & infrastructure",
+      "adjacent": [
+        "data centers",
+        "chips",
+        "power grids"
+      ],
+      "signal": "Frontier AI increasingly depends on enormous physical infrastructure: semiconductors, data centers, cooling, transmission and energy.",
+      "whyItMatters": "What looks like software at the interface is also a concentration of capital, energy and supply-chain power.",
+      "resonance": [
+        "centralization",
+        "industrial scale",
+        "resource control"
+      ],
+      "guardrail": "Infrastructure concentration is a political-economic fact, not a prophetic identity."
+    },
+    {
+      "id": "synthetic",
+      "name": "Synthetic media & reality verification",
+      "adjacent": [
+        "deepfakes",
+        "voice cloning",
+        "provenance"
+      ],
+      "signal": "Text, voice, image and video can increasingly be generated at low cost and high realism.",
+      "whyItMatters": "When evidence can be fabricated cheaply, verification and trusted provenance become core civic and personal skills.",
+      "resonance": [
+        "deception",
+        "false signs",
+        "epistemic trust"
+      ],
+      "guardrail": "Generated media is not supernatural deception; it is a technical challenge to evidence and trust."
+    },
+    {
+      "id": "space",
+      "name": "Space, satellites & planetary infrastructure",
+      "adjacent": [
+        "launch",
+        "communications",
+        "remote sensing"
+      ],
+      "signal": "Launch costs, satellite networks and private space infrastructure continue to expand the technological operating environment.",
+      "whyItMatters": "Communication, surveillance, navigation and economic infrastructure increasingly extend beyond terrestrial networks.",
+      "resonance": [
+        "global connectivity",
+        "scale",
+        "human expansion"
+      ],
+      "guardrail": "Technological reach should not be confused with transcendence."
+    }
+  ]
+}
