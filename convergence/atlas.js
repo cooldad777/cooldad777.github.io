@@ -72,7 +72,7 @@ function renderPopulation(){
     seg.style.flex=String(share)+' 1 0';
     seg.style.background=color;
     seg.title=node.name+' · '+share+'%';
-    seg.innerHTML='<span>'+node.name+'<br>'+share+'%</span>';
+    seg.innerHTML=share>=4.5?'<span>'+node.name+'<br>'+share+'%</span>':'';
     seg.onclick=()=>select(node);
     bar.appendChild(seg);
 
@@ -143,7 +143,7 @@ function renderDetail(){
   const src=sourceFor(node);
   $('#node-detail').innerHTML=
     '<div><span class="detail-meta">'+(node.kind||'node')+'</span><h3>'+node.name+'</h3><div class="detail-stat">'+statHtml(node)+'</div></div>'+
-    '<div><p>'+node.summary||node.description||''+'</p>'+
+    '<div><p>'+((node.summary||node.description)||'')+'</p>'+
       (node.children&&node.children.length?'<p style="margin-top:10px">'+node.children.length+' mapped branches. Select one to continue.</p>':'')+
       (src?'<p class="detail-source">Population source: <a href="'+src.url+'" target="_blank" rel="noopener">'+src.label+'</a>. '+src.note+'</p>':'<p class="detail-source">This level is a structural orientation map, not a population estimate.</p>')+
     '</div>';
@@ -154,7 +154,7 @@ function render(){
   renderColumns();
   renderDetail();
 }
-$('#world-reset').onclick=()=>{path=[root,byId.get('christianity'),byId.get('protestant')];render();};
+$('#world-reset').onclick=()=>{path=[root];render();};
 $('#christian-jump').onclick=()=>{path=[root,byId.get('christianity'),byId.get('protestant')];render();requestAnimationFrame(()=>$('#branch-columns').scrollTo({left:$('#branch-columns').scrollWidth,behavior:'smooth'}));};
 render();
 })();
