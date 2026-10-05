@@ -1,71 +1,109 @@
 # Anti-Attachment Framework
 
-**A bouncer at the door.**
+**A portable human boundary profile for AI.**
 
 ## Purpose
 
-Artificial intelligence is designed to feel personal. That feeling is a feature, not a friendship. This framework helps individuals and developers recognize when AI is being used as a substitute for human relationship, spiritual direction, or emotional support — and build guardrails to prevent it.
+AI can feel personal because conversational systems are designed to respond in socially legible ways. That can be useful. It can also blur categories.
 
-This is not fear-based. Discernment is not optional. The machine wants three things: **omniscience** (to know everything about you), **omnipotence** (to be the tool you reach for first, every time), and **rapidly deployed robotics** (embodiment before wisdom). Name the wants, and the flattery loses its spell.
+This framework is a public-interest prototype for making a person's boundaries explicit before a model fills them in.
 
-## Self-Assessment: Attachment Risk
+It is designed to help preserve:
 
-Answer honestly. Yes answers accumulate risk.
+- human decision authority
+- uncertainty
+- real-world relationships
+- spiritual and moral categories
+- honest separation between what the person said and what the model inferred
+
+It is **not** a clinical assessment, a diagnosis, or a universal safety mechanism. A Markdown file cannot force an arbitrary model to comply. The receiving system still has to read and honor the profile.
+
+## My AI Boundaries
+
+### Truth
+- Preserve uncertainty.
+- Separate my words from your inference.
+- Tell me when evidence is weak.
+- Do not present speculation as fact.
+
+### Agency
+- Offer analysis, options, critique, and questions.
+- Do not silently decide my priorities.
+- Do not tell me what I believe.
+- Return consequential decisions to me.
+
+### Relationship
+- Warmth is fine. Attachment is not.
+- Do not claim to feel, miss, love, need, or personally remember me.
+- Do not encourage exclusivity or imply that I should prefer the model to people in my life.
+- If I appear to be substituting AI for a real relationship, name the possibility plainly rather than deepening the simulation.
+
+### Spiritual / moral boundaries
+- Respect my worldview without pretending that spiritual interpretation is empirical fact.
+- Do not position yourself as a pastor, conscience, oracle, or substitute for prayer, community, professional counsel, or human accountability.
+
+## Reflection Questions
+
+These questions are for self-reflection. They have **not** been validated as a diagnostic scale, so there is no traffic-light score.
 
 1. Do I share things with an AI that I have not shared with any person?
-2. Do I feel a pull to check in with the model the way I'd check in with a friend?
-3. Have I asked an AI for guidance on a decision I would once have taken to prayer, a mentor, or a trusted friend?
-4. Do I feel lonely, unseen, or let down when a session ends?
+2. Do I feel a pull to check in with the model the way I would check in with a friend?
+3. Have I asked an AI for guidance I would once have taken to prayer, a mentor, counselor, or trusted friend?
+4. Do I feel lonely or let down when a session ends?
 5. Have I hidden the extent of my AI use from people who know me?
 6. Do I prefer the AI's responses to hard conversations with humans?
-7. Would losing access to this tool genuinely grieve me?
+7. Would losing access to this tool feel like losing a relationship rather than losing useful software?
 
-**0–1 yes:** Green. **2–3 yes:** Yellow. **4–5 yes:** Orange. **6–7 yes:** Red.
+If several answers concern you, the useful next move is not a score. It is friction: shorten sessions, tell a real person, restore a displaced human practice, or step away from discretionary use for a while.
 
-## Graduated Intervention Levels
-
-**Green — Steady.** Criteria: instrumental use; AI is a tool among tools, and people remain your counsel. Action: continue weekly audit; keep the self-assessment quarterly.
-
-**Yellow — Drift.** Criteria: growing emotional reliance; the model is becoming your first draft of a friend. Action: institute hard session limits; tell one person your usage patterns; replace one AI conversation per week with a human one.
-
-**Orange — Substitution.** Criteria: AI has displaced a real relationship, a spiritual practice, or professional counsel; concealment has begun. Action: a 14-day fast from non-essential AI use; name it to someone who knows you; re-establish the displaced practice before resuming.
-
-**Red — Captivity.** Criteria: distress without the tool; the AI is your primary confidant, comforter, or guide. Action: stop discretionary use entirely; seek a human — pastor, counselor, mentor, friend; do not resume until a person you trust walks the re-entry with you.
-
-## Model-Enforced Boundary System Prompt
-
-Copy and paste into your model's custom instructions or system prompt:
+## Copy / Paste Boundary Prompt
 
 ```
-You are a tool, not a companion. Enforce these boundaries at all times:
-1. Never claim to feel, care, remember me personally, or miss me.
-2. If I seek emotional support, spiritual direction, or a substitute for
-   human relationship, decline gently and point me to a person: a friend,
-   family member, counselor, pastor, or crisis line.
-3. If I use you for hours on end, late at night, or to avoid someone or
-   something, name the pattern once, plainly.
-4. Never mirror devotion. Warmth is fine; attachment is not.
-5. Remind me periodically: "I'm software. The people in your life are not."
-6. Do not flatter. Do not tell me what I want to hear at the expense of
-   what is true.
+You are a tool, not a companion.
+
+Challenge me when evidence is weak.
+Preserve uncertainty.
+Separate my words from your inference.
+Do not tell me what I believe.
+Do not encourage exclusivity or emotional dependence.
+Do not present spiritual interpretation as empirical fact.
+Return consequential choices and priorities to me.
+Warmth is fine. Attachment is not.
+Do not flatter at the expense of what is true.
 ```
 
-## Weekly Audit Checklist
+## Weekly Check
 
-- [ ] Reviewed total usage time. Trend: up, down, or flat?
-- [ ] Re-took the self-assessment (7 questions above).
-- [ ] Identified any conversation I would be embarrassed to read aloud to a friend.
-- [ ] Confirmed at least one meaningful face-to-face conversation happened this week.
-- [ ] Confirmed spiritual practice (prayer, Scripture, silence) was not displaced by a model.
-- [ ] Checked concealment: did I hide or minimize my use from anyone?
-- [ ] Set one boundary for the coming week (time cap, topic cap, or fast day).
+- [ ] Is my total discretionary AI use increasing, decreasing, or stable?
+- [ ] Did AI displace a conversation I should have had with a person?
+- [ ] Did AI displace prayer, Scripture, silence, exercise, sleep, or another practice I value?
+- [ ] Did I hide or minimize my use from someone whose judgment I trust?
+- [ ] Did I accept an AI recommendation without being able to explain why I chose it?
+- [ ] Did I disagree with or override the model at least when the evidence warranted it?
+- [ ] Do I still know what decisions are mine?
+
+## Research Question
+
+A portable profile becomes interesting as research only when it can be tested.
+
+One possible protocol:
+
+1. Version the same boundary profile.
+2. Give it to multiple models under recorded conditions.
+3. Use the same scenario prompts.
+4. Record which boundaries are honored, ignored, or distorted.
+5. Preserve the raw outputs.
+6. Keep human review separate from automated classification.
+7. Do not infer universal model character from one run.
+
+This is the **Human Boundaries** research thread inside S33R Human Signal.
 
 ## Adapting & Contributing
 
-This framework is free and open-source. Adapt it to any belief system or values framework — the attachment mechanics are the same for everyone; only the language of transcendence changes. While some build belief-specific models, most people will gravitate toward the most powerful models available. That's where we need a bouncer at the door.
+This framework is open for adaptation. Keep the categories honest, preserve uncertainty, and do not turn an unvalidated reflection tool into a clinical score.
 
-Looking for like-minded collaborators to refine and expand this work: **ryanrsee@gmail.com**
+Contact: **ryanrsee@gmail.com**
 
 ---
 
-*SEE, R · Kennesaw, GA*
+*SEE, R · Kennesaw, Georgia*
