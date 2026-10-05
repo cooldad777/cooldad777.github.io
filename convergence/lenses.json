@@ -1,0 +1,130 @@
+[
+  {
+    "id": "catholic",
+    "name": "Catholic human dignity",
+    "type": "Theological + ethical teaching",
+    "source": "Antiqua et nova · 2025",
+    "url": "https://press.vatican.va/content/salastampa/en/bollettino/pubblico/2025/01/28/250128b.html",
+    "summary": "The Vatican’s note distinguishes human intelligence from AI and places human dignity and the common good at the center of its evaluation.",
+    "illuminates": "The human person is more than a set of tasks a machine can perform.",
+    "limit": "This is Catholic teaching, not the position of every Christian tradition or a test of technical capability.",
+    "questions": [
+      "Does delegated judgment still serve the person who bears its consequences?",
+      "Does this interaction support embodied human relationships or displace them?",
+      "Who becomes easier to overlook when efficiency defines value?",
+      "What happens when a tool is asked to provide ultimate meaning?"
+    ]
+  },
+  {
+    "id": "quran",
+    "name": "Qur’anic verification",
+    "type": "Scriptural reading",
+    "source": "Qur’an 49:6 · read with tafsir",
+    "url": "https://quran.com/49/6/tafsirs",
+    "summary": "This passage warns against acting on unverified news in ways that harm others. The AI application here is an editorial question, not a ruling.",
+    "illuminates": "The connection between checking information and responsibility for harm.",
+    "limit": "One passage cannot represent Islamic law, diverse schools, or the whole tradition.",
+    "questions": [
+      "What must be checked before acting on this answer?",
+      "Does familiarity with a voice become a substitute for verification?",
+      "Who is harmed when a claim spreads before it is checked?",
+      "What evidence distinguishes a claim about an event from an interpretation of its meaning?"
+    ]
+  },
+  {
+    "id": "jewish",
+    "name": "Jewish ethical responsibility",
+    "type": "Rabbinic ethical text",
+    "source": "Pirkei Avot 1:14",
+    "url": "https://www.sefaria.org/Pirkei_Avot.1?lang=en",
+    "summary": "Hillel’s questions bring responsibility to oneself, responsibility beyond oneself, and the urgency of action into view.",
+    "illuminates": "Agency and obligation belong together.",
+    "limit": "A short ethical passage does not establish a consensus Jewish position on AI.",
+    "questions": [
+      "What responsibility remains mine after I delegate a task?",
+      "Does the tool make me more available to other people?",
+      "Whose interests are absent from my decision?",
+      "Does a grand forecast become a reason to postpone a responsibility I already have?"
+    ]
+  },
+  {
+    "id": "gita",
+    "name": "Action and its fruits",
+    "type": "Hindu scriptural reading",
+    "source": "Bhagavad Gita 2:47 · translation and commentary",
+    "url": "https://www.holy-bhagavad-gita.org/chapter/2/verse/47/",
+    "summary": "This verse connects action with a warning against attachment to its fruits and against inaction.",
+    "illuminates": "The difference between doing responsible work and making the outcome the whole measure of a life.",
+    "limit": "A reading of this verse is not a summary of Hindu traditions or an AI policy.",
+    "questions": [
+      "Am I attending to the quality of the action, or only its promised payoff?",
+      "What desire does this interaction repeatedly reward?",
+      "Does a promised benefit excuse the way it is pursued?",
+      "Can I act responsibly without claiming certainty about the future?"
+    ]
+  },
+  {
+    "id": "buddhist",
+    "name": "Impermanence and attachment",
+    "type": "Buddhist scriptural reading",
+    "source": "Dhammapada · Chapter 20",
+    "url": "https://www.dhammatalks.org/suttas/KN/Dhp/Ch20.html",
+    "summary": "The path verses include reflection on the impermanence of conditioned things.",
+    "illuminates": "Attachment to an experience, a tool, or a view can itself become an object of attention.",
+    "limit": "This is a selected textual lens, not an account of all Buddhist schools or a clinical claim.",
+    "questions": [
+      "Am I becoming attached to an answer because it feels reassuring?",
+      "What happens when I cannot access this tool?",
+      "Which habits of attention are being cultivated?",
+      "Am I treating a changing technical system as a permanent source of security?"
+    ]
+  },
+  {
+    "id": "empirical",
+    "name": "Evidence and risk",
+    "type": "Technical governance framework",
+    "source": "NIST AI Risk Management Framework",
+    "url": "https://www.nist.gov/itl/ai-risk-management-framework",
+    "summary": "The voluntary AI RMF supports incorporating trustworthiness into AI design, use, and evaluation.",
+    "illuminates": "Performance needs to be evaluated in context, alongside the risks and responsibilities of use.",
+    "limit": "Risk management does not settle theological claims or decide which ends a person should value.",
+    "questions": [
+      "What test would show this system is unreliable for this decision?",
+      "What observed outcomes would justify the claim that it helps?",
+      "Which failures, affected people, and remedies are included in the evaluation?",
+      "What separates an observed capability from a forecast?"
+    ]
+  },
+  {
+    "id": "rights",
+    "name": "Human rights and oversight",
+    "type": "International ethical recommendation",
+    "source": "UNESCO · Recommendation on the Ethics of AI",
+    "url": "https://www.unesco.org/en/artificial-intelligence/recommendation-ethics",
+    "summary": "The recommendation addresses proportionality, safety, privacy, participation, accountability, and oversight.",
+    "illuminates": "The interests of people affected by a system, including those who did not choose to use it.",
+    "limit": "An ethical recommendation is not proof of implementation or a substitute for applicable law.",
+    "questions": [
+      "Can the affected person understand and challenge the decision?",
+      "What privacy and autonomy costs accompany the convenience?",
+      "Who can contest the system, and obtain a remedy?",
+      "Whose rights might be traded away in the name of an imagined future?"
+    ]
+  },
+  {
+    "id": "care",
+    "name": "Indigenous data governance",
+    "type": "People- and purpose-oriented principles",
+    "source": "Global Indigenous Data Alliance · CARE",
+    "url": "https://www.gida-global.org/careprinciples",
+    "summary": "CARE foregrounds collective benefit, authority to control, responsibility, and ethics in Indigenous data governance.",
+    "illuminates": "Access to data is not the same thing as legitimate authority over its use.",
+    "limit": "These principles do not represent every Indigenous people or authorize any particular use of community knowledge.",
+    "questions": [
+      "Who has the authority to permit this use of knowledge?",
+      "Does a personalized tool respect the communities behind its data?",
+      "Who controls the data, receives the benefits, and bears the costs?",
+      "Who gets to shape the future being proposed?"
+    ]
+  }
+]

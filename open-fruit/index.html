@@ -34,9 +34,10 @@
   </style>
   <link rel="stylesheet" href="../assets/ecosystem.css?v=1" />
 <link rel="stylesheet" href="../assets/experience.css?v=1"/>
+<link rel="stylesheet" href="/assets/next.css">
 </head>
 <body class="ecosystem open-fruit">
-  <nav class="open-fruit-nav"><a href="../index.html">← SEE, R</a><a href="../portfolio/index.html">Portfolio</a></nav>
+  <nav class="seer-nav" aria-label="Primary"><a class="seer-brand" href="/index.html"><img src="/assets/star.png" alt=""/>SEE, R<span>Ryan See</span></a><button class="seer-menu" aria-expanded="false" aria-controls="seer-links">Menu</button><div id="seer-links"><a href="/seersolutions/index.html">Work</a><a href="/portfolio/index.html">Explore</a><a href="/chronicle/index.html">Chronicle</a><a href="/convergence/index.html">Convergence</a><button class="search-open" aria-label="Search projects">Search <kbd>/</kbd></button></div></nav>
   <main>
     <p class="kicker">SEE, R · Kennesaw, GA · seed</p>
     <h1>Open Fruit</h1>
@@ -60,7 +61,7 @@
       </ul>
     </div>
     <h2>Plant</h2>
-    <p class="mute">One button. Lands as a public issue on the Rsee vault.</p>
+    <p class="mute">Write a short idea, then review it on GitHub before posting. Anything you submit there will be public; keep personal and confidential information out.</p>
     <form id="plant" class="card">
       <label><span class="kicker">Title</span><input id="title" required maxlength="80" placeholder="Name the seed" /></label>
       <label><span class="kicker">The idea, in a few lines</span><textarea id="body" required maxlength="1200" placeholder="What it is. Who it helps. What fruit would look like."></textarea></label>
@@ -68,7 +69,7 @@
     </form>
     <p class="fine">Vault: <a href="https://github.com/cooldad777/Rsee">Rsee</a> · Hub: <a href="https://cooldad777.github.io/">SEE, R</a></p>
   </main>
-  <div class="plant"><button class="primary" type="submit" form="plant">Plant this seed</button></div>
+  <div class="plant"><button class="primary" type="submit" form="plant">Review on GitHub ↗</button></div>
   <script>
     document.getElementById("plant").addEventListener("submit", function (e) {
       e.preventDefault();
@@ -76,11 +77,12 @@
       var idea = document.getElementById("body").value.trim();
       if (!title || !idea) return;
       var body = "## Seed\n" + idea + "\n\n## Illustrative starting weights (negotiate before work)\n- Planter 20%\n- Builder 50%\n- Steward 20%\n- Next fruit 10%\n\n## Ask\nLabel this SEED.\n\n_Planted from Open Fruit._";
-      document.getElementById("status").textContent = "Opening the vault issue…";
+      document.getElementById("status").textContent = "Opening a draft GitHub issue for your review…";
       window.location.href = "https://github.com/cooldad777/Rsee/issues/new?title=" + encodeURIComponent("SEED: " + title) + "&body=" + encodeURIComponent(body);
     });
   </script>
 <script src="../assets/bed-audio.js?v=gain49"></script>
 <script src="../assets/experience.js?v=1" defer></script>
+<script src="/assets/navigation.js" defer></script>
 </body>
 </html>
