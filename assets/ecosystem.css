@@ -834,3 +834,38 @@ details.build-log[open] summary{margin-bottom:1rem}
   font-size:1.02rem;
   line-height:1.7;
 }
+
+
+/* Public-shelf layout hotfix: links stay in normal flow at every width. */
+.world-card{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+  height:auto;
+}
+.world-card .go{
+  position:static;
+  left:auto;
+  bottom:auto;
+  display:inline-flex;
+  align-self:flex-start;
+  margin-top:auto;
+  padding-top:1.25rem;
+  line-height:1.35;
+}
+.world-card p{
+  overflow-wrap:anywhere;
+}
+@media(max-width:800px){
+  .world-card{
+    min-height:0;
+    padding:1.15rem;
+  }
+  .world-card h3{
+    margin-top:1.5rem;
+  }
+  .world-card .go{
+    margin-top:1rem;
+    padding-top:.35rem;
+  }
+}
