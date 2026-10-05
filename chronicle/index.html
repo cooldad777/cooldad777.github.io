@@ -41,7 +41,7 @@
 <header class="hero plain">
   <h1>Chronicle</h1>
   <p class="sub">Selected decisions and shifts that changed the direction of the work.</p>
-  <p class="copy">This is the public version: high-level, durable, and intentionally selective. Detailed working notes and process history stay private.</p>
+  <p class="copy">High-level, durable, and intentionally selective.</p>
 </header>
 
 <div class="chronicle-intro">
@@ -120,7 +120,7 @@
       if(!entries.length){root.innerHTML='<p class="sub">No public Chronicle entries yet.</p>';return;}
       entries.forEach(function(entry){root.appendChild(card(entry));});
     })
-    .catch(function(){root.innerHTML='<p class="sub">The public Chronicle could not load. Try a hard refresh.</p>';});
+    .catch(function(){root.innerHTML='<p class="sub">The Chronicle could not load. Try a hard refresh.</p>';});
 })();
 </script>
 <script src="../assets/bed-audio.js?v=gain49"></script>
