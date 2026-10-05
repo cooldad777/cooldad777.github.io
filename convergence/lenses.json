@@ -13,6 +13,14 @@
       "Does this interaction support embodied human relationships or displace them?",
       "Who becomes easier to overlook when efficiency defines value?",
       "What happens when a tool is asked to provide ultimate meaning?"
+    ],
+    "short": "Human dignity",
+    "accent": "#5f8c72",
+    "focus": [
+      "human dignity",
+      "relationship",
+      "meaning",
+      "common good"
     ]
   },
   {
@@ -29,6 +37,14 @@
       "Does familiarity with a voice become a substitute for verification?",
       "Who is harmed when a claim spreads before it is checked?",
       "What evidence distinguishes a claim about an event from an interpretation of its meaning?"
+    ],
+    "short": "Verification",
+    "accent": "#6f8fa8",
+    "focus": [
+      "verification",
+      "harm",
+      "evidence",
+      "responsibility"
     ]
   },
   {
@@ -45,6 +61,14 @@
       "Does the tool make me more available to other people?",
       "Whose interests are absent from my decision?",
       "Does a grand forecast become a reason to postpone a responsibility I already have?"
+    ],
+    "short": "Responsibility",
+    "accent": "#927a58",
+    "focus": [
+      "agency",
+      "responsibility",
+      "community",
+      "action"
     ]
   },
   {
@@ -61,6 +85,14 @@
       "What desire does this interaction repeatedly reward?",
       "Does a promised benefit excuse the way it is pursued?",
       "Can I act responsibly without claiming certainty about the future?"
+    ],
+    "short": "Action & fruits",
+    "accent": "#b58a55",
+    "focus": [
+      "action",
+      "attachment",
+      "outcomes",
+      "duty"
     ]
   },
   {
@@ -77,6 +109,14 @@
       "What happens when I cannot access this tool?",
       "Which habits of attention are being cultivated?",
       "Am I treating a changing technical system as a permanent source of security?"
+    ],
+    "short": "Impermanence",
+    "accent": "#7d799c",
+    "focus": [
+      "attachment",
+      "attention",
+      "impermanence",
+      "security"
     ]
   },
   {
@@ -93,6 +133,14 @@
       "What observed outcomes would justify the claim that it helps?",
       "Which failures, affected people, and remedies are included in the evaluation?",
       "What separates an observed capability from a forecast?"
+    ],
+    "short": "Evidence & risk",
+    "accent": "#4f7991",
+    "focus": [
+      "evidence",
+      "risk",
+      "evaluation",
+      "reliability"
     ]
   },
   {
@@ -109,6 +157,14 @@
       "What privacy and autonomy costs accompany the convenience?",
       "Who can contest the system, and obtain a remedy?",
       "Whose rights might be traded away in the name of an imagined future?"
+    ],
+    "short": "Rights & oversight",
+    "accent": "#7b6f8f",
+    "focus": [
+      "oversight",
+      "privacy",
+      "accountability",
+      "remedy"
     ]
   },
   {
@@ -125,6 +181,14 @@
       "Does a personalized tool respect the communities behind its data?",
       "Who controls the data, receives the benefits, and bears the costs?",
       "Who gets to shape the future being proposed?"
+    ],
+    "short": "CARE",
+    "accent": "#557b68",
+    "focus": [
+      "authority",
+      "benefit",
+      "community",
+      "data governance"
     ]
   }
 ]
