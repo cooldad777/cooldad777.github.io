@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>The Convergence | Worldview atlas</title>
-<meta name="description" content="A drillable atlas of the world's major religious and nonreligious identities, with a deeper Christian branch map and sourced population scale."/>
+<title>The Convergence | Worldviews, eschatology, exponential technology, and live signals</title>
+<meta name="description" content="A drillable interface for worldviews, Christian eschatology, exponential technology, and current news interpreted with explicit guardrails."/>
 <meta name="theme-color" content="#f7f9f6"/>
 <link rel="icon" href="/assets/favicon.png"/>
 <link rel="stylesheet" href="/assets/next.css"/>
 <link rel="stylesheet" href="/assets/experience.css?v=1"/>
-<link rel="stylesheet" href="/convergence/convergence.css?v=2"/>
+<link rel="stylesheet" href="/convergence/convergence.css?v=4"/>
 </head>
 <body class="next convergence-atlas">
-<a class="skip" href="#atlas">Skip to the atlas</a>
+<a class="skip" href="#convergence-modes">Skip to Convergence</a>
 
 <nav class="seer-nav" aria-label="Primary">
   <a class="seer-brand" href="/index.html"><img src="/assets/star.png" alt=""/>SEE, R<span>Ryan See</span></a>
@@ -29,64 +29,158 @@
 <main>
   <header class="conv-hero">
     <div class="conv-wrap">
-      <p class="conv-kicker">The Convergence · worldview atlas</p>
-      <h1>Map belief.<br/><em>See the scale.</em><br/>Follow the branches.</h1>
-      <p class="conv-lede">Start with the world's major religious and nonreligious identities. Then drill down through traditions, families, and specific bodies. Christianity opens deeper by default because it is the tradition this site knows from the inside.</p>
+      <p class="conv-kicker">The Convergence · interactive worldview lab</p>
+      <h1>Map belief.<br/><em>Follow futures.</em><br/>Watch technology move.</h1>
+      <p class="conv-lede">One interface for four related questions: what people believe, what futures they expect, what exponential technology is changing, and how current events look through those lenses.</p>
       <div class="conv-actions">
-        <a class="button" href="#atlas">Open the atlas</a>
-        <a class="text-link" href="/lenses/index.html">Compare perspectives in Lenses ↗</a>
+        <a class="button" href="#convergence-modes">Enter Convergence</a>
+        <a class="text-link" href="/lenses/index.html">Open the free-form Lenses workbench ↗</a>
       </div>
     </div>
   </header>
 
   <section class="conv-rules">
     <div class="conv-wrap rules-grid">
-      <article><span>01</span><strong>Population is data.</strong><p>Scale is shown only where a sourced demographic estimate exists.</p></article>
-      <article><span>02</span><strong>Taxonomy is structure.</strong><p>Below that, branch position does not pretend to be a population estimate.</p></article>
-      <article><span>03</span><strong>Categories have edges.</strong><p>Traditions overlap, self-identify differently, and sometimes contest one another's labels.</p></article>
+      <article><span>01</span><strong>Fact before interpretation.</strong><p>Reported events, demographic data, forecasts, and theological readings stay visibly separate.</p></article>
+      <article><span>02</span><strong>Resonance is not fulfillment.</strong><p>A technology can rhyme with a text or tradition without proving prophecy.</p></article>
+      <article><span>03</span><strong>The map keeps its edges.</strong><p>Traditions disagree internally. Categories overlap. The interface should show that rather than flatten it.</p></article>
     </div>
   </section>
 
-  <section class="atlas-section" id="atlas" aria-labelledby="atlas-title">
+  <section class="mode-shell" id="convergence-modes" aria-label="Convergence modes">
     <div class="conv-wrap">
-      <div class="atlas-heading">
-        <div>
-          <p class="conv-kicker">World · 2020</p>
-          <h2 id="atlas-title">The religious landscape at a glance.</h2>
-        </div>
-        <p id="source-summary">Loading sourced population data…</p>
+      <div class="mode-intro">
+        <p class="conv-kicker">Choose a mode</p>
+        <p>Keep the whole system available without putting the whole system on screen at once.</p>
       </div>
-
-      <div class="population-shell">
-        <div class="population-bar" id="population-bar" aria-label="Share of world population by major religious identity"></div>
-        <div class="population-legend" id="population-legend"></div>
+      <div class="mode-nav" role="tablist" aria-label="Convergence mode">
+        <button class="mode-button is-active" type="button" data-mode="atlas" role="tab" aria-selected="true">
+          <span>01</span><strong>Atlas</strong><small>What exists?</small>
+        </button>
+        <button class="mode-button" type="button" data-mode="eschatology" role="tab" aria-selected="false">
+          <span>02</span><strong>Eschatology</strong><small>What futures are expected?</small>
+        </button>
+        <button class="mode-button" type="button" data-mode="exponential" role="tab" aria-selected="false">
+          <span>03</span><strong>Exponential</strong><small>What is changing?</small>
+        </button>
+        <button class="mode-button" type="button" data-mode="live" role="tab" aria-selected="false">
+          <span>04</span><strong>Live</strong><small>What happened now?</small>
+        </button>
       </div>
-
-      <div class="atlas-toolbar">
-        <div class="atlas-breadcrumbs" id="breadcrumbs" aria-label="Current branch"></div>
-        <div class="atlas-toolbar-actions">
-          <button type="button" id="christian-jump">Christian deep dive</button>
-          <button type="button" id="world-reset">World</button>
-        </div>
-      </div>
-
-      <div class="branch-shell">
-        <div class="branch-columns" id="branch-columns" aria-label="Worldview hierarchy"></div>
-      </div>
-
-      <aside class="node-detail" id="node-detail" aria-live="polite"></aside>
     </div>
   </section>
 
-  <section class="atlas-note">
-    <div class="conv-wrap atlas-note-grid">
-      <div>
-        <p class="conv-kicker">Why some branches are sized and others are not</p>
-        <h2>Good maps know where the data stops.</h2>
+  <section class="mode-panel is-active" data-mode-panel="atlas" id="atlas" aria-labelledby="atlas-title">
+    <div class="atlas-section">
+      <div class="conv-wrap">
+        <div class="atlas-heading">
+          <div>
+            <p class="conv-kicker">Atlas · world · 2020</p>
+            <h2 id="atlas-title">The religious landscape at a glance.</h2>
+          </div>
+          <p id="source-summary">Loading sourced population data…</p>
+        </div>
+
+        <div class="population-shell">
+          <div class="population-bar" id="population-bar" aria-label="Share of world population by major religious identity"></div>
+          <div class="population-legend" id="population-legend"></div>
+        </div>
+
+        <div class="atlas-toolbar">
+          <div class="atlas-breadcrumbs" id="breadcrumbs" aria-label="Current branch"></div>
+          <div class="atlas-toolbar-actions">
+            <button type="button" id="christian-jump">Christian deep dive</button>
+            <button type="button" id="world-reset">World</button>
+          </div>
+        </div>
+
+        <div class="branch-shell">
+          <div class="branch-columns" id="branch-columns" aria-label="Worldview hierarchy"></div>
+        </div>
+
+        <aside class="node-detail" id="node-detail" aria-live="polite"></aside>
       </div>
-      <div>
-        <p>Pew's 2025 global update gives a strong top-level picture for 2020, but it explicitly does not subdivide those global categories into denominations. The Christian branch proportions shown here therefore use Pew's older 2010 global Christian study. Below the broad Catholic / Protestant / Orthodox split, this becomes a taxonomy for orientation rather than a proportional census.</p>
-        <p>That is deliberate. A precise-looking number with a weak denominator would make the interface prettier and the thinking worse.</p>
+    </div>
+
+    <div class="atlas-note">
+      <div class="conv-wrap atlas-note-grid">
+        <div>
+          <p class="conv-kicker">Where the numbers stop</p>
+          <h2>Good maps know where the data stops.</h2>
+        </div>
+        <div>
+          <p>Pew's 2025 global update gives a strong top-level picture for 2020, but it does not subdivide those seven global categories into denominations. The Christian branch proportions therefore use Pew's older 2010 global Christian study.</p>
+          <p>Below the broad Catholic / Protestant / Orthodox split, Convergence becomes a taxonomy for orientation rather than a proportional census. Precision is earned, not decorated onto the interface.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mode-panel" data-mode-panel="eschatology" id="eschatology" aria-labelledby="esch-title" hidden>
+    <div class="mode-section">
+      <div class="conv-wrap">
+        <div class="mode-heading">
+          <div>
+            <p class="conv-kicker">Eschatology · Christian emphasis</p>
+            <h2 id="esch-title">Same return. Different charts.</h2>
+          </div>
+          <p>Start with the Christian shared horizon, then move through competing timelines. Other traditions are shown as future horizons rather than forced into Christian categories.</p>
+        </div>
+
+        <div class="core-horizon" id="christian-core"></div>
+
+        <div class="esch-layout">
+          <aside class="perspective-rail">
+            <div class="perspective-switch" role="tablist" aria-label="Eschatology family">
+              <button class="family-button is-active" type="button" data-family="christian" aria-selected="true">Christian views</button>
+              <button class="family-button" type="button" data-family="other" aria-selected="false">Other horizons</button>
+            </div>
+            <div class="perspective-list" id="esch-list"></div>
+          </aside>
+
+          <div class="esch-stage" id="esch-stage" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mode-panel" data-mode-panel="exponential" id="exponential" aria-labelledby="exp-title" hidden>
+    <div class="mode-section exponential-section">
+      <div class="conv-wrap">
+        <div class="mode-heading">
+          <div>
+            <p class="conv-kicker">Exponential · adjacent topics</p>
+            <h2 id="exp-title">The stage can change faster than the stories we use to understand it.</h2>
+          </div>
+          <p>Explore the technology signals that repeatedly collide with questions of authority, identity, embodiment, attachment, deception, commerce, war, biology, and human agency.</p>
+        </div>
+
+        <div class="signal-ribbon" id="signal-ribbon" aria-label="Exponential technology topics"></div>
+        <div class="signal-stage" id="signal-stage" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mode-panel" data-mode-panel="live" id="live" aria-labelledby="live-title" hidden>
+    <div class="mode-section live-section">
+      <div class="conv-wrap">
+        <div class="mode-heading">
+          <div>
+            <p class="conv-kicker">Live · curated current events</p>
+            <h2 id="live-title">Read the headline. Then separate what happened from what it might mean.</h2>
+          </div>
+          <p id="news-meta">Loading curated feed…</p>
+        </div>
+
+        <div class="live-controls">
+          <div class="news-filters" id="news-filters" aria-label="Filter news by topic"></div>
+          <a class="text-link" href="/lenses/index.html">Need a different perspective? Open Lenses ↗</a>
+        </div>
+
+        <div class="live-layout">
+          <div class="news-list" id="news-list" aria-label="Curated current events"></div>
+          <article class="news-stage" id="news-stage" aria-live="polite"></article>
+        </div>
       </div>
     </div>
   </section>
@@ -95,8 +189,8 @@
     <div class="conv-wrap lens-bridge-card">
       <div>
         <p class="conv-kicker">Different job</p>
-        <h2>Convergence maps the landscape. Lenses interrogates a question.</h2>
-        <p>Use Convergence to understand what exists and how it branches. Use Lenses when you want to stack perspectives and ask what each one reveals or misses.</p>
+        <h2>Convergence organizes the landscape. Lenses lets you construct your own comparison.</h2>
+        <p>Use Convergence when the question is worldview, future expectation, exponential change, or current-event resonance. Use Lenses when you want to stack arbitrary perspectives against any question.</p>
       </div>
       <a class="button" href="/lenses/index.html">Open Lenses</a>
     </div>
@@ -117,7 +211,7 @@
 </footer>
 
 <script src="/assets/navigation.js" defer></script>
-<script src="/convergence/atlas.js?v=3" defer></script>
+<script src="/convergence/atlas.js?v=4" defer></script>
 <script src="/assets/experience.js?v=1" defer></script>
 <script src="/assets/bed-audio.js?v=gain49"></script>
 </body>
