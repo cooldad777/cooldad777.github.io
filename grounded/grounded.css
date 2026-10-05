@@ -481,8 +481,7 @@ body.grounded-next{
   position:sticky;
   top:88px;
   z-index:80;
-  display:grid;
-  grid-template-columns:repeat(7,minmax(0,1fr));
+  display:flex;
   gap:7px;
   padding:8px;
   border:1px solid rgba(24,49,38,.09);
@@ -495,6 +494,7 @@ body.grounded-next{
 .map-item{
   min-width:0;
   min-height:70px;
+  flex:.8 1 0;
   display:flex;
   align-items:flex-start;
   gap:9px;
@@ -508,10 +508,12 @@ body.grounded-next{
     background .38s var(--g-ease),
     box-shadow .38s var(--g-ease),
     transform .38s var(--g-ease),
-    grid-column .38s var(--g-ease);
+    flex-grow .5s var(--g-ease),
+    flex-basis .5s var(--g-ease);
 }
 .map-item:hover{background:rgba(230,239,231,.68)}
 .map-item.is-active{
+  flex:2.2 1 0;
   background:rgba(255,255,255,.94);
   box-shadow:0 10px 28px rgba(28,54,42,.08);
 }
@@ -531,21 +533,18 @@ body.grounded-next{
   font:600 13px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 .map-copy small{
-  display:grid;
-  grid-template-rows:0fr;
+  display:block;
+  max-height:0;
+  overflow:hidden;
   opacity:0;
   margin-top:0;
   color:#607168;
   font-size:11px;
   line-height:1.4;
-  transition:grid-template-rows .38s var(--g-ease),opacity .28s ease,margin-top .38s var(--g-ease);
-}
-.map-copy small::before{
-  content:"";
-  min-height:0;
+  transition:max-height .42s var(--g-ease),opacity .28s ease,margin-top .38s var(--g-ease);
 }
 .map-item.is-active .map-copy small{
-  display:block;
+  max-height:3.2em;
   opacity:1;
   margin-top:7px;
 }
@@ -629,13 +628,15 @@ body.grounded-next{
   .formation-map-intro{grid-template-columns:1fr;gap:10px}
   .formation-map{
     top:76px;
-    grid-template-columns:1fr;
+    display:block;
     gap:0;
     padding:6px;
     border-radius:24px;
   }
   .map-item{
+    width:100%;
     min-height:0;
+    flex:none;
     padding:0;
     overflow:hidden;
     max-height:0;
