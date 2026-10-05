@@ -4,26 +4,25 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Chronicle | SEE, R</title>
-<meta name="description" content="Timestamped public timeline of AI learning — SEE, R."/>
+<meta name="description" content="Selected decisions and shifts that changed the direction of SEE, R."/>
+<meta name="theme-color" content="#fbfcfa"/>
 <link rel="icon" href="../assets/favicon.png"/>
 <link rel="stylesheet" href="../assets/apple.css?v=pass2"/>
 <link rel="stylesheet" href="../assets/ecosystem.css?v=1"/>
-<style>
-.drift-wrap{max-width:920px;margin:0 auto;padding:8px 16px 0}
-.drift-label{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6e6e73;font-weight:600;margin:0 0 10px}
-.drift{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;padding:4px 2px 14px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
-.drift button{
-  flex:0 0 auto;min-width:44px;height:36px;padding:0 10px;
-  border-radius:980px;border:1px solid rgba(0,0,0,.08);
-  background:#f5f5f7;color:#1d1d1f;font:inherit;font-size:12px;cursor:pointer;
-}
-.drift button.on{background:#111;color:#f5f5f7;border-color:transparent}
-.drift button:hover{border-color:rgba(0,0,0,.2)}
-.drift-clear{margin:0 0 8px;font-size:13px}
-.drift-clear a{color:#0066cc;text-decoration:none;cursor:pointer}
-.stamp[hidden]{display:none !important}
-</style>
 <link rel="stylesheet" href="../assets/experience.css?v=1"/>
+<style>
+.chronicle-intro{max-width:760px;margin:0 auto;padding:34px 20px 10px}
+.chronicle-note{font-size:1.04rem;line-height:1.65;color:#56615b;max-width:42rem}
+.chronicle-list{max-width:920px;margin:0 auto;padding:18px 20px 80px;display:grid;gap:18px}
+.chronicle-card{padding:24px 24px 22px;border:1px solid rgba(23,33,28,.08);border-radius:24px;background:#fff;box-shadow:0 14px 40px rgba(25,46,37,.05)}
+.chronicle-period{margin:0 0 12px;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:#748078;font-weight:750}
+.chronicle-card h2{margin:0;font-family:Georgia,serif;font-size:clamp(1.55rem,3vw,2.25rem);font-weight:500;letter-spacing:-.025em}
+.chronicle-overview{margin:12px 0 0;color:#4f5a54;line-height:1.65}
+.chronicle-decision{margin:14px 0 0;padding-top:14px;border-top:1px solid rgba(23,33,28,.08);color:#254735}
+.chronicle-links{display:flex;flex-wrap:wrap;gap:10px;margin:16px 0 0}
+.chronicle-links a{font-size:.9rem;color:#315f49}
+@media(max-width:640px){.chronicle-card{padding:20px}.chronicle-list{padding-left:14px;padding-right:14px}}
+</style>
 </head>
 <body class="ecosystem page-chronicle">
 <nav class="nav"><div class="nav-in">
@@ -38,94 +37,91 @@
     <a href="mailto:ryanrsee@gmail.com">Contact</a>
   </div>
 </div></nav>
+
 <header class="hero plain">
   <h1>Chronicle</h1>
-  <p class="sub">Timestamped public timeline of AI learning. Append-only. What moved, why it moved, and what is still open.</p><p class="copy">The point is provenance, not hot takes: old ideas stay visible beside later corrections so the history does not get rewritten by the newest summary.</p>
+  <p class="sub">Selected decisions and shifts that changed the direction of the work.</p>
+  <p class="copy">High-level, durable, and intentionally selective.</p>
 </header>
-<div class="drift-wrap" id="drift-wrap" hidden>
-  <p class="drift-label">Days on the trail</p>
-  <div class="drift" id="drift" role="toolbar" aria-label="Filter by day"></div>
-  <p class="drift-clear" id="drift-clear" hidden><a href="#" id="drift-all">Show all days ›</a></p>
+
+<div class="chronicle-intro">
+  <p class="chronicle-note">The question here is not “what happened every day?” It is “what changed enough to matter later?”</p>
 </div>
-<section class="unit gray" id="list"><p class="sub">Loading the trail…</p></section>
+
+<section class="chronicle-list" id="chronicle-list" aria-live="polite">
+  <p class="sub">Loading selected entries…</p>
+</section>
+
 <footer><div class="foot"><div class="foot-links">
   <a href="../index.html">SEE, R</a>
   <a href="../portfolio/index.html">Portfolio</a>
-  <a href="../ai-tracker/index.html">AI Tracker</a>
+  <a href="../seersolutions/index.html">SEER Solutions</a>
+  <a href="../seersolutions/s33r/index.html">S33R Human Signal</a>
   <a href="mailto:ryanrsee@gmail.com">ryanrsee@gmail.com</a>
 </div><p>Copyright © 2026 SEE, R. Kennesaw, Georgia.</p></div></footer>
+
 <script>
-document.getElementById('menu').onclick=function(){document.getElementById('nav-links').classList.toggle('open');};
-var root=document.getElementById('list');
-var driftEl=document.getElementById('drift');
-var driftWrap=document.getElementById('drift-wrap');
-var driftClear=document.getElementById('drift-clear');
-var activeDay=null;
-function dayKey(ts){return String(ts||'').slice(0,10);}
-function card(e){
-  var d=document.createElement('article'); d.className='stamp';
-  d.setAttribute('data-day', dayKey(e.timestamp));
-  var models=(e.models||[]).join(', ');
-  var body=e.moved||e.why||'';
-  var mystery=e.mystery?('<p><strong>Still open:</strong> '+e.mystery+'</p>'):'';
-  d.innerHTML='<div class="when">'+(e.timestamp||'')+(models?' · '+models:'')+'</div><h3>'+(e.what||e.id)+'</h3><p>'+body+'</p>'+mystery;
-  return d;
-}
-function applyFilter(){
-  var stamps=root.querySelectorAll('.stamp');
-  stamps.forEach(function(s){
-    if(!activeDay){ s.hidden=false; return; }
-    s.hidden = s.getAttribute('data-day') !== activeDay;
-  });
-  driftClear.hidden = !activeDay;
-  Array.prototype.forEach.call(driftEl.querySelectorAll('button'), function(b){
-    b.classList.toggle('on', b.getAttribute('data-day')===activeDay);
-  });
-}
-function buildDrift(list){
-  var days={}, order=[];
-  list.forEach(function(e){
-    var k=dayKey(e.timestamp);
-    if(!k || k.length<8) return;
-    if(!days[k]){ days[k]=0; order.push(k); }
-    days[k]++;
-  });
-  /* newest on the left */
-  order.sort(function(a,b){return b.localeCompare(a);});
-  if(!order.length){ driftWrap.hidden=true; return; }
-  driftWrap.hidden=false;
-  driftEl.innerHTML='';
-  order.forEach(function(k){
-    var btn=document.createElement('button');
-    btn.type='button';
-    btn.setAttribute('data-day', k);
-    btn.title=k+' · '+days[k]+' stamp'+(days[k]===1?'':'s');
-    btn.textContent=k.slice(5); /* MM-DD */
-    btn.onclick=function(){
-      activeDay = (activeDay===k) ? null : k;
-      applyFilter();
-      if(activeDay){
-        var first=root.querySelector('.stamp[data-day="'+activeDay+'"]:not([hidden])');
-        if(first) first.scrollIntoView({behavior:'smooth', block:'start'});
-      }
-    };
-    driftEl.appendChild(btn);
-  });
-  document.getElementById('drift-all').onclick=function(ev){
-    ev.preventDefault(); activeDay=null; applyFilter();
-  };
-}
-fetch('entries.jsonl',{cache:'no-store'}).then(function(r){
-  if(!r.ok) throw new Error('missing');
-  return r.text();
-}).then(function(t){
-  var list=t.split(/\n/).map(function(l){l=l.trim(); if(!l) return null; try{return JSON.parse(l);}catch(e){return null;}}).filter(Boolean);
-  list.sort(function(a,b){return String(b.timestamp||'').localeCompare(String(a.timestamp||''));});
-  root.innerHTML='';
-  if(!list.length){root.innerHTML='<p class="sub">No stamps yet.</p>'; return;}
-  list.forEach(function(e){root.appendChild(card(e));});
-  buildDrift(list);
-}).catch(function(){root.innerHTML='<p class="sub">The trail file could not load. Try a hard refresh.</p>';});
+(function(){
+  var menu=document.getElementById('menu');
+  var links=document.getElementById('nav-links');
+  if(menu&&links){menu.onclick=function(){var open=links.classList.toggle('open');menu.setAttribute('aria-expanded',open?'true':'false');};}
+
+  var root=document.getElementById('chronicle-list');
+  function card(e){
+    var article=document.createElement('article');
+    article.className='chronicle-card story-reveal is-visible';
+
+    var period=document.createElement('p');
+    period.className='chronicle-period';
+    period.textContent=e.period||'';
+
+    var title=document.createElement('h2');
+    title.textContent=e.title||'';
+
+    var overview=document.createElement('p');
+    overview.className='chronicle-overview';
+    overview.textContent=e.overview||'';
+
+    var decision=document.createElement('p');
+    decision.className='chronicle-decision';
+    var strong=document.createElement('strong');
+    strong.textContent='Decision: ';
+    decision.appendChild(strong);
+    decision.appendChild(document.createTextNode(e.decision||''));
+
+    article.appendChild(period);
+    article.appendChild(title);
+    article.appendChild(overview);
+    article.appendChild(decision);
+
+    if(Array.isArray(e.links)&&e.links.length){
+      var linksWrap=document.createElement('p');
+      linksWrap.className='chronicle-links';
+      e.links.forEach(function(link){
+        var a=document.createElement('a');
+        a.href=link.href;
+        a.textContent=link.label;
+        linksWrap.appendChild(a);
+      });
+      article.appendChild(linksWrap);
+    }
+    return article;
+  }
+
+  fetch('entries.jsonl',{cache:'no-store'})
+    .then(function(r){if(!r.ok)throw new Error('missing');return r.text();})
+    .then(function(text){
+      var entries=text.split(/\n/).map(function(line){
+        line=line.trim();
+        if(!line)return null;
+        try{return JSON.parse(line);}catch(err){return null;}
+      }).filter(Boolean);
+      root.innerHTML='';
+      if(!entries.length){root.innerHTML='<p class="sub">No public Chronicle entries yet.</p>';return;}
+      entries.forEach(function(entry){root.appendChild(card(entry));});
+    })
+    .catch(function(){root.innerHTML='<p class="sub">The Chronicle could not load. Try a hard refresh.</p>';});
+})();
 </script>
 <script src="../assets/bed-audio.js?v=gain49"></script>
 <script src="../assets/experience.js?v=1" defer></script>
