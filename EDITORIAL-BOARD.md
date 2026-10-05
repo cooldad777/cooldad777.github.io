@@ -162,3 +162,22 @@ Before publication, the Formatting / Interaction desk must pass the page for:
 - section rhythm and typographic hierarchy
 
 The page is not done because the copy is correct. It is done when the story survives the screen.
+
+
+## Chronicle publication rule
+
+The public Chronicle is **curated decision history, not process exhaust**.
+
+Public Chronicle entries should summarize durable changes in thinking or direction. They should not publish:
+- style/formatting decisions
+- prompt or agent mechanics
+- model-by-model process
+- Git operations
+- internal naming or filing logic
+- granular monetization tactics
+- detailed personal habits or private context
+- open speculation that has not been deliberately made public
+
+Detailed Chronicle material belongs in the private SEE,R knowledge system.
+
+No automatic public Chronicle publishing. Ryan approves each public digest item.
