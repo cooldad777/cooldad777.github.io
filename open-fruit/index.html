@@ -39,23 +39,23 @@
   <main>
     <p class="kicker">SEE, R · Kennesaw, GA · seed</p>
     <h1>Open Fruit</h1>
-    <p>Plant a seed. Partner to ship it. Publish who gets paid — before anyone builds.</p>
-    <h2>The triangle</h2>
-    <p class="mute">Three roles. One project. Earnings split in public. No downline. Pay only if the fruit earns.</p>
+    <p>Plant a seed. Find a builder. Agree on ownership and economics before anyone does real work.</p>
+    <h2>An illustrative starting split</h2>
+    <p class="mute">A sketch for how a collaboration might start, not settled economics and not an offer. Every real project would require explicit agreement before work begins.</p>
     <div class="tri">
       <article class="card"><div class="row"><strong>Planter</strong><span class="pct">20%</span></div><p class="mute">The idea is solid enough to stand as a file.</p></article>
       <article class="card"><div class="row"><strong>Builder</strong><span class="pct">50%</span></div><p class="mute">Implements. Ships.</p></article>
       <article class="card"><div class="row"><strong>Steward</strong><span class="pct">20%</span></div><p class="mute">Ledger and halt. Default: SEE, R.</p></article>
       <article class="card"><div class="row"><strong>Next fruit</strong><span class="pct">10%</span></div><p class="mute">Reserve for the next seed. Not a silent take.</p></article>
     </div>
-    <p class="fine">Starting weights. Each project can renegotiate in the open before work starts.</p>
-    <h2>What this is not</h2>
+    <p class="fine">Illustrative weights only. A real project can use different roles, percentages, ownership terms, or no revenue share at all.</p>
+    <h2>Boundaries</h2>
     <div class="card">
       <ul class="plain">
-        <li>Not a pyramid or MLM. You are not paid to recruit.</li>
-        <li>Not a coin sale. Weights are percents on project earnings.</li>
-        <li>Not a promise that software comes to life.</li>
-        <li>Not an XPRIZE filing. This page is for mates who can walk a model.</li>
+        <li>No recruiting economics or downline.</li>
+        <li>No token, coin, or investment sale.</li>
+        <li>No promise that a planted idea becomes software or earns money.</li>
+        <li>No project begins until the collaborators agree on terms in writing.</li>
       </ul>
     </div>
     <h2>Plant</h2>
@@ -74,7 +74,7 @@
       var title = document.getElementById("title").value.trim();
       var idea = document.getElementById("body").value.trim();
       if (!title || !idea) return;
-      var body = "## Seed\n" + idea + "\n\n## Starting weights (negotiable)\n- Planter 20%\n- Builder 50%\n- Steward 20%\n- Next fruit 10%\n\n## Ask\nLabel this SEED.\n\n_Planted from Open Fruit._";
+      var body = "## Seed\n" + idea + "\n\n## Illustrative starting weights (negotiate before work)\n- Planter 20%\n- Builder 50%\n- Steward 20%\n- Next fruit 10%\n\n## Ask\nLabel this SEED.\n\n_Planted from Open Fruit._";
       document.getElementById("status").textContent = "Opening the vault issue…";
       window.location.href = "https://github.com/cooldad777/Rsee/issues/new?title=" + encodeURIComponent("SEED: " + title) + "&body=" + encodeURIComponent(body);
     });
