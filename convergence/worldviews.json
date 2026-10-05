@@ -1,0 +1,626 @@
+{
+  "title": "World religions and worldview identities",
+  "topLevelSource": {
+    "label": "Pew Research Center, How the Global Religious Landscape Changed From 2010 to 2020 (published 2025)",
+    "url": "https://www.pewresearch.org/religion/2025/06/09/how-the-global-religious-landscape-changed-from-2010-to-2020/",
+    "year": 2020,
+    "note": "Top-level shares use Pew's 2020 global estimates. The Pew 2025 report does not subdivide the seven global categories into denominations."
+  },
+  "christianSource": {
+    "label": "Pew Research Center, Global Christianity (published 2011)",
+    "url": "https://www.pewresearch.org/religion/2011/12/19/global-christianity-traditions/",
+    "year": 2010,
+    "note": "Christian branch proportions use Pew's 2010 global Christian estimates because the newer global landscape update does not publish equivalent denomination-level splits."
+  },
+  "root": {
+    "id": "world",
+    "name": "World",
+    "kind": "root",
+    "description": "A map of major religious identities and the religiously unaffiliated. Population scale and taxonomy are deliberately separated.",
+    "children": [
+      {
+        "id": "christianity",
+        "name": "Christianity",
+        "kind": "religion",
+        "featured": true,
+        "pop_m": 2300,
+        "share_world": 28.8,
+        "pop_year": 2020,
+        "summary": "The world's largest religious group in Pew's 2020 estimate. Convergence gives Christianity extra depth because it is Ryan's own tradition and because its internal branching is often hidden by one global label.",
+        "children": [
+          {
+            "id": "catholic",
+            "name": "Catholic",
+            "kind": "tradition",
+            "pop_m": 1094.61,
+            "share_parent": 50.1,
+            "pop_year": 2010,
+            "summary": "Pew's 2010 global Christian taxonomy placed about half of Christians in the Catholic tradition.",
+            "children": [
+              {
+                "id": "latin-church",
+                "name": "Latin Church",
+                "kind": "family",
+                "summary": "The largest Catholic church tradition; Western liturgical and canonical tradition."
+              },
+              {
+                "id": "eastern-catholic",
+                "name": "Eastern Catholic Churches",
+                "kind": "family",
+                "summary": "Eastern churches in communion with Rome, including Byzantine, Alexandrian, Armenian, East Syriac, West Syriac and other traditions."
+              }
+            ]
+          },
+          {
+            "id": "protestant",
+            "name": "Protestant",
+            "kind": "tradition",
+            "pop_m": 800.64,
+            "share_parent": 36.7,
+            "pop_year": 2010,
+            "summary": "Pew's broad Protestant category includes Anglicans as well as independent and nondenominational churches. The family map below is orientation, not a globally proportional census.",
+            "children": [
+              {
+                "id": "baptist",
+                "name": "Baptist",
+                "kind": "family",
+                "summary": "Congregational Protestant traditions centered on believer's baptism and local church life.",
+                "children": [
+                  {
+                    "id": "southern-baptist",
+                    "name": "Southern Baptist Convention",
+                    "kind": "body",
+                    "summary": "Large U.S. Baptist convention."
+                  },
+                  {
+                    "id": "national-baptist",
+                    "name": "National Baptist traditions",
+                    "kind": "body",
+                    "summary": "Historically Black Baptist conventions and related bodies in the U.S."
+                  },
+                  {
+                    "id": "american-baptist",
+                    "name": "American Baptist Churches USA",
+                    "kind": "body",
+                    "summary": "U.S. Baptist denomination with historic Northern Baptist roots."
+                  },
+                  {
+                    "id": "independent-baptist",
+                    "name": "Independent Baptist",
+                    "kind": "body",
+                    "summary": "Decentralized local churches and networks rather than one denomination."
+                  },
+                  {
+                    "id": "reformed-baptist",
+                    "name": "Reformed Baptist",
+                    "kind": "body",
+                    "summary": "Baptist churches shaped by Reformed theology; overlaps two family labels by design."
+                  }
+                ]
+              },
+              {
+                "id": "reformed",
+                "name": "Reformed / Presbyterian",
+                "kind": "family",
+                "summary": "Traditions shaped by Reformed theology, confessions and Presbyterian or continental church orders.",
+                "children": [
+                  {
+                    "id": "presbyterian",
+                    "name": "Presbyterian",
+                    "kind": "body",
+                    "summary": "Presbyterian churches worldwide, including confessional and mainline bodies."
+                  },
+                  {
+                    "id": "continental-reformed",
+                    "name": "Continental Reformed",
+                    "kind": "body",
+                    "summary": "Dutch, Swiss and related Reformed churches shaped by continental confessions."
+                  },
+                  {
+                    "id": "congregational",
+                    "name": "Congregational / Reformed",
+                    "kind": "body",
+                    "summary": "Historically Reformed congregational traditions."
+                  },
+                  {
+                    "id": "reformed-baptist-cross",
+                    "name": "Reformed Baptist",
+                    "kind": "body",
+                    "summary": "A cross-tradition node: Baptist ecclesiology with Reformed theology."
+                  }
+                ]
+              },
+              {
+                "id": "methodist",
+                "name": "Methodist / Wesleyan",
+                "kind": "family",
+                "summary": "Traditions descended from the Wesleyan revival and shaped by holiness, connection and practical discipleship.",
+                "children": [
+                  {
+                    "id": "united-methodist",
+                    "name": "United Methodist",
+                    "kind": "body",
+                    "summary": "Large global Methodist denomination."
+                  },
+                  {
+                    "id": "global-methodist",
+                    "name": "Global Methodist",
+                    "kind": "body",
+                    "summary": "Newer global Methodist body formed after recent separation from the UMC."
+                  },
+                  {
+                    "id": "ame",
+                    "name": "AME / AME Zion",
+                    "kind": "body",
+                    "summary": "Historically Black Methodist traditions."
+                  },
+                  {
+                    "id": "wesleyan-free-methodist",
+                    "name": "Wesleyan / Free Methodist",
+                    "kind": "body",
+                    "summary": "Holiness-oriented Wesleyan denominations and networks."
+                  }
+                ]
+              },
+              {
+                "id": "lutheran",
+                "name": "Lutheran",
+                "kind": "family",
+                "summary": "Churches shaped by the Lutheran confessions, with confessional and mainline/global expressions.",
+                "children": [
+                  {
+                    "id": "confessional-lutheran",
+                    "name": "Confessional Lutheran",
+                    "kind": "body",
+                    "summary": "Confessional bodies such as LCMS and analogous churches elsewhere."
+                  },
+                  {
+                    "id": "mainline-lutheran",
+                    "name": "Mainline / ecumenical Lutheran",
+                    "kind": "body",
+                    "summary": "Bodies such as ELCA and many churches in the Lutheran World Federation."
+                  }
+                ]
+              },
+              {
+                "id": "anglican",
+                "name": "Anglican",
+                "kind": "family",
+                "summary": "Churches in and around the Anglican Communion, rooted in the Church of England and Prayer Book tradition.",
+                "children": [
+                  {
+                    "id": "anglican-communion",
+                    "name": "Anglican Communion",
+                    "kind": "body",
+                    "summary": "Global communion of autonomous Anglican provinces."
+                  },
+                  {
+                    "id": "anglican-related",
+                    "name": "Related / continuing Anglican bodies",
+                    "kind": "body",
+                    "summary": "Anglican bodies outside or alongside the formal Communion, including ACNA and continuing churches."
+                  }
+                ]
+              },
+              {
+                "id": "pentecostal",
+                "name": "Pentecostal / Charismatic",
+                "kind": "family",
+                "summary": "Spirit-focused Protestant traditions emphasizing gifts, renewal and mission.",
+                "children": [
+                  {
+                    "id": "assemblies-of-god",
+                    "name": "Assemblies of God",
+                    "kind": "body",
+                    "summary": "Large global Pentecostal fellowship."
+                  },
+                  {
+                    "id": "cogic",
+                    "name": "Church of God in Christ",
+                    "kind": "body",
+                    "summary": "Major historically Black Holiness-Pentecostal denomination."
+                  },
+                  {
+                    "id": "independent-charismatic",
+                    "name": "Independent Pentecostal / Charismatic",
+                    "kind": "body",
+                    "summary": "Large and diverse networks not captured by one denomination."
+                  }
+                ]
+              },
+              {
+                "id": "adventist",
+                "name": "Adventist",
+                "kind": "family",
+                "summary": "Protestant traditions with a strong emphasis on the Advent and, in Seventh-day Adventism, Sabbath observance."
+              },
+              {
+                "id": "anabaptist",
+                "name": "Anabaptist",
+                "kind": "family",
+                "summary": "Mennonite, Amish, Brethren and related traditions emphasizing discipleship, community and often nonviolence."
+              },
+              {
+                "id": "restoration",
+                "name": "Restoration",
+                "kind": "family",
+                "summary": "Restorationist Protestant movements seeking New Testament church patterns, including Churches of Christ and Christian Churches."
+              },
+              {
+                "id": "independent",
+                "name": "Independent / Nondenominational",
+                "kind": "family",
+                "summary": "Independent evangelical, Bible church, seeker, network and nondenominational congregations. This category is large but hard to classify consistently across countries."
+              }
+            ]
+          },
+          {
+            "id": "orthodox",
+            "name": "Orthodox",
+            "kind": "tradition",
+            "pop_m": 260.38,
+            "share_parent": 11.9,
+            "pop_year": 2010,
+            "summary": "Pew's 2010 global category grouped Orthodox traditions at about twelve percent of Christians.",
+            "children": [
+              {
+                "id": "eastern-orthodox",
+                "name": "Eastern Orthodox",
+                "kind": "family",
+                "summary": "Communion of autocephalous Eastern Orthodox churches.",
+                "children": [
+                  {
+                    "id": "greek-orthodox",
+                    "name": "Greek Orthodox",
+                    "kind": "body",
+                    "summary": "Greek-speaking and diaspora Orthodox jurisdictions."
+                  },
+                  {
+                    "id": "russian-orthodox",
+                    "name": "Russian Orthodox",
+                    "kind": "body",
+                    "summary": "Russian Orthodox Church and related tradition."
+                  },
+                  {
+                    "id": "romanian-orthodox",
+                    "name": "Romanian Orthodox",
+                    "kind": "body",
+                    "summary": "Autocephalous Eastern Orthodox church centered in Romania."
+                  },
+                  {
+                    "id": "serbian-orthodox",
+                    "name": "Serbian Orthodox",
+                    "kind": "body",
+                    "summary": "Autocephalous Eastern Orthodox church centered in Serbia and diaspora."
+                  },
+                  {
+                    "id": "antiochian-orthodox",
+                    "name": "Antiochian Orthodox",
+                    "kind": "body",
+                    "summary": "Patriarchate of Antioch and its diaspora jurisdictions."
+                  }
+                ]
+              },
+              {
+                "id": "oriental-orthodox",
+                "name": "Oriental Orthodox",
+                "kind": "family",
+                "summary": "Ancient churches outside the Chalcedonian Eastern Orthodox communion.",
+                "children": [
+                  {
+                    "id": "coptic",
+                    "name": "Coptic Orthodox",
+                    "kind": "body",
+                    "summary": "Egyptian Oriental Orthodox church."
+                  },
+                  {
+                    "id": "armenian-apostolic",
+                    "name": "Armenian Apostolic",
+                    "kind": "body",
+                    "summary": "Armenian Oriental Orthodox tradition."
+                  },
+                  {
+                    "id": "ethiopian-orthodox",
+                    "name": "Ethiopian Orthodox Tewahedo",
+                    "kind": "body",
+                    "summary": "Large Ethiopian Oriental Orthodox church."
+                  },
+                  {
+                    "id": "syriac-orthodox",
+                    "name": "Syriac Orthodox",
+                    "kind": "body",
+                    "summary": "West Syriac Oriental Orthodox tradition."
+                  },
+                  {
+                    "id": "eritrean-orthodox",
+                    "name": "Eritrean Orthodox Tewahedo",
+                    "kind": "body",
+                    "summary": "Eritrean Oriental Orthodox church."
+                  },
+                  {
+                    "id": "malankara-orthodox",
+                    "name": "Malankara Orthodox",
+                    "kind": "body",
+                    "summary": "Indian Oriental Orthodox tradition."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "other-christian",
+            "name": "Other Christian",
+            "kind": "tradition",
+            "pop_m": 28.43,
+            "share_parent": 1.3,
+            "pop_year": 2010,
+            "summary": "Pew's 2010 bucket included groups that identify as Christian but are not placed in Catholic, Protestant or Orthodox categories. Classification is contested.",
+            "children": [
+              {
+                "id": "lds",
+                "name": "Latter-day Saints",
+                "kind": "body",
+                "summary": "Self-identifies as Christian; many historic Christian traditions classify it outside orthodox Christianity."
+              },
+              {
+                "id": "jw",
+                "name": "Jehovah's Witnesses",
+                "kind": "body",
+                "summary": "Self-identifies as Christian; many historic Christian traditions classify it outside orthodox Christianity."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "islam",
+        "name": "Islam",
+        "kind": "religion",
+        "pop_m": 2000,
+        "share_world": 25.6,
+        "pop_year": 2020,
+        "summary": "The world's second-largest religious group in Pew's 2020 estimate.",
+        "children": [
+          {
+            "id": "sunni",
+            "name": "Sunni",
+            "kind": "tradition",
+            "summary": "The largest Islamic tradition; includes Hanafi, Maliki, Shafi'i and Hanbali legal schools among other currents.",
+            "children": [
+              {
+                "id": "hanafi",
+                "name": "Hanafi",
+                "kind": "family",
+                "summary": "Sunni legal school widespread across South and Central Asia, Turkey and the Balkans."
+              },
+              {
+                "id": "maliki",
+                "name": "Maliki",
+                "kind": "family",
+                "summary": "Sunni legal school prominent in North and West Africa."
+              },
+              {
+                "id": "shafii",
+                "name": "Shafi'i",
+                "kind": "family",
+                "summary": "Sunni legal school prominent in East Africa and Southeast Asia."
+              },
+              {
+                "id": "hanbali",
+                "name": "Hanbali",
+                "kind": "family",
+                "summary": "Sunni legal school with strong historical presence in the Arabian Peninsula."
+              }
+            ]
+          },
+          {
+            "id": "shia",
+            "name": "Shia",
+            "kind": "tradition",
+            "summary": "Major Islamic tradition including Twelver, Ismaili and Zaydi communities.",
+            "children": [
+              {
+                "id": "twelver",
+                "name": "Twelver",
+                "kind": "family",
+                "summary": "Largest Shia branch."
+              },
+              {
+                "id": "ismaili",
+                "name": "Ismaili",
+                "kind": "family",
+                "summary": "Shia branch with several living communities."
+              },
+              {
+                "id": "zaydi",
+                "name": "Zaydi",
+                "kind": "family",
+                "summary": "Shia branch historically centered in Yemen."
+              }
+            ]
+          },
+          {
+            "id": "ibadi",
+            "name": "Ibadi",
+            "kind": "tradition",
+            "summary": "Distinct early Islamic tradition, especially associated with Oman."
+          }
+        ]
+      },
+      {
+        "id": "unaffiliated",
+        "name": "Religiously unaffiliated",
+        "kind": "worldview",
+        "pop_m": 1900,
+        "share_world": 24.2,
+        "pop_year": 2020,
+        "summary": "People who identify with no religion, including atheists, agnostics and people who say they have no particular religion.",
+        "children": [
+          {
+            "id": "atheist",
+            "name": "Atheist",
+            "kind": "identity",
+            "summary": "No belief in gods; not a single philosophical system."
+          },
+          {
+            "id": "agnostic",
+            "name": "Agnostic",
+            "kind": "identity",
+            "summary": "Religious or metaphysical knowledge is uncertain or not claimed."
+          },
+          {
+            "id": "nothing-in-particular",
+            "name": "Nothing in particular",
+            "kind": "identity",
+            "summary": "No formal religious identity; beliefs and practices vary widely."
+          }
+        ]
+      },
+      {
+        "id": "hinduism",
+        "name": "Hinduism",
+        "kind": "religion",
+        "pop_m": 1200,
+        "share_world": 14.9,
+        "pop_year": 2020,
+        "summary": "A large family of traditions centered mainly in South Asia rather than one centralized church.",
+        "children": [
+          {
+            "id": "vaishnavism",
+            "name": "Vaishnavism",
+            "kind": "tradition",
+            "summary": "Vishnu- and avatar-centered Hindu traditions."
+          },
+          {
+            "id": "shaivism",
+            "name": "Shaivism",
+            "kind": "tradition",
+            "summary": "Shiva-centered Hindu traditions."
+          },
+          {
+            "id": "shaktism",
+            "name": "Shaktism",
+            "kind": "tradition",
+            "summary": "Goddess-centered Hindu traditions."
+          },
+          {
+            "id": "smartism",
+            "name": "Smartism",
+            "kind": "tradition",
+            "summary": "Smarta tradition emphasizing multiple forms of the divine and Advaita-influenced practice."
+          }
+        ]
+      },
+      {
+        "id": "buddhism",
+        "name": "Buddhism",
+        "kind": "religion",
+        "pop_m": 324,
+        "share_world": 4.1,
+        "pop_year": 2020,
+        "summary": "Pew estimated 324 million Buddhists globally in 2020.",
+        "children": [
+          {
+            "id": "mahayana",
+            "name": "Mahayana",
+            "kind": "tradition",
+            "summary": "Large family of East Asian Buddhist traditions, including Chan/Zen and Pure Land."
+          },
+          {
+            "id": "theravada",
+            "name": "Theravada",
+            "kind": "tradition",
+            "summary": "Pali-canon tradition prominent in Sri Lanka and mainland Southeast Asia."
+          },
+          {
+            "id": "vajrayana",
+            "name": "Vajrayana",
+            "kind": "tradition",
+            "summary": "Tantric Buddhist traditions especially associated with Tibet and the Himalayan region."
+          }
+        ]
+      },
+      {
+        "id": "other-religions",
+        "name": "Other religions",
+        "kind": "religion-group",
+        "share_world": 2.2,
+        "pop_year": 2020,
+        "summary": "Pew's combined category includes many distinct religions. It should not be read as one tradition.",
+        "children": [
+          {
+            "id": "sikhism",
+            "name": "Sikhism",
+            "kind": "religion",
+            "summary": "Monotheistic tradition founded in Punjab around the teachings of the Sikh Gurus."
+          },
+          {
+            "id": "bahai",
+            "name": "Bahá'í",
+            "kind": "religion",
+            "summary": "Global monotheistic religion founded in the nineteenth century."
+          },
+          {
+            "id": "jainism",
+            "name": "Jainism",
+            "kind": "religion",
+            "summary": "Indian religious tradition emphasizing nonviolence, discipline and liberation."
+          },
+          {
+            "id": "daoism",
+            "name": "Daoist / Chinese religious traditions",
+            "kind": "religion-group",
+            "summary": "Daoist, folk, ancestral and other Chinese religious practices overlap in ways that resist a simple denomination tree."
+          },
+          {
+            "id": "shinto",
+            "name": "Shinto",
+            "kind": "religion",
+            "summary": "Japanese tradition centered on kami, ritual, place and community."
+          },
+          {
+            "id": "folk-traditional",
+            "name": "Folk / traditional religions",
+            "kind": "religion-group",
+            "summary": "Many local and indigenous traditions that should not be collapsed into one theology."
+          }
+        ]
+      },
+      {
+        "id": "judaism",
+        "name": "Judaism",
+        "kind": "religion",
+        "pop_m": 14.8,
+        "share_world": 0.2,
+        "pop_year": 2020,
+        "summary": "Pew estimated 14.8 million Jews worldwide in 2020.",
+        "children": [
+          {
+            "id": "orthodox-judaism",
+            "name": "Orthodox",
+            "kind": "tradition",
+            "summary": "Jewish movements treating halakhah as binding, with Modern Orthodox and Haredi communities among them."
+          },
+          {
+            "id": "conservative-judaism",
+            "name": "Conservative / Masorti",
+            "kind": "tradition",
+            "summary": "Modern Jewish movement balancing tradition and historical development."
+          },
+          {
+            "id": "reform-judaism",
+            "name": "Reform / Progressive",
+            "kind": "tradition",
+            "summary": "Jewish movements emphasizing ethical monotheism, adaptation and individual/community autonomy."
+          },
+          {
+            "id": "secular-jewish",
+            "name": "Secular / cultural Jewish identity",
+            "kind": "identity",
+            "summary": "Jewish peoplehood and culture without necessarily religious observance."
+          }
+        ]
+      }
+    ]
+  }
+}

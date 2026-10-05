@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>The Convergence | Interactive lens lab</title>
-<meta name="description" content="Choose a question, stack multiple lenses, and explore what each perspective reveals, misses, or leaves unresolved."/>
-<meta name="theme-color" content="#f6f8f5"/>
+<title>The Convergence | Worldview atlas</title>
+<meta name="description" content="A drillable atlas of the world's major religious and nonreligious identities, with a deeper Christian branch map and sourced population scale."/>
+<meta name="theme-color" content="#f7f9f6"/>
 <link rel="icon" href="/assets/favicon.png"/>
 <link rel="stylesheet" href="/assets/next.css"/>
 <link rel="stylesheet" href="/assets/experience.css?v=1"/>
-<link rel="stylesheet" href="/convergence/convergence.css?v=1"/>
+<link rel="stylesheet" href="/convergence/convergence.css?v=2"/>
 </head>
-<body class="next convergence-next">
-<a class="skip" href="#lab">Skip to the lab</a>
+<body class="next convergence-atlas">
+<a class="skip" href="#atlas">Skip to the atlas</a>
 
 <nav class="seer-nav" aria-label="Primary">
   <a class="seer-brand" href="/index.html"><img src="/assets/star.png" alt=""/>SEE, R<span>Ryan See</span></a>
@@ -27,174 +27,78 @@
 </nav>
 
 <main>
-  <header class="cv-hero">
-    <div class="cv-wrap cv-hero-inner">
-      <p class="cv-kicker">The Convergence · interactive lens lab</p>
-      <h1>One question.<br/><em>Stack the lenses.</em><br/>See what changes.</h1>
-      <p class="lede">This is not a ranking of worldviews. It is a learning space: choose a question, layer perspectives, expose agreement and tension, inspect the sources, and keep your own judgment.</p>
-      <div class="cv-rules" aria-label="Reading rules">
-        <span>Source ≠ interpretation</span>
-        <span>Capability ≠ consequence</span>
-        <span>Resemblance ≠ proof</span>
-        <span>Analysis ≠ endorsement</span>
+  <header class="conv-hero">
+    <div class="conv-wrap">
+      <p class="conv-kicker">The Convergence · worldview atlas</p>
+      <h1>Map belief.<br/><em>See the scale.</em><br/>Follow the branches.</h1>
+      <p class="conv-lede">Start with the world's major religious and nonreligious identities. Then drill down through traditions, families, and specific bodies. Christianity opens deeper by default because it is the tradition this site knows from the inside.</p>
+      <div class="conv-actions">
+        <a class="button" href="#atlas">Open the atlas</a>
+        <a class="text-link" href="/lenses/index.html">Compare perspectives in Lenses ↗</a>
       </div>
-      <a class="cv-hero-action" href="#lab">Enter the lab</a>
     </div>
   </header>
 
-  <section class="cv-intro" aria-labelledby="cv-intro-title">
-    <div class="cv-wrap cv-intro-grid">
-      <h2 id="cv-intro-title">A dashboard for thought, not a dashboard of scores.</h2>
-      <p>Most dashboards compress a system into metrics. Convergence does something different: it makes the questions, assumptions, blind spots, and source boundaries visible so you can learn by moving through them.</p>
+  <section class="conv-rules">
+    <div class="conv-wrap rules-grid">
+      <article><span>01</span><strong>Population is data.</strong><p>Scale is shown only where a sourced demographic estimate exists.</p></article>
+      <article><span>02</span><strong>Taxonomy is structure.</strong><p>Below that, branch position does not pretend to be a population estimate.</p></article>
+      <article><span>03</span><strong>Categories have edges.</strong><p>Traditions overlap, self-identify differently, and sometimes contest one another's labels.</p></article>
     </div>
   </section>
 
-  <section class="cv-lab" id="lab" aria-label="Interactive comparison lab">
-    <div class="cv-wrap lab-shell">
-      <aside class="control-rail" aria-label="Lab controls">
-        <div class="control-section">
-          <p class="control-label">1 · Question</p>
-          <div class="topic-list" id="topic-list"></div>
+  <section class="atlas-section" id="atlas" aria-labelledby="atlas-title">
+    <div class="conv-wrap">
+      <div class="atlas-heading">
+        <div>
+          <p class="conv-kicker">World · 2020</p>
+          <h2 id="atlas-title">The religious landscape at a glance.</h2>
         </div>
+        <p id="source-summary">Loading sourced population data…</p>
+      </div>
 
-        <div class="control-section">
-          <p class="control-label">2 · Stack lenses</p>
-          <div class="lens-list" id="lens-list"></div>
-          <p class="lens-hint">Choose 1–4. A larger stack reveals more tension, not necessarily more truth.</p>
+      <div class="population-shell">
+        <div class="population-bar" id="population-bar" aria-label="Share of world population by major religious identity"></div>
+        <div class="population-legend" id="population-legend"></div>
+      </div>
+
+      <div class="atlas-toolbar">
+        <div class="atlas-breadcrumbs" id="breadcrumbs" aria-label="Current branch"></div>
+        <div class="atlas-toolbar-actions">
+          <button type="button" id="christian-jump">Christian deep dive</button>
+          <button type="button" id="world-reset">World</button>
         </div>
+      </div>
 
-        <div class="control-section">
-          <p class="control-label">3 · View</p>
-          <div class="view-switch" role="tablist" aria-label="View mode">
-            <button class="view-button is-active" type="button" data-view="map" role="tab" aria-selected="true">Map</button>
-            <button class="view-button" type="button" data-view="compare" role="tab" aria-selected="false">Compare</button>
-            <button class="view-button" type="button" data-view="matrix" role="tab" aria-selected="false">Matrix</button>
-          </div>
-          <div class="control-actions">
-            <button type="button" id="copy-link">Copy view</button>
-            <button type="button" id="reset-view">Reset</button>
-          </div>
-          <p class="lens-hint" id="share-status" role="status"></p>
-        </div>
-      </aside>
+      <div class="branch-shell">
+        <div class="branch-columns" id="branch-columns" aria-label="Worldview hierarchy"></div>
+      </div>
 
-      <div class="lab-stage">
-        <section class="question-panel" aria-live="polite">
-          <div class="question-meta">
-            <span class="question-step">Current question</span>
-            <div class="stack-pills" id="stack-pills" aria-label="Active lenses"></div>
-          </div>
-          <h2 id="question-title">Loading question…</h2>
-          <p id="question-text"></p>
-        </section>
+      <aside class="node-detail" id="node-detail" aria-live="polite"></aside>
+    </div>
+  </section>
 
-        <section class="view-panel" id="map-view" data-view-panel="map">
-          <div class="knowledge-map" id="knowledge-map">
-            <svg class="map-lines" id="map-lines" viewBox="0 0 1000 610" preserveAspectRatio="none" aria-hidden="true"></svg>
-            <div class="question-node" aria-hidden="true">
-              <div><small>Question</small><strong id="map-question"></strong></div>
-            </div>
-            <div id="map-nodes"></div>
-            <div class="map-detail" id="map-detail" aria-live="polite"></div>
-          </div>
-        </section>
-
-        <section class="view-panel" id="compare-view" data-view-panel="compare" hidden>
-          <div class="compare-grid" id="compare-grid"></div>
-        </section>
-
-        <section class="view-panel" id="matrix-view" data-view-panel="matrix" hidden>
-          <div class="matrix-shell">
-            <table class="matrix">
-              <thead>
-                <tr>
-                  <th>Lens</th>
-                  <th>Question it brings</th>
-                  <th>What it illuminates</th>
-                  <th>Boundary / blind spot</th>
-                </tr>
-              </thead>
-              <tbody id="matrix-body"></tbody>
-            </table>
-          </div>
-        </section>
-
-        <section class="synthesis" aria-labelledby="synthesis-title">
-          <div class="synthesis-head">
-            <h2 id="synthesis-title">What changes when these lenses sit together?</h2>
-            <p>The cards below are generated from the selected lenses, not by an AI. They surface repeated concerns, distinct questions, and the boundaries each source still carries.</p>
-          </div>
-          <div class="synthesis-grid">
-            <article class="synthesis-card">
-              <span>Repeated concerns</span>
-              <strong id="shared-title">What keeps showing up?</strong>
-              <div class="focus-tags" id="shared-tags"></div>
-              <p id="shared-copy"></p>
-            </article>
-            <article class="synthesis-card">
-              <span>Different questions</span>
-              <strong>Agreement is not sameness.</strong>
-              <p id="different-copy"></p>
-            </article>
-            <article class="synthesis-card">
-              <span>Visible edges</span>
-              <strong>Every lens leaves something out.</strong>
-              <p id="boundary-copy"></p>
-            </article>
-          </div>
-        </section>
+  <section class="atlas-note">
+    <div class="conv-wrap atlas-note-grid">
+      <div>
+        <p class="conv-kicker">Why some branches are sized and others are not</p>
+        <h2>Good maps know where the data stops.</h2>
+      </div>
+      <div>
+        <p>Pew's 2025 global update gives a strong top-level picture for 2020, but it explicitly does not subdivide those global categories into denominations. The Christian branch proportions shown here therefore use Pew's older 2010 global Christian study. Below the broad Catholic / Protestant / Orthodox split, this becomes a taxonomy for orientation rather than a proportional census.</p>
+        <p>That is deliberate. A precise-looking number with a weak denominator would make the interface prettier and the thinking worse.</p>
       </div>
     </div>
   </section>
 
-  <section class="reflection-section" aria-labelledby="reflection-title">
-    <div class="cv-wrap">
-      <div class="reflection-head">
-        <h2 id="reflection-title">Keep your judgment.</h2>
-        <p>Convergence should leave you with better questions, not hand you a synthetic worldview. Capture the parts that remain yours to decide.</p>
+  <section class="lens-bridge">
+    <div class="conv-wrap lens-bridge-card">
+      <div>
+        <p class="conv-kicker">Different job</p>
+        <h2>Convergence maps the landscape. Lenses interrogates a question.</h2>
+        <p>Use Convergence to understand what exists and how it branches. Use Lenses when you want to stack perspectives and ask what each one reveals or misses.</p>
       </div>
-
-      <div class="reflection-grid">
-        <div class="reflection-card">
-          <label for="note-evidence">Evidence I would need</label>
-          <textarea id="note-evidence" placeholder="What could I test, verify, or observe?"></textarea>
-        </div>
-        <div class="reflection-card">
-          <label for="note-value">A value I would protect</label>
-          <textarea id="note-value" placeholder="What should not be optimized away?"></textarea>
-        </div>
-        <div class="reflection-card">
-          <label for="note-open">What remains open</label>
-          <textarea id="note-open" placeholder="What do I still not know?"></textarea>
-        </div>
-      </div>
-
-      <div class="reflection-actions">
-        <button type="button" id="save-note">Save on this browser</button>
-        <button type="button" id="export-note">Download note</button>
-        <button type="button" id="clear-note">Clear</button>
-      </div>
-      <p class="reflection-status" id="note-status" role="status">Nothing is sent to a server. Browser saves stay on this device.</p>
-    </div>
-  </section>
-
-  <section class="source-section" aria-labelledby="source-title">
-    <div class="cv-wrap">
-      <p class="cv-kicker">Source layer</p>
-      <details class="source-library">
-        <summary id="source-title">Open the source library · 8 starting points</summary>
-        <div class="source-grid" id="source-grid"></div>
-      </details>
-
-      <aside class="edge-note">
-        <strong>A map with visible edges.</strong> These are selected texts and frameworks, not rankings of religions or a census of belief. The questions applying them to AI are editorial interpretations. Scientific method and philosophical naturalism are not interchangeable. Religious meaning is not empirical validation. A technological resemblance to a sacred image does not establish prophetic fulfillment.
-        <br/><br/>
-        <a href="/lenses/index.html">Open the companion Lenses exercise ↗</a>
-      </aside>
-
-      <noscript>
-        <p>This lab needs JavaScript for interactive stacking. The source library includes the Vatican's <em>Antiqua et nova</em>, Qur'an 49:6 with tafsir, Pirkei Avot 1:14, Bhagavad Gita 2:47, Dhammapada chapter 20, NIST AI RMF, UNESCO's Recommendation on the Ethics of AI, and the CARE Principles for Indigenous Data Governance.</p>
-      </noscript>
+      <a class="button" href="/lenses/index.html">Open Lenses</a>
     </div>
   </section>
 </main>
@@ -205,16 +109,15 @@
     <p>Work with purpose. Think with care.<br/>Leave room to be human.</p>
   </div>
   <div>
-    <a href="/seersolutions/index.html">SEER Solutions</a>
+    <a href="/lenses/index.html">Lenses</a>
     <a href="/portfolio/index.html">All projects</a>
-    <a href="/adventure/index.html">Adventure Within</a>
     <a href="mailto:ryanrsee@gmail.com">Get in touch ↗</a>
   </div>
   <small>© 2026 Ryan See · Kennesaw, Georgia</small>
 </footer>
 
 <script src="/assets/navigation.js" defer></script>
-<script src="/convergence/atlas.js?v=2" defer></script>
+<script src="/convergence/atlas.js?v=3" defer></script>
 <script src="/assets/experience.js?v=1" defer></script>
 <script src="/assets/bed-audio.js?v=gain49"></script>
 </body>
