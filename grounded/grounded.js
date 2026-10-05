@@ -24,4 +24,42 @@ if('IntersectionObserver'in window&&!reduce){
   const nio=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){run(e.target);nio.unobserve(e.target);}})},{threshold:.45});
   counters.forEach(el=>nio.observe(el));
 }else counters.forEach(run);
+
+const map=document.querySelector('.formation-map');
+const mapItems=map?[...map.querySelectorAll('.map-item')]:[];
+const storySections=[...document.querySelectorAll('[data-map-key]')];
+function setMapActive(key){
+  mapItems.forEach(item=>{
+    const active=item.dataset.mapTarget===key;
+    item.classList.toggle('is-active',active);
+    item.setAttribute('aria-expanded',active?'true':'false');
+  });
+}
+mapItems.forEach(item=>{
+  item.addEventListener('click',()=>{
+    if(window.matchMedia('(max-width: 900px)').matches && item.classList.contains('is-active') && !map.classList.contains('is-open')){
+      map.classList.add('is-open');
+      return;
+    }
+    if(map) map.classList.remove('is-open');
+    const target=document.getElementById(item.dataset.mapTarget);
+    if(target) target.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});
+  });
+});
+if(map&&storySections.length&&'IntersectionObserver'in window){
+  const sectionObserver=new IntersectionObserver(entries=>{
+    const visible=entries.filter(e=>e.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio);
+    if(visible.length){
+      setMapActive(visible[0].target.dataset.mapKey);
+      if(window.matchMedia('(max-width: 900px)').matches) map.classList.remove('is-open');
+    }
+  },{rootMargin:'-18% 0px -55% 0px',threshold:[0,.15,.35,.6]});
+  storySections.forEach(section=>sectionObserver.observe(section));
+}
+document.addEventListener('click',e=>{
+  if(map&&map.classList.contains('is-open')&&!map.contains(e.target)){
+    map.classList.remove('is-open');
+  }
+});
+
 })();
