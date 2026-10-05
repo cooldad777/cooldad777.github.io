@@ -1047,3 +1047,45 @@ body {
   stroke: var(--success);
   filter: drop-shadow(0 0 10px rgba(143, 212, 168, 0.45));
 }
+
+
+/* Formatting editor polish — preserve the app's dark/fading story. */
+@supports ((backdrop-filter: blur(18px)) or (-webkit-backdrop-filter: blur(18px))) {
+  .timer-setup,
+  .sheet-panel {
+    background: rgba(18,21,28,.78);
+    backdrop-filter: saturate(130%) blur(18px);
+    -webkit-backdrop-filter: saturate(130%) blur(18px);
+    border-color: rgba(255,255,255,.07);
+  }
+}
+.btn,
+.icon-btn,
+.chip,
+.slider::-webkit-slider-thumb {
+  transition:
+    transform .22s cubic-bezier(.22,.61,.36,1),
+    background-color .22s ease,
+    color .22s ease,
+    box-shadow .22s ease,
+    border-color .22s ease;
+}
+.btn:active,
+.icon-btn:active,
+.chip:active {
+  transform: scale(.985);
+}
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid rgba(126,184,255,.82);
+  outline-offset: 3px;
+}
+@media (max-width: 360px) {
+  .app { padding-left: 14px; padding-right: 14px; }
+  .timer-setup { padding-left: 16px; padding-right: 16px; }
+  .brand-title { font-size: .98rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .aurora { animation: none !important; }
+  .btn,.icon-btn,.chip,.stars,.aurora { transition-duration: .001ms !important; }
+}
