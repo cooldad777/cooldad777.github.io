@@ -1,79 +1,221 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Lenses | SEE, R</title>
-<meta name="description" content="Same facts, different honest vantages. Five lenses for testing what a claim illuminates and what it may miss."/>
-<link rel="icon" href="../assets/favicon.png"/>
-<link rel="stylesheet" href="../assets/apple.css?v=pass2"/>
-<link rel="stylesheet" href="../assets/ecosystem.css?v=1"/>
-<link rel="stylesheet" href="../assets/experience.css?v=1"/>
-<link rel="stylesheet" href="/assets/next.css">
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Lenses | Interactive perspective lab</title>
+<meta name="description" content="Choose a question, stack multiple lenses, and explore what each perspective reveals, misses, or leaves unresolved."/>
+<meta name="theme-color" content="#f6f8f5"/>
+<link rel="icon" href="/assets/favicon.png"/>
+<link rel="stylesheet" href="/assets/next.css"/>
+<link rel="stylesheet" href="/assets/experience.css?v=1"/>
+<link rel="stylesheet" href="/lenses/lab.css?v=1"/>
 </head>
-<body class="ecosystem page-lenses-eco">
-<nav class="seer-nav" aria-label="Primary"><a class="seer-brand" href="/index.html"><img src="/assets/star.png" alt=""/>SEE, R<span>Ryan See</span></a><button class="seer-menu" aria-expanded="false" aria-controls="seer-links">Menu</button><div id="seer-links"><a href="/seersolutions/index.html">Work</a><a href="/portfolio/index.html">Explore</a><a href="/chronicle/index.html">Chronicle</a><a href="/convergence/index.html">Convergence</a><button class="search-open" aria-label="Search projects">Search <kbd>/</kbd></button></div></nav>
+<body class="next lenses-next">
+<a class="skip" href="#lab">Skip to the lens lab</a>
 
-<header class="hero plain">
-  <h1>Lenses</h1>
-  <p class="sub">Same facts. Different honest vantages.</p>
-  <p class="copy">A lens is useful when it reveals something. It becomes dangerous when it pretends it can see everything.</p>
-</header>
-
-<article class="prose">
-  <div class="editor-note"><strong>How to use this page.</strong> Pick a claim, run it through more than one lens, and keep the disagreements visible. This is not an endorsement map.</div>
-
-  <div class="lens-cards">
-    <section class="lens-card-clean" id="lewis">
-      <h2>C. S. Lewis</h2>
-      <div class="lens-split">
-        <div><span>Sees</span><p>Moral order, human dignity, and the way technique can become power over other people.</p></div>
-        <div><span>May miss</span><p>Which empirical claim is actually true, measurable, or technologically feasible.</p></div>
-      </div>
-    </section>
-
-    <section class="lens-card-clean" id="empirical">
-      <h2>Measured claim</h2>
-      <div class="lens-split">
-        <div><span>Sees</span><p>Evidence, reproducibility, uncertainty, and the line between observation and forecast.</p></div>
-        <div><span>May miss</span><p>Meaning, moral judgment, and questions that cannot be reduced to measurement alone.</p></div>
-      </div>
-    </section>
-
-    <section class="lens-card-clean" id="moonshot">
-      <h2>Moonshot / acceleration</h2>
-      <div class="lens-split">
-        <div><span>Sees</span><p>Nonlinear capability gains, collapsing costs, interfaces that disappear, and possibilities conventional planning underestimates.</p></div>
-        <div><span>May miss</span><p>Adoption friction, governance, ordinary human pace, and the cost of scaling a weak assumption.</p></div>
-      </div>
-    </section>
-
-    <section class="lens-card-clean" id="reformed">
-      <h2>Reformed / evangelical</h2>
-      <div class="lens-split">
-        <div><span>Sees</span><p>Formation, worship, ordinary means, human limits, and the possibility that a technology trains desire as well as behavior.</p></div>
-        <div><span>May miss</span><p>Technical mechanism if theological language is allowed to substitute for empirical explanation.</p></div>
-      </div>
-    </section>
-
-    <section class="lens-card-clean" id="local">
-      <h2>Kennesaw and neighbors</h2>
-      <div class="lens-split">
-        <div><span>Sees</span><p>Whether an idea helps a real household, church, team, or firm rather than merely winning an argument online.</p></div>
-        <div><span>May miss</span><p>Large-scale effects that only become visible outside one community or use case.</p></div>
-      </div>
-    </section>
+<nav class="seer-nav" aria-label="Primary">
+  <a class="seer-brand" href="/index.html"><img src="/assets/star.png" alt=""/>SEE, R<span>Ryan See</span></a>
+  <button class="seer-menu" aria-expanded="false" aria-controls="seer-links">Menu</button>
+  <div id="seer-links">
+    <a href="/seersolutions/index.html">Work</a>
+    <a href="/portfolio/index.html">Explore</a>
+    <a href="/chronicle/index.html">Chronicle</a>
+    <a href="/convergence/index.html">Convergence</a>
+    <button class="search-open" aria-label="Search projects">Search <kbd>/</kbd></button>
   </div>
+</nav>
 
-  <p><a href="../convergence/index.html">Use the lenses inside The Convergence ›</a></p>
-</article>
+<main>
+  <header class="cv-hero">
+    <div class="cv-wrap cv-hero-inner">
+      <p class="cv-kicker">Lenses · interactive perspective lab</p>
+      <h1>One question.<br/><em>Stack the lenses.</em><br/>See what changes.</h1>
+      <p class="lede">This is the perspective workbench: choose a question, layer perspectives, expose agreement and tension, inspect the sources, and keep your own judgment.</p>
+      <div class="cv-rules" aria-label="Reading rules">
+        <span>Source ≠ interpretation</span>
+        <span>Capability ≠ consequence</span>
+        <span>Resemblance ≠ proof</span>
+        <span>Analysis ≠ endorsement</span>
+      </div>
+      <a class="cv-hero-action" href="#lab">Enter the lab</a>
+    </div>
+  </header>
 
-<footer><div class="foot"><p><a href="../index.html">SEE, R</a></p></div></footer>
-<script>
-(function(){var b=document.getElementById('menu'),n=document.getElementById('nav-links');if(!b||!n)return;b.onclick=function(){var o=n.classList.toggle('open');b.setAttribute('aria-expanded',o?'true':'false');};})();
-</script>
-<script src="../assets/bed-audio.js?v=gain49"></script>
-<script src="../assets/experience.js?v=1" defer></script>
+  <section class="cv-intro" aria-labelledby="cv-intro-title">
+    <div class="cv-wrap cv-intro-grid">
+      <h2 id="cv-intro-title">A workbench for perspective, not a verdict.</h2>
+      <p>Lenses makes the questions, assumptions, blind spots, and source boundaries visible so you can learn by moving between perspectives without pretending they collapse into one.</p>
+    </div>
+  </section>
+
+  <section class="cv-lab" id="lab" aria-label="Interactive comparison lab">
+    <div class="cv-wrap lab-shell">
+      <aside class="control-rail" aria-label="Lab controls">
+        <div class="control-section">
+          <p class="control-label">1 · Question</p>
+          <div class="topic-list" id="topic-list"></div>
+        </div>
+
+        <div class="control-section">
+          <p class="control-label">2 · Stack lenses</p>
+          <div class="lens-list" id="lens-list"></div>
+          <p class="lens-hint">Choose 1–4. A larger stack reveals more tension, not necessarily more truth.</p>
+        </div>
+
+        <div class="control-section">
+          <p class="control-label">3 · View</p>
+          <div class="view-switch" role="tablist" aria-label="View mode">
+            <button class="view-button is-active" type="button" data-view="map" role="tab" aria-selected="true">Map</button>
+            <button class="view-button" type="button" data-view="compare" role="tab" aria-selected="false">Compare</button>
+            <button class="view-button" type="button" data-view="matrix" role="tab" aria-selected="false">Matrix</button>
+          </div>
+          <div class="control-actions">
+            <button type="button" id="copy-link">Copy view</button>
+            <button type="button" id="reset-view">Reset</button>
+          </div>
+          <p class="lens-hint" id="share-status" role="status"></p>
+        </div>
+      </aside>
+
+      <div class="lab-stage">
+        <section class="question-panel" aria-live="polite">
+          <div class="question-meta">
+            <span class="question-step">Current question</span>
+            <div class="stack-pills" id="stack-pills" aria-label="Active lenses"></div>
+          </div>
+          <h2 id="question-title">Loading question…</h2>
+          <p id="question-text"></p>
+        </section>
+
+        <section class="view-panel" id="map-view" data-view-panel="map">
+          <div class="knowledge-map" id="knowledge-map">
+            <svg class="map-lines" id="map-lines" viewBox="0 0 1000 610" preserveAspectRatio="none" aria-hidden="true"></svg>
+            <div class="question-node" aria-hidden="true">
+              <div><small>Question</small><strong id="map-question"></strong></div>
+            </div>
+            <div id="map-nodes"></div>
+            <div class="map-detail" id="map-detail" aria-live="polite"></div>
+          </div>
+        </section>
+
+        <section class="view-panel" id="compare-view" data-view-panel="compare" hidden>
+          <div class="compare-grid" id="compare-grid"></div>
+        </section>
+
+        <section class="view-panel" id="matrix-view" data-view-panel="matrix" hidden>
+          <div class="matrix-shell">
+            <table class="matrix">
+              <thead>
+                <tr>
+                  <th>Lens</th>
+                  <th>Question it brings</th>
+                  <th>What it illuminates</th>
+                  <th>Boundary / blind spot</th>
+                </tr>
+              </thead>
+              <tbody id="matrix-body"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="synthesis" aria-labelledby="synthesis-title">
+          <div class="synthesis-head">
+            <h2 id="synthesis-title">What changes when these lenses sit together?</h2>
+            <p>The cards below are generated from the selected lenses, not by an AI. They surface repeated concerns, distinct questions, and the boundaries each source still carries.</p>
+          </div>
+          <div class="synthesis-grid">
+            <article class="synthesis-card">
+              <span>Repeated concerns</span>
+              <strong id="shared-title">What keeps showing up?</strong>
+              <div class="focus-tags" id="shared-tags"></div>
+              <p id="shared-copy"></p>
+            </article>
+            <article class="synthesis-card">
+              <span>Different questions</span>
+              <strong>Agreement is not sameness.</strong>
+              <p id="different-copy"></p>
+            </article>
+            <article class="synthesis-card">
+              <span>Visible edges</span>
+              <strong>Every lens leaves something out.</strong>
+              <p id="boundary-copy"></p>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="reflection-section" aria-labelledby="reflection-title">
+    <div class="cv-wrap">
+      <div class="reflection-head">
+        <h2 id="reflection-title">Keep your judgment.</h2>
+        <p>Convergence should leave you with better questions, not hand you a synthetic worldview. Capture the parts that remain yours to decide.</p>
+      </div>
+
+      <div class="reflection-grid">
+        <div class="reflection-card">
+          <label for="note-evidence">Evidence I would need</label>
+          <textarea id="note-evidence" placeholder="What could I test, verify, or observe?"></textarea>
+        </div>
+        <div class="reflection-card">
+          <label for="note-value">A value I would protect</label>
+          <textarea id="note-value" placeholder="What should not be optimized away?"></textarea>
+        </div>
+        <div class="reflection-card">
+          <label for="note-open">What remains open</label>
+          <textarea id="note-open" placeholder="What do I still not know?"></textarea>
+        </div>
+      </div>
+
+      <div class="reflection-actions">
+        <button type="button" id="save-note">Save on this browser</button>
+        <button type="button" id="export-note">Download note</button>
+        <button type="button" id="clear-note">Clear</button>
+      </div>
+      <p class="reflection-status" id="note-status" role="status">Nothing is sent to a server. Browser saves stay on this device.</p>
+    </div>
+  </section>
+
+  <section class="source-section" aria-labelledby="source-title">
+    <div class="cv-wrap">
+      <p class="cv-kicker">Source layer</p>
+      <details class="source-library">
+        <summary id="source-title">Open the source library · 8 starting points</summary>
+        <div class="source-grid" id="source-grid"></div>
+      </details>
+
+      <aside class="edge-note">
+        <strong>A map with visible edges.</strong> These are selected texts and frameworks, not rankings of religions or a census of belief. The questions applying them to AI are editorial interpretations. Scientific method and philosophical naturalism are not interchangeable. Religious meaning is not empirical validation. A technological resemblance to a sacred image does not establish prophetic fulfillment.
+        <br/><br/>
+        <a href="/lenses/index.html">Open the companion Lenses exercise ↗</a>
+      </aside>
+
+      <noscript>
+        <p>This lab needs JavaScript for interactive stacking. The source library includes the Vatican's <em>Antiqua et nova</em>, Qur'an 49:6 with tafsir, Pirkei Avot 1:14, Bhagavad Gita 2:47, Dhammapada chapter 20, NIST AI RMF, UNESCO's Recommendation on the Ethics of AI, and the CARE Principles for Indigenous Data Governance.</p>
+      </noscript>
+    </div>
+  </section>
+</main>
+
+<footer class="seer-footer">
+  <div>
+    <a class="seer-brand" href="/index.html"><img src="/assets/star.png" alt=""/>SEE, R</a>
+    <p>Work with purpose. Think with care.<br/>Leave room to be human.</p>
+  </div>
+  <div>
+    <a href="/seersolutions/index.html">SEER Solutions</a>
+    <a href="/convergence/index.html">Convergence atlas</a><a href="/portfolio/index.html">All projects</a>
+    <a href="/adventure/index.html">Adventure Within</a>
+    <a href="mailto:ryanrsee@gmail.com">Get in touch ↗</a>
+  </div>
+  <small>© 2026 Ryan See · Kennesaw, Georgia</small>
+</footer>
+
 <script src="/assets/navigation.js" defer></script>
+<script src="/lenses/lab.js?v=1" defer></script>
+<script src="/assets/experience.js?v=1" defer></script>
+<script src="/assets/bed-audio.js?v=gain49"></script>
 </body>
 </html>
