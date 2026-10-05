@@ -427,3 +427,23 @@ body.grounded-next{
   .grounded-reveal{opacity:1!important;transform:none!important;transition:none!important}
   .grounded-hero::before{transform:none!important}
 }
+
+.north-star-band{
+  padding:clamp(64px,9vw,110px) 28px;
+  background:#193328;
+  color:#f5f7f2;
+}
+.north-star-band .g-kicker{color:#bed0c3}
+.north-star-line{
+  max-width:980px;
+  margin:0;
+  font:400 clamp(38px,6vw,72px)/1.06 Georgia,serif;
+  letter-spacing:-.05em;
+}
+.north-star-sub{
+  max-width:700px;
+  margin:24px 0 0;
+  color:#cedbd1;
+  font-size:18px;
+  line-height:1.65;
+}
