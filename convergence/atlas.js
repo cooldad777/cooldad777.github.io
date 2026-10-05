@@ -25,13 +25,11 @@ try{
 const modeButtons=$$('.mode-button');
 const modePanels=$$('[data-mode-panel]');
 const validModes=new Set(modeButtons.map(b=>b.dataset.mode));
-const hashParams=()=>new URLSearchParams(location.hash.replace(/^#/,''));
-let mode=validModes.has(hashParams().get('mode'))?hashParams().get('mode'):'atlas';
+const initialHash=location.hash.replace(/^#/,'');
+let mode=validModes.has(initialHash)?initialHash:'atlas';
 
 function syncHash(){
-  const p=hashParams();
-  p.set('mode',mode);
-  history.replaceState(null,'','#'+p.toString());
+  history.replaceState(null,'','#'+mode);
 }
 function setMode(next,{scroll=false}={}){
   if(!validModes.has(next)) return;
