@@ -115,3 +115,14 @@ body.fg{margin:0;background:var(--fg-paper);color:var(--fg-ink);font:16px/1.65 -
 @media(max-width:760px){.fg .fg-menu{display:block}.fg .fg-navlinks{position:absolute;inset:74px 0 auto;display:none;flex-direction:column;align-items:stretch;gap:0;padding:14px 22px 24px;background:#f8f6f0;border-bottom:1px solid var(--fg-line);box-shadow:0 24px 35px rgba(20,45,32,.12)}.fg .fg-navlinks.open{display:flex}.fg .fg-navlinks a{display:block;padding:13px 6px;font-size:13px;border-bottom:1px solid #d3dace}.fg .fg-hero{min-height:650px}.fg .fg-hero-grid{padding-block:65px 85px}.fg .fg-hero h1{font-size:clamp(3.25rem,14vw,5.8rem)}.fg .fg-hero-side{display:none}.fg .fg-deck-head{grid-template-columns:1fr;gap:5px}.fg .fg-chapter{grid-template-columns:42px 1fr 22px;gap:12px}.fg .fg-chapter h3{font-size:clamp(2rem,8vw,3.1rem)}.fg .fg-chapter .fg-chapter-copy{grid-column:2;grid-row:2}.fg .fg-chapter .fg-arrow{grid-column:3;grid-row:1}.fg .fg-ink-grid{grid-template-columns:1fr}.fg .fg-notes{grid-template-columns:1fr}.fg .fg-map-stage{grid-template-columns:repeat(2,minmax(0,1fr))}.fg .fg-map{padding:12px}.fg .fg-map-node{min-height:130px;padding:12px}.fg .fg-footer-inner{grid-template-columns:1fr}.fg .fg-footer-links{grid-template-columns:1fr 1fr}}
 @media(max-width:350px){.fg .fg-mark{font-size:17px}.fg .fg-map-stage{grid-template-columns:1fr}.fg .fg-hero h1{font-size:3.15rem}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}.fg *, .fg *::before,.fg *::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+
+/* Progressive enhancement: links remain navigable without JavaScript. */
+@media(max-width:760px){
+.fg:not(.fg-ready) .fg-nav{height:auto;min-height:74px;flex-wrap:wrap;padding-block:9px;position:relative}
+.fg:not(.fg-ready) .fg-navlinks{position:static;display:flex;flex-direction:row;gap:14px;width:100%;white-space:nowrap;overflow-x:auto;padding:4px 0 6px;background:transparent;border:0;box-shadow:none}
+.fg:not(.fg-ready) .fg-navlinks a{padding:6px 0;border:0;font-size:12px}
+.fg.fg-ready .fg-navlinks{position:absolute;inset:74px 0 auto;display:none;flex-direction:column;align-items:stretch;white-space:normal;overflow-x:visible;padding:14px 22px 24px;background:#f8f6f0;border-bottom:1px solid var(--fg-line);box-shadow:0 24px 35px rgba(20,45,32,.12)}
+.fg.fg-ready .fg-navlinks.open{display:flex}
+.fg.fg-ready .fg-navlinks a{display:block;padding:13px 6px;font-size:13px;border-bottom:1px solid #d3dace}
+.fg.fg-ready .fg-menu{display:block}
+}
