@@ -19,3 +19,13 @@ body.next{background:var(--fg-bridge-paper);color:var(--fg-bridge-ink)}
 .fg-bridge-callout a{font-weight:750;color:#193b29}
 @media(max-width:760px){.fg-bridge-callout{grid-template-columns:1fr;gap:8px;padding:16px;width:calc(100% - 32px)}.seer-nav #seer-links{background:var(--fg-bridge-paper)}}
 @media(prefers-reduced-motion:reduce){.next *{scroll-behavior:auto!important}}
+
+/* Essential links remain visible on phones even if the nav script is blocked. */
+@media(max-width:760px){
+body.next:not(.seer-nav-ready){padding-top:0}
+body.next:not(.seer-nav-ready) .seer-nav{position:relative!important;height:auto!important;min-height:68px;flex-wrap:wrap;padding-block:10px}
+body.next:not(.seer-nav-ready) .seer-nav .seer-menu{display:none}
+body.next:not(.seer-nav-ready) .seer-nav #seer-links{position:static!important;display:flex!important;width:100%;flex-direction:row;flex-wrap:nowrap;white-space:nowrap;overflow-x:auto;gap:15px;padding:8px 0;background:transparent;box-shadow:none;border:0}
+body.next:not(.seer-nav-ready) .seer-nav #seer-links a{min-height:44px;display:flex;align-items:center;padding:5px;font-size:12px}
+body.next:not(.seer-nav-ready) .seer-nav #seer-links .search-open{display:none}
+}
