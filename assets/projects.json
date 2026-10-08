@@ -1,1 +1,86 @@
-[{"name":"SEER Solutions","category":"Work","description":"Analytics, AI implementation, and operating decisions shaped around real business questions.","href":"/seersolutions/index.html","status":"Professional practice"},{"name":"S33R Human Signal","category":"Research","description":"Investigating model behavior and the boundaries people bring to AI.","href":"/seersolutions/s33r/index.html","status":"Research in progress"},{"name":"The Convergence","category":"Inquiry","description":"Compare how different sources frame technology, power, meaning, and responsibility.","href":"/convergence/index.html","status":"Interactive atlas"},{"name":"Chronicle","category":"Inquiry","description":"A living record of public decisions, changes of direction, and questions still open.","href":"/chronicle/index.html","status":"Decision journal"},{"name":"GROUNDED","category":"Faith","description":"A small Christian formation practice for men: phones outside, Scripture open, silence, community, and one concrete commitment at a time.","href":"/grounded/index.html","status":"Four-week pilot"},{"name":"Adventure Within","category":"Music","description":"Original improvisational guitar. Follow the sound, see where it goes.","href":"/adventure/index.html","status":"Music"},{"name":"Faded Dependence","category":"Tools","description":"A timer that gradually fades the screen: a small invitation to put it down.","href":"/faded-dependence/","status":"Working app"},{"name":"Anti-Attachment","category":"Research","description":"A portable human–AI boundary profile you can adapt and test.","href":"/anti-attachment/index.html","status":"Public-interest prototype"},{"name":"Lenses","category":"Inquiry","description":"A thinking exercise: what does a perspective reveal, and what might it miss?","href":"/lenses/index.html","status":"Thinking tool"},{"name":"Open Fruit","category":"Collaboration","description":"An experiment in bringing ideas and builders together with explicit agreements.","href":"/open-fruit/index.html","status":"Open experiment"}]
+[
+  {
+    "name": "SEER Solutions",
+    "category": "Work",
+    "description": "Analytics, AI implementation, and operating decisions shaped around real business questions.",
+    "href": "/seersolutions/index.html",
+    "status": "Professional practice"
+  },
+  {
+    "name": "S33R Human Signal",
+    "category": "Research",
+    "description": "Investigating model behavior and the boundaries people bring to AI.",
+    "href": "/seersolutions/s33r/index.html",
+    "status": "Research in progress"
+  },
+  {
+    "name": "The Convergence",
+    "category": "Inquiry",
+    "description": "Compare how different sources frame technology, power, meaning, and responsibility.",
+    "href": "/convergence/index.html",
+    "status": "Interactive atlas"
+  },
+  {
+    "name": "Chronicle",
+    "category": "Inquiry",
+    "description": "A living record of public decisions, changes of direction, and questions still open.",
+    "href": "/chronicle/index.html",
+    "status": "Decision journal"
+  },
+  {
+    "name": "GROUNDED",
+    "category": "Faith",
+    "description": "A small Christian formation practice for men: phones outside, Scripture open, silence, community, and one concrete commitment at a time.",
+    "href": "/grounded/index.html",
+    "status": "Four-week pilot"
+  },
+  {
+    "name": "Adventure Within",
+    "category": "Music",
+    "description": "Original improvisational guitar. Follow the sound, see where it goes.",
+    "href": "/adventure/index.html",
+    "status": "Music"
+  },
+  {
+    "name": "Faded Dependence",
+    "category": "Tools",
+    "description": "A timer that gradually fades the screen: a small invitation to put it down.",
+    "href": "/faded-dependence/",
+    "status": "Working app"
+  },
+  {
+    "name": "Anti-Attachment",
+    "category": "Research",
+    "description": "A portable human–AI boundary profile you can adapt and test.",
+    "href": "/anti-attachment/index.html",
+    "status": "Public-interest prototype"
+  },
+  {
+    "name": "Lenses",
+    "category": "Inquiry",
+    "description": "A thinking exercise: what does a perspective reveal, and what might it miss?",
+    "href": "/lenses/index.html",
+    "status": "Thinking tool"
+  },
+  {
+    "name": "Open Fruit",
+    "category": "Collaboration",
+    "description": "An experiment in bringing ideas and builders together with explicit agreements.",
+    "href": "/open-fruit/index.html",
+    "status": "Open experiment"
+  },
+  {
+    "name": "REWIND",
+    "category": "Inquiry",
+    "description": "Inspect exact public source milestones and what changed without invented history.",
+    "href": "/rewind/index.html",
+    "status": "Public provenance"
+  },
+  {
+    "name": "Boundary Lab",
+    "category": "Research",
+    "description": "A fictional interactive study of scope, memory, and human authorization.",
+    "href": "/field-study/index.html",
+    "status": "Illustrative prototype"
+  }
+]
