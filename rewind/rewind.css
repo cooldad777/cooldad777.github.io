@@ -1,0 +1,25 @@
+.rewind-page{background:linear-gradient(180deg,#f8f9f5 0%,#f3f6f0 100%)}
+.rewind-hero{padding-top:110px;padding-bottom:52px}
+.rewind-hero h1{max-width:950px;font-size:clamp(52px,7vw,96px)}
+.rewind-hero .lede{max-width:720px}
+.rewind-rules{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}
+.rewind-rules span{padding:8px 13px;border:1px solid var(--line);background:rgba(255,255,255,.72);border-radius:999px;font-size:11px}
+.rewind-workbench{display:grid;grid-template-columns:minmax(260px,.72fr) minmax(0,1.7fr);gap:48px;padding-top:34px}
+.epoch-rail{position:sticky;top:100px;align-self:start}
+.epoch-list{display:grid;gap:8px}
+.epoch-button{width:100%;text-align:left;border:1px solid transparent;background:transparent;color:var(--ink);border-radius:18px;padding:16px 18px;display:grid;grid-template-columns:42px 1fr;gap:12px}
+.epoch-button:hover{background:white;border-color:var(--line)}
+.epoch-button[aria-pressed=true]{background:white;border-color:#bfd0bf;box-shadow:0 12px 35px rgba(32,55,46,.08)}
+.epoch-button .n{font:italic 18px/1 Georgia,serif;color:#86a087;padding-top:2px}
+.epoch-button strong{display:block;font:400 19px/1.15 Georgia,serif}
+.epoch-button small{display:block;color:var(--muted);margin-top:5px}
+.epoch-stage{min-width:0}
+.epoch-stage-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:20px}
+.epoch-stage-head span{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--accent);font-weight:700}
+.epoch-stage-head h2{font-size:clamp(34px,4vw,58px);margin:6px 0 10px}
+.epoch-stage-head p{margin:0;color:var(--muted)}
+.epoch-stage-head a{white-space:nowrap;font-size:12px;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:3px}
+.snapshot-shell{background:#17271f;border-radius:28px;padding:10px;box-shadow:0 30px 90px rgba(25,43,33,.18);overflow:hidden}
+.snapshot-shell iframe{display:block;width:100%;height:min(72vh,820px);border:0;border-radius:20px;background:white}
+@media(max-width:900px){.rewind-workbench{grid-template-columns:1fr}.epoch-rail{position:static}.epoch-list{display:flex;overflow:auto;padding-bottom:6px;scroll-snap-type:x proximity}.epoch-button{min-width:260px;scroll-snap-align:start}.epoch-stage-head{align-items:start;flex-direction:column}.snapshot-shell iframe{height:68vh}}
+@media(max-width:560px){.rewind-hero{padding-top:70px}.snapshot-shell{border-radius:20px;padding:6px}.snapshot-shell iframe{border-radius:15px;height:65vh}}
