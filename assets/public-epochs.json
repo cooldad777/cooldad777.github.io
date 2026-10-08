@@ -1,0 +1,47 @@
+[
+  {
+    "id": "rooms",
+    "label": "Epoch 01 · Shared rooms",
+    "date": "2026-09-14",
+    "sha": "fe71874d0a61731512b4c79d85dda7e6dc9a93a8",
+    "title": "One visual language",
+    "summary": "The hub and interior rooms first moved onto a shared Apple-like public shell.",
+    "note": "A real Git snapshot, curated as a major public transition."
+  },
+  {
+    "id": "ecosystem",
+    "label": "Epoch 02 · Ecosystem",
+    "date": "2026-10-05",
+    "sha": "1655f1e74d8ee4cb57653a3049706d179a11cfd9",
+    "title": "A coherent family",
+    "summary": "SEE,R became a forest-first public ecosystem while keeping distinct project identities.",
+    "note": "A real Git snapshot, curated as a major public transition."
+  },
+  {
+    "id": "evidence",
+    "label": "Epoch 03 · Evidence",
+    "date": "2026-10-05",
+    "sha": "7bf5425d11a84f3c70871be50aa6e9b2ed81fad6",
+    "title": "Public truth got stricter",
+    "summary": "Chronicle became curated, Convergence became sourced, and public/private boundaries tightened.",
+    "note": "A real Git snapshot, curated as a major public transition."
+  },
+  {
+    "id": "pre-vnext",
+    "label": "Epoch 04 · Before vNext",
+    "date": "2026-10-05",
+    "sha": "9acfe3f2d796522d65b6c54f95e50b2ba7c770c0",
+    "title": "Convergence restored",
+    "summary": "The four-mode Convergence experience returned while Lenses remained a separate workbench.",
+    "note": "Frozen production base for the vNext branch."
+  },
+  {
+    "id": "vnext",
+    "label": "vNext · Continuity + authority",
+    "date": "2026-10-07",
+    "sha": null,
+    "title": "Use more intelligence. Keep the human authority.",
+    "summary": "The new public direction: capability can accelerate while scope, authority, continuity, provenance, and limits remain human-owned.",
+    "note": "Preview branch. Not deployed."
+  }
+]
