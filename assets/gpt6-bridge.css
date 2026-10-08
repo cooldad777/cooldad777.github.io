@@ -1,0 +1,21 @@
+/* GPT-6 independent public field-guide bridge — applies only when explicitly linked.
+   The original interactive page-specific tools and mechanisms retain control. */
+:root{--fg-bridge-paper:#f8f6f0;--fg-bridge-ink:#213b2f;--fg-bridge-line:#d6dacf}
+body.next{background:var(--fg-bridge-paper);color:var(--fg-bridge-ink)}
+.seer-nav{background:rgba(248,246,240,.97)!important;border-bottom:1px solid var(--fg-bridge-line)!important}
+.seer-nav .seer-brand{font-weight:800;letter-spacing:.03em}
+.seer-nav .seer-brand img{width:32px;height:32px}
+.seer-nav a[aria-current=page]{text-decoration:underline;text-underline-offset:7px}
+.next .section:not(.fg-no-bridge){scroll-margin-top:92px}
+.next .section .eyebrow,.next .page-hero .eyebrow{letter-spacing:.18em}
+.next .section-heading h2{max-width:16ch}
+.next .text-link,.next .section a{ text-underline-offset:.2em}
+.next .seer-footer{background:#102a20}
+.next .seer-footer small{color:#e4e8dc}
+.next .button:focus-visible,.next .text-link:focus-visible{outline:3px solid #a86b3c;outline-offset:5px}
+.fg-bridge-callout{margin:32px auto 0;max-width:1180px;width:calc(100% - 48px);border:1px solid #bdceba;border-left:4px solid #af8058;background:#eef1e9;color:#274532;padding:20px 26px;display:grid;grid-template-columns:190px 1fr;gap:20px}
+.fg-bridge-callout .fg-bridge-index{font:700 11px/1.5 -apple-system,sans-serif;letter-spacing:.16em;text-transform:uppercase}
+.fg-bridge-callout p{margin:0;max-width:70ch;font-size:15px;line-height:1.7}
+.fg-bridge-callout a{font-weight:750;color:#193b29}
+@media(max-width:760px){.fg-bridge-callout{grid-template-columns:1fr;gap:8px;padding:16px;width:calc(100% - 32px)}.seer-nav #seer-links{background:var(--fg-bridge-paper)}}
+@media(prefers-reduced-motion:reduce){.next *{scroll-behavior:auto!important}}
