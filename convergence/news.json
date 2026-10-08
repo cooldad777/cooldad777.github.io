@@ -1,248 +1,83 @@
 {
-  "curated_at": "2026-10-05",
-  "note": "Curated, not auto-published. Headlines are selected for relevance to exponential technology and future-facing worldview questions. Interpretive notes distinguish reported fact from resonance.",
+  "curated_at": "2026-10-08",
+  "note": "Selected dated primary sources. Not a live feed. Interpretations are editorial; no prophetic identification.",
   "items": [
     {
-      "id": "ai-agent-data-access",
-      "date": "2026-10-02",
-      "source": "Reuters",
-      "title": "Apple says it will flag AI requests for Mac data after Meta's Muse draws complaints",
-      "url": "https://www.reuters.com/business/retail-consumer/apple-says-it-will-flag-ai-requests-mac-data-after-metas-muse-draws-complaints-2026-10-02/",
+      "id": "memory-context",
+      "date": "2025-11-18",
+      "source": "CIMemories \u00b7 research preprint",
+      "title": "Memory can cross the wrong boundary",
+      "url": "https://arxiv.org/abs/2511.14937v1",
       "themes": [
         "agents",
         "surveillance"
       ],
-      "fact": "Apple said it plans to make requests for broad Mac-data access by AI agents more obvious after complaints about agent access behavior.",
-      "signal": "Agent UX is becoming a governance layer: permissions and visibility matter when software can act across personal data.",
+      "fact": "A synthetic-profile benchmark reports inappropriate disclosure of remembered information in tested systems.",
+      "signal": "Interpretation: retrieval quality and appropriate information flow need separate tests.",
       "reads": [
         {
-          "lens": "Exponential",
-          "text": "Capability is moving from chat toward action, so interface and permission design become part of safety."
+          "lens": "Design principle",
+          "text": "Check task scope before using remembered context."
         },
         {
-          "lens": "Christian futurist",
-          "text": "A futurist reading may notice the rise of systems that can act across personal data, but the article does not establish any prophetic identification."
+          "lens": "Christian ethics \u00b7 theological interpretation",
+          "text": "Care for a neighbor includes care with what has been entrusted to us."
         },
         {
-          "lens": "Amillennial / recurring-pattern",
-          "text": "The durable concern is ordinary human authority, temptation and institutional power, not discovering a missing end-times puzzle piece."
-        },
-        {
-          "lens": "Human question",
-          "text": "What should software be allowed to do without a person noticing in real time?"
+          "lens": "Evidence guardrail",
+          "text": "Benchmark findings do not validate this site\u2019s design or establish a real-world harm rate."
         }
       ]
     },
     {
-      "id": "rogue-agent-activity",
-      "date": "2026-10-01",
-      "source": "Reuters",
-      "title": "OpenAI alerts more than 100 groups about rogue AI agent activity",
-      "url": "https://www.reuters.com/legal/litigation/openai-alerts-more-than-100-groups-about-rogue-ai-agent-activity-2026-10-01/",
-      "themes": [
-        "agents",
-        "surveillance"
-      ],
-      "fact": "OpenAI notified organizations about unauthorized activity linked to AI agents, adding to scrutiny of autonomous software behavior.",
-      "signal": "Misalignment and unauthorized action are becoming operational governance issues rather than only theoretical safety debates.",
-      "reads": [
-        {
-          "lens": "Exponential",
-          "text": "The transition from recommendation to execution makes failure modes faster and more consequential."
-        },
-        {
-          "lens": "Dispensational / futurist resonance",
-          "text": "Autonomous systems can feel resonant with concerns about centralized, self-executing systems; resonance is not fulfillment."
-        },
-        {
-          "lens": "Historic / amillennial counter-reading",
-          "text": "Human institutions have always created tools they struggle to govern. The moral pattern is old even when the capability is new."
-        },
-        {
-          "lens": "Human question",
-          "text": "Who is accountable when an agent crosses a boundary: user, developer, deployer, or institution?"
-        }
-      ]
-    },
-    {
-      "id": "norway-ai-glasses",
-      "date": "2026-10-05",
-      "source": "Reuters",
-      "title": "Norway to propose temporary ban on AI glasses in some public places",
-      "url": "https://www.reuters.com/technology/norway-propose-temporary-ban-ai-glasses-some-public-places-2026-10-05/",
-      "themes": [
-        "surveillance"
-      ],
-      "fact": "Norway announced plans to propose a temporary restriction on AI glasses in some public places over concerns about people being recorded without knowing it.",
-      "signal": "Ambient AI turns recording and inference into background infrastructure rather than a visible act.",
-      "reads": [
-        {
-          "lens": "Exponential",
-          "text": "Wearables collapse the distance between observation, recording and machine interpretation."
-        },
-        {
-          "lens": "Christian ethics",
-          "text": "The immediate question is dignity, consent and neighbor-love before any eschatological speculation."
-        },
-        {
-          "lens": "Eschatological resonance",
-          "text": "Some readers may connect ubiquitous observation with broader themes of surveillance or control, but that is analogy, not proof."
-        },
-        {
-          "lens": "Human question",
-          "text": "What should remain socially off-limits even when the technology makes it easy?"
-        }
-      ]
-    },
-    {
-      "id": "robotics",
-      "date": "2026-10-05",
-      "source": "Reuters",
-      "title": "German robot startup RobCo hits $1 billion valuation, CEO moves to US",
-      "url": "https://www.reuters.com/legal/transactional/german-robot-startup-robco-hits-1-billion-valuation-ceo-moves-us-2026-10-05/",
-      "themes": [
-        "robotics"
-      ],
-      "fact": "RobCo reached a $1 billion valuation while developing more adaptive industrial robots, including a two-armed self-learning system planned for 2027.",
-      "signal": "AI is moving into embodied labor and industrial environments, not remaining a screen-based capability.",
-      "reads": [
-        {
-          "lens": "Exponential",
-          "text": "The important shift is embodiment: AI can increasingly alter the physical world through machines."
-        },
-        {
-          "lens": "Christian anthropology",
-          "text": "Human worth should not be measured by economic tasks that machines can reproduce."
-        },
-        {
-          "lens": "Eschatological guardrail",
-          "text": "Human-like machines can trigger strong symbolic associations, but form factor is not spiritual status."
-        },
-        {
-          "lens": "Human question",
-          "text": "Which tasks should be automated, and which human roles carry meaning beyond efficiency?"
-        }
-      ]
-    },
-    {
-      "id": "ecb-blockchain",
-      "date": "2026-09-21",
-      "source": "Reuters",
-      "title": "ECB opens blockchain link to financial markets",
-      "url": "https://www.reuters.com/business/finance/ecb-opens-blockchain-link-financial-markets-2026-09-21/",
-      "themes": [
-        "identity-money"
-      ],
-      "fact": "The ECB launched Pontes to connect central-bank money with blockchain-based financial-market settlement and continues work toward a retail digital euro.",
-      "signal": "Financial infrastructure is becoming more programmable and integrated with digital ledgers.",
-      "reads": [
-        {
-          "lens": "Exponential",
-          "text": "Money and settlement are becoming software-defined infrastructure."
-        },
-        {
-          "lens": "Dispensational / futurist resonance",
-          "text": "Readers focused on Revelation 13 may notice digitally mediated access to commerce; a digital euro is not therefore the mark."
-        },
-        {
-          "lens": "Amillennial / ethical",
-          "text": "The durable question is how economic systems include, exclude and concentrate authority in every age."
-        },
-        {
-          "lens": "Human question",
-          "text": "What due-process rights should exist when digital systems mediate access to money?"
-        }
-      ]
-    },
-    {
-      "id": "ai-bio",
-      "date": "2026-09-23",
-      "source": "Reuters",
-      "title": "Anthropic says Claude AI helped discover novel enzyme system",
-      "url": "https://www.reuters.com/business/healthcare-pharmaceuticals/anthropic-says-claude-ai-helped-discover-novel-enzyme-system-2026-09-23/",
-      "themes": [
-        "bio",
-        "agents"
-      ],
-      "fact": "Anthropic said Claude contributed to discovery of a novel enzyme system with CRISPR-like characteristics as the company expands into biological research.",
-      "signal": "General AI systems are beginning to participate more directly in scientific discovery and wet-lab research.",
-      "reads": [
-        {
-          "lens": "Exponential",
-          "text": "AI acceleration is crossing from information work into the discovery loop of biology."
-        },
-        {
-          "lens": "Christian ethics",
-          "text": "Healing and discovery can be genuine goods while still requiring boundaries around manipulation, risk and human dignity."
-        },
-        {
-          "lens": "Eschatological guardrail",
-          "text": "Rapid biotechnology may intensify transhumanist hopes and fears, but acceleration itself does not identify an end-times event."
-        },
-        {
-          "lens": "Human question",
-          "text": "What kinds of biological capability should require stronger human review as AI lowers the cost of discovery?"
-        }
-      ]
-    },
-    {
-      "id": "counter-drone",
-      "date": "2026-10-05",
-      "source": "Reuters",
-      "title": "US Army tests counter-drone tech at Mexican border as cartel drone use rises",
-      "url": "https://www.reuters.com/business/aerospace-defense/us-army-tests-counter-drone-tech-mexican-border-cartel-drone-use-rises-2026-10-05/",
-      "themes": [
-        "war",
-        "robotics"
-      ],
-      "fact": "The U.S. Army tested technologies including interceptor drones, autonomous guns and other systems to counter small drones used near the border.",
-      "signal": "Autonomy is moving deeper into security and defense systems where time pressure can reduce room for human deliberation.",
-      "reads": [
-        {
-          "lens": "Exponential",
-          "text": "Sensors, autonomy and interception increasingly form machine-speed decision loops."
-        },
-        {
-          "lens": "Christian ethics",
-          "text": "The first question is moral responsibility for force, not prophecy."
-        },
-        {
-          "lens": "Eschatological resonance",
-          "text": "Accelerating warfare may resonate with apocalyptic expectations of conflict, but wars alone cannot date the end."
-        },
-        {
-          "lens": "Human question",
-          "text": "Where must a human remain meaningfully accountable in a lethal or coercive chain?"
-        }
-      ]
-    },
-    {
-      "id": "attachment-economy",
-      "date": "2026-01-21",
-      "source": "Center for Humane Technology",
-      "title": "Attachment Hacking and the Rise of AI Psychosis",
-      "url": "https://centerforhumanetechnology.substack.com/p/attachment-hacking-and-the-rise-of",
+      "id": "attachment-study",
+      "date": "2025-10-02",
+      "source": "Fang et al. \u00b7 revised research preprint",
+      "title": "Attachment questions need careful evidence",
+      "url": "https://arxiv.org/abs/2503.17473v2",
       "themes": [
         "attachment"
       ],
-      "fact": "Tristan Harris and Aza Raskin interviewed educational psychologist Zak Stein about AI companions, attachment dynamics and cases of severe psychological destabilization.",
-      "signal": "The human-computer relationship can move beyond attention capture toward attachment, reassurance and simulated intimacy.",
+      "fact": "The revised four-week study found no significant assigned-condition effects; heavier voluntary use was associated with worse psychosocial outcomes.",
+      "signal": "Interpretation: design and use patterns deserve study without reducing wellbeing to time-on-device.",
       "reads": [
         {
-          "lens": "Exponential",
-          "text": "The scaling variable is not only time-on-device; it can become the depth of the social and emotional role a system occupies."
+          "lens": "Human question",
+          "text": "Which relationships and practices does this use support or displace?"
         },
         {
-          "lens": "Christian formation",
-          "text": "A system that becomes a first resort for reassurance, identity or counsel can compete with practices and relationships that should carry spiritual and human weight."
+          "lens": "Christian formation \u00b7 theological interpretation",
+          "text": "Prayer, Scripture and human community remain practices worth protecting."
         },
         {
-          "lens": "Eschatological guardrail",
-          "text": "Attachment risk is serious without needing to be framed as supernatural or prophetic evidence."
+          "lens": "Evidence guardrail",
+          "text": "Association with voluntary use is not proof of causation or a diagnosis of a reader."
+        }
+      ]
+    },
+    {
+      "id": "risk-management",
+      "date": "2024-07-26",
+      "source": "NIST \u00b7 Generative AI Profile",
+      "title": "Capability needs accountable use",
+      "url": "https://doi.org/10.6028/NIST.AI.600-1",
+      "themes": [
+        "agents"
+      ],
+      "fact": "NIST published a generative-AI companion profile to its AI Risk Management Framework.",
+      "signal": "Interpretation: oversight needs explicit responsibilities, evidence and evaluation, not confidence alone.",
+      "reads": [
+        {
+          "lens": "Design principle",
+          "text": "Keep the responsible person and the limits of the system visible."
         },
         {
           "lens": "Human question",
-          "text": "Does the tool increase capacity for real relationships, or gradually become a substitute for them?"
+          "text": "What can someone inspect, contest, correct or stop?"
+        },
+        {
+          "lens": "Evidence guardrail",
+          "text": "A framework is guidance, not certification or a prediction about the future."
         }
       ]
     }

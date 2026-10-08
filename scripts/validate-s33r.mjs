@@ -185,7 +185,7 @@ for (const name of pageNames) {
   if (!/seersolutions\/s33r\/|href="\.\.\/index\.html"|href="method\.html"|href="scenario\.html"/.test(text)) {
     fail(`${name} navigation looks incomplete`);
   }
-  if (!text.includes("https://calendly.com/ryanrsee")) fail(`${name} missing existing booking link`);
+  // Research pages intentionally have no sales CTA; booking remains on SEER.
 }
 
 const scenarioPage = pages["scenario.html"] || "";
@@ -217,7 +217,7 @@ if (!/What happens to the human/i.test(home)) fail("splash H1");
 if (!home.includes('href="scenario.html"') || !home.includes('href="method.html"')) fail("splash CTAs");
 
 const seer = readFileSync(join(root, "seersolutions", "index.html"), "utf8");
-if (!seer.includes('href="s33r/"')) fail("SEER page missing quiet S33R link");
+if (!/href="s33r\/(?:index.html)?"/.test(seer)) fail("SEER page missing quiet S33R link");
 if (!seer.includes("https://calendly.com/ryanrsee")) fail("SEER booking link removed");
 
 for (const path of filesUnder(s33r)) {

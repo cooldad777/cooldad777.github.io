@@ -68,7 +68,7 @@ const params=new URLSearchParams(location.hash.slice(1));
 const state={
   topic:['0','1','2','3'].includes(params.get('q'))?Number(params.get('q')):0,
   selected:(params.get('l')||'catholic,empirical,care').split(',').filter(id=>validIds.has(id)).slice(0,4),
-  view:['map','compare','matrix'].includes(params.get('v'))?params.get('v'):'map',
+  view:['map','compare','matrix'].includes(params.get('v'))?params.get('v'):(matchMedia('(max-width: 760px)').matches?'compare':'map'),
   focus:null
 };
 if(!state.selected.length) state.selected=['catholic','empirical'];
@@ -257,12 +257,12 @@ function renderSources(){
 
 function renderView(){
   $$('[data-view-panel]').forEach(panel=>{
-    panel.hidden=panel.dataset.viewPanel!==state.view;
+    panel.hidden=panel.dataset.viewPanel!==state.view;panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby','view-tab-'+panel.dataset.viewPanel);
   });
   $$('.view-button').forEach(btn=>{
     const active=btn.dataset.view===state.view;
     btn.classList.toggle('is-active',active);
-    btn.setAttribute('aria-selected',active?'true':'false');
+    btn.setAttribute('aria-selected',active?'true':'false');btn.tabIndex=active?0:-1;btn.id='view-tab-'+btn.dataset.view;btn.setAttribute('aria-controls',btn.dataset.view+'-view');
   });
 }
 
@@ -280,7 +280,8 @@ function render(){
   els.shareStatus.textContent='';
 }
 
-$$('.view-button').forEach(btn=>{
+const viewButtons=$$('.view-button');viewButtons.forEach((btn,i)=>{
+  btn.addEventListener('keydown',e=>{let j;if(e.key==='ArrowRight')j=(i+1)%viewButtons.length;else if(e.key==='ArrowLeft')j=(i+viewButtons.length-1)%viewButtons.length;else if(e.key==='Home')j=0;else if(e.key==='End')j=viewButtons.length-1;else return;e.preventDefault();state.view=viewButtons[j].dataset.view;renderView();syncHash();viewButtons[j].focus()});
   btn.addEventListener('click',()=>{
     state.view=btn.dataset.view;
     renderView();

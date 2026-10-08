@@ -3,28 +3,19 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>The Convergence | Worldviews, eschatology, exponential technology, and live signals</title>
+<title>The Convergence | Worldviews, eschatology, exponential technology, and dated signals</title>
 <meta name="description" content="A drillable interface for worldviews, Christian eschatology, exponential technology, and current news interpreted with explicit guardrails."/>
 <meta name="theme-color" content="#f7f9f6"/>
 <link rel="icon" href="/assets/favicon.png"/>
 <link rel="stylesheet" href="/assets/next.css"/>
 <link rel="stylesheet" href="/assets/experience.css?v=1"/>
 <link rel="stylesheet" href="/convergence/convergence.css?v=4"/>
+<link rel="stylesheet" href="/assets/public-vnext.css">
 </head>
 <body class="next convergence-atlas">
 <a class="skip" href="#convergence-modes">Skip to Convergence</a>
 
-<nav class="seer-nav" aria-label="Primary">
-  <a class="seer-brand" href="/index.html"><img src="/assets/star.png" alt=""/>SEE, R<span>Ryan See</span></a>
-  <button class="seer-menu" aria-expanded="false" aria-controls="seer-links">Menu</button>
-  <div id="seer-links">
-    <a href="/seersolutions/index.html">Work</a>
-    <a href="/portfolio/index.html">Explore</a>
-    <a href="/chronicle/index.html">Chronicle</a>
-    <a href="/convergence/index.html" aria-current="page">Convergence</a>
-    <button class="search-open" aria-label="Search projects">Search <kbd>/</kbd></button>
-  </div>
-</nav>
+<nav class="seer-nav" aria-label="Primary"><a class="seer-brand" href="/index.html"><img src="/assets/star.png" alt="" width="34" height="34">SEE, R<span>Ryan See</span></a><button class="seer-menu" aria-expanded="false" aria-controls="seer-links">Menu</button><div id="seer-links"><a href="/seersolutions/index.html">Work</a><a href="/portfolio/index.html">Projects</a><a href="/chronicle/index.html">Chronicle</a><button class="search-open" aria-label="Search projects">Search</button></div><a class="rewind-link" href="/rewind/index.html" aria-label="Rewind: the public path">Rewind <span aria-hidden="true">↶</span></a></nav><noscript><nav class="nojs-nav" aria-label="Project navigation"><a href="/seersolutions/index.html">Work</a><a href="/portfolio/index.html">All projects</a><a href="/chronicle/index.html">Chronicle</a></nav></noscript>
 
 <main>
   <header class="conv-hero">
@@ -64,7 +55,7 @@
           <span>03</span><strong>Exponential</strong><small>What is changing?</small>
         </button>
         <button class="mode-button" type="button" data-mode="live" role="tab" aria-selected="false">
-          <span>04</span><strong>Live</strong><small>What happened now?</small>
+          <span>04</span><strong>Signals</strong><small>What does the source establish?</small>
         </button>
       </div>
     </div>
@@ -131,9 +122,9 @@
 
         <div class="esch-layout">
           <aside class="perspective-rail">
-            <div class="perspective-switch" role="tablist" aria-label="Eschatology family">
-              <button class="family-button is-active" type="button" data-family="christian" aria-selected="true">Christian views</button>
-              <button class="family-button" type="button" data-family="other" aria-selected="false">Other horizons</button>
+            <div class="perspective-switch" role="group" aria-label="Eschatology family">
+              <button class="family-button is-active" type="button" data-family="christian" aria-pressed="true">Christian views</button>
+              <button class="family-button" type="button" data-family="other" aria-pressed="false">Other horizons</button>
             </div>
             <div class="perspective-list" id="esch-list"></div>
           </aside>
@@ -166,10 +157,10 @@
       <div class="conv-wrap">
         <div class="mode-heading">
           <div>
-            <p class="conv-kicker">Live · curated current events</p>
-            <h2 id="live-title">Read the headline. Then separate what happened from what it might mean.</h2>
+            <p class="conv-kicker">Signals · dated public sources</p>
+            <h2 id="live-title">Read the source. Keep interpretation in view.</h2>
           </div>
-          <p id="news-meta">Loading curated feed…</p>
+          <p id="news-meta">Loading selected sources…</p>
         </div>
 
         <div class="live-controls">
@@ -212,7 +203,7 @@
 
 <script src="/assets/navigation.js" defer></script>
 <script src="/convergence/atlas.js?v=4" defer></script>
-<script src="/assets/experience.js?v=1" defer></script>
+
 <script src="/assets/bed-audio.js?v=gain49"></script>
 </body>
 </html>

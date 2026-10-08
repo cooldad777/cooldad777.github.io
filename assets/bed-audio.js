@@ -578,24 +578,8 @@
       return;
     }
 
-    if (isPortfolioPage()) {
-      showControl(true);
-      /* Arm unlock first so the first finger-down starts + fades (no pull-refresh needed). */
-      armUnlock();
-      tryPlay({ fade: true }).then(function (ok) {
-        if (!ok) showControl(true);
-        syncUI();
-      });
-      return;
-    }
-
-    if (started && wantPlay && !globalPause) {
-      armUnlock();
-      tryPlay({ fade: true });
-    } else if (visitedPortfolio && !globalPause) {
-      showControl(true);
-      armUnlock();
-    }
+    if (isPortfolioPage() || started || visitedPortfolio) showControl(true);
+    // Playback is explicitly opt-in on every page; the Play control owns the gesture.
     syncUI();
   }
 

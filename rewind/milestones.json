@@ -1,0 +1,38 @@
+[
+  {
+    "id": "front-door",
+    "number": "01",
+    "date": "2026-09-29",
+    "title": "A front door for the work",
+    "commit": "a50a7253ccd9892cd727eaae1af4e423e97cc4ed",
+    "path": "index.html",
+    "excerpt": "I tell stories with data.",
+    "change": "The public homepage gives professional work and the portfolio separate entrances.",
+    "stable": "The person and the work are visible before a system description.",
+    "present": "The current home names faith, inquiry and music directly, while preserving a focused professional entrance."
+  },
+  {
+    "id": "decision",
+    "number": "02",
+    "date": "2026-10-05",
+    "title": "From output to a decision",
+    "commit": "a459caab58ad5307da5975ce01bc8dde69d2ee14",
+    "path": "seersolutions/index.html",
+    "excerpt": "A design principle, not a client result.",
+    "change": "SEER introduces a synthetic decision workspace with a visible validation gate.",
+    "stable": "A demonstration can make an approach understandable without becoming a client claim.",
+    "present": "The current practice keeps that workspace and makes permission part of deciding what evidence may be retrieved."
+  },
+  {
+    "id": "perspectives",
+    "number": "03",
+    "date": "2026-10-05",
+    "title": "An atlas with visible edges",
+    "commit": "9acfe3f2d796522d65b6c54f95e50b2ba7c770c0",
+    "path": "convergence/index.html",
+    "excerpt": "Resonance is not fulfillment.",
+    "change": "Convergence gives worldview, eschatology, technology and curated signals distinct modes.",
+    "stable": "Resemblance is a reason to ask a question, not an answer about prophecy.",
+    "present": "The current candidate retains the atlas and labels the dated signal collection honestly."
+  }
+]

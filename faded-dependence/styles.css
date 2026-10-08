@@ -1089,3 +1089,6 @@ input:focus-visible {
   .aurora { animation: none !important; }
   .btn,.icon-btn,.chip,.stars,.aurora { transition-duration: .001ms !important; }
 }
+
+/* Keep setup readable; fading behavior is unchanged. */
+.setup-label,.hint{color:#959fb4}

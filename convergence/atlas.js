@@ -38,10 +38,11 @@ function setMode(next,{scroll=false}={}){
     const active=btn.dataset.mode===mode;
     btn.classList.toggle('is-active',active);
     btn.setAttribute('aria-selected',active?'true':'false');
+    btn.tabIndex=active?0:-1;btn.id='tab-'+btn.dataset.mode;btn.setAttribute('aria-controls',btn.dataset.mode);
   });
   modePanels.forEach(panel=>{
     const active=panel.dataset.modePanel===mode;
-    panel.hidden=!active;
+    panel.hidden=!active;panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby','tab-'+panel.dataset.modePanel);
     panel.classList.toggle('is-active',active);
     if(active&&!reduce){
       panel.classList.remove('is-entering');
@@ -55,6 +56,8 @@ function setMode(next,{scroll=false}={}){
   }
 }
 modeButtons.forEach(btn=>btn.addEventListener('click',()=>setMode(btn.dataset.mode,{scroll:true})));
+modeButtons.forEach((b,i)=>b.addEventListener('keydown',e=>{let j;if(e.key==='ArrowRight')j=(i+1)%modeButtons.length;else if(e.key==='ArrowLeft')j=(i+modeButtons.length-1)%modeButtons.length;else if(e.key==='Home')j=0;else if(e.key==='End')j=modeButtons.length-1;else return;e.preventDefault();setMode(modeButtons[j].dataset.mode);modeButtons[j].focus()}));
+window.addEventListener('hashchange',()=>{const next=location.hash.slice(1);if(validModes.has(next))setMode(next)});
 setMode(mode);
 
 /* ---------- Atlas ---------- */
@@ -115,7 +118,7 @@ function renderPopulation(){
     seg.className='population-segment'+(atlasPath.some(p=>p.id===node.id)?' is-active':'');
     seg.style.flex=String(share)+' 1 0';
     seg.style.background=color;
-    seg.title=node.name+' · '+share+'%';
+    seg.title=node.name+' · '+share+'%';seg.setAttribute('aria-label',seg.title);
     seg.innerHTML=share>=4.5?'<span>'+esc(node.name)+'<br>'+share+'%</span>':'';
     seg.onclick=()=>selectAtlas(node);
     bar.appendChild(seg);
@@ -227,7 +230,7 @@ function renderEschStage(){
 }
 $$('.family-button').forEach(btn=>btn.addEventListener('click',()=>{
   eschFamily=btn.dataset.family;
-  $$('.family-button').forEach(x=>{const active=x===btn;x.classList.toggle('is-active',active);x.setAttribute('aria-selected',active?'true':'false');});
+  $$('.family-button').forEach(x=>{const active=x===btn;x.classList.toggle('is-active',active);x.setAttribute('aria-pressed',active?'true':'false');});
   eschSelected=eschCollection()[0]?.id;
   renderEschList();renderEschStage();
 }));
@@ -322,15 +325,15 @@ function renderNewsStage(){
   stage.innerHTML=
     '<div class="source-line"><span>'+esc(item.date)+'</span><span>·</span><span>'+esc(item.source)+'</span><span>·</span><span>'+item.themes.map(t=>esc(themeNames[t]||t)).join(' + ')+'</span></div>'+
     '<h3>'+esc(item.title)+'</h3>'+
-    '<a href="'+esc(item.url)+'" target="_blank" rel="noopener">Read original report ↗</a>'+
+    '<a href="'+esc(item.url)+'" target="_blank" rel="noopener">Read the primary source</a>'+
     '<div class="fact-signal">'+
-      '<div class="fact-box"><span>Reported fact</span><p>'+esc(item.fact)+'</p></div>'+
-      '<div class="fact-box"><span>Exponential signal</span><p>'+esc(item.signal)+'</p></div>'+
+      '<div class="fact-box"><span>Source finding / publication</span><p>'+esc(item.fact)+'</p></div>'+
+      '<div class="fact-box"><span>Editorial interpretation</span><p>'+esc(item.signal)+'</p></div>'+
     '</div>'+
     '<div class="read-stack">'+item.reads.map(r=>'<article class="read-card"><strong>'+esc(r.lens)+'</strong><p>'+esc(r.text)+'</p></article>').join('')+'</div>'+
     '<div class="live-guard"><strong>Rule:</strong> a current event may create resonance. It does not, by itself, settle doctrine, prove a prophecy, or establish a date.</div>';
 }
-$('#news-meta').textContent='Curated '+newsData.curated_at+' · '+newsData.items.length+' signals · no automatic prophetic interpretation.';
+$('#news-meta').textContent='Curated '+newsData.curated_at+' · '+newsData.items.length+' selected sources · not a live feed.';
 renderNewsFilters();renderNewsList();renderNewsStage();
 
 })();

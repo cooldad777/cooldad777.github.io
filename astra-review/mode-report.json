@@ -1,0 +1,22 @@
+[
+  {
+    "route": "/convergence/#eschatology",
+    "violations": []
+  },
+  {
+    "route": "/convergence/#exponential",
+    "violations": []
+  },
+  {
+    "route": "/convergence/#live",
+    "violations": []
+  },
+  {
+    "route": "/lenses/#v=compare",
+    "violations": []
+  },
+  {
+    "route": "/lenses/#v=matrix",
+    "violations": []
+  }
+]

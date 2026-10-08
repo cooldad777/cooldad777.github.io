@@ -1,0 +1,20 @@
+{
+  "routes": 15,
+  "viewportWidths": [
+    320,
+    375,
+    390,
+    430,
+    768,
+    1440
+  ],
+  "renderChecks": 90,
+  "errors": [],
+  "missing": [],
+  "overflow": [],
+  "axe": [],
+  "interactions": "passed",
+  "reducedMotion": "passed",
+  "noJavaScript": "core routes passed",
+  "externalRequests": "blocked intentionally; embeds require online human check"
+}

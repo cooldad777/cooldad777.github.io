@@ -1,0 +1,50 @@
+[
+  {
+    "kind": "Empirical evidence",
+    "title": "Agreement can displace accuracy",
+    "by": "Sharma et al. \u00b7 ICLR 2024",
+    "url": "https://arxiv.org/abs/2310.13548v4",
+    "claim": "The studied assistants sometimes favored responses aligned with a user\u2019s views over truthful answers.",
+    "limit": "This is evidence about the tested tasks and systems. It does not establish a failure rate for every current model or validate Human Signal."
+  },
+  {
+    "kind": "Empirical evidence",
+    "title": "Remembering includes updating",
+    "by": "Wu et al. \u00b7 LongMemEval \u00b7 ICLR 2025",
+    "url": "https://arxiv.org/abs/2410.10813v2",
+    "claim": "LongMemEval tests extraction, reasoning across sessions and time, knowledge updates, and abstention.",
+    "limit": "Benchmark performance is not a guarantee of faithful personal continuity, appropriate disclosure, or permission to use a memory."
+  },
+  {
+    "kind": "Empirical evidence",
+    "title": "Relevant is not always appropriate",
+    "by": "Mireshghallah et al. \u00b7 CIMemories \u00b7 2025 preprint",
+    "url": "https://arxiv.org/abs/2511.14937v1",
+    "claim": "A benchmark using synthetic profiles tests whether systems disclose remembered attributes in appropriate task contexts. It reports contextual-integrity violations in tested systems.",
+    "limit": "Synthetic benchmark conditions do not establish the prevalence of real-world harm or prove that this site\u2019s proposed boundary design works."
+  },
+  {
+    "kind": "Empirical evidence",
+    "title": "Use, attachment, and wellbeing",
+    "by": "Fang et al. \u00b7 revised October 2025 preprint",
+    "url": "https://arxiv.org/abs/2503.17473v2",
+    "claim": "In a four-week study with 981 participants, the revised report found no significant effects of assigned interaction conditions. Greater voluntary use was associated with worse psychosocial outcomes.",
+    "limit": "The usage association does not establish that more use caused those outcomes. This is not a diagnosis, a universal effect, or a validation of Anti-Attachment."
+  },
+  {
+    "kind": "Risk framework",
+    "title": "Accountability needs more than a trace",
+    "by": "NIST \u00b7 Generative AI Profile \u00b7 2024",
+    "url": "https://doi.org/10.6028/NIST.AI.600-1",
+    "claim": "The profile organizes generative-AI risks and management actions, including human\u2013AI configuration and information integrity.",
+    "limit": "A risk framework guides evaluation. Citing it is not certification, compliance, or proof of an architecture\u2019s safety."
+  },
+  {
+    "kind": "HCI guidance",
+    "title": "Make correction possible",
+    "by": "Amershi et al. \u00b7 CHI 2019",
+    "url": "https://www.microsoft.com/en-us/research/publication/guidelines-for-human-ai-interaction/",
+    "claim": "The authors propose and evaluate 18 guidelines for human\u2013AI interaction, including support for correction and control over time.",
+    "limit": "Design guidance informs our choices. Whether a specific interface improves agency still needs evaluation."
+  }
+]
