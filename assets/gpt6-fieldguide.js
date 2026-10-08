@@ -1,5 +1,6 @@
 /* GPT-6 independent SEE,R field guide — no network analytics, no stored personal data. */
 (()=>{'use strict';
+  document.body.classList.add('fg-ready');
   const nav=document.querySelector('.fg-nav');
   if(nav){
     const menu=nav.querySelector('.fg-menu'), links=nav.querySelector('.fg-navlinks');
