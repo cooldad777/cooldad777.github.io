@@ -3,3 +3,59 @@ const dialog=document.createElement('dialog');dialog.className='search-dialog';d
 // Useful portable outputs without sending private input to a service.
 if(location.pathname.includes('anti-attachment')){const pre=document.querySelector('pre');if(pre){const bar=document.createElement('div');bar.className='utility-tools';const copy=document.createElement('button');copy.textContent='Copy boundary profile';const download=document.createElement('button');download.textContent='Download .md';const status=document.createElement('span');status.className='copy-status';status.setAttribute('role','status');copy.onclick=async()=>{try{await navigator.clipboard.writeText(pre.textContent);status.textContent='Copied. Review how each model responds.'}catch{status.textContent='Copy unavailable. Select and copy the profile text below.'}};download.onclick=()=>{const u=URL.createObjectURL(new Blob([pre.textContent],{type:'text/markdown'}));const a=document.createElement('a');a.href=u;a.download='my-ai-boundaries.md';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)};bar.append(copy,download,status);pre.before(bar)}}
 })();
+
+
+;(()=>{'use strict';
+const nav=document.querySelector('.seer-nav');if(!nav)return;
+document.documentElement.classList.add('vnext-enhanced');
+
+// Public REWIND: curated major public epochs only.
+const links=nav.querySelector('#seer-links');
+const search=links?.querySelector('.search-open');
+if(links&&!links.querySelector('.rewind-open')){
+  const button=document.createElement('button');
+  button.type='button';button.className='rewind-open';button.setAttribute('aria-label','Rewind the public site');
+  button.innerHTML='<span aria-hidden="true">↶</span> Rewind';
+  if(search)links.insertBefore(button,search);else links.append(button);
+
+  const dialog=document.createElement('dialog');
+  dialog.className='rewind-dialog';
+  dialog.setAttribute('aria-label','Public REWIND');
+  dialog.innerHTML='<div class="rewind-head"><div><span class="rewind-kicker">Public REWIND</span><strong>See the major transitions.</strong><p>Curated public epochs only. Private history stays private.</p></div><button type="button" class="rewind-close" aria-label="Close REWIND">Close ✕</button></div><div class="rewind-epochs" aria-live="polite">Loading epochs…</div><div class="rewind-foot"><a href="/rewind/index.html">Open full REWIND ↗</a><span>Present does not erase the path that produced it.</span></div>';
+  document.body.append(dialog);
+  const root=dialog.querySelector('.rewind-epochs');
+  async function load(){
+    try{
+      const r=await fetch('/assets/public-epochs.json',{cache:'no-store'});if(!r.ok)throw Error();
+      const epochs=await r.json();
+      root.replaceChildren();
+      epochs.slice().reverse().forEach((e,i)=>{
+        const article=document.createElement('article');article.className='rewind-epoch';
+        const current=!e.sha;
+        const href=current?location.pathname+`${location.search||''}`:`/rewind/snapshots/${e.id}.html`;
+        article.innerHTML=`<div class="rewind-index">${String(epochs.length-i).padStart(2,'0')}</div><div><span class="rewind-date">${e.date}</span><h3>${e.title}</h3><p>${e.summary}</p><small>${e.note||''}</small></div><a href="${href}"${current?' aria-current="page"':''}>${current?'Current preview':'Open snapshot'} ↗</a>`;
+        root.append(article);
+      });
+    }catch{root.innerHTML='<p>REWIND index unavailable. The current page is unchanged.</p>'}
+  }
+  button.addEventListener('click',()=>{dialog.showModal();load()});
+  dialog.querySelector('.rewind-close').addEventListener('click',()=>dialog.close());
+  dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close()});
+}
+
+// Scroll state makes the chrome feel lighter without stealing attention.
+let ticking=false;
+const setScrollState=()=>{nav.classList.toggle('is-scrolled',scrollY>18);ticking=false};
+addEventListener('scroll',()=>{if(!ticking){requestAnimationFrame(setScrollState);ticking=true}},{passive:true});
+setScrollState();
+
+// Progressive reveal. Reduced-motion users get the final state immediately.
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const candidates=[...document.querySelectorAll('main > section, main > header, .feature, .door, .project-item, .decision-entry, .surface-card, .g-section, .lens-panel, .synthesis-card')];
+candidates.forEach((el,i)=>{el.classList.add('vnext-reveal');el.style.setProperty('--reveal-order',String(Math.min(i,8)))});
+if(reduce||!('IntersectionObserver'in window)){candidates.forEach(el=>el.classList.add('is-visible'))}
+else{
+  const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');io.unobserve(entry.target)}}),{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  candidates.forEach(el=>io.observe(el));
+}
+})();
