@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Dots Coach</title>
+<meta name="description" content="Learn to use ChatGPT dots with best practices">
+<meta name="theme-color" content="#f6f7fb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f111a" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Dots Coach">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--tx:#141726;--mu:#5d6478;--bd:#e3e6ef;--ac:#6d4dff;--ac2:#0ea5e9;--ok:#10b981;--bad:#ef4444;--sh:0 4px 18px rgba(20,23,38,.07);color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root{--bg:#0f111a;--card:#191c28;--tx:#eef0f7;--mu:#9aa1b5;--bd:#2a2e3d;--ac:#8b72ff;--ac2:#38bdf8;--sh:0 4px 18px rgba(0,0,0,.35)}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+header{position:sticky;top:0;z-index:5;padding:calc(env(safe-area-inset-top) + 10px) 18px 10px;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;align-items:center;gap:10px}
+header h1{font-size:20px;margin:0;flex:1}
+.dots{display:inline-flex;gap:4px}.dots i{width:10px;height:10px;border-radius:50%;background:var(--ac)}.dots i:nth-child(2){background:var(--ac2)}.dots i:nth-child(3){background:var(--ok)}
+.pill{font-size:13px;padding:5px 10px;border-radius:99px;background:var(--card);border:1px solid var(--bd)}
+main{padding:6px 16px calc(96px + env(safe-area-inset-bottom));max-width:640px;margin:0 auto}
+.view{display:none;animation:in .28s ease}.view.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:18px;padding:16px;margin:12px 0;box-shadow:var(--sh)}
+h2{font-size:24px;margin:8px 0 4px}h3{margin:0 0 6px;font-size:18px}
+p.mu,.mu{color:var(--mu)}small{color:var(--mu)}
+button,.btn{font:inherit;min-height:48px;border-radius:14px;border:1px solid var(--bd);background:var(--card);color:var(--tx);padding:10px 16px;cursor:pointer;transition:transform .12s,background .2s}
+button:active{transform:scale(.97)}
+.pri{background:linear-gradient(135deg,var(--ac),var(--ac2));color:#fff;border:0;font-weight:600}
+.full{width:100%}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.list button{display:flex;width:100%;text-align:left;align-items:center;gap:12px;margin:8px 0}
+.list button .n{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;background:color-mix(in srgb,var(--ac) 15%,transparent);color:var(--ac);font-weight:700}
+.list button.done .n{background:var(--ok);color:#fff}
+.do,.dont{border-radius:12px;padding:10px 12px;margin:6px 0}
+.do{background:color-mix(in srgb,var(--ok) 13%,transparent)}.dont{background:color-mix(in srgb,var(--bad) 12%,transparent)}
+.opt{display:block;width:100%;text-align:left;margin:8px 0}
+.opt.right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 15%,var(--card))}
+.opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,var(--card))}
+.fb{margin-top:8px;padding:10px 12px;border-radius:12px;background:color-mix(in srgb,var(--ac2) 12%,transparent)}
+label{display:block;font-weight:600;margin:12px 0 4px}
+input,textarea,select{width:100%;font:inherit;font-size:16px;padding:12px;border-radius:12px;border:1px solid var(--bd);background:var(--bg);color:var(--tx)}
+textarea{min-height:76px}
+.chk{display:flex;gap:10px;align-items:flex-start;font-weight:400;margin:10px 0}.chk input{width:22px;height:22px;flex:none;margin-top:2px}
+pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--bd);border-radius:12px;padding:12px;font-size:14px}
+.cite{font-size:12px;color:var(--ac);font-weight:600}
+nav{position:fixed;bottom:0;left:0;right:0;z-index:9;display:flex;background:color-mix(in srgb,var(--card) 92%,transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--bd);padding:4px 4px calc(4px + env(safe-area-inset-bottom))}
+nav button{flex:1;border:0;background:none;min-height:56px;padding:4px 0;font-size:11px;color:var(--mu);display:flex;flex-direction:column;align-items:center;gap:2px;border-radius:12px}
+nav button b{font-size:20px;line-height:1}
+nav button.on{color:var(--ac)}
+.bar{height:10px;background:var(--bd);border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--ac),var(--ac2));transition:width .4s}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stats div{text-align:center}.stats b{display:block;font-size:24px}
+ul.cs{padding-left:18px;margin:4px 0}ul.cs li{margin:4px 0}
+a{color:var(--ac)}
+.toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom));transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:10px 16px;border-radius:99px;opacity:0;transition:opacity .25s;pointer-events:none;z-index:20}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head>
+<body>
+<header><span class="dots"><i></i><i></i><i></i></span><h1 id="title">Dots Coach</h1><span class="pill" id="xp">0 XP</span></header>
+<main>
+<section class="view on" id="v-learn"></section>
+<section class="view" id="v-build"></section>
+<section class="view" id="v-practice"></section>
+<section class="view" id="v-fix"></section>
+<section class="view" id="v-more"></section>
+</main>
+<nav id="nav">
+<button data-v="learn" class="on"><b>◉</b>Learn</button>
+<button data-v="build"><b>✎</b>Build</button>
+<button data-v="practice"><b>◎</b>Practice</button>
+<button data-v="fix"><b>⚑</b>Fix</button>
+<button data-v="more"><b>☰</b>More</button>
+</nav>
+<div class="toast" id="toast"></div>
+<script>
+"use strict";
+const SRC={H:["OpenAI Help Center: Getting started with your dot","https://help.openai.com/en/articles/20001530-getting-started-with-your-dot"],B:["OpenAI blog: Introducing dots","https://openai.com/index/introducing-dots/"],P:["ChatGPT Pricing","https://chatgpt.com/pricing/"],L:["DevDay 2026 notes","https://learn.chatgpt.com/docs/whats-new/devday-2026"],E:["Engadget: how to use dots / rollout","https://www.engadget.com/2281998/how-to-use-opeai-dot-rollout-schedule/"],V:["The Verge hands-on","https://www.theverge.com/ai-artificial-intelligence/1004096/openai-chatgpt-dots-hands-on-agent"],R:["The Register: open-source imitators and technical difficulties","https://www.theregister.com/ai-and-ml/2026/10/07/openai-dots-inspire-open-source-imitators-amid-technical-difficulties/5301734"],BW:["BuildnWrite first-day review roundup","https://buildnwrite.io/blog/openai-dots-first-day-review/"],W:["Watagee (JP) Reddit recap","https://news.watagee.com/articles/drive-400f72b1b8f9f859e4ce9cb81aa45171"],A:["AGI Hunt (seen only in search results; returned 403)","https://agihunt.info/en/p/1a11a96b5d4188cf78167591400"]};
+const c=(...k)=>' <span class="cite">['+k.join('][')+']</span>';
+const LESSONS=[
+{t:"What a dot is",k:"A dot (\"your dot\") is an always-on agent in ChatGPT, powered by GPT-6 Astra. It has its own cloud computer and browser, works across the apps you connect (4,000+ via plugins), and keeps making progress between conversations."+c('B','H')+" You can reach it from the ChatGPT desktop app (Mac/Windows), desktop web, the iOS/Android apps (not mobile web), Slack and Teams, and voice calls. Texting is a limited beta for US Pro users only."+c('H','B'),
+do:["Use it for ongoing, goal-based projects, recurring checks (e.g. reviewing your calendar each morning), and inbox/schedule monitoring."+c('H','BW'),"Rename it from the default @yourname-dot and pick an avatar if you like."+c('H')],
+dont:["Don't confuse it with \"OpenDots\" or \"Open Dot\". Those are open-source copies, not OpenAI products."+c('R'),"Don't expect it to shine at consumer errands like ordering food. Reviewers found it better at work tasks."+c('V')],
+q:"Which way of reaching your dot is NOT supported?",o:["iOS app","Mobile web browser","Slack"],a:1,e:"Mobile web isn't supported. Use the iOS/Android app instead."+c('H')},
+{t:"Plans & limits",k:"Pro (from $100/mo; $200 and $500 tiers also exist) and Business Premium include your first dot at no extra cost. Free, Go and Plus don't include dots."+c('P','E','B')+" Pro requires being 18+ and outside the EEA, UK and Switzerland. On Enterprise, Edu and Healthcare it's a beta a workspace admin has to turn on."+c('H'),
+do:["Expect a gradual rollout: access \"may take several days\" to reach your account."+c('H','L'),"Remember a dot can't call you yet and can't have its own standalone email address, though you can connect your personal email."+c('H')],
+dont:["Don't assume exact quotas. OpenAI hasn't published them."+c('B','E'),"Don't count on extra dots or paid speed-ups yet. They're coming later and pricing hasn't been announced."+c('B','E')],
+q:"Which plan includes a dot?",o:["Plus","Go","Pro"],a:2,e:"Pro and Business Premium include your first dot. Free, Go and Plus don't."+c('P','E')},
+{t:"Goal-based tasking",k:"Give it a goal plus context, attach files or links with +, and spell out the result you want."+c('H')+" Tight, narrow instructions work better than broad ones."+c('BW'),
+do:["Say what \"done\" looks like, e.g. \"keep this deck updated as the data changes\"."+c('H','B'),"For coding, create the Codex cloud environment first, then point the dot at it."+c('H')],
+dont:["Don't use it only for one-off Q&A. It's built for ongoing projects."+c('H','B'),"Don't write sweeping rules. One user said the auto-review checker sent broad rules back."+c('BW')],
+q:"What's the best first step before asking your dot to fix app bugs?",o:["Paste the whole repo into chat","Create the Codex cloud environment, then point the dot at it","Give it your GitHub password"],a:1,e:"The Help Center says to set up the Codex cloud environment first."+c('H')},
+{t:"Per-task corrections",k:"Each task has its own conversation and doesn't automatically see your other chats with the dot. Correct it inside that task's thread."+c('H'),
+do:["Open the task and reply there with the fix."+c('H'),"If it stalled or missed an instruction, answer pending approvals, resume it if paused, and check Scheduled."+c('H')],
+dont:["Don't post the correction in a different chat and assume the task will see it."+c('H')],
+q:"Your dot's report task used the wrong date range. Where do you correct it?",o:["In a new general chat with the dot","Inside that task's own thread","Through Slack"],a:1,e:"Tasks don't automatically see your other chats, so correct it in the task thread."+c('H')},
+{t:"Permission rules",k:"Set autonomy explicitly under Customize → Custom rules. Each action can be: act without asking / act if pre-approved / ask first / hand off to you. \"Pre-approved\" means you explicitly asked for that action in your prompt."+c('H'),
+do:["Say \"send it\" when you really want something sent."+c('H'),"Remember proactive research uses read-only tools, so it can't send or change anything on its own."+c('B')],
+dont:["Don't assume \"draft a reply\" means the dot will send it. It won't."+c('H'),"Don't expect it to do certain steps, such as changing a password. Those are always yours."+c('H')],
+q:"Your rule for email is \"act if pre-approved\". Which prompt gets an email sent?",o:["\"Draft a reply to Sam\"","\"Draft a reply to Sam and send it\"","\"Think about replying to Sam\""],a:1,e:"Pre-approved means you explicitly asked for the action. Asking for a draft doesn't authorize sending it."+c('H')},
+{t:"Usage & quota control",k:"Talking to your dot doesn't count toward ChatGPT limits, but tasks it starts in Codex or ChatGPT Work do. The plan includes an \"allowance for deeper work\", with extended limits for the first month."+c('B','E'),
+do:["Tell it not to start Codex or Work tasks unless you approve them."+c('BW','W'),"Watch your usage during the first month so metering later doesn't surprise you."+c('E')],
+dont:["Don't ignore sudden usage spikes. One user said a single status question used 14% of their limit because the dot handed work to Codex in the background."+c('BW','W')],
+q:"Which of these counts toward your ChatGPT limits?",o:["Chatting with your dot","A Codex task your dot starts","Renaming your dot"],a:1,e:"Tasks it starts in Codex or ChatGPT Work count as usual. Talking to it doesn't."+c('B','E')},
+{t:"Logins, Take over & Allow access",k:"The cloud browser keeps its own sessions, so being signed in on your PC doesn't sign the dot in."+c('H')+" If a site blocks the cloud browser, use Take over to sign in yourself, or allow local computer access so it can use your own browser. Neither is guaranteed to work."+c('H','V'),
+do:["For local tools: in the desktop app go to Profile → Computers → Allow access, and keep that computer online with the app open."+c('H'),"Open the dot's computer from Activity to inspect or take over."+c('H','B')],
+dont:["Don't expect Codex or Work Sync connections to count as local access."+c('H'),"Don't expect it to need no help. The Verge saw it need more takeovers than its competitors."+c('V')],
+q:"You're signed into a site on your laptop, but the dot isn't. Why?",o:["The dot is broken","The cloud browser keeps its own sessions","You need Plus"],a:1,e:"Sign in inside the cloud browser, for example with Take over."+c('H')},
+{t:"Memory & reset",k:"The dot inherits ChatGPT memory and writes its own memories, including from connected apps. The only way to delete the dot's own memories is Reset, which deletes the dot."+c('H'),
+do:["Connect only the apps you need."+c('H'),"Use memory deliberately."+c('H')],
+dont:["Don't assume disconnecting an app erases what the dot already learned from it."+c('H')],
+q:"How do you delete the dot's own memories?",o:["Disconnect the apps","Reset, which deletes the dot","Clear your browser cache"],a:1,e:"Reset is the only way, and it deletes the dot."+c('H')},
+{t:"Troubleshooting basics",k:"Check Activity (In progress / Scheduled / Completed). Pause the dot from the ••• menu when you don't want background work."+c('H','B')+" Early October brought widespread reports of slow, shallow research, lost permissions and failing voice calls."+c('R','W','A'),
+do:["Type in chat when calls fail, and reconnect apps that have expired."+c('H'),"If dots don't show up, check your account and workspace, open chatgpt.com/dots, and wait for the rollout."+c('H')],
+dont:["Don't keep retrying a broken call. Switch to typing."+c('H'),"Don't stop at the first blocker after approving something. Look for a separate sign-in, connection or approval request."+c('H')],
+q:"Voice calls with your dot keep failing. Best move?",o:["Type in chat instead","Reset the dot","Buy another plan"],a:0,e:"The Help Center suggests typing in chat when calls fail."+c('H')}
+];
+const DRILLS=[
+{s:"You want weekly show notes from your podcast transcripts.",o:["\"Help with my podcast.\"","\"Each week, turn the new transcript in the linked folder into show notes plus 3 social posts. Done = a draft doc for me to review. Don't publish anything.\"","\"Do whatever you think is best with my files.\""],a:1,e:"It gives a goal, context, a done-criterion and a clear permission line. Narrow, goal-based prompts work best."+c('H','BW')},
+{s:"You want your dot to reply to a client email for you.",o:["\"Draft a reply to Dana.\" (and expect it to be sent)","\"Draft a reply to Dana confirming Tuesday, then send it.\"","\"Handle Dana.\""],a:1,e:"Asking for a draft doesn't authorize sending. Say \"send it\" to pre-approve the action."+c('H')},
+{s:"Your usage limit dropped fast after a simple question.",o:["Ignore it, since talking is free","\"Don't start Codex or Work tasks unless I approve them first.\"","Reset the dot"],a:1,e:"Codex/Work tasks count toward limits, and one user saw a status question use 14%. Set a usage guard."+c('B','BW','W')},
+{s:"A research task produced the wrong comparison. You opened a new chat to fix it.",o:["Keep going in the new chat","Go to that task's own thread and correct it there","Disconnect all apps"],a:1,e:"Each task has its own conversation and doesn't see your other chats."+c('H')},
+{s:"You want the dot to fix bugs in your app and open PRs.",o:["\"Fix my code.\"","Create the Codex cloud environment first, then: \"Scope, fix and test issue #12 in that environment and return a PR.\"","Paste your password so it can log in"],a:1,e:"Set up the Codex environment first, then give a narrow, scoped goal."+c('H','BW')},
+{s:"You're worried about what the dot remembers from your work email.",o:["Disconnect email and assume the memories are gone","Connect only the apps you need. Reset (which deletes the dot) is the only way to remove its own memories.","Ask it to forget in a new chat"],a:1,e:"Disconnecting doesn't erase what it learned, and Reset is the only way to delete its memories."+c('H')}
+];
+const TREE={
+start:{q:"What's going on?",o:[["My dot is stuck or not progressing","stuck"],["Dots don't show up at all","noshow"],["A website or login is blocking it","login"],["Local computer tools don't work","local"],["Usage suddenly spiked","usage"],["Voice call failing / research slow","calls"]]},
+stuck:{q:"Check Activity. What do you see?",o:[["A pending approval or sign-in request","pend"],["The task is paused","paused"],["I approved it but it's still blocked","approved"],["It missed one of my instructions","missed"]]},
+pend:{f:"Answer the pending approval or sign-in request. The task can't move until you do."+c('H')},
+paused:{f:"Resume the task, and check what's saved under Scheduled. You can pause or unpause background work from the ••• menu."+c('H')+" If it was paused by abuse prevention, the monitoring system can pause work and there's no official fix. Rephrase the request with legitimate context or contact support."+c('R','B')},
+approved:{f:"Look for a separate sign-in, connection or approval request, check your custom rule, and ask for the action directly. Some steps (e.g. changing a password) are always yours to do."+c('H')},
+missed:{f:"Correct it inside that task's own thread. Tasks don't see your other chats."+c('H')},
+noshow:{f:"Check your account and workspace, open chatgpt.com/dots, and wait for the rollout, which can take several days. Make sure your plan is Pro or Business Premium. Enterprise/Edu/Healthcare need an admin to turn it on."+c('H','P')},
+login:{q:"Which is it?",o:[["Signed in on my PC, but the dot isn't","login2"],["The site blocks the cloud browser / security-check loop","login3"]]},
+login2:{f:"The cloud browser keeps its own sessions. Sign in there, for example with Take over."+c('H')},
+login3:{f:"Use Take over to sign in yourself, or allow local computer access so it can use your own browser. Neither is guaranteed to work."+c('H','V')},
+local:{f:"In the desktop app go to Profile → Computers → Allow access, and keep that computer online with the app open. Codex or Work Sync connections don't count."+c('H')},
+usage:{f:"The dot probably handed work to Codex in the background. Tell it: \"Don't start Codex or Work tasks unless I approve them.\""+c('BW','W')+" Codex/Work tasks count toward limits, but chatting doesn't."+c('B')},
+calls:{q:"Which problem?",o:[["Voice call failing","callf"],["Slow or shallow research","slow"],["Lost permissions / app disconnected","perm"]]},
+callf:{f:"Type in chat instead."+c('H')+" Failing calls were widely reported in early October."+c('R','W')},
+slow:{f:"Widely reported in early October."+c('R','W','A')+" Split the work into smaller tasks. (That's common-sense advice, not from an official source.)"},
+perm:{f:"Reconnect the expired app."+c('H')+" Lost permissions were widely reported in early October."+c('R','W')}
+};
+const K='dotsCoach.v1';
+const def={xp:0,lessons:{},quiz:{},drills:{},streak:0,last:null,builds:0};
+let S;try{S=Object.assign({},def,JSON.parse(localStorage.getItem(K)||'{}'))}catch(e){S=Object.assign({},def)}
+const save=()=>{try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}hdr()};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+function day(d){return d.toISOString().slice(0,10)}
+function tick(){const t=day(new Date());if(S.last===t)return;const y=new Date();y.setDate(y.getDate()-1);S.streak=(S.last===day(y))?S.streak+1:1;S.last=t}
+function addXP(n){tick();S.xp+=n;save();toast('+'+n+' XP')}
+function hdr(){$('#xp').textContent=S.xp+' XP · 🔥'+S.streak}
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),1400)}
+const TITLES={learn:'Learn',build:'Prompt Builder',practice:'Practice',fix:'Troubleshoot',more:'More'};
+function go(v,sub){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('on',x.id==='v-'+v));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));$('#title').textContent=TITLES[v];R[v](sub);window.scrollTo(0,0)}
+$('#nav').addEventListener('click',e=>{const b=e.target.closest('button');if(b)go(b.dataset.v)});
+const R={};
+R.learn=function(i){const el=$('#v-learn');
+if(i==null){const d=Object.keys(S.lessons).length;
+el.innerHTML='<h2>Master your dot</h2><p class="mu">Bite-sized lessons from official docs and early reviews.</p><div class="card"><div class="row" style="justify-content:space-between"><b>'+d+' / '+LESSONS.length+' lessons</b><small>'+Math.round(d/LESSONS.length*100)+'%</small></div><div class="bar" style="margin-top:8px"><i style="width:'+(d/LESSONS.length*100)+'%"></i></div></div><div class="list">'+LESSONS.map((l,j)=>'<button class="'+(S.lessons[j]?'done':'')+'" data-l="'+j+'"><span class="n">'+(S.lessons[j]?'✓':j+1)+'</span><span>'+esc(l.t)+'</span></button>').join('')+'</div>';
+el.querySelectorAll('[data-l]').forEach(b=>b.onclick=()=>R.learn(+b.dataset.l));return}
+const l=LESSONS[i];
+el.innerHTML='<button id="bk">‹ Lessons</button><h2>'+esc(l.t)+'</h2><div class="card"><h3>Key idea</h3><p>'+l.k+'</p></div><div class="card"><h3>Do</h3>'+l.do.map(x=>'<div class="do">✓ '+x+'</div>').join('')+'<h3 style="margin-top:12px">Don\'t</h3>'+l.dont.map(x=>'<div class="dont">✕ '+x+'</div>').join('')+'</div><div class="card"><h3>Quick check</h3><p>'+esc(l.q)+'</p><div id="qo">'+l.o.map((o,j)=>'<button class="opt" data-o="'+j+'">'+esc(o)+'</button>').join('')+'</div><div id="qf"></div></div><div class="row">'+(i>0?'<button data-n="'+(i-1)+'">‹ Prev</button>':'')+(i<LESSONS.length-1?'<button class="pri" style="flex:1" data-n="'+(i+1)+'">Next lesson ›</button>':'<button class="pri" style="flex:1" id="tp">Try Practice ›</button>')+'</div>';
+$('#bk').onclick=()=>R.learn();el.querySelectorAll('[data-n]').forEach(b=>b.onclick=()=>{R.learn(+b.dataset.n);scrollTo(0,0)});if($('#tp'))$('#tp').onclick=()=>go('practice');
+el.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const j=+b.dataset.o,ok=j===l.a;
+el.querySelectorAll('[data-o]').forEach(x=>{x.disabled=true;if(+x.dataset.o===l.a)x.classList.add('right')});if(!ok)b.classList.add('wrong');
+$('#qf').innerHTML='<div class="fb"><b>'+(ok?'Correct!':'Not quite.')+'</b> '+l.e+'</div>';
+let g=0;if(!S.lessons[i]){S.lessons[i]=1;g+=10}if(ok&&!S.quiz[i]){S.quiz[i]=1;g+=10}if(g)addXP(g);else save()})};
+R.build=function(){const el=$('#v-build');if(el.dataset.r){out();return}el.dataset.r=1;
+el.innerHTML='<h2>Prompt Builder</h2><p class="mu">Goal + context + attachments + done-criteria + permissions + usage guard.'+c('H','BW')+'</p><div class="card">'+
+'<label for="g">Goal</label><textarea id="g" placeholder="e.g. Keep my Q4 sales deck updated as the data changes"></textarea>'+
+'<label for="cx">Context</label><textarea id="cx" placeholder="Who it\'s for, constraints, background"></textarea>'+
+'<label for="fl">Files / links (attach with + in ChatGPT)</label><input id="fl" placeholder="e.g. Q4 sheet, deck link">'+
+'<label for="dn">Done looks like…</label><textarea id="dn" placeholder="e.g. Updated deck plus a 3-bullet summary of changes"></textarea>'+
+'<label for="cad">Cadence (optional)</label><select id="cad"><option value="">One-time</option><option>Every morning</option><option>Every weekday</option><option>Weekly</option><option>Whenever the source changes</option></select>'+
+'<label for="pm">Permission level for outward actions</label><select id="pm"><option value="ask">Ask first before sending/changing anything</option><option value="draft">Drafts only. Never send.</option><option value="pre">Pre-approved: send it when done</option><option value="hand">Hand off to me for those steps</option></select>'+
+'<label class="chk"><input type="checkbox" id="ug" checked> Usage guard: don\'t start Codex or Work tasks without asking'+c('BW','W')+'</label>'+
+'<label class="chk"><input type="checkbox" id="nr" checked> Keep scope narrow and check in if unclear'+c('BW')+'</label>'+
+'<label class="chk"><input type="checkbox" id="rp"> Tell me about any pending approvals or sign-ins right away'+c('H')+'</label>'+
+'</div><div class="card"><h3>Your prompt</h3><pre id="out"></pre><button class="pri full" id="cp">Copy to clipboard</button><p class="mu" style="font-size:13px">Tip: set matching defaults under Customize → Custom rules.'+c('H')+'</p></div>';
+el.querySelectorAll('input,textarea,select').forEach(x=>x.addEventListener('input',out));$('#cp').onclick=copy;out()};
+function out(){const v=id=>($('#'+id)||{}).value||'';const L=[];
+L.push('Goal: '+(v('g').trim()||'[your goal]'));if(v('cx').trim())L.push('Context: '+v('cx').trim());if(v('fl').trim())L.push('Files/links: '+v('fl').trim()+' (attached)');
+L.push('Done when: '+(v('dn').trim()||'[describe the finished result]'));if(v('cad'))L.push('Cadence: '+v('cad')+'.');
+L.push({ask:'Permissions: Ask me first before sending, posting, buying or changing anything.',draft:'Permissions: Drafts only. Do not send or post anything.',pre:'Permissions: You are pre-approved for this: when the draft is ready, send it.',hand:'Permissions: Hand off to me for any sending, sign-ins or account changes.'}[v('pm')]);
+if($('#ug')&&$('#ug').checked)L.push("Usage: Don't start Codex or ChatGPT Work tasks without asking me first.");
+if($('#nr')&&$('#nr').checked)L.push('Scope: Stick to this goal only. If something is unclear, ask before expanding scope.');
+if($('#rp')&&$('#rp').checked)L.push('If you hit a sign-in, connection or approval request, tell me right away.');
+$('#out').textContent=L.join('\n')}
+function copy(){const t=$('#out').textContent;const done=()=>{toast('Copied!');if(!S.builds){S.builds=1;addXP(15)}};
+if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(t).then(done,fb);else fb();
+function fb(){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(e){toast('Select & copy manually')}a.remove()}}
+R.practice=function(i){const el=$('#v-practice');i=i||0;const d=DRILLS[i];
+el.innerHTML='<h2>Practice</h2><p class="mu">Pick the best instruction. Drill '+(i+1)+' of '+DRILLS.length+'</p><div class="bar"><i style="width:'+((i)/DRILLS.length*100)+'%"></i></div><div class="card"><h3>Scenario</h3><p>'+esc(d.s)+'</p>'+d.o.map((o,j)=>'<button class="opt" data-o="'+j+'">'+esc(o)+'</button>').join('')+'<div id="pf"></div></div><div class="row"><button class="pri full" id="nx" style="display:none">'+(i<DRILLS.length-1?'Next scenario ›':'Start over ↺')+'</button></div>';
+el.querySelectorAll('[data-o]').forEach(b=>b.onclick=()=>{const ok=+b.dataset.o===d.a;el.querySelectorAll('[data-o]').forEach(x=>{x.disabled=true;if(+x.dataset.o===d.a)x.classList.add('right')});if(!ok)b.classList.add('wrong');
+$('#pf').innerHTML='<div class="fb"><b>'+(ok?'Nice!':'Better option highlighted.')+'</b> '+d.e+'</div>';$('#nx').style.display='';if(ok&&!S.drills[i]){S.drills[i]=1;addXP(10)}});
+$('#nx').onclick=()=>{R.practice((i+1)%DRILLS.length);scrollTo(0,0)}};
+R.fix=function(n){const el=$('#v-fix');n=n||'start';const N=TREE[n];
+el.innerHTML='<h2>Troubleshoot</h2><p class="mu">Answer a few questions to find a fix.</p><div class="card">'+(N.q?'<h3>'+esc(N.q)+'</h3>'+N.o.map(o=>'<button class="opt" data-t="'+o[1]+'">'+esc(o[0])+' ›</button>').join(''):'<h3>Try this</h3><div class="fb">'+N.f+'</div>')+'</div>'+(n!=='start'?'<button class="full" id="rs">↺ Start over</button>':'');
+el.querySelectorAll('[data-t]').forEach(b=>b.onclick=()=>R.fix(b.dataset.t));if($('#rs'))$('#rs').onclick=()=>R.fix()};
+R.more=function(p){const el=$('#v-more');
+const tabs='<div class="row" style="margin:6px 0">'+[['cheat','Cheat sheet'],['prog','Progress'],['inst','Install'],['about','Sources']].map(t=>'<button data-p="'+t[0]+'" class="'+((p||'cheat')===t[0]?'pri':'')+'">'+t[1]+'</button>').join('')+'</div>';
+p=p||'cheat';let h='';
+if(p==='cheat')h='<div class="card"><h3>Dots cheat sheet</h3><ul class="cs"><li><b>Goal + context + files (+) + result you want.</b>'+c('H')+'</li><li><b>Narrow beats broad.</b>'+c('BW')+'</li><li><b>Custom rules:</b> act without asking / act if pre-approved / ask first / hand off to you.'+c('H')+'</li><li><b>A draft isn\'t a send.</b> Say "send it."'+c('H')+'</li><li><b>Correct it in the task thread.</b>'+c('H')+'</li><li><b>Usage guard:</b> "Don\'t start Codex or Work tasks without asking." Chatting is free, but Codex/Work tasks count.'+c('B','BW')+'</li><li><b>Logins:</b> the cloud browser has its own sessions. Use Take over or Profile → Computers → Allow access.'+c('H')+'</li><li><b>Memory:</b> connect only the apps you need. Only Reset (which deletes the dot) removes its memories.'+c('H')+'</li><li><b>Coding:</b> create the Codex cloud environment first.'+c('H')+'</li><li><b>Stuck?</b> Check Activity, answer approvals, resume if paused, check Scheduled.'+c('H')+'</li><li><b>Calls failing?</b> Type instead. <b>App expired?</b> Reconnect it.'+c('H')+'</li><li><b>Pause</b> background work from the ••• menu.'+c('H')+'</li></ul></div>';
+if(p==='prog'){const d=Object.keys(S.lessons).length,q=Object.keys(S.quiz).length,dr=Object.keys(S.drills).length;
+h='<div class="card"><div class="stats"><div><b>'+S.xp+'</b><small>XP</small></div><div><b>🔥'+S.streak+'</b><small>day streak</small></div><div><b>'+d+'/'+LESSONS.length+'</b><small>lessons</small></div></div></div><div class="card"><p>Quiz correct: <b>'+q+'/'+LESSONS.length+'</b></p><p>Drills aced: <b>'+dr+'/'+DRILLS.length+'</b></p><p>Prompt built: <b>'+(S.builds?'yes':'not yet')+'</b></p><div class="bar"><i style="width:'+Math.round((d+q+dr+(S.builds?1:0))/(LESSONS.length*2+DRILLS.length+1)*100)+'%"></i></div></div><button class="full" id="rst" style="color:var(--bad)">Reset progress</button>'}
+if(p==='inst')h='<div class="card"><h3>iPhone / iPad</h3><ol><li>Open this page in <b>Safari</b>.</li><li>Tap the <b>Share</b> button.</li><li>Choose <b>Add to Home Screen</b>, then <b>Add</b>.</li></ol></div><div class="card"><h3>Android</h3><ol><li>Open this page in <b>Chrome</b>.</li><li>Tap the <b>⋮ menu</b>.</li><li>Choose <b>Install app</b> or <b>Add to Home screen</b>.</li></ol></div><p class="mu">Installed from a web server, it works offline. The standalone .html file also opens directly from your Files app.</p>';
+if(p==='about')h='<div class="card"><h3>About</h3><p>Dots Coach teaches you to use ChatGPT dots. Every fact comes from a research brief compiled Oct 14, 2026. Exact quotas are unpublished, and the feature is changing fast, so check the official Help Center.</p></div><div class="card"><h3>Sources</h3><ul class="cs">'+Object.entries(SRC).map(([k,v])=>'<li><b>['+k+']</b> <a href="'+v[1]+'" target="_blank" rel="noopener">'+esc(v[0])+'</a></li>').join('')+'</ul><small>Jailbreak or filter-bypass content isn\'t included.</small></div>';
+el.innerHTML='<h2>More</h2>'+tabs+h;
+el.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>R.more(b.dataset.p));
+if($('#rst'))$('#rst').onclick=()=>{if(confirm('Reset all progress?')){S=Object.assign({},def,{lessons:{},quiz:{},drills:{}});save();R.more('prog');R.learn();toast('Progress reset')}}};
+hdr();R.learn();
+if('serviceWorker' in navigator&&location.protocol.startsWith('http'))navigator.serviceWorker.register('sw.js').catch(()=>{});
+</script></body></html>
